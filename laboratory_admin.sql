@@ -6,6 +6,13 @@
 -- Generation Time: Sep 24, 2022 at 05:33 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Sep 24, 2022 at 02:22 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -163,6 +170,7 @@ INSERT INTO `sampler` (`id_sampler`, `name_smp`, `gender_smp`, `phone_smp`, `ema
 (12, 'Pramdhanni Dwi Putra Bintang', 1, '085698741236', 'pramgebleg@gmail.com'),
 (13, 'Annaufal Arifa Nasution Hidayatullah', 1, '083698755485', 'annaufal60@gmail.com'),
 (14, 'Shevy Octavian', 1, '081210805647', 'shevygaming@gmail.com');
+(14, 'Shevy Octavia', 0, '081210805647', 'shevygaming@gmail.com');
 
 -- --------------------------------------------------------
 

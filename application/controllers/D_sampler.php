@@ -27,7 +27,7 @@ class D_sampler extends CI_Controller
             $gender_smp = $this->input->post('gender_smp');
             $phone_smp = $this->input->post('phone_smp');
             $email_smp = $this->input->post('email_smp');
-        
+
 
         $data = array(
             'name_smp' => $name_smp,
@@ -40,7 +40,9 @@ class D_sampler extends CI_Controller
         $this->session->set_flashdata('msg', 'Data sampler success added.');
         redirect('D_sampler');
     }
+    
     }
+
 
     public function _rules()
     {
