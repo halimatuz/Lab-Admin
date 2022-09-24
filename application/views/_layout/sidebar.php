@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Add Data</span></a>
         <ul class="dropdown-menu">
           <li class="<?php echo $this->uri->segment(2) == 'index_0' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_institution">Add Institution</a></li>
-          <li class="<?php echo $this->uri->segment(2) == '' || $this->uri->segment(2) == 'index' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>example/index">Add Analysis</a></li>
+          <li class="<?php echo $this->uri->segment(2) == '' || $this->uri->segment(2) == 'index' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_analysis">Add Analysis</a></li>
           <li class="<?php echo $this->uri->segment(2) == 'D_sampler' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_sampler">Add Sampler</a></li>
         </ul>
       </li>

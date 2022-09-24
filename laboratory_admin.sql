@@ -1,21 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 24, 2022 at 05:33 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.2
--- version 5.2.0
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Sep 24, 2022 at 02:22 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Generation Time: Sep 24, 2022 at 09:32 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -39,8 +31,24 @@ CREATE TABLE `analysis` (
   `id_analysis` int(11) NOT NULL,
   `name_analysis` varchar(255) NOT NULL,
   `standart_price` int(11) NOT NULL,
-  `COA` tinyint(1) NOT NULL
+  `coa` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `analysis`
+--
+
+INSERT INTO `analysis` (`id_analysis`, `name_analysis`, `standart_price`, `coa`) VALUES
+(2, 'Akbar Maulana Febriansyah', 1500000, 1),
+(3, 'Muhammad Raihan Alfaiz', 2000000, 0),
+(4, 'Azkazikna Ageung Laksana', 1000000, 0),
+(5, 'Annaufal Arifa', 1300000, 1),
+(6, 'Rezha Ikhwan Hidayat', 2300000, 1),
+(7, 'Pramdhanni Dwi Putra Bintang', 2500000, 1),
+(8, 'Ananda Rizq', 800000, 0),
+(9, 'Rayhan Aqiilah', 500000, 0),
+(10, 'Amanda Anglin Nafissa Saelendra', 4500000, 1),
+(11, 'Muhammad Rifky', 3200000, 0);
 
 -- --------------------------------------------------------
 
@@ -82,14 +90,14 @@ CREATE TABLE `institution` (
   `name_int` varchar(255) NOT NULL,
   `int_phone` varchar(255) NOT NULL,
   `int_email` varchar(255) NOT NULL,
-  `int_adress` varchar(255) NOT NULL
+  `int_address` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `institution`
 --
 
-INSERT INTO `institution` (`id_int`, `name_int`, `int_phone`, `int_email`, `int_adress`) VALUES
+INSERT INTO `institution` (`id_int`, `name_int`, `int_phone`, `int_email`, `int_address`) VALUES
 (3, 'PT.Rosaria', '08967832', 'rosaria@gmail.com', 'JL Bursama'),
 (4, 'PT. Jgu merdeka', '087632121', 'jgu@jgu.ac.id', 'JL Pegangsaan Timur'),
 (5, 'PT. Nusanatara Indah', '081385321716', 'nusantara26@gmail.com', 'JL Marzuki barat'),
@@ -276,7 +284,7 @@ ALTER TABLE `sk_number`
 -- AUTO_INCREMENT for table `analysis`
 --
 ALTER TABLE `analysis`
-  MODIFY `id_analysis` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_analysis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `coa`
