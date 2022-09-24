@@ -27,18 +27,18 @@ class D_sampler extends CI_Controller
             $gender_smp = $this->input->post('gender_smp');
             $phone_smp = $this->input->post('phone_smp');
             $email_smp = $this->input->post('email_smp');
+
+            $data = array(
+                'name_smp' => $name_smp,
+                'gender_smp' => $gender_smp,
+                'phone_smp' => $phone_smp,
+                'email_smp' => $email_smp,
+            );
+
+            $this->web->insert_data($data, 'sampler');
+            $this->session->set_flashdata('msg', 'Data sampler success added.');
+            redirect('D_sampler');
         }
-
-        $data = array(
-            'name_smp' => $name_smp,
-            'gender_smp' => $gender_smp,
-            'phone_smp' => $phone_smp,
-            'email_smp' => $email_smp,
-        );
-
-        $this->web->insert_data($data, 'sampler');
-        $this->session->set_flashdata('msg', 'Data sampler success added.');
-        redirect('D_sampler');
     }
 
     public function _rules()
