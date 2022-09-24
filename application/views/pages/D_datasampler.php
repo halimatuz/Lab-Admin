@@ -59,16 +59,29 @@
                         <form action="<?= base_url('D_sampler/add_sampler') ?>" method="POST">
                             <div class="form-group">
                                 <label>Name Sampler</label>
+                                <input type="text" class="form-control <?php if(form_error('name_smp')) { echo "is-invalid"; } ?>" name="name_smp" value="<?= set_value('name_smp')?>">
+                                <?php echo form_error('name_smp', '<span class="text-small text-danger">', '</span>') ?>
                                 <input type="text" class="form-control" name="name_smp">
                                 <?php echo form_error('name_smp', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
                             <div class="form-group">
                                 <label>Gender Sampler</label>
-                                <select name="gender_smp" id="" class="form-control">
-                                    <option value="">-- Select gender --</option>
+                                <select name="gender_smp" id="" class="form-control <?php if(form_error('gender_smp')) { echo "is-invalid"; } ?>">
+                                    <option value=""><?php if( set_value('gender_smp') == NULL) { echo "select gender";}else {if(set_value('gender_smp') == 1){echo 'Male';}else{echo 'Female';}}?></option>
                                     <option value="1">Male</option>
                                     <option value="0">Female</option>
                                 </select>
+                                <?php echo form_error('gender_smp', '<span class="text-small text-danger">', '</span>') ?>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Sampler</label>
+                                <input type="number" class="form-control <?php if(form_error('phone_smp')) { echo "is-invalid"; } ?>" name="phone_smp" value="<?= set_value('phone_smp')?>">
+                                <?php echo form_error('phone_smp', '<span class="text-small text-danger">', '</span>') ?>
+                            </div>
+                            <div class="form-group">
+                                <label>Email Sampler</label>
+                                <input type="email" class="form-control <?php if(form_error('email_smp')) { echo "is-invalid"; } ?>" name="email_smp" value="<?= set_value('email_smp')?>">
+                                <?php echo form_error('email_smp', '<span class="text-small text-danger">', '</span>') ?>
                                 <?php echo form_error('gender_smp', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
                             <div class="form-group">
@@ -105,7 +118,7 @@
                                 foreach ($sampler as $row) : ?>
                                     <tr>
                                         <td><?= $no++; ?></td>
-                                        <td><?= $row->name_smp; ?></td>
+                                        <td><?= htmlspecialchars($row->name_smp); ?></td>
                                         <td>
                                             <?php if($row->gender_smp == 1) {
                                                 echo 'Male';
@@ -113,8 +126,8 @@
                                                 echo 'Female';
                                             }?>
                                         </td>
-                                        <td><?= $row->phone_smp; ?></td>
-                                        <td><?= $row->email_smp; ?></td>
+                                        <td><?= htmlspecialchars($row->phone_smp); ?></td>
+                                        <td><?= htmlspecialchars($row->email_smp); ?></td>
                                         <td>
                                             <a href="<?php echo base_url('D_sampler/update_sampler/') . $row->id_sampler ?>"class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                             <a href="<?php echo base_url('D_sampler/delete_sampler/') . $row->id_sampler ?>"class="btn btn-danger tombol-hapus"><i class="fas fa-trash"></i></a>
