@@ -170,7 +170,6 @@ INSERT INTO `sampler` (`id_sampler`, `name_smp`, `gender_smp`, `phone_smp`, `ema
 (12, 'Pramdhanni Dwi Putra Bintang', 1, '085698741236', 'pramgebleg@gmail.com'),
 (13, 'Annaufal Arifa Nasution Hidayatullah', 1, '083698755485', 'annaufal60@gmail.com'),
 (14, 'Shevy Octavian', 1, '081210805647', 'shevygaming@gmail.com');
-(14, 'Shevy Octavia', 0, '081210805647', 'shevygaming@gmail.com');
 
 -- --------------------------------------------------------
 

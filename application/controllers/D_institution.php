@@ -13,7 +13,7 @@ class D_institution extends CI_Controller
         $data['institution'] = $this->web->get_data('institution', 'id_int')->result();
         $this->load->view('_layout/header', $data);
         $this->load->view('_layout/sidebar');
-        $this->load->view('pages/D_institution');
+        $this->load->view('pages/D_datainstitution');
         $this->load->view('_layout/footer');
     }
 
@@ -62,7 +62,7 @@ class D_institution extends CI_Controller
         $data['specialInt'] = $this->db->query("SELECT * FROM institution WHERE id_int = '$id'")->result();
         $this->load->view('_layout/header', $data);
         $this->load->view('_layout/sidebar');
-        $this->load->view('pages/D_institution', $data);
+        $this->load->view('pages/D_datainstitution', $data);
         $this->load->view('_layout/footer');
     }
 

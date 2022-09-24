@@ -33,20 +33,20 @@
                             <div class="form-group">
                                 <label>Name Institution</label>
                                 <input type="hidden" class="form-control" name="id_int" value="<?= $si->id_int ?>">
-                                <input type="text" class="form-control" name="name_int" value="<?= $si->name_int ?>">
+                                <input type="text" class="form-control" name="name_int" value="<?= $si->name_int ?>" autocomplete="off">
                             </div>
                           
                             <div class="form-group">
                                 <label>Phone Institution</label>
-                                <input type="number" class="form-control" name="int_phone" value="<?= $si->int_phone ?>">
+                                <input type="number" class="form-control" name="int_phone" value="<?= $si->int_phone ?>" autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <label>Email Institution</label>
-                                <input type="email" class="form-control" name="int_email" value="<?= $si->int_email ?>">
+                                <input type="email" class="form-control" name="int_email" value="<?= $si->int_email ?>" autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <label>Adress Institution</label>
-                                <input type="text" class="form-control" name="int_adress" value="<?= $si->int_adress ?>">
+                                <input type="text" class="form-control" name="int_adress" value="<?= $si->int_adress ?>" autocomplete="off">
                             </div>
                             <button type="submit" class="btn btn-primary">Update Intitution</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
@@ -56,23 +56,23 @@
                         <form action="<?= base_url('D_institution/add_int') ?>" method="POST">
                             <div class="form-group">
                                 <label>Name Institution</label>
-                                <input type="text" class="form-control" name="name_int" autocomplete="off">
+                                <input type="text" class="form-control <?php if(form_error('name_int')) { echo "is-invalid"; } ?>" name="name_int" value="<?= set_value('name_int')?>" autocomplete="off">
                                 <?php echo form_error('name_int', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
                            
                             <div class="form-group">
                                 <label>Phone Institution</label>
-                                <input type="number" class="form-control" name="int_phone" autocomplete="off">
+                                <input type="number" class="form-control <?php if(form_error('int_phone')) { echo "is-invalid"; } ?>" name="int_phone" value="<?= set_value('int_phone')?>" autocomplete="off">
                                 <?php echo form_error('int_phone', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
                             <div class="form-group">
                                 <label>Email Institution</label>
-                                <input type="email" class="form-control" name="int_email" autocomplete="off">
+                                <input type="email" class="form-control <?php if(form_error('int_email')) { echo "is-invalid"; } ?>" name="int_email" value="<?= set_value('int_email')?>" autocomplete="off">
                                 <?php echo form_error('int_email', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
                             <div class="form-group">
                                 <label>Adress Institution</label>
-                                <input type="text" class="form-control" name="int_adress" autocomplete="off">
+                                <input type="text" class="form-control" name=" <?php if(form_error('int_address')) { echo "is-invalid"; } ?>" value="<?= set_value('int_address')?>" autocomplete="off">
                                 <?php echo form_error('int_adress', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
                             <button type="submit" class="btn btn-primary">Add Institution</button>
@@ -104,7 +104,7 @@
                                         <td><?= $int->int_email; ?></td>
                                         <td><?= $int->int_adress; ?></td>
                                         <td>
-                                            <a href="<?php echo base_url('D_institution/update_int/') . $int->id_int ?>"class="btn btn-primary mb-3"><i class="fas fa-edit"></i></a>
+                                            <a href="<?php echo base_url('D_institution/update_int/') . $int->id_int ?>"class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                             <a href="<?php echo base_url('D_institution/delete_int/') . $int->id_int ?>"class="btn btn-danger tombol-hapus"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
