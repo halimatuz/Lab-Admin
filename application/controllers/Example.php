@@ -5,9 +5,13 @@ class Example extends CI_Controller {
 
   public function index() {
     $data = array(
-      'title' => "Ecommerce Dashboard"
+      'title' => "Dashboard"
     );
-    $this->load->view('example/index', $data);
+    $data['total_sampler'] = $this->web->get_count('sampler');
+    $this->load->view('_layout/header', $data);
+    $this->load->view('_layout/sidebar');
+    $this->load->view('pages/D_index');
+    $this->load->view('_layout/footer');
   }
 
   public function index_0() {

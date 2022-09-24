@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2022 at 06:27 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.27
+-- Generation Time: Sep 24, 2022 at 05:33 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -73,8 +74,25 @@ CREATE TABLE `institution` (
   `id_int` int(11) NOT NULL,
   `name_int` varchar(255) NOT NULL,
   `int_phone` varchar(255) NOT NULL,
-  `int_email` varchar(255) NOT NULL
+  `int_email` varchar(255) NOT NULL,
+  `int_adress` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `institution`
+--
+
+INSERT INTO `institution` (`id_int`, `name_int`, `int_phone`, `int_email`, `int_adress`) VALUES
+(3, 'PT.Rosaria', '08967832', 'rosaria@gmail.com', 'JL Bursama'),
+(4, 'PT. Jgu merdeka', '087632121', 'jgu@jgu.ac.id', 'JL Pegangsaan Timur'),
+(5, 'PT. Nusanatara Indah', '081385321716', 'nusantara26@gmail.com', 'JL Marzuki barat'),
+(6, 'PT.Jaya indonesia', '08137569956', 'Jayaind17@gmail.com', 'JL Penus raya'),
+(7, 'PT. Betafish rizki', '08567641801', 'betafishrizq@gmail.com', 'Jl Mandor Sanun'),
+(8, 'PT. Oasis Bogor', '081376838901', 'oasisbogor@gmail.com', 'Jl Lipi selatan'),
+(9, 'PT. Jali Indonesia Utama', '0856956371', 'Jaliindonesia23@gmail.com', 'Jl Topaz nasution'),
+(10, 'PT. Kingbarba', '083819588819', 'kingbarbar@gmail.com', 'Jl. H,ahmad dahlan'),
+(11, 'PT. Lentera Jiwa Project', '08858183202', 'Lenterajiwa@gmail.com', 'Jl. Pesat raya no 25 bogor'),
+(12, 'PT. Big mouse korean', '0858939312', 'bigmousek@gmail.com', 'Jl. Kemang 2 jakarta barat');
 
 -- --------------------------------------------------------
 
@@ -129,6 +147,22 @@ CREATE TABLE `sampler` (
   `phone_smp` varchar(255) NOT NULL,
   `email_smp` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sampler`
+--
+
+INSERT INTO `sampler` (`id_sampler`, `name_smp`, `gender_smp`, `phone_smp`, `email_smp`) VALUES
+(1, 'Azkazikna Ageung Laksana', 1, '081314697305', 'azkazikna.aal@gmail.com'),
+(2, 'Muhammad Raihan Alfaiz', 1, '081210805647', 'raihan.aal@gmail.com'),
+(7, 'Akbar Maulana Febriansyah', 1, '0856973256', 'akbar@gmail.com'),
+(8, 'Rezha Ikhwan Hidayat', 1, '054586325975', 'rezha@gmail.com'),
+(9, 'Ananda Rizq', 1, '084569785236', 'nanda@gmail.com'),
+(10, 'Atiyah Ummi Sholihat', 0, '085647521245', 'atiyah@gmail.com'),
+(11, 'Deviyanti Kusumawati', 0, '085645857584', 'devi@gmail.com'),
+(12, 'Pramdhanni Dwi Putra Bintang', 1, '085698741236', 'pramgebleg@gmail.com'),
+(13, 'Annaufal Arifa Nasution Hidayatullah', 1, '083698755485', 'annaufal60@gmail.com'),
+(14, 'Shevy Octavian', 1, '081210805647', 'shevygaming@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -247,7 +281,7 @@ ALTER TABLE `coa`
 -- AUTO_INCREMENT for table `institution`
 --
 ALTER TABLE `institution`
-  MODIFY `id_int` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_int` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `sample`
@@ -259,7 +293,7 @@ ALTER TABLE `sample`
 -- AUTO_INCREMENT for table `sampler`
 --
 ALTER TABLE `sampler`
-  MODIFY `id_sampler` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_sampler` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `sk_number`

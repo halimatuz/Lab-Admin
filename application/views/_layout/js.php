@@ -98,12 +98,8 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   ?>
   <script src="<?php echo base_url(); ?>assets/modules/chart.min.js"></script>
   <?php
-} elseif ($this->uri->segment(2) == "modules_datatables") {
+} elseif ($this->uri->segment(2) == "modules_datatables" || $this->uri->segment(2) == "") {
   ?>
-  <script src="<?php echo base_url(); ?>assets/modules/datatables/datatables.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/modules/jquery-ui/jquery-ui.min.js"></script>
   <?php
 } elseif ($this->uri->segment(2) == "modules_owl_carousel") {
   ?>
@@ -243,9 +239,9 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   ?>
   <script src="<?php echo base_url(); ?>assets/js/page/modules-chartjs.js"></script>
   <?php
-} elseif ($this->uri->segment(2) == "modules_datatables") {
+} elseif ($this->uri->segment(2) == "modules_datatables" || $this->uri->segment(2) == "") {
   ?>
-  <script src="<?php echo base_url(); ?>assets/js/page/modules-datatables.js"></script>
+  
   <?php
 } elseif ($this->uri->segment(2) == "modules_ion_icons") {
   ?>
@@ -296,5 +292,44 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
 <!-- Template JS File -->
 <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
+<!-- DataTables -->
+<script src="<?php echo base_url(); ?>assets/modules/datatables/datatables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/modules/jquery-ui/jquery-ui.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/page/modules-datatables.js"></script>
+<!-- Sweet Alert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  const flashData = $('.flash-data').data('flashdata');
+  if (flashData) {
+        Swal.fire({
+            title: 'Success!',
+            text: flashData,
+            icon: 'success'
+        })
+  }
+
+  $('.tombol-hapus').on('click', function(e) {
+          e.preventDefault();
+          const href = $(this).attr('href');
+
+          Swal.fire({
+          title: 'Are you sure?',
+          text: "Data will be deleted!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete data',
+          cancelButtonText: 'Cancel'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            document.location.href = href;
+          }
+        })
+  });
+        
+</script>
 </body>
 </html>

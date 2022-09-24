@@ -4,10 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="main-sidebar sidebar-style-2">
   <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
-      <a href="<?php echo base_url(); ?>example/index">DIL</a>
+      <a href="<?php echo base_url(); ?>example/index">DIL Information</a>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
-      <a href="<?php echo base_url(); ?>example/index">St</a>
+      <a href="<?php echo base_url(); ?>example/index">DIL</a>
     </div>
     <ul class="sidebar-menu">
     <li class="menu-header">Main Feature</li>
@@ -17,22 +17,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <li class="dropdown<?php echo $this->uri->segment(2) == '' || $this->uri->segment(2) == 'index' || $this->uri->segment(2) == 'index_0' ? 'active' : ''; ?>">
         <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Add Data</span></a>
         <ul class="dropdown-menu">
-          <li class="<?php echo $this->uri->segment(2) == 'index_0' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>example/index_0">Add Institution</a></li>
+          <li class="<?php echo $this->uri->segment(2) == 'index_0' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_institution">Add Institution</a></li>
           <li class="<?php echo $this->uri->segment(2) == '' || $this->uri->segment(2) == 'index' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>example/index">Add Analysis</a></li>
+          <li class="<?php echo $this->uri->segment(2) == '' || $this->uri->segment(2) == 'index' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_sampler">Add Sampler</a></li>
         </ul>
       </li>
     
 
 
-
-      <li class="menu-header">Dashboard</li>
-      <li class="dropdown<?php echo $this->uri->segment(2) == '' || $this->uri->segment(2) == 'index' || $this->uri->segment(2) == 'index_0' ? 'active' : ''; ?>">
-        <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
-        <ul class="dropdown-menu">
-          <li class="<?php echo $this->uri->segment(2) == 'index_0' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>example/index_0">General Dashboard</a></li>
-          <li class="<?php echo $this->uri->segment(2) == '' || $this->uri->segment(2) == 'index' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>example/index">Ecommerce Dashboard</a></li>
-        </ul>
-      </li>
       <li class="menu-header">Starter</li>
       <li class="dropdown<?php echo $this->uri->segment(2) == 'layout_default' || $this->uri->segment(2) == 'layout_transparent' || $this->uri->segment(2) == 'layout_top_navigation' ? 'active' : ''; ?>">
         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
