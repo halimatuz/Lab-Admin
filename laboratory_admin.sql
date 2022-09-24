@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2022 at 06:27 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.27
+-- Generation Time: Sep 24, 2022 at 02:22 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -129,6 +129,22 @@ CREATE TABLE `sampler` (
   `phone_smp` varchar(255) NOT NULL,
   `email_smp` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sampler`
+--
+
+INSERT INTO `sampler` (`id_sampler`, `name_smp`, `gender_smp`, `phone_smp`, `email_smp`) VALUES
+(1, 'Azkazikna Ageung Laksana', 1, '081314697305', 'azkazikna.aal@gmail.com'),
+(2, 'Muhammad Raihan Alfaiz', 1, '081210805647', 'raihan.aal@gmail.com'),
+(7, 'Akbar Maulana Febriansyah', 1, '0856973256', 'akbar@gmail.com'),
+(8, 'Rezha Ikhwan Hidayat', 1, '054586325975', 'rezha@gmail.com'),
+(9, 'Ananda Rizq', 1, '084569785236', 'nanda@gmail.com'),
+(10, 'Atiyah Ummi Sholihat', 0, '085647521245', 'atiyah@gmail.com'),
+(11, 'Deviyanti Kusumawati', 0, '085645857584', 'devi@gmail.com'),
+(12, 'Pramdhanni Dwi Putra Bintang', 1, '085698741236', 'pramgebleg@gmail.com'),
+(13, 'Annaufal Arifa Nasution Hidayatullah', 1, '083698755485', 'annaufal60@gmail.com'),
+(14, 'Shevy Octavia', 0, '081210805647', 'shevygaming@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -259,7 +275,7 @@ ALTER TABLE `sample`
 -- AUTO_INCREMENT for table `sampler`
 --
 ALTER TABLE `sampler`
-  MODIFY `id_sampler` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_sampler` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `sk_number`
