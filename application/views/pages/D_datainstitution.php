@@ -24,7 +24,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-4">
-                    <h6>Add Institution</h6>
+                    <h6 class="text-primary">Add Institution</h6>
                     <hr>
                     <?php 
                     if($this->uri->segment(2) == 'update_int') {
@@ -45,8 +45,8 @@
                                 <input type="email" class="form-control" name="int_email" value="<?= $si->int_email ?>" autocomplete="off">
                             </div>
                             <div class="form-group">
-                                <label>Adress Institution</label>
-                                <input type="text" class="form-control" name="int_adress" value="<?= $si->int_adress ?>" autocomplete="off">
+                                <label>Address Institution</label>
+                                <input type="text" class="form-control" name="int_address" value="<?= $si->int_address ?>" autocomplete="off">
                             </div>
                             <button type="submit" class="btn btn-primary">Update Intitution</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
@@ -89,7 +89,7 @@
                                 <th>Name Institution</th>
                                 <th>Phone Institution</th>
                                 <th>Email Institution</th>
-                                <th>Adress Institution</th>
+                                <th>Address Institution</th>
                                 <th>Action</th>
                                 </tr>
                             </thead>

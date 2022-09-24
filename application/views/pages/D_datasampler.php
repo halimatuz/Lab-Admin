@@ -24,7 +24,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-4">
-                    <h6>Add Sampler</h6>
+                    <h6 class="text-primary">Add Sampler</h6>
                     <hr>
                     <?php 
                     if($this->uri->segment(2) == 'update_sampler') {

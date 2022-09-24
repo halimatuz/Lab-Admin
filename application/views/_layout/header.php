@@ -6,7 +6,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title><?php echo $title; ?></title>
+  <title><?php echo $title; ?> | DIL Information</title>
+  <link rel="shortcut icon" href="<?= base_url() ?>assets/img/logo.png" type="image/x-icon">
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/bootstrap/css/bootstrap.min.css">
