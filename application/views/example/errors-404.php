@@ -31,7 +31,7 @@ $this->load->view('_layout/header');
                 </div>
               </form>
               <div class="mt-3">
-                <a href="<?php echo base_url(); ?>dist/index">Back to Home</a>
+                <a href="<?php echo base_url(); ?>">Back to Home</a>
               </div>
             </div>
           </div>
@@ -42,5 +42,3 @@ $this->load->view('_layout/header');
       </div>
     </section>
   </div>
-
-  <?php $this->load->view('_layout/js'); ?>

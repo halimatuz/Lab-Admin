@@ -33,7 +33,7 @@
                             <div class="form-group">
                                 <label>Name Sampler</label>
                                 <input type="hidden" class="form-control" name="id_sampler" value="<?= $ss->id_sampler ?>">
-                                <input type="text" class="form-control" name="name_smp" value="<?= $ss->name_smp ?>" autocomplete="off">
+                                <input type="text" class="form-control" name="name_smp" value="<?= $ss->name_smp ?>" autocomplete="off" placeholder="Insert name sampler...">
                             </div>
                             <div class="form-group">
                                 <label>Gender Sampler</label>
@@ -45,11 +45,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Phone Sampler</label>
-                                <input type="number" class="form-control" name="phone_smp" value="<?= $ss->phone_smp ?>" autocomplete="off">
+                                <input type="number" class="form-control" name="phone_smp" value="<?= $ss->phone_smp ?>" autocomplete="off" placeholder="Insert phone sampler...">
                             </div>
                             <div class="form-group">
                                 <label>Email Sampler</label>
-                                <input type="email" class="form-control" name="email_smp" value="<?= $ss->email_smp ?>" autocomplete="off">
+                                <input type="email" class="form-control" name="email_smp" value="<?= $ss->email_smp ?>" autocomplete="off" placeholder="Insert email sampler...">
                             </div>
                             <button type="submit" class="btn btn-primary">Update Sampler</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
@@ -59,7 +59,7 @@
                         <form action="<?= base_url('D_sampler/add_sampler') ?>" method="POST">
                             <div class="form-group">
                                 <label>Name Sampler</label>
-                                <input type="text" class="form-control <?php if(form_error('name_smp')) { echo "is-invalid"; } ?>" name="name_smp" value="<?= set_value('name_smp')?>" autocomplete="off">
+                                <input type="text" class="form-control <?php if(form_error('name_smp')) { echo "is-invalid"; } ?>" name="name_smp" value="<?= set_value('name_smp')?>" autocomplete="off" placeholder="Insert name sampler...">
                                 <?php echo form_error('name_smp', '<span class="text-small text-danger">', '</span>') ?>
                             </div>
                             <div class="form-group">
@@ -73,12 +73,12 @@
                             </div>
                             <div class="form-group">
                                 <label>Phone Sampler</label>
-                                <input type="number" class="form-control <?php if(form_error('phone_smp')) { echo "is-invalid"; } ?>" name="phone_smp" value="<?= set_value('phone_smp')?>" autocomplete="off">
+                                <input type="number" class="form-control <?php if(form_error('phone_smp')) { echo "is-invalid"; } ?>" name="phone_smp" value="<?= set_value('phone_smp')?>" autocomplete="off" placeholder="Insert phone sampler...">
                                 <?php echo form_error('phone_smp', '<span class="text-small text-danger">', '</span>') ?>
                             </div>
                             <div class="form-group">
                                 <label>Email Sampler</label>
-                                <input type="email" class="form-control <?php if(form_error('email_smp')) { echo "is-invalid"; } ?>" name="email_smp" value="<?= set_value('email_smp')?>" autocomplete="off">
+                                <input type="email" class="form-control <?php if(form_error('email_smp')) { echo "is-invalid"; } ?>" name="email_smp" value="<?= set_value('email_smp')?>" autocomplete="off" placeholder="Insert email sampler...">
                                 <?php echo form_error('email_smp', '<span class="text-small text-danger">', '</span>') ?>
                             </div>
                             <button type="submit" class="btn btn-primary">Add Sampler</button>

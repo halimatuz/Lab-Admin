@@ -33,21 +33,35 @@
                             <div class="form-group">
                                 <label>Name Institution</label>
                                 <input type="hidden" class="form-control" name="id_int" value="<?= $si->id_int ?>">
-                                <input type="text" class="form-control" name="name_int" value="<?= $si->name_int ?>" autocomplete="off">
+                                <input type="text" class="form-control" name="name_int" value="<?= $si->name_int ?>" autocomplete="off" aria-placeholder="Insert name institution...">
+                                <?php echo form_error('name_int', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
-                          
+
                             <div class="form-group">
                                 <label>Phone Institution</label>
-                                <input type="number" class="form-control" name="int_phone" value="<?= $si->int_phone ?>" autocomplete="off">
+                                <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                    +62
+                                    </div>
+                                </div>
+                                <input type="number" class="form-control <?php if(form_error('int_phone')) { echo "is-invalid"; } ?>" name="int_phone" value="<?= $si->int_phone ?>" autocomplete="off" placeholder="81345637463">
+                                </div>
+                                <?php echo form_error('int_phone', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
+
                             <div class="form-group">
                                 <label>Email Institution</label>
-                                <input type="email" class="form-control" name="int_email" value="<?= $si->int_email ?>" autocomplete="off">
+                                <input type="email" class="form-control" name="int_email" value="<?= $si->int_email ?>" autocomplete="off" placeholder="Insert email institution...">
+                                <?php echo form_error('int_email', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
+
                             <div class="form-group">
                                 <label>Address Institution</label>
-                                <input type="text" class="form-control" name="int_address" value="<?= $si->int_address ?>" autocomplete="off">
+                                <textarea type="text" class="form-control" name="int_address" autocomplete="off" placeholder="Insert address institution..."><?= $si->int_address ?></textarea>
+                                <?php echo form_error('int_address', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
+
                             <button type="submit" class="btn btn-primary">Update Intitution</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
                             <a href="<?php echo base_url('D_institution') ?>" class="btn btn-danger">Cancel</a>
@@ -56,23 +70,32 @@
                         <form action="<?= base_url('D_institution/add_int') ?>" method="POST">
                             <div class="form-group">
                                 <label>Name Institution</label>
-                                <input type="text" class="form-control <?php if(form_error('name_int')) { echo "is-invalid"; } ?>" name="name_int" value="<?= set_value('name_int')?>" autocomplete="off">
+                                <input type="text" class="form-control <?php if(form_error('name_int')) { echo "is-invalid"; } ?>" name="name_int" value="<?= set_value('name_int')?>" autocomplete="off" placeholder="Insert name institution...">
                                 <?php echo form_error('name_int', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
                            
                             <div class="form-group">
                                 <label>Phone Institution</label>
-                                <input type="number" class="form-control <?php if(form_error('int_phone')) { echo "is-invalid"; } ?>" name="int_phone" value="<?= set_value('int_phone')?>" autocomplete="off">
+                                <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        +62
+                                    </div>
+                                </div>
+                                <input type="number" class="form-control <?php if(form_error('int_phone')) { echo "is-invalid"; } ?>" name="int_phone" value="<?= set_value('int_phone')?>" autocomplete="off" placeholder="81345637463">
+                                </div>
                                 <?php echo form_error('int_phone', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
+
                             <div class="form-group">
                                 <label>Email Institution</label>
-                                <input type="email" class="form-control <?php if(form_error('int_email')) { echo "is-invalid"; } ?>" name="int_email" value="<?= set_value('int_email')?>" autocomplete="off">
+                                <input type="email" class="form-control <?php if(form_error('int_email')) { echo "is-invalid"; } ?>" name="int_email" value="<?= set_value('int_email')?>" autocomplete="off" placeholder="Insert email institution...">
                                 <?php echo form_error('int_email', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
+
                             <div class="form-group">
                                 <label>Address Institution</label>
-                                <input type="text" class="form-control <?php if(form_error('int_address')) { echo "is-invalid"; } ?>" name="int_address" value="<?= set_value('int_address')?>" autocomplete="off">
+                                <textarea class="form-control <?php if(form_error('int_address')) { echo "is-invalid"; } ?>" name="int_address" autocomplete="off" placeholder="Insert address institution..."><?= set_value('int_address')?></textarea>
                                 <?php echo form_error('int_address', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
                             <button type="submit" class="btn btn-primary">Add Institution</button>

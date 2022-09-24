@@ -17,14 +17,14 @@
     </div>
 
     <div class="section-body">
-    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('anl'); ?>"></div>
+    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('msg'); ?>"></div>
       <div class="row">
         <div class="col-12">
           <div class="card">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-4">
-                    <h6>Add Analysis</h6>
+                    <h6 class="text-primary">Add Analysis</h6>
                     <hr>
                     <?php 
                     if($this->uri->segment(2) == 'update_analysis') {
@@ -33,15 +33,25 @@
                             <div class="form-group">
                                 <label>Name Analysis</label>
                                 <input type="hidden" class="form-control" name="id_analysis" value="<?= $sa->id_analysis ?>">
-                                <input type="text" class="form-control" name="name_analysis" value="<?= $sa->name_analysis ?>" autocomplete="off">
+                                <input type="text" class="form-control" name="name_analysis" value="<?= $sa->name_analysis ?>" autocomplete="off" placeholder="Insert name analysis...">
+                                <?php echo form_error('standart_price', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
-                          
+
                             <div class="form-group">
                                 <label>Standart Price</label>
-                                <input type="number" class="form-control" name="standart_price" value="<?= $sa->standart_price ?>" autocomplete="off">
+                                <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                    Rp
+                                    </div>
+                                </div>
+                                <input type="number" class="form-control <?php if(form_error('standart_price')) { echo "is-invalid"; } ?>" id="tanpa-rupiah" name="standart_price" value="<?= $sa->standart_price ?>" autocomplete="off">
+                                </div>
+                                <?php echo form_error('standart_price', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
+
                             <div class="form-group">
-                                <label>Email Institution</label>
+                                <label>COA</label>
                                 <select name="coa" id="" class="form-control">
                                     <option value="1"><?php if($sa->coa == 1) {echo 'Yes';}else {echo 'No';} ?></option>
                                     <option value="1">Yes</option>
@@ -56,17 +66,25 @@
                         <form action="<?= base_url('D_analysis/add_analysis') ?>" method="POST">
                             <div class="form-group">
                                 <label>Name Analysis</label>
-                                <input type="text" class="form-control <?php if(form_error('name_analysis')) { echo "is-invalid"; } ?>" name="name_analysis" value="<?= set_value('name_analysis')?>" autocomplete="off">
+                                <input type="text" class="form-control <?php if(form_error('name_analysis')) { echo "is-invalid"; } ?>" name="name_analysis" value="<?= set_value('name_analysis')?>" autocomplete="off" placeholder="Insert name analysis...">
                                 <?php echo form_error('name_analysis', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
-                           
+
                             <div class="form-group">
                                 <label>Standart Price</label>
-                                <input type="number" class="form-control <?php if(form_error('standart_price')) { echo "is-invalid"; } ?>" name="standart_price" value="<?= set_value('standart_price')?>" autocomplete="off">
+                                <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                    Rp
+                                    </div>
+                                </div>
+                                <input type="number" class="form-control <?php if(form_error('standart_price')) { echo "is-invalid"; } ?>" id="tanpa-rupiah" name="standart_price" value="<?= set_value('standart_price')?>" autocomplete="off" placeholder="Insert standart price...">
+                                </div>
                                 <?php echo form_error('standart_price', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
+
                             <div class="form-group">
-                                <label>Email Institution</label>
+                                <label>COA</label>
                                 <select name="coa" id="" class="form-control <?php if(form_error('coa')) { echo "is-invalid"; } ?>">
                                     <option value=""><?php if( set_value('coa') == NULL) { echo "-- Select COA --";}else {if(set_value('coa') == 1){echo 'Yes';}else{echo 'No';}}?></option>
                                     <option value="1">Yes</option>
@@ -98,7 +116,7 @@
                                     <tr>
                                         <td><?= $no++; ?></td>
                                         <td><?= htmlspecialchars($anl->name_analysis); ?></td>
-                                        <td><?= htmlspecialchars($anl->standart_price); ?></td>
+                                        <td>Rp <?php echo htmlspecialchars(number_format($anl->standart_price, 0, ',', '.')) ?></td>
                                         <td>
                                         <?php if($anl->coa == 1) {
                                                 echo 'Yes';

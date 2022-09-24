@@ -9,6 +9,7 @@ class Example extends CI_Controller {
     );
     $data['total_sampler'] = $this->web->get_count('sampler');
     $data['total_institution'] = $this->web->get_count('institution');
+    $data['total_analysis'] = $this->web->get_count('analysis');
     $this->load->view('_layout/header', $data);
     $this->load->view('_layout/sidebar');
     $this->load->view('pages/D_index');
