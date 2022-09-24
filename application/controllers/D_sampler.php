@@ -40,6 +40,9 @@ class D_sampler extends CI_Controller
             redirect('D_sampler');
         }
     }
+    
+    }
+
 
     public function _rules()
     {

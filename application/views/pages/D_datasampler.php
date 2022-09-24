@@ -61,6 +61,8 @@
                                 <label>Name Sampler</label>
                                 <input type="text" class="form-control <?php if(form_error('name_smp')) { echo "is-invalid"; } ?>" name="name_smp" value="<?= set_value('name_smp')?>">
                                 <?php echo form_error('name_smp', '<span class="text-small text-danger">', '</span>') ?>
+                                <input type="text" class="form-control" name="name_smp">
+                                <?php echo form_error('name_smp', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
                             <div class="form-group">
                                 <label>Gender Sampler</label>
@@ -80,6 +82,17 @@
                                 <label>Email Sampler</label>
                                 <input type="email" class="form-control <?php if(form_error('email_smp')) { echo "is-invalid"; } ?>" name="email_smp" value="<?= set_value('email_smp')?>">
                                 <?php echo form_error('email_smp', '<span class="text-small text-danger">', '</span>') ?>
+                                <?php echo form_error('gender_smp', '<div class="text-small text-danger">', '</div>') ?>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Sampler</label>
+                                <input type="number" class="form-control" name="phone_smp">
+                                <?php echo form_error('phone_smp', '<div class="text-small text-danger">', '</div>') ?>
+                            </div>
+                            <div class="form-group">
+                                <label>Email Sampler</label>
+                                <input type="email" class="form-control" name="email_smp">
+                                <?php echo form_error('email_smp', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
                             <button type="submit" class="btn btn-primary">Add Sampler</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
