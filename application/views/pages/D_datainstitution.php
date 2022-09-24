@@ -71,9 +71,9 @@
                                 <?php echo form_error('int_email', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
                             <div class="form-group">
-                                <label>Adress Institution</label>
-                                <input type="text" class="form-control" name=" <?php if(form_error('int_address')) { echo "is-invalid"; } ?>" value="<?= set_value('int_address')?>" autocomplete="off">
-                                <?php echo form_error('int_adress', '<div class="text-small text-danger">', '</div>') ?>
+                                <label>Address Institution</label>
+                                <input type="text" class="form-control <?php if(form_error('int_address')) { echo "is-invalid"; } ?>" name="int_address" value="<?= set_value('int_address')?>" autocomplete="off">
+                                <?php echo form_error('int_address', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
                             <button type="submit" class="btn btn-primary">Add Institution</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
@@ -99,10 +99,10 @@
                                 foreach ($institution as $int) : ?>
                                     <tr>
                                         <td><?= $no++; ?></td>
-                                        <td><?= $int->name_int; ?></td>
-                                        <td><?= $int->int_phone; ?></td>
-                                        <td><?= $int->int_email; ?></td>
-                                        <td><?= $int->int_adress; ?></td>
+                                        <td><?= htmlspecialchars($int->name_int); ?></td>
+                                        <td><?= htmlspecialchars($int->int_phone); ?></td>
+                                        <td><?= htmlspecialchars($int->int_email); ?></td>
+                                        <td><?= htmlspecialchars($int->int_address); ?></td>
                                         <td>
                                             <a href="<?php echo base_url('D_institution/update_int/') . $int->id_int ?>"class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                             <a href="<?php echo base_url('D_institution/delete_int/') . $int->id_int ?>"class="btn btn-danger tombol-hapus"><i class="fas fa-trash"></i></a>

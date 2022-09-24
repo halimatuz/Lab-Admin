@@ -2,6 +2,10 @@
 foreach($total_sampler as $ts) {
     $total_data_sampler = $ts;
 }
+
+foreach($total_institution as $ti) {
+    $total_data_institution = $ti;
+}
 ?>
 <!-- Main Content -->
 <div class="main-content">
@@ -28,14 +32,14 @@ foreach($total_sampler as $ts) {
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
           <div class="card-icon bg-danger">
-            <i class="far fa-newspaper"></i>
+            <i class="far fa-building"></i>
           </div>
           <div class="card-wrap">
             <div class="card-header">
-              <h4>News</h4>
+              <h4>Total Institution</h4>
             </div>
             <div class="card-body">
-              42
+                <?= $total_data_institution ?>
             </div>
           </div>
         </div>
