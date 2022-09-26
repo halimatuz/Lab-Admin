@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 24, 2022 at 09:32 AM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.3.27
+-- Generation Time: Sep 26, 2022 at 06:45 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -108,6 +109,42 @@ INSERT INTO `institution` (`id_int`, `name_int`, `int_phone`, `int_email`, `int_
 (10, 'PT. Kingbarba', '083819588819', 'kingbarbar@gmail.com', 'Jl. H,ahmad dahlan'),
 (11, 'PT. Lentera Jiwa Project', '08858183202', 'Lenterajiwa@gmail.com', 'Jl. Pesat raya no 25 bogor'),
 (12, 'PT. Big mouse korean', '0858939312', 'bigmousek@gmail.com', 'Jl. Kemang 2 jakarta barat');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `method`
+--
+
+CREATE TABLE `method` (
+  `id_method` int(11) NOT NULL,
+  `name_method` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `method`
+--
+
+INSERT INTO `method` (`id_method`, `name_method`) VALUES
+(2, 'SNI 06-6989.23-2005'),
+(3, 'SNI 6989.27:2019'),
+(4, 'SNI 6989.3:2019'),
+(5, 'SNI 6989.11:2019'),
+(6, 'SM 23rd 3210B - 2017'),
+(7, 'SNI 6989.71:2009'),
+(8, 'Atomic Fluorescence Spectrophotometry'),
+(9, 'SNI 6989.77:2011'),
+(10, 'SNI 06-6989.29-2005'),
+(11, 'APHA 23rd-4500 2017'),
+(12, 'SNI 06-6989.30-2005'),
+(13, 'SNI 6989.79:2011'),
+(14, 'SNI 06-6989.9-2004'),
+(15, 'SNI 6989.72:2009'),
+(16, 'SNI 6989.2:2019'),
+(17, 'SNI 06-6989.51-2005'),
+(18, 'SNI 06-6989.21-2004'),
+(19, 'SNI 6989.10:2011'),
+(20, 'SM 23rd 9221B-2017');
 
 -- --------------------------------------------------------
 
@@ -236,6 +273,12 @@ ALTER TABLE `institution`
   ADD PRIMARY KEY (`id_int`);
 
 --
+-- Indexes for table `method`
+--
+ALTER TABLE `method`
+  ADD PRIMARY KEY (`id_method`);
+
+--
 -- Indexes for table `quotation`
 --
 ALTER TABLE `quotation`
@@ -297,6 +340,12 @@ ALTER TABLE `coa`
 --
 ALTER TABLE `institution`
   MODIFY `id_int` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `method`
+--
+ALTER TABLE `method`
+  MODIFY `id_method` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `sample`
