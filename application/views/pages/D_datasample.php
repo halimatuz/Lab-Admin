@@ -52,6 +52,17 @@
                     <?php } ?>
                     </div>
                     <div class="col-md-8">
+                      <?php if($sample == NULL) { ?>
+                            <div class="empty-state" data-height="400">
+                                <div class="empty-state-icon">
+                                <i class="fas fa-question"></i>
+                                </div>
+                                <h2>We couldn't find any data</h2>
+                                <p class="lead">
+                                Sorry we can't find any data, to get rid of this message, make at least 1 entry.
+                                </p>
+                            </div>
+                        <?php } else { ?>
                         <div class="table-responsive">
                         <table class="table table-striped" id="table-1">
                             <thead>
@@ -79,6 +90,7 @@
                             </tbody>
                             </table>
                         </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

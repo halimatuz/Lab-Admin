@@ -377,7 +377,7 @@ $(function() {
       toolbar: [
         ['style', ['bold', 'italic', 'underline', 'clear']],
         ['font', ['strikethrough']],
-        ['para', ['paragraph']]
+        ['para', ['ul', 'ol', 'paragraph']]
       ]
     });
   }

@@ -3,17 +3,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 // Import PHPMailer classes into the global namespace
 // These must be at the top of your script, not inside a function
 
-class D_sample extends CI_Controller 
+class D_quotation extends CI_Controller 
 {
     public function index()
     {
         $data = array(
-            'title' => 'Data Quotation',
+            'title' => 'Data Institution',
         );
-        $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk")->result();
+        $data['institution'] = $this->db->query("SELECT * FROM institution")->result();
         $this->load->view('_layout/header', $data);
         $this->load->view('_layout/sidebar');
-        $this->load->view('pages/D_listquotation', $data);
+        $this->load->view('pages/D_listinstitution', $data);
         $this->load->view('_layout/footer');
     }
 
@@ -164,7 +164,7 @@ class D_sample extends CI_Controller
         $data = array(
             'title' => 'Print Quotation',
         );
-        $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk INNER JOIN institution ON quotation.id_int = institution.id_int WHERE quotation.id_int = $id")->result();
+        $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk INNER JOIN institution ON quotation.id_int = institution.id_int INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis WHERE quotation.id_int = $id")->result();
         $this->load->view('pages/D_printquotation', $data);
     }
 }

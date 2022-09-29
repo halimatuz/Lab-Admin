@@ -66,7 +66,7 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   ?>
   <script src="<?php echo base_url(); ?>assets/modules/owlcarousel2/dist/owl.carousel.min.js"></script>
   <?php
-} elseif ($this->uri->segment(2) == "forms_advanced_form") {
+} elseif ($this->uri->segment(2) == "forms_advanced_form" || $this->uri->segment(1) == "D_coa" || $this->uri->segment(1) == "D_quotation") {
   ?>
   <script src="<?php echo base_url(); ?>assets/modules/cleave-js/dist/cleave.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/cleave-js/dist/addons/cleave-phone.us.js"></script>
@@ -195,7 +195,7 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   ?>
   <script src="<?php echo base_url(); ?>assets/js/page/components-user.js"></script>
   <?php
-} elseif ($this->uri->segment(2) == "forms_advanced_form") {
+} elseif ($this->uri->segment(2) == "forms_advanced_form" || $this->uri->segment(2) == "add_coa") {
   ?>
   <script src="<?php echo base_url(); ?>assets/js/page/forms-advanced-forms.js"></script>
   <?php
@@ -289,6 +289,7 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   <?php
 } ?>
 
+<script src="<?php echo base_url(); ?>assets/modules/summernote/summernote-bs4.js"></script>
 <!-- Template JS File -->
 <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>

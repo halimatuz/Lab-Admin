@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2022 at 06:45 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.2
+-- Generation Time: Sep 29, 2022 at 05:48 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -40,16 +39,19 @@ CREATE TABLE `analysis` (
 --
 
 INSERT INTO `analysis` (`id_analysis`, `name_analysis`, `standart_price`, `coa`) VALUES
-(2, 'Akbar Maulana Febriansyah', 1500000, 1),
-(3, 'Muhammad Raihan Alfaiz', 2000000, 0),
-(4, 'Azkazikna Ageung Laksana', 1000000, 0),
-(5, 'Annaufal Arifa', 1300000, 1),
-(6, 'Rezha Ikhwan Hidayat', 2300000, 1),
-(7, 'Pramdhanni Dwi Putra Bintang', 2500000, 1),
-(8, 'Ananda Rizq', 800000, 0),
-(9, 'Rayhan Aqiilah', 500000, 0),
-(10, 'Amanda Anglin Nafissa Saelendra', 4500000, 1),
-(11, 'Muhammad Rifky', 3200000, 0);
+(2, 'Illumination', 1500000, 1),
+(3, 'Odor', 2000000, 1),
+(4, 'Heat Stress', 1000000, 0),
+(5, 'Vibration', 1300000, 1),
+(6, 'Wastewater', 2300000, 1),
+(7, 'Non-Stationary Source Emission', 2500000, 1),
+(8, 'Stationary Stack Source Emission', 800000, 1),
+(9, 'Noise', 500000, 1),
+(10, 'Workplace Air Quality', 4500000, 1),
+(11, 'Ambient Outdoor Air Quality', 3200000, 1),
+(12, 'Surface Water', 300000, 1),
+(13, 'Clean Water', 450000, 1),
+(14, 'Transportation', 200000, 0);
 
 -- --------------------------------------------------------
 
@@ -71,14 +73,21 @@ CREATE TABLE `assign_sampler` (
 CREATE TABLE `coa` (
   `id_coa` int(11) NOT NULL,
   `id_analysis` int(11) NOT NULL,
-  `params` int(11) NOT NULL,
-  `unit` int(11) NOT NULL,
+  `params` varchar(255) NOT NULL,
+  `unit` varchar(50) NOT NULL,
   `reg_standart_1` double NOT NULL,
   `reg_standart_2` double DEFAULT NULL,
   `reg_standart_3` double DEFAULT NULL,
   `reg_standart_4` double DEFAULT NULL,
   `method` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `coa`
+--
+
+INSERT INTO `coa` (`id_coa`, `id_analysis`, `params`, `unit`, `reg_standart_1`, `reg_standart_2`, `reg_standart_3`, `reg_standart_4`, `method`) VALUES
+(12, 12, 'Nitrogen Dioxide (NO2)', '°C', 1000, 1400, 300, 500, 2);
 
 -- --------------------------------------------------------
 
@@ -99,7 +108,7 @@ CREATE TABLE `institution` (
 --
 
 INSERT INTO `institution` (`id_int`, `name_int`, `int_phone`, `int_email`, `int_address`) VALUES
-(3, 'PT.Rosaria', '08967832', 'rosaria@gmail.com', 'JL Bursama'),
+(3, 'PT. Matsuoka Industries Indonesia', '08967832', 'rosaria@gmail.com', 'Jl. Kali Sumber KM 117 RT 16 RW 05, Desa Ciberes, Kecamatan Patokbesi, Kabupaten Subang, Jawa Barat'),
 (4, 'PT. Jgu merdeka', '087632121', 'jgu@jgu.ac.id', 'JL Pegangsaan Timur'),
 (5, 'PT. Nusanatara Indah', '081385321716', 'nusantara26@gmail.com', 'JL Marzuki barat'),
 (6, 'PT.Jaya indonesia', '08137569956', 'Jayaind17@gmail.com', 'JL Penus raya'),
@@ -108,7 +117,8 @@ INSERT INTO `institution` (`id_int`, `name_int`, `int_phone`, `int_email`, `int_
 (9, 'PT. Jali Indonesia Utama', '0856956371', 'Jaliindonesia23@gmail.com', 'Jl Topaz nasution'),
 (10, 'PT. Kingbarba', '083819588819', 'kingbarbar@gmail.com', 'Jl. H,ahmad dahlan'),
 (11, 'PT. Lentera Jiwa Project', '08858183202', 'Lenterajiwa@gmail.com', 'Jl. Pesat raya no 25 bogor'),
-(12, 'PT. Big mouse korean', '0858939312', 'bigmousek@gmail.com', 'Jl. Kemang 2 jakarta barat');
+(12, 'PT. Big mouse korean', '0858939312', 'bigmousek@gmail.com', 'Jl. Kemang 2 jakarta barat'),
+(13, 'PT. Zikna Soft', '8564789651', 'azkazikna.aal@gmail.com', 'Blablablabalba Bogor');
 
 -- --------------------------------------------------------
 
@@ -153,6 +163,7 @@ INSERT INTO `method` (`id_method`, `name_method`) VALUES
 --
 
 CREATE TABLE `quotation` (
+  `id_quotation` int(11) NOT NULL,
   `id_analysis` int(11) NOT NULL,
   `id_int` int(11) NOT NULL,
   `remarks` text NOT NULL,
@@ -161,6 +172,23 @@ CREATE TABLE `quotation` (
   `id_sk` int(11) NOT NULL,
   `add_price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `quotation`
+--
+
+INSERT INTO `quotation` (`id_quotation`, `id_analysis`, `id_int`, `remarks`, `spec`, `qty`, `id_sk`, `add_price`) VALUES
+(8, 2, 4, '<p>asd12</p>', '<p>asdasd</p>', 12, 4, 12312312),
+(10, 14, 4, '<p>dsfsd</p>', '<p>sdfsd</p>', 12, 4, 12312),
+(11, 12, 9, '<p>fdsdfsd</p>', '<p>sfddsfds</p>', 12, 5, 1423432),
+(13, 2, 12, '<p>123432</p>', '<p>32432</p>', 123123, 6, 234234),
+(14, 14, 12, '<p>weewrwe</p>', '<p>ewrwer</p>', 12, 6, 12421423),
+(15, 14, 3, '<p>Transportasi dan akomodasi sampling (Lokasi SUBANG, Jawa Barat)</p>', '<p>Paket, 2 Teknisi</p>', 1, 2, 50000),
+(16, 11, 3, '<p>Pemantauan Kualitas Udara Ambient Outdoor untuk Area:</p><ul><li>Area Upwind</li><li>Area Down wind</li></ul>', '<p>Lampiran VII Peraturan Pemerintah No. 22 Tahun 2021</p><p><b>Sesaat: </b>SO2, CO, NO2, O3, HC, TSP, Pb</p>', 2, 2, 100000),
+(17, 9, 3, '<p>Udara Kualitas Kebisingan (Noise) Ambient Sesaat</p><ul><li>Area Upwind</li><li>Area Down wind</li></ul>', '<p>Keputusan Menteri Negara Lingkungan Hidup KEP-48/MENLH/11/1996</p>', 2, 2, 20000),
+(18, 10, 3, '<p>Pemantauan Kualitas Udara Kerja Produksi</p><ul><li>Ruang Produksi</li></ul>', '<p>Permenaker No. 5 Tahun 2018</p><p>CO, NO2, SO2, TSP, NOISE</p>', 1, 2, 10000),
+(19, 6, 3, '<p>Pemantauan Kualitas Air Limbah</p><ul><li>Biotank</li></ul>', '<p>Permenlhk No. P.68/Menlhk/Setjen/Kum.1/8/2016</p>', 1, 2, 50000),
+(20, 7, 3, '<p>Pemantauan Kualitas Emisi Sumber Tidak Bergerak:</p><ul><li>Cerobong Boiler 1</li><li>Cerobong Boiler 2</li></ul>', '<p>Permenlhk No. P.15/MENLHK/SETJEN/KUM.1/4/2019 tentang Baku Mutu Emisi Pembangkit Listrik Tenaga Termal <b>(NON ISOKINETIK)</b></p><p>Total Partikulat, SO2, NO2, CO</p>', 2, 2, 50000);
 
 -- --------------------------------------------------------
 
@@ -243,6 +271,17 @@ CREATE TABLE `sk_number` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `sk_number`
+--
+
+INSERT INTO `sk_number` (`id_sk`, `sk_quotation`, `sk_sample`, `sk_analysis`, `id_int`) VALUES
+(2, '1/2022/27/DIL/QTN', '', '', 3),
+(4, '3/2022/27/DIL/QTN', '', '', 4),
+(5, '5/2022/27/DIL/QTN', '', '', 9),
+(6, '6/2022/27/DIL/QTN', '', '', 12),
+(7, '7/2022/29/DIL/QTN', '', '', 10);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -282,6 +321,7 @@ ALTER TABLE `method`
 -- Indexes for table `quotation`
 --
 ALTER TABLE `quotation`
+  ADD PRIMARY KEY (`id_quotation`),
   ADD KEY `id_int` (`id_int`),
   ADD KEY `id_analysis` (`id_analysis`);
 
@@ -327,25 +367,31 @@ ALTER TABLE `sk_number`
 -- AUTO_INCREMENT for table `analysis`
 --
 ALTER TABLE `analysis`
-  MODIFY `id_analysis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_analysis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `coa`
 --
 ALTER TABLE `coa`
-  MODIFY `id_coa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_coa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `institution`
 --
 ALTER TABLE `institution`
-  MODIFY `id_int` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_int` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `method`
 --
 ALTER TABLE `method`
   MODIFY `id_method` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `quotation`
+--
+ALTER TABLE `quotation`
+  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `sample`
@@ -363,7 +409,7 @@ ALTER TABLE `sampler`
 -- AUTO_INCREMENT for table `sk_number`
 --
 ALTER TABLE `sk_number`
-  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
