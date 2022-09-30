@@ -62,6 +62,20 @@
                                 <?php echo form_error('int_address', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
 
+                            <p>Contact Person</p>
+
+                            <div class="form-group">
+                                <label>Name Contact Person</label>
+                                <input type="text" class="form-control" name="name_cp" value="<?= $si->name_cp ?>" autocomplete="off" aria-placeholder="Insert name contact person">
+                                <?php echo form_error('name_cp', '<div class="text-small text-danger">', '</div>') ?>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Position Contact Person</label>
+                                <input type="text" class="form-control" name="position_cp" value="<?= $si->position_cp ?>" autocomplete="off" aria-placeholder="Insert name contact person">
+                                <?php echo form_error('position_cp', '<div class="text-small text-danger">', '</div>') ?>
+                            </div>
+
                             <button type="submit" class="btn btn-primary">Update Intitution</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
                             <a href="<?php echo base_url('D_institution') ?>" class="btn btn-danger">Cancel</a>
@@ -98,6 +112,21 @@
                                 <textarea class="form-control <?php if(form_error('int_address')) { echo "is-invalid"; } ?>" name="int_address" autocomplete="off" placeholder="Insert address institution..."><?= set_value('int_address')?></textarea>
                                 <?php echo form_error('int_address', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
+
+                            <p>Contact Person</p>
+
+                            <div class="form-group">
+                                <label>Name Contact Person</label>
+                                <input type="text" class="form-control <?php if(form_error('name_cp')) { echo "is-invalid"; } ?>" name="name_cp" value="<?= set_value('name_cp')?>" autocomplete="off" placeholder="Insert name contact person">
+                                <?php echo form_error('name_cp', '<div class="text-small text-danger">', '</div>') ?>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Position Contact Person</label>
+                                <input type="text" class="form-control <?php if(form_error('position_cp')) { echo "is-invalid"; } ?>" name="position_cp" value="<?= set_value('position_cp')?>" autocomplete="off" placeholder="Insert position contact person">
+                                <?php echo form_error('position_cp', '<div class="text-small text-danger">', '</div>') ?>
+                            </div>
+
                             <button type="submit" class="btn btn-primary">Add Institution</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
                         </form>
@@ -124,6 +153,7 @@
                                 <th>Phone Institution</th>
                                 <th>Email Institution</th>
                                 <th>Address Institution</th>
+                                <th>Name CP</th>
                                 <th>Action</th>
                                 </tr>
                             </thead>
@@ -137,6 +167,7 @@
                                         <td><?= htmlspecialchars($int->int_phone); ?></td>
                                         <td><?= htmlspecialchars($int->int_email); ?></td>
                                         <td><?= htmlspecialchars($int->int_address); ?></td>
+                                        <td><?= htmlspecialchars($int->name_cp); ?></td>
                                         <td>
                                             <a href="<?php echo base_url('D_institution/update_int/') . $int->id_int ?>"class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                             <a href="<?php echo base_url('D_institution/delete_int/') . $int->id_int ?>"class="btn btn-danger tombol-hapus"><i class="fas fa-trash"></i></a>

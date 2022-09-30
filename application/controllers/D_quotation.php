@@ -121,6 +121,7 @@ class D_quotation extends CI_Controller
         $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int INNER JOIN sk_number ON quotation.id_int = sk_number.id_int WHERE quotation.id_int = '$id_int'")->result();
         $data['specialQuotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int WHERE quotation.id_quotation = '$id'")->result();
         $data['analysis'] = $this->db->query("SELECT * FROM analysis")->result();
+        $data['sknumber'] = $this->db->query("SELECT * FROM sk_number WHERE id_int = $id_int")->result();
         $this->load->view('_layout/header', $data);
         $this->load->view('_layout/sidebar');
         $this->load->view('pages/D_addquotation', $data);

@@ -84,14 +84,19 @@ foreach($quotation as $quot) {
             <div style="border: 1px solid black;" class="p-1">
               <table class="font-weight-bold">
                 <tr>
-                  <td>To</td>
+                  <td>Up</td>
                   <td>:</td>
-                  <td><?= $qtn->name_int ?></td>
+                  <td><?= $qtn->name_cp ?></td>
                 </tr>
                 <tr>
-                  <td>Address&emsp;&emsp;&emsp;</td>
+                  <td>Title</td>
+                  <td>:</td>
+                  <td><?= $qtn->position_cp ?></td>
+                </tr>
+                <tr>
+                  <td>Email&emsp;&emsp;&emsp;</td>
                   <td>:&emsp;</td>
-                  <td><?= $qtn->int_address ?></td>
+                  <td><?= $qtn->int_email ?></td>
                 </tr>
               </table>
             </div>

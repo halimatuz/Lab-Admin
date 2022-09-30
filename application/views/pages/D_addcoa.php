@@ -9,7 +9,7 @@ foreach($specialAnalysis as $sa) {
 <div class="main-content">
   <section class="section">
     <div class="section-header">
-      <h1>Data coa</h1>
+      <h1>Data COA</h1>
       <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active">
           <a href="#">Dashboard</a>
@@ -89,7 +89,7 @@ foreach($specialAnalysis as $sa) {
                             <?php endforeach; ?>
                             <button type="submit" class="btn btn-primary">Update coa</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
-                            <a href="<?php echo base_url('D_coa/addcoa/' . $analysis->id_analysis) ?>" class="btn btn-danger">Cancel</a>
+                            <a href="<?php echo base_url('D_coa/add_coa/' . $analysis->id_analysis) ?>" class="btn btn-danger">Cancel</a>
                         </form>
                     <?php endforeach; } else {?>
                         <form action="<?= base_url('D_coa/add_coa_action') ?>" method="POST">
@@ -140,7 +140,7 @@ foreach($specialAnalysis as $sa) {
                                 </select>
                                 <?php echo form_error('method', '<span class="text-small text-danger">', '</span>') ?>
                             </div>
-                            <button type="submit" class="btn btn-primary">Add coa</button>
+                            <button type="submit" class="btn btn-primary">Add COA</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
                         </form>
                     <?php } ?>
@@ -186,7 +186,7 @@ foreach($specialAnalysis as $sa) {
                                         <td><?= htmlspecialchars($row->reg_standart_4); ?></td>
                                         <td><?= htmlspecialchars($row->name_method); ?></td>
                                         <td>
-                                            <a href="<?php echo base_url('D_coa/update_coa/') . $row->id_coa ?>"class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                            <a href="<?php echo base_url('D_coa/update_coa/') . $row->id_coa  . '/' . $row->id_analysis?>"class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                             <a href="<?php echo base_url('D_coa/delete_coa/') . $row->id_coa . '/' . $row->id_analysis?>"class="btn btn-danger tombol-hapus" type="submit"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>

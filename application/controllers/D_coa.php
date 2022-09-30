@@ -83,13 +83,13 @@ class D_coa extends CI_Controller
 		redirect('D_coa/add_coa/' . $id_anl);
 	}
 
-    public function update_coa($id) {
+    public function update_coa($id, $id_anl) {
         $where = array('id_coa' => $id);
         $data = array(
             'title' => 'Data COA',
         );
-        $data['specialAnalysis'] = $this->db->query("SELECT * FROM analysis WHERE id_analysis = '$id'")->result();
-        $data['coa'] = $this->db->query("SELECT * FROM coa INNER JOIN method ON coa.method = method.id_method WHERE coa.id_analysis = '$id'")->result();
+        $data['specialAnalysis'] = $this->db->query("SELECT * FROM analysis WHERE id_analysis = '$id_anl'")->result();
+        $data['coa'] = $this->db->query("SELECT * FROM coa INNER JOIN method ON coa.method = method.id_method WHERE coa.id_analysis = '$id_anl'")->result();
         $data['specialcoa'] = $this->db->query("SELECT * FROM coa INNER JOIN method ON coa.method = method.id_method WHERE id_coa = '$id'")->result();
         $data['methods'] = $this->db->query("SELECT * FROM method")->result();
         $this->load->view('_layout/header', $data);

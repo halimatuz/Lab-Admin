@@ -100,19 +100,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <li class="<?php echo $this->uri->segment(2) == 'forms_validation' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>example/forms_validation">Validation</a></li>
         </ul>
       </li>
-      <li class="dropdown<?php echo $this->uri->segment(2) == 'gmaps_advanced_route' || $this->uri->segment(2) == 'gmaps_draggable_marker' || $this->uri->segment(2) == 'gmaps_geocoding' || $this->uri->segment(2) == 'gmaps_geolocation' || $this->uri->segment(2) == 'gmaps_marker' || $this->uri->segment(2) == 'gmaps_multiple_marker' || $this->uri->segment(2) == 'gmaps_route' || $this->uri->segment(2) == 'gmaps_simple' ? 'active' : ''; ?>">
-        <a href="#" class="nav-link has-dropdown"><i class="fas fa-map-marker-alt"></i> <span>Google Maps</span></a>
-        <ul class="dropdown-menu">
-          <li class="<?php echo $this->uri->segment(2) == 'gmaps_advanced_route' ? 'active' : ''; ?>"><a href="<?php echo base_url(); ?>example/gmaps_advanced_route">Advanced Route</a></li>
-          <li class="<?php echo $this->uri->segment(2) == 'gmaps_draggable_marker' ? 'active' : ''; ?>"><a href="<?php echo base_url(); ?>example/gmaps_draggable_marker">Draggable Marker</a></li>
-          <li class="<?php echo $this->uri->segment(2) == 'gmaps_geocoding' ? 'active' : ''; ?>"><a href="<?php echo base_url(); ?>example/gmaps_geocoding">Geocoding</a></li>
-          <li class="<?php echo $this->uri->segment(2) == 'gmaps_geolocation' ? 'active' : ''; ?>"><a href="<?php echo base_url(); ?>example/gmaps_geolocation">Geolocation</a></li>
-          <li class="<?php echo $this->uri->segment(2) == 'gmaps_marker' ? 'active' : ''; ?>"><a href="<?php echo base_url(); ?>example/gmaps_marker">Marker</a></li>
-          <li class="<?php echo $this->uri->segment(2) == 'gmaps_multiple_marker' ? 'active' : ''; ?>"><a href="<?php echo base_url(); ?>example/gmaps_multiple_marker">Multiple Marker</a></li>
-          <li class="<?php echo $this->uri->segment(2) == 'gmaps_route' ? 'active' : ''; ?>"><a href="<?php echo base_url(); ?>example/gmaps_route">Route</a></li>
-          <li class="<?php echo $this->uri->segment(2) == 'gmaps_simple' ? 'active' : ''; ?>"><a href="<?php echo base_url(); ?>example/gmaps_simple">Simple</a></li>
-        </ul>
-      </li>
       <li class="dropdown<?php echo $this->uri->segment(2) == 'modules_calendar' || $this->uri->segment(2) == 'modules_chartjs' || $this->uri->segment(2) == 'modules_datatables' || $this->uri->segment(2) == 'modules_flag' || $this->uri->segment(2) == 'modules_font_awesome' || $this->uri->segment(2) == 'modules_ion_icons' || $this->uri->segment(2) == 'modules_owl_carousel' || $this->uri->segment(2) == 'modules_sparkline' || $this->uri->segment(2) == 'modules_sweet_alert' || $this->uri->segment(2) == 'modules_toastr' || $this->uri->segment(2) == 'modules_vector_map' || $this->uri->segment(2) == 'modules_weather_icon' ? 'active' : ''; ?>">
         <a href="#" class="nav-link has-dropdown"><i class="fas fa-plug"></i> <span>Modules</span></a>
         <ul class="dropdown-menu">
