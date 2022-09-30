@@ -32,6 +32,7 @@ foreach($specialInstitution as $si) {
                 <div class="row">
                     <div class="col-md-4">
                     <h6 class="text-primary">Add Quotation For <?= $institution->name_int; ?></h6>
+                    <p class="font-weight-bold">No. <?php foreach($sknumber as $sn) { echo $sn->sk_quotation; } ?></p>
                     <hr>
                     <?php 
                     if($this->uri->segment(2) == 'update_quotation') {
@@ -147,7 +148,6 @@ foreach($specialInstitution as $si) {
                                     <th>Remarks</th>
                                     <th>Spec</th>
                                     <th>Quantity</th>
-                                    <th>SK Number</th>
                                     <th>Standard Price</th>
                                     <th>Additional Price</th>
                                     <th>Action</th>
@@ -163,7 +163,6 @@ foreach($specialInstitution as $si) {
                                         <td><?= ($row->remarks); ?></td>
                                         <td><?= ($row->spec); ?></td>
                                         <td><?= htmlspecialchars($row->qty); ?></td>
-                                        <td><?= htmlspecialchars($row->sk_quotation); ?></td>
                                         <td>Rp <?= htmlspecialchars(number_format($row->standart_price, 0, ',', '.')) ?></td>
                                         <td>Rp <?= htmlspecialchars(number_format($row->add_price, 0, ',', '.')) ?></td>
                                         <td>

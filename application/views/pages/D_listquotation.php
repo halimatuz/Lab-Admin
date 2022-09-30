@@ -43,9 +43,7 @@
                                 <tr>
                                 <th>No</th>
                                 <th>Name Institution</th>
-                                <th>Analysis</th>
                                 <th>SK Quotation</th>
-                                <th>Quantity</th>
                                 <th>Action</th>
                                 </tr>
                             </thead>
@@ -56,11 +54,9 @@
                                     <tr>
                                         <td><?= $no++; ?></td>
                                         <td><?= htmlspecialchars($qtn->name_int); ?></td>
-                                        <td><?= htmlspecialchars($qtn->name_analysis); ?></td>
                                         <td><?= htmlspecialchars($qtn->sk_quotation); ?></td>
-                                        <td><?= htmlspecialchars($qtn->qty); ?></td>
                                         <td>
-                                            <a href="<?php echo base_url('D_quotation/add_quotation/') . $qtn->id_quotation ?>"class="btn btn-success"><i class="fas fa-plus"></i> Sample</a>
+                                            <a href="<?php echo base_url('D_sampling/add_sampling/') . $qtn->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> Sample</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

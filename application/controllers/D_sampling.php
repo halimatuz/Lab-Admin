@@ -3,17 +3,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 // Import PHPMailer classes into the global namespace
 // These must be at the top of your script, not inside a function
 
-class D_quotation extends CI_Controller 
+class D_sampling extends CI_Controller 
 {
     public function index()
     {
         $data = array(
-            'title' => 'Data Institution',
+            'title' => 'Data Quotation',
         );
-        $data['institution'] = $this->db->query("SELECT * FROM institution")->result();
+        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int")->result();
         $this->load->view('_layout/header', $data);
         $this->load->view('_layout/sidebar');
-        $this->load->view('pages/D_listinstitution', $data);
+        $this->load->view('pages/D_listquotation', $data);
         $this->load->view('_layout/footer');
     }
 
@@ -25,7 +25,6 @@ class D_quotation extends CI_Controller
         $data['specialInstitution'] = $this->db->query("SELECT * FROM institution WHERE id_int = '$id'")->result();
         $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int INNER JOIN sk_number ON quotation.id_int = sk_number.id_int WHERE quotation.id_int = '$id'")->result();
         $data['analysis'] = $this->db->query("SELECT * FROM analysis")->result();
-        $data['sknumber'] = $this->db->query("SELECT * FROM sk_number WHERE id_int = $id")->result();
         $this->load->view('_layout/header', $data);
         $this->load->view('_layout/sidebar');
         $this->load->view('pages/D_addquotation', $data);

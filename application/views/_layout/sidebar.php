@@ -17,10 +17,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </li>
 
     <li class="menu-header">Main Feature</li>
-      <li class="dropdown <?php echo $this->uri->segment(1) == 'D_quotation' ? 'active' : ''; ?>">
+      <li class="dropdown <?php echo $this->uri->segment(1) == 'D_quotation' || $this->uri->segment(1) == 'D_sampling' ? 'active' : ''; ?>">
         <a href="#" class="nav-link has-dropdown"><i class="fas fa-file"></i><span>Quotation</span></a>
         <ul class="dropdown-menu">
           <li class="<?php echo $this->uri->segment(1) == 'D_quotation' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_quotation">Add Quotation</a></li>
+          <li class="<?php echo $this->uri->segment(1) == 'D_sampling' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_sampling">Add Sampling</a></li>
         </ul>
       </li>
       <li class="dropdown <?php echo $this->uri->segment(1) == 'D_institution' || $this->uri->segment(1) == 'D_analysis' || $this->uri->segment(1) == 'D_sampler' || $this->uri->segment(1) == 'D_sample' || $this->uri->segment(1) == 'D_method' || $this->uri->segment(1) == 'D_coa' ? 'active' : ''; ?>">
