@@ -66,7 +66,7 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   ?>
   <script src="<?php echo base_url(); ?>assets/modules/owlcarousel2/dist/owl.carousel.min.js"></script>
   <?php
-} elseif ($this->uri->segment(2) == "forms_advanced_form" || $this->uri->segment(1) == "D_coa" || $this->uri->segment(1) == "D_quotation") {
+} elseif ($this->uri->segment(2) == "forms_advanced_form" || $this->uri->segment(1) == "D_coa" || $this->uri->segment(1) == "D_quotation" || $this->uri->segment(1) == "D_stps") {
   ?>
   <script src="<?php echo base_url(); ?>assets/modules/cleave-js/dist/cleave.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/cleave-js/dist/addons/cleave-phone.us.js"></script>

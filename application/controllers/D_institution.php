@@ -28,7 +28,7 @@ class D_institution extends CI_Controller
             $int_email = $this->input->post('int_email');
             $int_address = $this->input->post('int_address');
             $name_cp = $this->input->post('name_cp');
-            $position_cp = $this->input->post('position_cp');
+            $title_cp = $this->input->post('title_cp');
            
         
 
@@ -38,7 +38,7 @@ class D_institution extends CI_Controller
             'int_email' => $int_email,
             'int_address' => $int_address,
             'name_cp' => $name_cp,
-            'position_cp' => $position_cp,
+            'title_cp' => $title_cp,
         );
 
         $this->web->insert_data($data, 'institution');
@@ -83,14 +83,14 @@ class D_institution extends CI_Controller
             $int_email = $this->input->post('int_email');
             $int_address = $this->input->post('int_address');
             $name_cp = $this->input->post('name_cp');
-            $position_cp = $this->input->post('position_cp');
+            $title_cp = $this->input->post('title_cp');
         $data = array(
             'name_int' => $name_int,
             'int_phone' => $int_phone,
             'int_email' => $int_email,
             'int_address' => $int_address,
             'name_cp' => $name_cp,
-            'position_cp' => $position_cp,
+            'title_cp' => $title_cp,
         );
 
         $where = array(
@@ -109,6 +109,6 @@ class D_institution extends CI_Controller
         $this->form_validation->set_rules('int_email', 'Email instituion', 'required');
         $this->form_validation->set_rules('int_address', 'Address institution', 'required');
         $this->form_validation->set_rules('name_cp', 'Name Contact Person', 'required');
-        $this->form_validation->set_rules('position_cp', 'Position Contact Person', 'required');
+        $this->form_validation->set_rules('title_cp', 'Position Contact Person', 'required');
     }
 }

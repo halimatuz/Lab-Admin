@@ -16,14 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <a href="<?= base_url(); ?>" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
       </li>
 
-    <li class="menu-header">Main Feature</li>
-      <li class="dropdown <?php echo $this->uri->segment(1) == 'D_quotation' || $this->uri->segment(1) == 'D_sampling' ? 'active' : ''; ?>">
-        <a href="#" class="nav-link has-dropdown"><i class="fas fa-file"></i><span>Quotation</span></a>
-        <ul class="dropdown-menu">
-          <li class="<?php echo $this->uri->segment(1) == 'D_quotation' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_quotation">Add Quotation</a></li>
-          <li class="<?php echo $this->uri->segment(1) == 'D_sampling' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_sampling">Add Sampling</a></li>
-        </ul>
-      </li>
+    <li class="menu-header">Data Master</li>
       <li class="dropdown <?php echo $this->uri->segment(1) == 'D_institution' || $this->uri->segment(1) == 'D_analysis' || $this->uri->segment(1) == 'D_sampler' || $this->uri->segment(1) == 'D_sample' || $this->uri->segment(1) == 'D_method' || $this->uri->segment(1) == 'D_coa' ? 'active' : ''; ?>">
         <a href="#" class="nav-link has-dropdown"><i class="fas fa-plus"></i><span>Add Data</span></a>
         <ul class="dropdown-menu">
@@ -35,7 +28,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <li class="<?php echo $this->uri->segment(1) == 'D_coa' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_coa">Add COA</a></li>
         </ul>
       </li>
-    
+
+    <li class="menu-header">Logbook</li>
+      <li class="dropdown <?php echo $this->uri->segment(1) == 'D_quotation' || $this->uri->segment(1) == 'D_sampling' ? 'active' : ''; ?>">
+        <a href="#" class="nav-link has-dropdown"><i class="fas fa-file"></i><span>Quotation</span></a>
+        <ul class="dropdown-menu">
+          <li class="<?php echo $this->uri->segment(1) == 'D_quotation' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_quotation">Add Quotation</a></li>
+        </ul>
+      </li>
+      <li class="dropdown <?php echo $this->uri->segment(1) == 'D_stps' ? 'active' : ''; ?>">
+        <a href="#" class="nav-link has-dropdown"><i class="fas fa-file"></i><span>STPS</span></a>
+        <ul class="dropdown-menu">
+          <li class="<?php echo $this->uri->segment(1) == 'D_stps' && $this->uri->segment(2) == '' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_stps">Add STPS</a></li>
+          <li class="<?php echo $this->uri->segment(2) == 'data_stps' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_stps/data_stps">Assign Sampler STPS</a></li>
+        </ul>
+      </li>
+      <li class="dropdown <?php echo $this->uri->segment(1) == 'D_stp' ? 'active' : ''; ?>">
+        <a href="#" class="nav-link has-dropdown"><i class="fas fa-file"></i><span>STP</span></a>
+        <ul class="dropdown-menu">
+          <li class="<?php echo $this->uri->segment(1) == 'D_stp' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_stp">Add STP</a></li>
+          <li class="<?php echo $this->uri->segment(2) == 'add_sampler_stp' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_stp/add_sampler_stp">Assign Sampler STP</a></li>
+        </ul>
+      </li>
 
 
       <li class="menu-header">Starter</li>
@@ -47,7 +61,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <li><a class="nav-link" href="<?php echo base_url(); ?>example/layout_top_navigation">Top Navigation</a></li>
         </ul>
       </li>
-      <li class="<?php echo $this->uri->segment(2) == 'blank' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>example/blank"><i class="far fa-square"></i> <span>Blank Page</span></a></li>
       <li class="dropdown<?php echo $this->uri->segment(2) == 'bootstrap_alert' || $this->uri->segment(2) == 'bootstrap_badge' || $this->uri->segment(2) == 'bootstrap_breadcrumb' || $this->uri->segment(2) == 'bootstrap_buttons' || $this->uri->segment(2) == 'bootstrap_card' || $this->uri->segment(2) == 'bootstrap_carousel' || $this->uri->segment(2) == 'bootstrap_collapse' || $this->uri->segment(2) == 'bootstrap_dropdown' || $this->uri->segment(2) == 'bootstrap_form' || $this->uri->segment(2) == 'bootstrap_list_group' || $this->uri->segment(2) == 'bootstrap_media_object' || $this->uri->segment(2) == 'bootstrap_modal' || $this->uri->segment(2) == 'bootstrap_nav' || $this->uri->segment(2) == 'bootstrap_navbar' || $this->uri->segment(2) == 'bootstrap_pagination' || $this->uri->segment(2) == 'bootstrap_popover' || $this->uri->segment(2) == 'bootstrap_progress' || $this->uri->segment(2) == 'bootstrap_table' || $this->uri->segment(2) == 'bootstrap_tooltip' || $this->uri->segment(2) == 'bootstrap_typography' ? 'active' : ''; ?>">
         <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Bootstrap</span></a>
         <ul class="dropdown-menu">
@@ -148,15 +161,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <li class="<?php echo $this->uri->segment(2) == 'features_tickets' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>example/features_tickets">Tickets</a></li>
         </ul>
       </li>
-      <li class="dropdown<?php echo $this->uri->segment(2) == 'utilities_invoice' ? 'active' : ''; ?>">
-        <a href="#" class="nav-link has-dropdown"><i class="fas fa-ellipsis-h"></i> <span>Utilities</span></a>
-        <ul class="dropdown-menu">
-          <li><a href="<?php echo base_url(); ?>example/utilities_contact">Contact</a></li>
-          <li class="<?php echo $this->uri->segment(2) == 'utilities_invoice' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>example/utilities_invoice">Invoice</a></li>
-          <li><a href="<?php echo base_url(); ?>example/utilities_subscribe">Subscribe</a></li>
-        </ul>
-      </li>
-      <li class="<?php echo $this->uri->segment(2) == 'credits' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>example/credits"><i class="fas fa-pencil-ruler"></i> <span>Credits</span></a></li>
     </ul>
 
     <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

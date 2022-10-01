@@ -91,7 +91,7 @@ foreach($quotation as $quot) {
                 <tr>
                   <td>Title</td>
                   <td>:</td>
-                  <td><?= $qtn->position_cp ?></td>
+                  <td><?= $qtn->title_cp ?></td>
                 </tr>
                 <tr>
                   <td>Email&emsp;&emsp;&emsp;</td>

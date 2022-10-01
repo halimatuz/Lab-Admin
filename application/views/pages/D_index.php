@@ -10,6 +10,10 @@ foreach($total_institution as $ti) {
 foreach($total_analysis as $ta) {
     $total_data_analysis = $ta;
 }
+
+foreach($total_quotation as $tq) {
+    $total_data_quotation = $tq;
+}
 ?>
 <!-- Main Content -->
 <div class="main-content">
@@ -19,14 +23,14 @@ foreach($total_analysis as $ta) {
     </div>
     <div class="row">
       <div class="col-12 mb-4">
-        <div class="hero bg-primary text-white">
-          <div class="hero-inner">
-            <h2>Welcome Back, Azkazikna!</h2>
-            <p class="lead">
-                This page is a place to manage laboratory data and more.
-            </p>
+          <div class="hero text-white hero-bg-image hero-bg-parallax" style="background-image: url('<?= base_url('assets/img/unsplash/laboratorium.jpeg') ?>');">
+            <div class="hero-inner">
+              <h2>Welcome, Azkazikna!</h2>
+              <p class="lead">
+                This page is a place to manage data laboratory, quotation, letter, and more.
+              </p>
+            </div>
           </div>
-        </div>
       </div>
     </div>
     <div class="row">
@@ -82,10 +86,10 @@ foreach($total_analysis as $ta) {
           </div>
           <div class="card-wrap">
             <div class="card-header">
-              <h4>Online Users</h4>
+              <h4>Total Quotation</h4>
             </div>
             <div class="card-body">
-              47
+              <?= $total_data_quotation ?>
             </div>
           </div>
         </div>

@@ -65,15 +65,15 @@
                             <p>Contact Person</p>
 
                             <div class="form-group">
-                                <label>Name Contact Person</label>
+                                <label>Name</label>
                                 <input type="text" class="form-control" name="name_cp" value="<?= $si->name_cp ?>" autocomplete="off" aria-placeholder="Insert name contact person">
                                 <?php echo form_error('name_cp', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
                             
                             <div class="form-group">
-                                <label>Position Contact Person</label>
-                                <input type="text" class="form-control" name="position_cp" value="<?= $si->position_cp ?>" autocomplete="off" aria-placeholder="Insert name contact person">
-                                <?php echo form_error('position_cp', '<div class="text-small text-danger">', '</div>') ?>
+                                <label>Title</label>
+                                <input type="text" class="form-control" name="title_cp" value="<?= $si->title_cp ?>" autocomplete="off" aria-placeholder="Insert name contact person">
+                                <?php echo form_error('title_cp', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Update Intitution</button>
@@ -116,15 +116,15 @@
                             <p>Contact Person</p>
 
                             <div class="form-group">
-                                <label>Name Contact Person</label>
+                                <label>Name</label>
                                 <input type="text" class="form-control <?php if(form_error('name_cp')) { echo "is-invalid"; } ?>" name="name_cp" value="<?= set_value('name_cp')?>" autocomplete="off" placeholder="Insert name contact person">
                                 <?php echo form_error('name_cp', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
 
                             <div class="form-group">
-                                <label>Position Contact Person</label>
-                                <input type="text" class="form-control <?php if(form_error('position_cp')) { echo "is-invalid"; } ?>" name="position_cp" value="<?= set_value('position_cp')?>" autocomplete="off" placeholder="Insert position contact person">
-                                <?php echo form_error('position_cp', '<div class="text-small text-danger">', '</div>') ?>
+                                <label>Title</label>
+                                <input type="text" class="form-control <?php if(form_error('title_cp')) { echo "is-invalid"; } ?>" name="title_cp" value="<?= set_value('title_cp')?>" autocomplete="off" placeholder="Insert position contact person">
+                                <?php echo form_error('title_cp', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Add Institution</button>

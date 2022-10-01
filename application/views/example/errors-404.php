@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('_layout/header');
+$this->load->view('_layout/header404');
 ?>
 <body>
   <div id="app">
