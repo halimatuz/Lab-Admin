@@ -48,7 +48,7 @@ class D_quotation extends CI_Controller
                 $code = $sql2->maxID;
             }
             $code++;
-            $sk_quotation = $code . '/' . date('Y') . '/' . date('d') . '/' . "DIL/QTN";
+            $sk_quotation = $code . '/' . date('Y') . '/' . date('m') . '/' . date('d') . '/' . "DIL/QTN";
             $cek_sk = $this->db->query("SELECT * FROM sk_number WHERE id_int = $id_int")->result();
             // end SK Number
 

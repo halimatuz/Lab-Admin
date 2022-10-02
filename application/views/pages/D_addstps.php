@@ -84,7 +84,7 @@ foreach($specialSK as $sk) {
                     <?php } ?>
                     </div>
                     <div class="col-md-8">
-                        <a href="<?= base_url('D_stps/print_stps/') . $sk_number->id_sk ?>" class="btn btn-primary">Print</a>
+                        <a href="<?= base_url('D_stps/print_stps/') . $sk_number->id_sk ?>" class="btn btn-primary" target="_blank">Print</a>
                         <hr>
                         <?php if($sampling_det == NULL) { ?>
                             <div class="empty-state" data-height="400">

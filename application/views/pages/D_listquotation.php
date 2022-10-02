@@ -2,7 +2,7 @@
 <div class="main-content">
   <section class="section">
     <div class="section-header">
-      <h1>Add STPS</h1>
+      <h1><?php if($this->uri->segment(1) == 'D_stp'){echo'Add STP';}else{echo 'Add STPS';} ?></h1>
       <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active">
           <a href="#">Dashboard</a>
@@ -57,9 +57,17 @@
                                         <td><?= htmlspecialchars($qtn->sk_quotation); ?></td>
                                         <td>
                                           <?php if($this->uri->segment(1) == 'D_stps') { ?>
-                                            <a href="<?php echo base_url('D_stps/add_stps/') . $qtn->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> STPS</a>
+                                            <?php if($qtn->sk_sample == 0) { ?>
+                                              <a href="<?php echo base_url('D_stps/add_stps/') . $qtn->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> STPS</a>
+                                            <?php } else { ?>
+                                              <a href="<?php echo base_url('D_stps/add_stps/') . $qtn->id_sk ?>"class="btn btn-primary"><i class="fas fa-edit"></i> STPS</a>
+                                            <?php } ?>
                                           <?php } else { ?>
-                                            <a href="<?php echo base_url('D_stp/add_stp/') . $qtn->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> STP</a>
+                                            <?php if($qtn->sk_analysis == 0) { ?>
+                                              <a href="<?php echo base_url('D_stp/add_stp/') . $qtn->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> STP</a>
+                                            <?php } else { ?>
+                                              <a href="<?php echo base_url('D_stp/add_stp/') . $qtn->id_sk ?>"class="btn btn-primary"><i class="fas fa-edit"></i> STP</a>
+                                            <?php } ?>
                                           <?php } ?>
                                         </td>
                                     </tr>

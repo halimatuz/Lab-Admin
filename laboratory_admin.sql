@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2022 at 05:48 AM
+-- Generation Time: Oct 02, 2022 at 11:46 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -60,9 +60,20 @@ INSERT INTO `analysis` (`id_analysis`, `name_analysis`, `standart_price`, `coa`)
 --
 
 CREATE TABLE `assign_sampler` (
-  `id_sample` int(11) NOT NULL,
+  `id_assign` int(11) NOT NULL,
+  `id_sampler` int(11) NOT NULL,
   `id_sk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `assign_sampler`
+--
+
+INSERT INTO `assign_sampler` (`id_assign`, `id_sampler`, `id_sk`) VALUES
+(3, 1, 2),
+(4, 12, 2),
+(5, 14, 2),
+(8, 13, 2);
 
 -- --------------------------------------------------------
 
@@ -100,25 +111,27 @@ CREATE TABLE `institution` (
   `name_int` varchar(255) NOT NULL,
   `int_phone` varchar(255) NOT NULL,
   `int_email` varchar(255) NOT NULL,
-  `int_address` varchar(255) NOT NULL
+  `int_address` varchar(255) NOT NULL,
+  `name_cp` varchar(255) NOT NULL,
+  `title_cp` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `institution`
 --
 
-INSERT INTO `institution` (`id_int`, `name_int`, `int_phone`, `int_email`, `int_address`) VALUES
-(3, 'PT. Matsuoka Industries Indonesia', '08967832', 'rosaria@gmail.com', 'Jl. Kali Sumber KM 117 RT 16 RW 05, Desa Ciberes, Kecamatan Patokbesi, Kabupaten Subang, Jawa Barat'),
-(4, 'PT. Jgu merdeka', '087632121', 'jgu@jgu.ac.id', 'JL Pegangsaan Timur'),
-(5, 'PT. Nusanatara Indah', '081385321716', 'nusantara26@gmail.com', 'JL Marzuki barat'),
-(6, 'PT.Jaya indonesia', '08137569956', 'Jayaind17@gmail.com', 'JL Penus raya'),
-(7, 'PT. Betafish rizki', '08567641801', 'betafishrizq@gmail.com', 'Jl Mandor Sanun'),
-(8, 'PT. Oasis Bogor', '081376838901', 'oasisbogor@gmail.com', 'Jl Lipi selatan'),
-(9, 'PT. Jali Indonesia Utama', '0856956371', 'Jaliindonesia23@gmail.com', 'Jl Topaz nasution'),
-(10, 'PT. Kingbarba', '083819588819', 'kingbarbar@gmail.com', 'Jl. H,ahmad dahlan'),
-(11, 'PT. Lentera Jiwa Project', '08858183202', 'Lenterajiwa@gmail.com', 'Jl. Pesat raya no 25 bogor'),
-(12, 'PT. Big mouse korean', '0858939312', 'bigmousek@gmail.com', 'Jl. Kemang 2 jakarta barat'),
-(13, 'PT. Zikna Soft', '8564789651', 'azkazikna.aal@gmail.com', 'Blablablabalba Bogor');
+INSERT INTO `institution` (`id_int`, `name_int`, `int_phone`, `int_email`, `int_address`, `name_cp`, `title_cp`) VALUES
+(3, 'PT. Matsuoka Industries Indonesia', '08967832', 'rosaria@gmail.com', 'Jl. Kali Sumber KM 117 RT 16 RW 05, Desa Ciberes, Kecamatan Patokbesi, Kabupaten Subang, Jawa Barat', 'Nurtarikasmalini,ST.,M.T', 'Direktur PT. Mentari Prima Karya'),
+(4, 'PT. JGU Merdeka', '087632121', 'jgu@jgu.ac.id', 'JL Pegangsaan Timur', '0', '0'),
+(5, 'PT. Nusanatara Indah', '081385321716', 'nusantara26@gmail.com', 'JL Marzuki barat', '0', '0'),
+(6, 'PT.Jaya indonesia', '08137569956', 'Jayaind17@gmail.com', 'JL Penus raya', '0', '0'),
+(7, 'PT. Betafish rizki', '08567641801', 'betafishrizq@gmail.com', 'Jl Mandor Sanun', '0', '0'),
+(8, 'PT. Oasis Bogor', '081376838901', 'oasisbogor@gmail.com', 'Jl Lipi selatan', '0', '0'),
+(9, 'PT. Jali Indonesia Utama', '0856956371', 'Jaliindonesia23@gmail.com', 'Jl Topaz nasution', '0', '0'),
+(10, 'PT. Kingbarbar', '083819588819', 'kingbarbar@gmail.com', 'Jl. H,ahmad dahlan', '0', '0'),
+(11, 'PT. Lentera Jiwa Project', '08858183202', 'Lenterajiwa@gmail.com', 'Jl. Pesat raya no 25 bogor', '0', '0'),
+(12, 'PT. Big Mouse Korean', '0858939312', 'bigmousek@gmail.com', 'Jl. Kemang 2 jakarta barat', '0', '0'),
+(13, 'PT. Zikna Soft', '8564789651', 'azkazikna.aal@gmail.com', 'Blablablabalba Bogor', 'Azkazikna Ageung Laksana', 'Direktur PT. Zikna Soft');
 
 -- --------------------------------------------------------
 
@@ -214,6 +227,31 @@ CREATE TABLE `sample` (
   `name_sample` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `sample`
+--
+
+INSERT INTO `sample` (`id_sample`, `name_sample`) VALUES
+(1, 'Debu'),
+(2, 'SO2'),
+(3, 'NO2'),
+(4, 'CO'),
+(5, 'NH3'),
+(6, 'H2S'),
+(7, 'Suhu'),
+(8, 'Kelembaban'),
+(9, 'NOISE'),
+(10, 'ISBB/Heat Stress'),
+(11, 'Benzene'),
+(12, 'Toluene'),
+(13, 'Xylene (BTX)'),
+(14, 'Partikulat'),
+(15, 'Opasitas'),
+(16, 'Laju Alir'),
+(17, 'Pencahayaan'),
+(18, 'Air Limbah Produksi'),
+(19, 'Air Limbah Domestik');
+
 -- --------------------------------------------------------
 
 --
@@ -234,7 +272,6 @@ CREATE TABLE `sampler` (
 
 INSERT INTO `sampler` (`id_sampler`, `name_smp`, `gender_smp`, `phone_smp`, `email_smp`) VALUES
 (1, 'Azkazikna Ageung Laksana', 1, '081314697305', 'azkazikna.aal@gmail.com'),
-(2, 'Muhammad Raihan Alfaiz', 1, '081210805647', 'raihan.aal@gmail.com'),
 (7, 'Akbar Maulana Febriansyah', 1, '0856973256', 'akbar@gmail.com'),
 (8, 'Rezha Ikhwan Hidayat', 1, '054586325975', 'rezha@gmail.com'),
 (9, 'Ananda Rizq', 1, '084569785236', 'nanda@gmail.com'),
@@ -242,7 +279,7 @@ INSERT INTO `sampler` (`id_sampler`, `name_smp`, `gender_smp`, `phone_smp`, `ema
 (11, 'Deviyanti Kusumawati', 0, '085645857584', 'devi@gmail.com'),
 (12, 'Pramdhanni Dwi Putra Bintang', 1, '085698741236', 'pramgebleg@gmail.com'),
 (13, 'Annaufal Arifa Nasution Hidayatullah', 1, '083698755485', 'annaufal60@gmail.com'),
-(14, 'Shevy Octavian', 1, '081210805647', 'shevygaming@gmail.com');
+(14, 'Shevy Octavian', 0, '081210805647', 'shevygaming@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -251,10 +288,32 @@ INSERT INTO `sampler` (`id_sampler`, `name_smp`, `gender_smp`, `phone_smp`, `ema
 --
 
 CREATE TABLE `sampling_det` (
+  `id_sampling` int(11) NOT NULL,
   `id_sk` int(11) NOT NULL,
-  `id_sample` int(11) NOT NULL,
-  `location` text NOT NULL
+  `sample_desc` varchar(255) NOT NULL,
+  `location` text NOT NULL,
+  `sample_type` varchar(255) DEFAULT NULL,
+  `deadline` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sampling_det`
+--
+
+INSERT INTO `sampling_det` (`id_sampling`, `id_sk`, `sample_desc`, `location`, `sample_type`, `deadline`, `description`) VALUES
+(8, 2, 'Debu, SO2, NO2, CO, NH3, H2S, Suhu, Kelembaban', '<ul><li>Halaman Depan Plant 1</li><li>Halaman Belakang Plant 2</li><li>Halaman Belakang Plant 3</li></ul>', 'Cair', '2022-10-14', 'gg gaming'),
+(9, 2, 'Debu, SO2, NO2, CO, NH3, H2S, Suhu, Kelembaban', '<ul><li>Ruang Produksi Plant 1</li><li>Ruang Produksi Plant 2</li><li>Ruang Heat Treatment Plant 3</li><li>Ruang Produksi Plant 3</li><li>Ruang Heat Treatment Plant 3</li></ul>', 'Padat', '2022-10-13', 'mantap'),
+(10, 2, 'NOISE', '<ul><li>Batas Pabrik Sebelah Utara</li><li>Batas Pabrik Sebelah Selatan</li><li>Batas Pabrik Sebelah Timur</li><li>Batas Pabrik Sebelah Barat</li></ul>', 'Gas', '2022-10-01', 'Ini deskripsi singkat'),
+(11, 2, 'NOISE', '<ul><li>Ruang Produksi Plant 1</li><li>Area Barel Machine Plant 1</li><li>Ruang Produksi Plant 2</li><li>Ruang Heat Treatment Plant 2</li><li>Ruang Produksi Plant 3</li><li>Ruang Heat Treatment Plant 3</li></ul>', 'Gas', '2022-10-20', 'ini deskripsi sangat singkat.'),
+(12, 2, 'ISBB/Heat Stress', '<ul><li>Ruang Heat Treatment Plant 2</li><li>Ruang Heat Treatment Plant 3</li></ul>', NULL, NULL, NULL),
+(13, 2, 'Benzene, Toluene, Xylene (BTX)', '<p>Area Platting Plant 1</p>', NULL, NULL, NULL),
+(14, 2, 'SO2, NO2, CO, Partikulat, Opasitas, Laju Alir', '<ul><li>Cerobong Genset 800 kVA Plant 1</li><li>Cerobong Genset 600 kVA Plant 2</li></ul>', NULL, NULL, NULL),
+(15, 2, 'Pencahayaan', '<ul><li>Ruang Hear Treatment Plant 1</li><li>Ruang Produksi Plant 1</li><li>Ruang Heat Treatment Plant 2</li><li>Ruang Produksi Plant 2</li><li>Ruang Produksi Plant 3</li><li>Ruang Heat Treatment Plant 3</li></ul>', NULL, NULL, NULL),
+(16, 2, 'Opasitas', '<ul><li>Forklift (1 titik) Plant 1</li><li>Forklift 2,5 Ton (1 titik) Plant 2</li><li>Truck Hino Tahun 2005 (T 8102 L) Plant 3</li><li>Truck Hino Tahun 2004 (T 8228 K) Plant 3</li><li>Truck Isuzu Tahun 2002 (T 8047 FZ) Plant 3</li></ul>', NULL, NULL, NULL),
+(17, 2, 'Air Limbah Produksi', '<p>Servis Manhole</p>', NULL, NULL, NULL),
+(18, 2, 'Air Limbah Domestik', '<p>Servis Manhole</p>', NULL, NULL, NULL),
+(19, 7, 'Debu, SO2, NO2, CO, NH3, H2S', '<ul><li>Rumah Rezha</li><li>Rumah Pram</li></ul>', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -275,11 +334,11 @@ CREATE TABLE `sk_number` (
 --
 
 INSERT INTO `sk_number` (`id_sk`, `sk_quotation`, `sk_sample`, `sk_analysis`, `id_int`) VALUES
-(2, '1/2022/27/DIL/QTN', '', '', 3),
-(4, '3/2022/27/DIL/QTN', '', '', 4),
-(5, '5/2022/27/DIL/QTN', '', '', 9),
-(6, '6/2022/27/DIL/QTN', '', '', 12),
-(7, '7/2022/29/DIL/QTN', '', '', 10);
+(2, '1/2022/09/27/DIL/QTN', '2/2022/09/30/DIL/STPS', '2/2022/10/01/DIL/STP', 3),
+(4, '3/2022/09/27/DIL/QTN', '', '', 4),
+(5, '5/2022/09/27/DIL/QTN', '', '', 9),
+(6, '6/2022/09/27/DIL/QTN', '', '', 12),
+(7, '7/2022/09/29/DIL/QTN', '7/2022/09/30/DIL/STPS', '', 10);
 
 --
 -- Indexes for dumped tables
@@ -295,7 +354,8 @@ ALTER TABLE `analysis`
 -- Indexes for table `assign_sampler`
 --
 ALTER TABLE `assign_sampler`
-  ADD KEY `id_sample` (`id_sample`),
+  ADD PRIMARY KEY (`id_assign`),
+  ADD KEY `id_sample` (`id_sampler`),
   ADD KEY `id_sk` (`id_sk`);
 
 --
@@ -349,8 +409,9 @@ ALTER TABLE `sampler`
 -- Indexes for table `sampling_det`
 --
 ALTER TABLE `sampling_det`
+  ADD PRIMARY KEY (`id_sampling`),
   ADD KEY `id_sk` (`id_sk`),
-  ADD KEY `id_sample` (`id_sample`);
+  ADD KEY `id_sample` (`sample_desc`);
 
 --
 -- Indexes for table `sk_number`
@@ -368,6 +429,12 @@ ALTER TABLE `sk_number`
 --
 ALTER TABLE `analysis`
   MODIFY `id_analysis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `assign_sampler`
+--
+ALTER TABLE `assign_sampler`
+  MODIFY `id_assign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `coa`
@@ -397,13 +464,19 @@ ALTER TABLE `quotation`
 -- AUTO_INCREMENT for table `sample`
 --
 ALTER TABLE `sample`
-  MODIFY `id_sample` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_sample` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `sampler`
 --
 ALTER TABLE `sampler`
   MODIFY `id_sampler` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `sampling_det`
+--
+ALTER TABLE `sampling_det`
+  MODIFY `id_sampling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `sk_number`
@@ -419,7 +492,7 @@ ALTER TABLE `sk_number`
 -- Constraints for table `assign_sampler`
 --
 ALTER TABLE `assign_sampler`
-  ADD CONSTRAINT `assign_sampler_ibfk_1` FOREIGN KEY (`id_sample`) REFERENCES `sampler` (`id_sampler`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `assign_sampler_ibfk_1` FOREIGN KEY (`id_sampler`) REFERENCES `sampler` (`id_sampler`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `assign_sampler_ibfk_2` FOREIGN KEY (`id_sk`) REFERENCES `sk_number` (`id_sk`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -447,7 +520,6 @@ ALTER TABLE `result_coa`
 -- Constraints for table `sampling_det`
 --
 ALTER TABLE `sampling_det`
-  ADD CONSTRAINT `sampling_det_ibfk_1` FOREIGN KEY (`id_sample`) REFERENCES `sample` (`id_sample`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `sampling_det_ibfk_2` FOREIGN KEY (`id_sk`) REFERENCES `sk_number` (`id_sk`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
