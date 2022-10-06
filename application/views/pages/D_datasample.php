@@ -69,7 +69,6 @@
                                 <tr>
                                 <th>No</th>
                                 <th>Name</th>
-                                <th>asfasdf</th>
                                 <th>Action</th>
                                 </tr>
                             </thead>
@@ -80,7 +79,6 @@
                                     <tr>
                                         <td><?= $no++; ?></td>
                                         <td><?= htmlspecialchars($row->name_sample); ?></td>
-                                        <td>sgffdg</td>
                                         <td>
                                             <a href="<?php echo base_url('D_sample/update_sample/') . $row->id_sample ?>"class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                             <a href="<?php echo base_url('D_sample/delete_sample/') . $row->id_sample ?>"class="btn btn-danger tombol-hapus"><i class="fas fa-trash"></i></a>

@@ -58,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/owlcarousel2/dist/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/owlcarousel2/dist/assets/owl.theme.default.min.css">
     <?php
-  } elseif ($this->uri->segment(2) == "forms_advanced_form" || $this->uri->segment(1) == "D_stps") {
+  } elseif ($this->uri->segment(2) == "forms_advanced_form" || $this->uri->segment(1) == "D_stps" || $this->uri->segment(1) == "D_stp") {
     ?>
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">

@@ -69,7 +69,6 @@
                                 <tr>
                                 <th>No</th>
                                 <th>Name</th>
-                                <th>ycca</th>
                                 <th>Action</th>
                                 </tr>
                             </thead>
@@ -80,7 +79,6 @@
                                     <tr>
                                         <td><?= $no++; ?></td>
                                         <td><?= htmlspecialchars($row->name_method); ?></td>
-                                        <td>ytta</td>
                                         <td>
                                             <a href="<?php echo base_url('D_method/update_method/') . $row->id_method ?>"class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                             <a href="<?php echo base_url('D_method/delete_method/') . $row->id_method ?>"class="btn btn-danger tombol-hapus"><i class="fas fa-trash"></i></a>

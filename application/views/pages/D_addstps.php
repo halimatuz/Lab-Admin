@@ -34,33 +34,6 @@ foreach($specialSK as $sk) {
                     <h6 class="text-primary">Add STPS For <?= $sk_number->name_int; ?></h6>
                     <p class="font-weight-bold">No. <?= $sk_number->sk_sample; ?></p>
                     <hr>
-                    <?php 
-                    if($this->uri->segment(2) == 'update_stps') {
-                    foreach ($updateSK as $usk) : ?>
-                        <form action="<?= base_url('D_stps/update_stps_action') ?>" method="POST">
-                            <div class="form-group">
-                                <label>Sample</label>
-                                <input type="hidden" name="id_sampling" value="<?= $usk->id_sampling ?>">
-                                <input type="hidden" name="id_int" value="<?= $sk_number->id_int ?>">
-                                <input type="hidden" name="id_sk" value="<?= $usk->id_sk ?>">
-                                <select name="id_sample" class="form-control select2 <?php if(form_error('id_sample')) { echo "is-invalid"; } ?>">
-                                <option value="<?= $usk->id_sample ?>"><?= $usk->name_sample ?></option>
-                                    <?php foreach($sample as $smpl) : ?>
-                                        <option value="<?= $smpl->id_sample ?>"><?= $smpl->name_sample ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                                <?php echo form_error('analysis', '<span class="text-small text-danger">', '</span>') ?>
-                            </div>
-                            <div class="form-group">
-                                <label>Location</label>
-                                <textarea class="summernote-simple" name="location"><?= $usk->location ?></textarea>
-                                <?php echo form_error('location', '<span class="text-small text-danger">', '</span>') ?>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Update STPS</button>
-                            <button type="reset" class="btn btn-danger">Reset</button>
-                            <a href="<?php echo base_url('D_stps/add_stps/') . $sk_number->id_sk ?>" class="btn btn-danger">Cancel</a>
-                        </form>
-                    <?php endforeach; } else {?>
                         <form action="<?= base_url('D_stps/add_stps_action') ?>" method="POST">
                             <div class="form-group">
                                 <label>Sample</label>
@@ -71,7 +44,7 @@ foreach($specialSK as $sk) {
                                         <option value="<?= $smpl->name_sample ?>"><?= $smpl->name_sample ?></option>
                                     <?php endforeach; ?>
                                 </select>
-                                <?php echo form_error('id_sample', '<span class="text-small text-danger">', '</span>') ?>
+                                <?php echo form_error('sample_desc[]', '<span class="text-small text-danger">', '</span>') ?>
                             </div>
                             <div class="form-group">
                                 <label>Location</label>
@@ -81,7 +54,6 @@ foreach($specialSK as $sk) {
                             <button type="submit" class="btn btn-primary">Add STPS</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
                         </form>
-                    <?php } ?>
                     </div>
                     <div class="col-md-8">
                         <a href="<?= base_url('D_stps/print_stps/') . $sk_number->id_sk ?>" class="btn btn-primary" target="_blank">Print</a>

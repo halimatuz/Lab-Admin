@@ -49,7 +49,7 @@ class D_stps extends CI_Controller
 
             $sample_array = $this->input->post('sample_desc[]');
             $location = $this->input->post('location');
-
+            $today = date ( "d/m/Y" );
             $sample_desc = implode(", ",$sample_array);
 
             $data_sampling = array(
@@ -60,6 +60,7 @@ class D_stps extends CI_Controller
             
             $data_stps = array(
                 'sk_sample' => $sk_sample,
+                'date_analysis' => $today
             );
 
             $where = array(
@@ -101,7 +102,7 @@ class D_stps extends CI_Controller
             'title' => 'Data STPS',
         );
         $data['stps'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int")->result();
-        $data['ceksampler'] = $this->db->query("SELECT *,(SELECT count(*) FROM assign_sampler WHERE id_sk = sk_number.id_sk) as st_account FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int")->result();
+        $data['ceksampler'] = $this->db->query("SELECT *,(SELECT count(*) FROM assign_sampler WHERE id_sk = sk_number.id_sk AND assign_sampler.is_sampler = 1) as st_account FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int")->result();
         $this->load->view('_layout/header', $data);
         $this->load->view('_layout/sidebar');
         $this->load->view('pages/D_liststps', $data);
@@ -114,7 +115,7 @@ class D_stps extends CI_Controller
             'title' => 'Add Sampler STPS',
         );
         $data['specialSK'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE id_sk = $id")->result();
-        $data['assign_sampler'] = $this->db->query("SELECT * FROM assign_sampler INNER JOIN sk_number ON assign_sampler.id_sk = sk_number.id_sk INNER JOIN sampler ON assign_sampler.id_sampler = sampler.id_sampler WHERE assign_sampler.id_sk = $id")->result();
+        $data['assign_sampler'] = $this->db->query("SELECT * FROM assign_sampler INNER JOIN sk_number ON assign_sampler.id_sk = sk_number.id_sk INNER JOIN sampler ON assign_sampler.id_sampler = sampler.id_sampler WHERE assign_sampler.id_sk = $id AND assign_sampler.is_sampler = 1")->result();
         $data['sampler'] = $this->db->query("SELECT * FROM sampler")->result();
         $this->load->view('_layout/header', $data);
         $this->load->view('_layout/sidebar');
@@ -137,6 +138,7 @@ class D_stps extends CI_Controller
             $data = array(
                 'id_sampler' => $id_sampler,
                 'id_sk' => $id_sk,
+                'is_sampler' => 1
             );
 
             $this->web->insert_data($data, 'assign_sampler');
@@ -161,7 +163,7 @@ class D_stps extends CI_Controller
         $data['specialSK'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE id_sk = $id_sk")->result();
         $data['sampler'] = $this->web->get_data('sampler', 'id_sampler')->result();
         $data['special_assign'] = $this->db->query("SELECT * FROM assign_sampler INNER JOIN sampler ON assign_sampler.id_sampler = sampler.id_sampler WHERE id_assign = '$id'")->result();
-        $data['assign_sampler'] = $this->db->query("SELECT * FROM assign_sampler INNER JOIN sk_number ON assign_sampler.id_sk = sk_number.id_sk INNER JOIN sampler ON assign_sampler.id_sampler = sampler.id_sampler WHERE assign_sampler.id_sk = $id_sk")->result();
+        $data['assign_sampler'] = $this->db->query("SELECT * FROM assign_sampler INNER JOIN sk_number ON assign_sampler.id_sk = sk_number.id_sk INNER JOIN sampler ON assign_sampler.id_sampler = sampler.id_sampler WHERE assign_sampler.id_sk = $id_sk AND assign_sampler.is_sampler = 1")->result();
         $this->load->view('_layout/header', $data);
         $this->load->view('_layout/sidebar');
         $this->load->view('pages/D_addsamplerstps', $data);

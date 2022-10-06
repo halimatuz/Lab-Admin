@@ -10,7 +10,7 @@ class D_quotation extends CI_Controller
         $data = array(
             'title' => 'Data Institution',
         );
-        $data['institution'] = $this->db->query("SELECT * FROM institution")->result();
+        $data['institution'] = $this->db->query("SELECT *,(SELECT count(*) FROM sk_number WHERE id_int = institution.id_int) as st_account FROM institution")->result();
         $this->load->view('_layout/header', $data);
         $this->load->view('_layout/sidebar');
         $this->load->view('pages/D_listinstitution', $data);
@@ -51,6 +51,7 @@ class D_quotation extends CI_Controller
             $sk_quotation = $code . '/' . date('Y') . '/' . date('m') . '/' . date('d') . '/' . "DIL/QTN";
             $cek_sk = $this->db->query("SELECT * FROM sk_number WHERE id_int = $id_int")->result();
             // end SK Number
+            $today = date ( "d/m/Y" );
 
             
 
@@ -60,6 +61,7 @@ class D_quotation extends CI_Controller
                     'sk_sample' => '',
                     'sk_analysis' => '',
                     'id_int' => $id_int,
+                    'date_quotation' => $today,
                 );
                 $this->web->insert_data($data_sk, 'sk_number');
             }
@@ -70,12 +72,14 @@ class D_quotation extends CI_Controller
             $qty = $this->input->post('qty');
             $add_price = $this->input->post('add_price');
             $id_sk = $this->db->query("SELECT * FROM sk_number WHERE id_int = $id_int")->result();
+            $coa = $this->db->query("SELECT id_coa FROM coa WHERE id_analysis = $id_analysis")->result();
+
+
 
             foreach($id_sk as $sk) {
                 $sk_qtn = $sk->id_sk;
             }
 
-            
 
             $data_qtn = array(
                 'id_analysis' => $id_analysis,
@@ -86,6 +90,18 @@ class D_quotation extends CI_Controller
                 'id_sk' => $sk_qtn,
                 'add_price' => $add_price,
             );
+
+            foreach($coa as $c) {
+                $id_coa = $c->id_coa;
+                $data_result = array(
+                    'id_analysis' => $id_analysis,
+                    'id_int' => $id_int,
+                    'id_sk' => $sk_qtn,
+                    'id_coa' => $id_coa
+                );
+
+                $this->web->insert_data($data_result, 'result_coa');
+            }
 
             $this->web->insert_data($data_qtn, 'quotation');
             $this->session->set_flashdata('msg', 'Data Quotation success added.');
@@ -104,10 +120,11 @@ class D_quotation extends CI_Controller
         $this->form_validation->set_rules('add_price', 'Additional Price', 'required');
     }
 
-    public function delete_quotation($id, $id_int)
+    public function delete_quotation($id, $id_int, $id_analysis)
 	{
         $where = array('id_quotation' => $id);
 		$this->web->delete_data($where, 'quotation');
+        $this->db->query("DELETE FROM result_coa WHERE id_int = $id_int AND id_analysis = $id_analysis");
         $this->session->set_flashdata('msg', 'Data Quotation success deleted.');
 		redirect('D_quotation/add_quotation/' . $id_int);
 	}

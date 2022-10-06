@@ -2,7 +2,7 @@
 <div class="main-content">
   <section class="section">
     <div class="section-header">
-      <h1><?php if($this->uri->segment(1) == 'D_stp'){echo'Add STP';}else{echo 'Add STPS';} ?></h1>
+      <h1><?php if($this->uri->segment(1) == 'D_stp'){echo'Add STP';}elseif($this->uri->segment(1) == 'D_stps'){echo 'Add STPS';}elseif($this->uri->segment(1) == 'D_gencoa' && $this->uri->segment(2) == ''){echo 'Generate COA';}elseif($this->uri->segment(2) == "data_quotation"){echo 'Input Result COA';}else{echo "Print COA";} ?></h1>
       <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active">
           <a href="#">Dashboard</a>
@@ -58,16 +58,20 @@
                                         <td>
                                           <?php if($this->uri->segment(1) == 'D_stps') { ?>
                                             <?php if($qtn->sk_sample == 0) { ?>
-                                              <a href="<?php echo base_url('D_stps/add_stps/') . $qtn->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> STPS</a>
+                                              <a href="<?php echo base_url('D_stps/add_stps/') . $qtn->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> Add STPS</a>
                                             <?php } else { ?>
-                                              <a href="<?php echo base_url('D_stps/add_stps/') . $qtn->id_sk ?>"class="btn btn-primary"><i class="fas fa-edit"></i> STPS</a>
+                                              <a href="<?php echo base_url('D_stps/add_stps/') . $qtn->id_sk ?>"class="btn btn-primary"><i class="fas fa-edit"></i> Edit STPS</a>
                                             <?php } ?>
-                                          <?php } else { ?>
+                                          <?php } elseif($this->uri->segment(1) == 'D_stp') { ?>
                                             <?php if($qtn->sk_analysis == 0) { ?>
-                                              <a href="<?php echo base_url('D_stp/add_stp/') . $qtn->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> STP</a>
+                                              <a href="<?php echo base_url('D_stp/add_stp/') . $qtn->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> Add STP</a>
                                             <?php } else { ?>
-                                              <a href="<?php echo base_url('D_stp/add_stp/') . $qtn->id_sk ?>"class="btn btn-primary"><i class="fas fa-edit"></i> STP</a>
+                                              <a href="<?php echo base_url('D_stp/add_stp/') . $qtn->id_sk ?>"class="btn btn-primary"><i class="fas fa-edit"></i> Edit STP</a>
                                             <?php } ?>
+                                          <?php } elseif($this->uri->segment(2) == 'data_quotation') { ?>
+                                              <a href="<?php echo base_url('D_gencoa/data_analysis/') . $qtn->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> Generate COA</a>
+                                          <?php } else {?>
+                                              <a href="<?php echo base_url('D_gencoa/print_coa/') . $qtn->id_int ?>"class="btn btn-success"><i class="fas fa-print"></i> Print COA</a>
                                           <?php } ?>
                                         </td>
                                     </tr>

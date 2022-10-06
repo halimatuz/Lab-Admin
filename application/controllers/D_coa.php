@@ -10,7 +10,7 @@ class D_coa extends CI_Controller
         $data = array(
             'title' => 'Data Analysis',
         );
-        $data['analysisCOA'] = $this->db->query("SELECT * FROM analysis WHERE coa = '1'")->result();
+        $data['analysisCOA'] = $this->db->query("SELECT *,(SELECT count(*) FROM coa WHERE id_analysis = analysis.id_analysis) as st_account FROM analysis WHERE coa = 1")->result();
         $this->load->view('_layout/header', $data);
         $this->load->view('_layout/sidebar');
         $this->load->view('pages/D_listanalysis', $data);
@@ -40,6 +40,7 @@ class D_coa extends CI_Controller
         } else {
             $id_analysis = $this->input->post('id_analysis');
             $params = $this->input->post('params');
+            $category_params = $this->input->post('category_params');
             $unit = $this->input->post('unit');
             $reg_standart_1 = $this->input->post('reg_standart_1');
             $reg_standart_2 = $this->input->post('reg_standart_2');
@@ -50,6 +51,7 @@ class D_coa extends CI_Controller
             $data = array(
                 'id_analysis' => $id_analysis,
                 'params' => $params,
+                'category_params' => $category_params,
                 'unit' => $unit,
                 'reg_standart_1' => $reg_standart_1,
                 'reg_standart_2' => $reg_standart_2,
@@ -67,6 +69,7 @@ class D_coa extends CI_Controller
     public function _rules()
     {
         $this->form_validation->set_rules('params', 'Parameters', 'required');
+        $this->form_validation->set_rules('category_params', 'Category Parameters', 'required');
         $this->form_validation->set_rules('unit', 'Unit', 'required');
         $this->form_validation->set_rules('reg_standart_1', 'Regulatory Standard', 'required');
         $this->form_validation->set_rules('reg_standart_2', 'Parameters');
@@ -101,13 +104,15 @@ class D_coa extends CI_Controller
     public function update_coa_action()
     {
 		$id = $this->input->post('id_coa');
+        $id_anl = $this->input->post('id_analysis');
         $this->_rules();
         if ($this->form_validation->run() == FALSE) {
-            $this->update_coa($id);
+            $this->update_coa($id, $id_anl);
         } else {
             $id_coa = $this->input->post('id_coa');
             $id_analysis = $this->input->post('id_analysis');
             $params = $this->input->post('params');
+            $category_params = $this->input->post('category_params');
             $unit = $this->input->post('unit');
             $reg_standart_1 = $this->input->post('reg_standart_1');
             $reg_standart_2 = $this->input->post('reg_standart_2');
@@ -119,6 +124,7 @@ class D_coa extends CI_Controller
             'id_coa' => $id_coa,
             'id_analysis' => $id_analysis,
             'params' => $params,
+            'category_params' => $category_params,
             'unit' => $unit,
             'reg_standart_1' => $reg_standart_1,
             'reg_standart_2' => $reg_standart_2,
@@ -135,4 +141,5 @@ class D_coa extends CI_Controller
         redirect('D_coa/add_coa/' . $id_analysis);
 		}
     }
+
 }

@@ -1,8 +1,15 @@
+<?php
+
+foreach($analysis as $c) {
+    $analysis_spec = $c;
+}
+
+?>
 <!-- Main Content -->
 <div class="main-content">
   <section class="section">
     <div class="section-header">
-      <h1>Data STPS</h1>
+      <h1>Input Result COA</h1>
       <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active">
           <a href="#">Dashboard</a>
@@ -24,9 +31,9 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
-                    <h6 class="text-primary">List STPS</h6>
+                    <h6 class="text-primary">List Analysis For <?= $analysis_spec->name_int ?></h6>
                     <hr>
-                      <?php if($stps == NULL) { ?>
+                      <?php if($analysis == NULL) { ?>
                             <div class="empty-state" data-height="400">
                                 <div class="empty-state-icon">
                                 <i class="fas fa-question"></i>
@@ -42,32 +49,31 @@
                             <thead>
                                 <tr>
                                 <th>No</th>
-                                <th>Name Institution</th>
-                                <th>SK Quotation</th>
+                                <th>Name Analysis</th>
                                 <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 $no = 1;
-                                foreach ($ceksampler as $row) : if ($row->sk_sample != NULL) {?>
+                                foreach ($analysis as $row) :?>
                                 
                                     <tr>
                                         <td><?= $no++; ?></td>
-                                        <td><?= htmlspecialchars($row->name_int); ?></td>
-                                        <td><?= htmlspecialchars($row->sk_quotation); ?></td>
+                                        <td><?= htmlspecialchars($row->name_analysis); ?></td>
                                         <td>
-                                            <?php if($row->st_account == 0) { ?>
-                                              <a href="<?php echo base_url('D_stps/add_sampler_stps/') . $row->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> Add Sampler STPS</a>
-                                            <?php } else { ?>
-                                              <a href="<?php echo base_url('D_stps/add_sampler_stps/') . $row->id_sk ?>"class="btn btn-primary"><i class="fas fa-edit"></i> Edit Sampler STPS</a>
-                                            <?php } ?>
+                                          <?php if($this->uri->segment(2) == 'data_analysis') { ?>
+                                            <a href="<?php echo base_url('D_gencoa/input_result/') . $row->id_analysis . '/' . $row->id_int ?>"class="btn btn-success"><i class="fas fa-plus"></i> Input Result</a>
+                                          <?php } else { ?>
+                                            <a href="<?php echo base_url('D_gencoa/print_coa/') . $row->id_int ?>"class="btn btn-success"><i class="fa-solid fa-print"></i> Print COA</a>
+                                          <?php } ?>
                                         </td>
                                     </tr>
-                                <?php } endforeach;?>
+                                <?php endforeach; ?>
                             </tbody>
                             </table>
                         </div>
+                        <a href="<?= base_url('D_gencoa/data_quotation') ?>" class="btn btn-danger float-left"><i class="fas fa-arrow-left"></i> Back to List Quotation</a>
                         <?php } ?>
                     </div>
                 </div>

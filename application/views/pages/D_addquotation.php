@@ -167,7 +167,7 @@ foreach($specialInstitution as $si) {
                                         <td>Rp <?= htmlspecialchars(number_format($row->add_price, 0, ',', '.')) ?></td>
                                         <td>
                                             <a href="<?= base_url('D_quotation/update_quotation/') . $row->id_int . '/' . $row->id_quotation ?>"class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                            <a href="<?= base_url('D_quotation/delete_quotation/') . $row->id_quotation . '/' . $row->id_int ?>"class="btn btn-danger tombol-hapus" type="submit"><i class="fas fa-trash"></i></a>
+                                            <a href="<?= base_url('D_quotation/delete_quotation/') . $row->id_quotation . '/' . $row->id_int . '/' . $row->id_analysis ?>"class="btn btn-danger tombol-hapus" type="submit"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

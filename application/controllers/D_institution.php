@@ -24,7 +24,7 @@ class D_institution extends CI_Controller
             $this->index();
         } else {
             $name_int = $this->input->post('name_int');
-            $int_phone = $this->input->post('int_phone');
+            $int_phone = '62' . $this->input->post('int_phone');
             $int_email = $this->input->post('int_email');
             $int_address = $this->input->post('int_address');
             $name_cp = $this->input->post('name_cp');
