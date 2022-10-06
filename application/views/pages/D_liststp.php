@@ -2,7 +2,7 @@
 <div class="main-content">
   <section class="section">
     <div class="section-header">
-      <h1>Data STPS</h1>
+      <h1>Data STP</h1>
       <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active">
           <a href="#">Dashboard</a>
@@ -24,9 +24,9 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
-                    <h6 class="text-primary">List STPS</h6>
+                    <h6 class="text-primary">List STP</h6>
                     <hr>
-                      <?php if($stps == NULL) { ?>
+                      <?php if($stp == NULL) { ?>
                             <div class="empty-state" data-height="400">
                                 <div class="empty-state-icon">
                                 <i class="fas fa-question"></i>
@@ -58,9 +58,9 @@
                                         <td><?= htmlspecialchars($row->sk_quotation); ?></td>
                                         <td>
                                             <?php if($row->st_account == 0) { ?>
-                                              <a href="<?php echo base_url('D_stps/add_sampler_stps/') . $row->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> Add Sampler STPS</a>
+                                              <a href="<?php echo base_url('D_stp/add_sampler_stp/') . $row->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> Add Sampler STP</a>
                                             <?php } else { ?>
-                                              <a href="<?php echo base_url('D_stps/add_sampler_stps/') . $row->id_sk ?>"class="btn btn-primary"><i class="fas fa-edit"></i> Edit Sampler STPS</a>
+                                              <a href="<?php echo base_url('D_stp/add_sampler_stp/') . $row->id_sk ?>"class="btn btn-primary"><i class="fas fa-edit"></i> Edit Sampler STP</a>
                                             <?php } ?>
                                         </td>
                                     </tr>

@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <li class="menu-header">Data Master</li>
       <li class="dropdown <?php echo $this->uri->segment(1) == 'D_institution' || $this->uri->segment(1) == 'D_analysis' || $this->uri->segment(1) == 'D_sampler' || $this->uri->segment(1) == 'D_sample' || $this->uri->segment(1) == 'D_method' || $this->uri->segment(1) == 'D_coa' ? 'active' : ''; ?>">
-        <a href="#" class="nav-link has-dropdown"><i class="fas fa-plus"></i><span>Add Data</span></a>
+        <a href="#" class="nav-link has-dropdown"><i class="fas fa-file-upload"></i><span>Add Data</span></a>
         <ul class="dropdown-menu">
           <li class="<?php echo $this->uri->segment(1) == 'D_institution' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_institution">Add Institution</a></li>
           <li class="<?php echo $this->uri->segment(1) == 'D_analysis' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_analysis">Add Analysis</a></li>
@@ -31,26 +31,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <li class="menu-header">Logbook</li>
       <li class="dropdown <?php echo $this->uri->segment(1) == 'D_quotation' || $this->uri->segment(1) == 'D_sampling' ? 'active' : ''; ?>">
-        <a href="#" class="nav-link has-dropdown"><i class="fas fa-file"></i><span>Quotation</span></a>
+        <a href="#" class="nav-link has-dropdown"><i class="fas fa-file-contract"></i><span>Quotation</span></a>
         <ul class="dropdown-menu">
           <li class="<?php echo $this->uri->segment(1) == 'D_quotation' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_quotation">Add Quotation</a></li>
         </ul>
       </li>
       <li class="dropdown <?php echo $this->uri->segment(1) == 'D_stps' ? 'active' : ''; ?>">
-        <a href="#" class="nav-link has-dropdown"><i class="fas fa-file"></i><span>STPS</span></a>
+        <a href="#" class="nav-link has-dropdown"><i class="fas fa-file-contract"></i><span>STPS</span></a>
         <ul class="dropdown-menu">
-          <li class="<?php echo $this->uri->segment(1) == 'D_stps' && $this->uri->segment(2) == '' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_stps">Add STPS</a></li>
-          <li class="<?php echo $this->uri->segment(2) == 'data_stps' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_stps/data_stps">Assign Sampler STPS</a></li>
+          <li class="<?php echo $this->uri->segment(1) == 'D_stps' && $this->uri->segment(2) == '' || $this->uri->segment(2) == 'add_stps' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_stps">Add STPS</a></li>
+          <li class="<?php echo $this->uri->segment(2) == 'data_stps' || $this->uri->segment(2) == 'add_sampler_stps' || $this->uri->segment(2) == 'update_sampler_stps' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_stps/data_stps">Assign Sampler STPS</a></li>
         </ul>
       </li>
       <li class="dropdown <?php echo $this->uri->segment(1) == 'D_stp' ? 'active' : ''; ?>">
-        <a href="#" class="nav-link has-dropdown"><i class="fas fa-file"></i><span>STP</span></a>
+        <a href="#" class="nav-link has-dropdown"><i class="fas fa-file-contract"></i><span>STP</span></a>
         <ul class="dropdown-menu">
-          <li class="<?php echo $this->uri->segment(1) == 'D_stp' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_stp">Add STP</a></li>
-          <li class="<?php echo $this->uri->segment(2) == 'add_sampler_stp' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_stp/add_sampler_stp">Assign Sampler STP</a></li>
+          <li class="<?php echo $this->uri->segment(1) == 'D_stp' && $this->uri->segment(2) == '' || $this->uri->segment(2) == 'add_stp' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_stp">Add STP</a></li>
+          <li class="<?php echo $this->uri->segment(2) == 'data_stp' || $this->uri->segment(2) == 'add_sampler_stp' || $this->uri->segment(2) == 'update_sampler_stp' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_stp/data_stp">Assign Sampler STP</a></li>
         </ul>
       </li>
-
+      <li class="dropdown <?php echo $this->uri->segment(1) == 'D_gencoa' ? 'active' : ''; ?>">
+        <a href="#" class="nav-link has-dropdown"><i class="fas fa-file-contract"></i><span>COA</span></a>
+        <ul class="dropdown-menu">
+          <li class="<?php echo $this->uri->segment(2) == 'data_quotation' || $this->uri->segment(2) == 'data_analysis' || $this->uri->segment(2) == 'input_result' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_gencoa/data_quotation">Generate COA</a></li>
+          <li class="<?php echo $this->uri->segment(2) == 'data_quotation_print' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_gencoa/data_quotation_print">Print COA</a></li>
+        </ul>
+      </li>
+    
+      <li class="menu-header">Template</li>
+      <li class="dropdown <?php echo $this->uri->segment(1) == 'D_templatingcoa' ? 'active' : ''; ?>">
+        <a href="<?= base_url(); ?>D_templatingcoa" class="nav-link"><i class="fas fa-receipt"></i><span>Templating COA</span></a>
+      </li>
 
       <li class="menu-header">Starter</li>
       <li class="dropdown<?php echo $this->uri->segment(2) == 'layout_default' || $this->uri->segment(2) == 'layout_transparent' || $this->uri->segment(2) == 'layout_top_navigation' ? 'active' : ''; ?>">

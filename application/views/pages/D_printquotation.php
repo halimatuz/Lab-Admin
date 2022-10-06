@@ -176,6 +176,14 @@ foreach($quotation as $quot) {
         </li>
         <li>Maksimal 30 hari setelah tagihan diterima oleh customer</li>
       </ul>
+      <div class="row mt-5">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+          <p class="text-center">Drs. H. Soekardin Rachman, M.Si</p>
+          <hr style="height:2px; background-color: black;">
+          <p class="font-weight-bold text-center">PT. DELTA INDONESIA LABORATORY</p>
+        </div>
+      </div>
       <hr style="height:2px; background-color: black;" class="mt-4">
     </div>
 

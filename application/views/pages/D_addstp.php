@@ -30,44 +30,14 @@ foreach($specialSK as $sk) {
           <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <?php 
-                    if($this->uri->segment(2) == 'update_stp') {
-                    foreach ($special_assign as $sa) : ?>
-                    <div class="col-md-4">
-                        <h6 class="text-primary">Add STP For <?= $sk_number->name_int; ?></h6>
-                        <p class="font-weight-bold">No. <?= $sk_number->sk_analysis; ?></p>
-                        <hr>
-                        <form action="<?= base_url('D_stp/update_stp_action') ?>" method="POST">
-                            <div class="form-group">
-                                <label>Test Parameters</label>
-                                <input type="text" class="form-control" value="<?= $sa->sample_desc ?>" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label>Sample Type</label>
-                                <input type="hidden" name="id_sampling" value="<?= $sa->id_sampling ?>">
-                                <input type="hidden" name="id_sk" value="<?= $sa->id_sk ?>">
-                                <input type="text" name="sample_type" value="<?= set_value('sample_type')?>" class="form-control">
-                                <?php echo form_error('sample type', '<span class="text-small text-danger">', '</span>') ?>
-                            </div>
-                            <div class="form-group">
-                                <label>Deadline Testing</label>
-                                <input type="date" name="deadline" class="form-control" value="<?= set_value('deadline')?>">
-                                <?php echo form_error('deadline', '<span class="text-small text-danger">', '</span>') ?>
-                            </div>
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea name="description" id="" cols="30" rows="10" class="form-control"><?= set_value('description')?></textarea>
-                                <?php echo form_error('description', '<span class="text-small text-danger">', '</span>') ?>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Update STP</button>
-                            <button type="reset" class="btn btn-danger">Reset</button>
-                            <a href="<?php echo base_url('D_stp/add_stp/') . $sk_number->id_sk ?>" class="btn btn-danger">Cancel</a>
-                        </form>
-                    <?php endforeach; } ?>
+                    
                 </div>
-                    <div class="<?php if($this->uri->segment(2) == 'update_stp') {echo 'col-md-8';}else{echo 'col-md-12';} ?>">
-                        <a href="<?= base_url('D_stp/print_stp/') . $sk_number->id_sk ?>" class="btn btn-primary" target="_blank">Print</a>
-                        <hr>
+                    <div class="col-md-12">
+                          <a href="<?= base_url('D_stp/print_stp/') . $sk_number->id_sk ?>" class="btn btn-primary float-right" target="_blank">Print</a>
+                        <div class="float-left">
+                          <h6 class="text-primary">Add STP For <?= $sk_number->name_int; ?></h6>
+                          <p class="font-weight-bold">No. <?= $sk_number->sk_analysis; ?></p>
+                        </div>
                         <?php if($sampling_det == NULL) { ?>
                             <div class="empty-state" data-height="400">
                                 <div class="empty-state-icon">
@@ -79,36 +49,38 @@ foreach($specialSK as $sk) {
                                 </p>
                             </div>
                         <?php } else { ?>
-                        <div class="table-responsive">
-                        <table class="table table-striped" id="table-1">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Test Parameters</th>
-                                    <th>Sample Type</th>
-                                    <th>Deadline Testing</th>
-                                    <th>Description</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $no = 1;
-                                foreach ($sampling_det as $row) : ?>
-                                    <tr>
-                                        <td><?= $no++; ?></td>
-                                        <td><?= htmlspecialchars($row->sample_desc); ?></td>
-                                        <td><?= htmlspecialchars($row->sample_type); ?></td>
-                                        <td><?= htmlspecialchars($row->deadline); ?></td>
-                                        <td><?= ($row->description); ?></td>
-                                        <td>
-                                            <a href="<?= base_url('D_stp/update_stp/') . $row->id_sampling . '/' . $row->id_sk ?>"class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                            </table>
-                        </div>
+                        <form action="<?= base_url('D_stp/update_stp_action') ?>" method="POST">
+                          <div class="table-responsive">
+                          <table class="table table-striped">
+                              <thead>
+                                  <tr>
+                                      <th>No</th>
+                                      <th>Test Parameters</th>
+                                      <th>Sample Type</th>
+                                      <th>Deadline Testing</th>
+                                      <th>Description</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <?php
+                                  $no = 1;
+                                  foreach ($sampling_det as $row) : ?>
+                                      <tr>
+                                          <td><?= $no++; ?></td>
+                                          <td><?= htmlspecialchars($row->sample_desc); ?></td>
+                                          <input type="hidden" name="id_sampling[]" value="<?= $row->id_sampling ?>">
+                                          <input type="hidden" name="id_sk" value="<?= $row->id_sk ?>">
+                                          <td><input type="text" name="sample_type[]" value="<?= $row->sample_type ?>" class="form-control"></td>
+                                          <td><input type="date" class="form-control" name="deadline[]" value="<?= $row->deadline ?>"></td>
+                                          <td><input type="text" class="form-control" name="description[]" value="<?= $row->description ?>"></td>
+                                      </tr>
+                                  <?php endforeach; ?>
+                              </tbody>
+                              </table>
+                          </div>
+                          <button type="submit" class="btn btn-primary float-right"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+                          <a href="<?= base_url('D_stp') ?>" class="btn btn-danger float-left"><i class="fas fa-arrow-left"></i> Back to List Quotation</a>
+                        </form>
                         <?php } ?>
                     </div>
                 </div>

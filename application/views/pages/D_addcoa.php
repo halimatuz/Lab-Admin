@@ -53,6 +53,9 @@ foreach($specialAnalysis as $sa) {
                                     <option value="%">%</option>
                                     <option value="mg/L">mg/L</option>
                                     <option value="mg/Nm³">mg/Nm³</option>
+                                    <option value="NTU">NTU</option>
+                                    <option value="Pt-Co">Pt-Co</option>
+                                    <option value="CFU/100ml">CFU/100ml</option>
                                 </select>
                                 <?php echo form_error('unit', '<span class="text-small text-danger">', '</span>') ?>
                             </div>
@@ -100,13 +103,27 @@ foreach($specialAnalysis as $sa) {
                                 <?php echo form_error('params', '<span class="text-small text-danger">', '</span>') ?>
                             </div>
                             <div class="form-group">
+                                <label>Category Parameters</label>
+                                <select name="category_params" id="" class="form-control <?php if(form_error('category_params')) { echo "is-invalid"; } ?>" value="<?= set_value('category_params')?>">
+                                <option value="<?php if( set_value('category_params') == NULL) { echo "";}else { echo set_value('category_params');}?>"><?php if( set_value('category_params') == NULL) { echo "-- Select Category Parameters --";}else { echo set_value('category_params');}?></option>
+                                    <option value="Physical">Physical</option>
+                                    <option value="Chemistry">Chemistry</option>
+                                    <option value="Microbiology">Microbiology</option>
+                                </select>
+                                <?php echo form_error('category_params', '<span class="text-small text-danger">', '</span>') ?>
+                            </div>
+                            <div class="form-group">
                                 <label>Unit</label>
                                 <select name="unit" id="" class="form-control <?php if(form_error('unit')) { echo "is-invalid"; } ?>" value="<?= set_value('unit')?>">
                                 <option value="<?php if( set_value('unit') == NULL) { echo "";}else { echo set_value('unit');}?>"><?php if( set_value('unit') == NULL) { echo "-- Select Unit --";}else { echo set_value('unit');}?></option>
                                     <option value="°C">°C</option>
                                     <option value="%">%</option>
                                     <option value="mg/L">mg/L</option>
+                                    <option value="mg/L">mg/m³</option>
                                     <option value="mg/Nm³">mg/Nm³</option>
+                                    <option value="NTU">NTU</option>
+                                    <option value="Pt-Co">Pt-Co</option>
+                                    <option value="CFU/100ml">CFU/100ml</option>
                                 </select>
                                 <?php echo form_error('unit', '<span class="text-small text-danger">', '</span>') ?>
                             </div>

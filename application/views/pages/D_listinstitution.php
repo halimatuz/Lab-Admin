@@ -60,7 +60,11 @@
                                         <td><?= htmlspecialchars($int->int_email); ?></td>
                                         <td><?= htmlspecialchars($int->int_address); ?></td>
                                         <td>
-                                            <a href="<?php echo base_url('D_quotation/add_quotation/') . $int->id_int ?>"class="btn btn-success"><i class="fas fa-plus"></i> Quotation</a>
+                                          <?php if($int->st_account == 0) { ?>
+                                            <a href="<?php echo base_url('D_quotation/add_quotation/') . $int->id_int ?>"class="btn btn-success"><i class="fas fa-plus"></i> Add Quotation</a>
+                                          <?php }else { ?>
+                                            <a href="<?php echo base_url('D_quotation/add_quotation/') . $int->id_int ?>"class="btn btn-primary"><i class="fas fa-edit"></i> Edit Quotation</a>
+                                          <?php } ?>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

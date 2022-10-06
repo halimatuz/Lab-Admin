@@ -105,6 +105,18 @@ foreach($sampling_det as $sd) {
         </table>
     </div>
 
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-9">
+        </div>
+        <div class="col-md-3">
+          <p class="text-center">Bekasi, <?= $smpl_det->date_sample ?><br>PT. Delta Indonesia Laboratory</p>
+          <br><br><br>
+          <p class="text-center"><u class="font-weight-bold">Fadhelun</u><br>PJ Teknis</p>
+        </div>
+      </div>
+    </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

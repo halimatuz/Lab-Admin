@@ -34,7 +34,7 @@
                                 <label>Name Analysis</label>
                                 <input type="hidden" class="form-control" name="id_analysis" value="<?= $sa->id_analysis ?>">
                                 <input type="text" class="form-control" name="name_analysis" value="<?= $sa->name_analysis ?>" autocomplete="off" placeholder="Insert name analysis...">
-                                <?php echo form_error('standart_price', '<div class="text-small text-danger">', '</div>') ?>
+                                <?php echo form_error('name_analysis', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
 
                             <div class="form-group">
