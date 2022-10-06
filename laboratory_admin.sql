@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2022 at 11:46 AM
+-- Generation Time: Oct 06, 2022 at 03:09 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -31,27 +31,29 @@ CREATE TABLE `analysis` (
   `id_analysis` int(11) NOT NULL,
   `name_analysis` varchar(255) NOT NULL,
   `standart_price` int(11) NOT NULL,
-  `coa` tinyint(1) NOT NULL
+  `coa` tinyint(1) NOT NULL,
+  `template` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `analysis`
 --
 
-INSERT INTO `analysis` (`id_analysis`, `name_analysis`, `standart_price`, `coa`) VALUES
-(2, 'Illumination', 1500000, 1),
-(3, 'Odor', 2000000, 1),
-(4, 'Heat Stress', 1000000, 0),
-(5, 'Vibration', 1300000, 1),
-(6, 'Wastewater', 2300000, 1),
-(7, 'Non-Stationary Source Emission', 2500000, 1),
-(8, 'Stationary Stack Source Emission', 800000, 1),
-(9, 'Noise', 500000, 1),
-(10, 'Workplace Air Quality', 4500000, 1),
-(11, 'Ambient Outdoor Air Quality', 3200000, 1),
-(12, 'Surface Water', 300000, 1),
-(13, 'Clean Water', 450000, 1),
-(14, 'Transportation', 200000, 0);
+INSERT INTO `analysis` (`id_analysis`, `name_analysis`, `standart_price`, `coa`, `template`) VALUES
+(2, 'Illumination', 1500000, 1, NULL),
+(3, 'Odor', 2000000, 1, NULL),
+(4, 'Heat Stress', 1000000, 0, NULL),
+(5, 'Vibration', 1300000, 1, NULL),
+(6, 'Wastewater', 2300000, 1, NULL),
+(7, 'Non-Stationary Source Emission', 2500000, 1, NULL),
+(8, 'Stationary Stack Source Emission', 800000, 1, NULL),
+(9, 'Noise', 500000, 1, NULL),
+(10, 'Workplace Air Quality', 4500000, 1, NULL),
+(11, 'Ambient Outdoor Air Quality', 3200000, 1, NULL),
+(12, 'Surface Water', 300000, 1, NULL),
+(13, 'Clean Water', 450000, 1, NULL),
+(14, 'Transportation', 200000, 0, NULL),
+(15, 'Air Emission (Non-Isocinetic)', 100000, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -62,18 +64,20 @@ INSERT INTO `analysis` (`id_analysis`, `name_analysis`, `standart_price`, `coa`)
 CREATE TABLE `assign_sampler` (
   `id_assign` int(11) NOT NULL,
   `id_sampler` int(11) NOT NULL,
-  `id_sk` int(11) NOT NULL
+  `id_sk` int(11) NOT NULL,
+  `is_sampler` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `assign_sampler`
 --
 
-INSERT INTO `assign_sampler` (`id_assign`, `id_sampler`, `id_sk`) VALUES
-(3, 1, 2),
-(4, 12, 2),
-(5, 14, 2),
-(8, 13, 2);
+INSERT INTO `assign_sampler` (`id_assign`, `id_sampler`, `id_sk`, `is_sampler`) VALUES
+(3, 1, 2, 1),
+(4, 12, 2, 1),
+(5, 14, 2, 1),
+(8, 13, 2, 1),
+(9, 11, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -90,15 +94,39 @@ CREATE TABLE `coa` (
   `reg_standart_2` double DEFAULT NULL,
   `reg_standart_3` double DEFAULT NULL,
   `reg_standart_4` double DEFAULT NULL,
-  `method` int(11) NOT NULL
+  `method` int(11) NOT NULL,
+  `category_params` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `coa`
 --
 
-INSERT INTO `coa` (`id_coa`, `id_analysis`, `params`, `unit`, `reg_standart_1`, `reg_standart_2`, `reg_standart_3`, `reg_standart_4`, `method`) VALUES
-(12, 12, 'Nitrogen Dioxide (NO2)', '°C', 1000, 1400, 300, 500, 2);
+INSERT INTO `coa` (`id_coa`, `id_analysis`, `params`, `unit`, `reg_standart_1`, `reg_standart_2`, `reg_standart_3`, `reg_standart_4`, `method`, `category_params`) VALUES
+(18, 13, 'Turbidity', 'NTU', 25, 0, 0, 0, 2, 'Physical'),
+(19, 13, 'Color', 'Pt-Co', 50, 0, 0, 0, 6, 'Physical'),
+(20, 13, 'Total Dissolve Solids (TDS)', 'mg/L', 1000, 0, 0, 0, 3, 'Physical'),
+(21, 13, 'Temperature', '°C', 0, 0, 0, 0, 2, 'Physical'),
+(22, 13, 'Iron (Fe)', 'mg/L', 1, 0, 0, 0, 18, 'Chemistry'),
+(23, 13, 'Fluoride (F)', 'mg/L', 1.5, 0, 0, 0, 13, 'Chemistry'),
+(24, 13, 'Total Hardness (CaCO3)', 'mg/L', 500, 0, 0, 0, 6, 'Chemistry'),
+(25, 13, 'Total Coliform', 'CFU/100ml', 50, 0, 0, 0, 20, 'Microbiology'),
+(26, 13, 'E-Coliform', 'CFU/100ml', 0, 0, 0, 0, 20, 'Microbiology'),
+(27, 15, 'Ammonia (NH3)', 'mg/L', 0.5, 0, 0, 0, 2, 'Physical'),
+(28, 15, 'Chlorine (CI2)', 'mg/L', 10, 0, 0, 0, 4, 'Chemistry'),
+(29, 15, 'Hydrogen Chloride (HCl)', 'mg/L', 5, 0, 0, 0, 13, 'Chemistry'),
+(30, 15, 'Hydrogen Fluoride (HF)', 'mg/L', 10, 0, 0, 0, 13, 'Chemistry'),
+(31, 15, 'Nitrogen Dioxide (NO2)', 'mg/L', 1000, 0, 0, 0, 19, 'Chemistry'),
+(32, 15, 'Opacity', '%', 30, 0, 0, 0, 18, 'Physical'),
+(33, 15, 'Particulate', 'mg/L', 350, 0, 0, 0, 20, 'Chemistry'),
+(34, 15, 'Sulfur Dioxide (SO2)*', 'mg/L', 800, 0, 0, 0, 18, 'Physical'),
+(35, 15, 'Hydrogen Sulfide (H2S)', 'mg/L', 35, 0, 0, 0, 2, 'Physical'),
+(36, 15, 'Mercury (Hg)', 'mg/L', 5, 0, 0, 0, 8, 'Physical'),
+(37, 15, 'Arsenic (As)', 'mg/L', 8, 0, 0, 0, 8, 'Physical'),
+(38, 15, 'Antimony (Sb)', 'mg/L', 8, 0, 0, 0, 8, 'Physical'),
+(39, 15, 'Cadmium (Cd)', 'mg/L', 8, 0, 0, 0, 18, 'Physical'),
+(40, 15, 'Zinc (Zn)', 'mg/L', 50, 0, 0, 0, 19, 'Physical'),
+(41, 15, 'Lead (Pb)', 'mg/L', 12, 0, 0, 0, 18, 'Physical');
 
 -- --------------------------------------------------------
 
@@ -122,15 +150,15 @@ CREATE TABLE `institution` (
 
 INSERT INTO `institution` (`id_int`, `name_int`, `int_phone`, `int_email`, `int_address`, `name_cp`, `title_cp`) VALUES
 (3, 'PT. Matsuoka Industries Indonesia', '08967832', 'rosaria@gmail.com', 'Jl. Kali Sumber KM 117 RT 16 RW 05, Desa Ciberes, Kecamatan Patokbesi, Kabupaten Subang, Jawa Barat', 'Nurtarikasmalini,ST.,M.T', 'Direktur PT. Mentari Prima Karya'),
-(4, 'PT. JGU Merdeka', '087632121', 'jgu@jgu.ac.id', 'JL Pegangsaan Timur', '0', '0'),
-(5, 'PT. Nusanatara Indah', '081385321716', 'nusantara26@gmail.com', 'JL Marzuki barat', '0', '0'),
-(6, 'PT.Jaya indonesia', '08137569956', 'Jayaind17@gmail.com', 'JL Penus raya', '0', '0'),
-(7, 'PT. Betafish rizki', '08567641801', 'betafishrizq@gmail.com', 'Jl Mandor Sanun', '0', '0'),
-(8, 'PT. Oasis Bogor', '081376838901', 'oasisbogor@gmail.com', 'Jl Lipi selatan', '0', '0'),
-(9, 'PT. Jali Indonesia Utama', '0856956371', 'Jaliindonesia23@gmail.com', 'Jl Topaz nasution', '0', '0'),
-(10, 'PT. Kingbarbar', '083819588819', 'kingbarbar@gmail.com', 'Jl. H,ahmad dahlan', '0', '0'),
-(11, 'PT. Lentera Jiwa Project', '08858183202', 'Lenterajiwa@gmail.com', 'Jl. Pesat raya no 25 bogor', '0', '0'),
-(12, 'PT. Big Mouse Korean', '0858939312', 'bigmousek@gmail.com', 'Jl. Kemang 2 jakarta barat', '0', '0'),
+(4, 'PT. JGU Merdeka', '087632121', 'jgu@jgu.ac.id', 'JL Pegangsaan Timur', '', ''),
+(5, 'PT. Nusantara Indah', '081385321716', 'nusantara26@gmail.com', 'JL Marzuki barat', '', ''),
+(6, 'PT.Jaya indonesia', '08137569956', 'Jayaind17@gmail.com', 'JL Penus raya', '', ''),
+(7, 'PT. Bettafish Indonesia', '8567641801', 'betafishrizq@gmail.com', 'Jl.H.M Jl. Moh. Sanun, RT.03/RW.08, Harapan Jaya, Kec. Cibinong, Kabupaten Bogor, Jawa Barat 16914', 'Ananda Rizq', 'CEO of PT. Bettafish Indonesia'),
+(8, 'PT. Oasis Bogor', '081376838901', 'oasisbogor@gmail.com', 'Jl Lipi selatan', '', ''),
+(9, 'PT. Jali Indonesia Utama', '0856956371', 'Jaliindonesia23@gmail.com', 'Jl Topaz nasution', '', ''),
+(10, 'PT. Kingbarbar', '083819588819', 'kingbarbar@gmail.com', 'Jl. H,ahmad dahlan', '', ''),
+(11, 'PT. Lentera Jiwa Project', '08858183202', 'Lenterajiwa@gmail.com', 'Jl. Pesat raya no 25 bogor', '', ''),
+(12, 'PT. Big Mouse Korean', '0858939312', 'bigmousek@gmail.com', 'Jl. Kemang 2 jakarta barat', '', ''),
 (13, 'PT. Zikna Soft', '8564789651', 'azkazikna.aal@gmail.com', 'Blablablabalba Bogor', 'Azkazikna Ageung Laksana', 'Direktur PT. Zikna Soft');
 
 -- --------------------------------------------------------
@@ -201,7 +229,11 @@ INSERT INTO `quotation` (`id_quotation`, `id_analysis`, `id_int`, `remarks`, `sp
 (17, 9, 3, '<p>Udara Kualitas Kebisingan (Noise) Ambient Sesaat</p><ul><li>Area Upwind</li><li>Area Down wind</li></ul>', '<p>Keputusan Menteri Negara Lingkungan Hidup KEP-48/MENLH/11/1996</p>', 2, 2, 20000),
 (18, 10, 3, '<p>Pemantauan Kualitas Udara Kerja Produksi</p><ul><li>Ruang Produksi</li></ul>', '<p>Permenaker No. 5 Tahun 2018</p><p>CO, NO2, SO2, TSP, NOISE</p>', 1, 2, 10000),
 (19, 6, 3, '<p>Pemantauan Kualitas Air Limbah</p><ul><li>Biotank</li></ul>', '<p>Permenlhk No. P.68/Menlhk/Setjen/Kum.1/8/2016</p>', 1, 2, 50000),
-(20, 7, 3, '<p>Pemantauan Kualitas Emisi Sumber Tidak Bergerak:</p><ul><li>Cerobong Boiler 1</li><li>Cerobong Boiler 2</li></ul>', '<p>Permenlhk No. P.15/MENLHK/SETJEN/KUM.1/4/2019 tentang Baku Mutu Emisi Pembangkit Listrik Tenaga Termal <b>(NON ISOKINETIK)</b></p><p>Total Partikulat, SO2, NO2, CO</p>', 2, 2, 50000);
+(20, 7, 3, '<p>Pemantauan Kualitas Emisi Sumber Tidak Bergerak:</p><ul><li>Cerobong Boiler 1</li><li>Cerobong Boiler 2</li></ul>', '<p>Permenlhk No. P.15/MENLHK/SETJEN/KUM.1/4/2019 tentang Baku Mutu Emisi Pembangkit Listrik Tenaga Termal <b>(NON ISOKINETIK)</b></p><p>Total Partikulat, SO2, NO2, CO</p>', 2, 2, 50000),
+(22, 4, 5, '<p>Heat stress gaming yt</p>', '<p>asdasdasdas</p>', 12, 8, 100000),
+(23, 13, 3, '<p>asdas</p>', '<p>asdasd</p>', 3, 2, 100000),
+(29, 13, 7, '<p>dsfsdfsdf</p>', '<p>sdfsdffds</p>', 12, 9, 50000),
+(30, 15, 7, '<p>dsfsd</p>', '<p>fsdfsdfsd</p>', 3, 9, 150000);
 
 -- --------------------------------------------------------
 
@@ -210,11 +242,43 @@ INSERT INTO `quotation` (`id_quotation`, `id_analysis`, `id_int`, `remarks`, `sp
 --
 
 CREATE TABLE `result_coa` (
+  `id_result` int(11) NOT NULL,
+  `id_sk` int(11) NOT NULL,
   `id_coa` int(11) NOT NULL,
   `id_analysis` int(11) NOT NULL,
   `id_int` int(11) NOT NULL,
-  `result` int(11) NOT NULL
+  `result` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `result_coa`
+--
+
+INSERT INTO `result_coa` (`id_result`, `id_sk`, `id_coa`, `id_analysis`, `id_int`, `result`) VALUES
+(14, 9, 18, 13, 7, 'berhasil mantap banget gg'),
+(15, 9, 19, 13, 7, 'sdfsdfs'),
+(16, 9, 20, 13, 7, 'hguygtuytuy'),
+(17, 9, 21, 13, 7, 'asdsad'),
+(18, 9, 22, 13, 7, 'sdfsdf'),
+(19, 9, 23, 13, 7, 'sdfsdfsd'),
+(20, 9, 24, 13, 7, ''),
+(21, 9, 25, 13, 7, ''),
+(22, 9, 26, 13, 7, ''),
+(23, 9, 27, 15, 7, NULL),
+(24, 9, 28, 15, 7, NULL),
+(25, 9, 29, 15, 7, NULL),
+(26, 9, 30, 15, 7, NULL),
+(27, 9, 31, 15, 7, NULL),
+(28, 9, 32, 15, 7, NULL),
+(29, 9, 33, 15, 7, NULL),
+(30, 9, 34, 15, 7, NULL),
+(31, 9, 35, 15, 7, NULL),
+(32, 9, 36, 15, 7, NULL),
+(33, 9, 37, 15, 7, NULL),
+(34, 9, 38, 15, 7, NULL),
+(35, 9, 39, 15, 7, NULL),
+(36, 9, 40, 15, 7, NULL),
+(37, 9, 41, 15, 7, NULL);
 
 -- --------------------------------------------------------
 
@@ -306,14 +370,16 @@ INSERT INTO `sampling_det` (`id_sampling`, `id_sk`, `sample_desc`, `location`, `
 (9, 2, 'Debu, SO2, NO2, CO, NH3, H2S, Suhu, Kelembaban', '<ul><li>Ruang Produksi Plant 1</li><li>Ruang Produksi Plant 2</li><li>Ruang Heat Treatment Plant 3</li><li>Ruang Produksi Plant 3</li><li>Ruang Heat Treatment Plant 3</li></ul>', 'Padat', '2022-10-13', 'mantap'),
 (10, 2, 'NOISE', '<ul><li>Batas Pabrik Sebelah Utara</li><li>Batas Pabrik Sebelah Selatan</li><li>Batas Pabrik Sebelah Timur</li><li>Batas Pabrik Sebelah Barat</li></ul>', 'Gas', '2022-10-01', 'Ini deskripsi singkat'),
 (11, 2, 'NOISE', '<ul><li>Ruang Produksi Plant 1</li><li>Area Barel Machine Plant 1</li><li>Ruang Produksi Plant 2</li><li>Ruang Heat Treatment Plant 2</li><li>Ruang Produksi Plant 3</li><li>Ruang Heat Treatment Plant 3</li></ul>', 'Gas', '2022-10-20', 'ini deskripsi sangat singkat.'),
-(12, 2, 'ISBB/Heat Stress', '<ul><li>Ruang Heat Treatment Plant 2</li><li>Ruang Heat Treatment Plant 3</li></ul>', NULL, NULL, NULL),
-(13, 2, 'Benzene, Toluene, Xylene (BTX)', '<p>Area Platting Plant 1</p>', NULL, NULL, NULL),
-(14, 2, 'SO2, NO2, CO, Partikulat, Opasitas, Laju Alir', '<ul><li>Cerobong Genset 800 kVA Plant 1</li><li>Cerobong Genset 600 kVA Plant 2</li></ul>', NULL, NULL, NULL),
-(15, 2, 'Pencahayaan', '<ul><li>Ruang Hear Treatment Plant 1</li><li>Ruang Produksi Plant 1</li><li>Ruang Heat Treatment Plant 2</li><li>Ruang Produksi Plant 2</li><li>Ruang Produksi Plant 3</li><li>Ruang Heat Treatment Plant 3</li></ul>', NULL, NULL, NULL),
-(16, 2, 'Opasitas', '<ul><li>Forklift (1 titik) Plant 1</li><li>Forklift 2,5 Ton (1 titik) Plant 2</li><li>Truck Hino Tahun 2005 (T 8102 L) Plant 3</li><li>Truck Hino Tahun 2004 (T 8228 K) Plant 3</li><li>Truck Isuzu Tahun 2002 (T 8047 FZ) Plant 3</li></ul>', NULL, NULL, NULL),
-(17, 2, 'Air Limbah Produksi', '<p>Servis Manhole</p>', NULL, NULL, NULL),
-(18, 2, 'Air Limbah Domestik', '<p>Servis Manhole</p>', NULL, NULL, NULL),
-(19, 7, 'Debu, SO2, NO2, CO, NH3, H2S', '<ul><li>Rumah Rezha</li><li>Rumah Pram</li></ul>', NULL, NULL, NULL);
+(12, 2, 'ISBB/Heat Stress', '<ul><li>Ruang Heat Treatment Plant 2</li><li>Ruang Heat Treatment Plant 3</li></ul>', 'ghf', '2022-10-02', 'gfh'),
+(13, 2, 'Benzene, Toluene, Xylene (BTX)', '<p>Area Platting Plant 1</p>', 'asdas', '2022-10-04', 'asd'),
+(14, 2, 'SO2, NO2, CO, Partikulat, Opasitas, Laju Alir', '<ul><li>Cerobong Genset 800 kVA Plant 1</li><li>Cerobong Genset 600 kVA Plant 2</li></ul>', 'ads', '2022-10-19', 'asd'),
+(15, 2, 'Pencahayaan', '<ul><li>Ruang Hear Treatment Plant 1</li><li>Ruang Produksi Plant 1</li><li>Ruang Heat Treatment Plant 2</li><li>Ruang Produksi Plant 2</li><li>Ruang Produksi Plant 3</li><li>Ruang Heat Treatment Plant 3</li></ul>', '', '', ''),
+(16, 2, 'Opasitas', '<ul><li>Forklift (1 titik) Plant 1</li><li>Forklift 2,5 Ton (1 titik) Plant 2</li><li>Truck Hino Tahun 2005 (T 8102 L) Plant 3</li><li>Truck Hino Tahun 2004 (T 8228 K) Plant 3</li><li>Truck Isuzu Tahun 2002 (T 8047 FZ) Plant 3</li></ul>', '', '', ''),
+(17, 2, 'Air Limbah Produksi', '<p>Servis Manhole</p>', '', '', ''),
+(18, 2, 'Air Limbah Domestik', '<p>Servis Manhole</p>', '', '', ''),
+(19, 7, 'Debu, SO2, NO2, CO, NH3, H2S', '<ul><li>Rumah Rezha</li><li>Rumah Pram</li></ul>', NULL, NULL, NULL),
+(22, 6, 'SO2, NO2, CO', '<ul><li>GH Evos</li><li>GH RRQ</li></ul>', 'Cair', '2022-10-06', 'sedang dikerjakan'),
+(23, 9, 'Debu, SO2, NO2, CO', '<p>dsfsdf</p>', 'Gas', '2022-10-06', 'fgfdgdfgdf');
 
 -- --------------------------------------------------------
 
@@ -326,6 +392,11 @@ CREATE TABLE `sk_number` (
   `sk_quotation` varchar(255) NOT NULL,
   `sk_sample` varchar(255) NOT NULL,
   `sk_analysis` varchar(255) NOT NULL,
+  `no_certificate` varchar(255) NOT NULL,
+  `date_quotation` varchar(255) NOT NULL,
+  `date_sample` varchar(255) NOT NULL,
+  `date_analysis` varchar(255) NOT NULL,
+  `date_report` varchar(255) NOT NULL,
   `id_int` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -333,12 +404,14 @@ CREATE TABLE `sk_number` (
 -- Dumping data for table `sk_number`
 --
 
-INSERT INTO `sk_number` (`id_sk`, `sk_quotation`, `sk_sample`, `sk_analysis`, `id_int`) VALUES
-(2, '1/2022/09/27/DIL/QTN', '2/2022/09/30/DIL/STPS', '2/2022/10/01/DIL/STP', 3),
-(4, '3/2022/09/27/DIL/QTN', '', '', 4),
-(5, '5/2022/09/27/DIL/QTN', '', '', 9),
-(6, '6/2022/09/27/DIL/QTN', '', '', 12),
-(7, '7/2022/09/29/DIL/QTN', '7/2022/09/30/DIL/STPS', '', 10);
+INSERT INTO `sk_number` (`id_sk`, `sk_quotation`, `sk_sample`, `sk_analysis`, `no_certificate`, `date_quotation`, `date_sample`, `date_analysis`, `date_report`, `id_int`) VALUES
+(2, '1/2022/09/27/DIL/QTN', '2/2022/09/30/DIL/STPS', '2/2022/10/04/DIL/STP', '', '', '04/10/2022', '', '', 3),
+(4, '3/2022/09/27/DIL/QTN', '', '', '', '', '', '', '', 4),
+(5, '5/2022/09/27/DIL/QTN', '', '', '', '', '', '', '', 9),
+(6, '6/2022/09/27/DIL/QTN', '6/2022/10/03/DIL/STPS', '6/2022/10/04/DIL/STP', '', '', '04/10/2022', '', '', 12),
+(7, '7/2022/09/29/DIL/QTN', '7/2022/09/30/DIL/STPS', '', '', '', '', '', '', 10),
+(8, '8/2022/10/03/DIL/QTN', '', '', '', '03/10/2022', '', '', '', 5),
+(9, '9/2022/10/04/DIL/QTN', '9/2022/10/04/DIL/STPS', '9/2022/10/04/DIL/STP', 'DIL-20221004COA', '04/10/2022', '04/10/2022', '04/10/2022', '04/10/2022', 7);
 
 --
 -- Indexes for dumped tables
@@ -389,6 +462,7 @@ ALTER TABLE `quotation`
 -- Indexes for table `result_coa`
 --
 ALTER TABLE `result_coa`
+  ADD PRIMARY KEY (`id_result`),
   ADD KEY `id_coa` (`id_coa`),
   ADD KEY `id_analysis` (`id_analysis`),
   ADD KEY `id_int` (`id_int`);
@@ -428,19 +502,19 @@ ALTER TABLE `sk_number`
 -- AUTO_INCREMENT for table `analysis`
 --
 ALTER TABLE `analysis`
-  MODIFY `id_analysis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_analysis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `assign_sampler`
 --
 ALTER TABLE `assign_sampler`
-  MODIFY `id_assign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_assign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `coa`
 --
 ALTER TABLE `coa`
-  MODIFY `id_coa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_coa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `institution`
@@ -458,7 +532,13 @@ ALTER TABLE `method`
 -- AUTO_INCREMENT for table `quotation`
 --
 ALTER TABLE `quotation`
-  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `result_coa`
+--
+ALTER TABLE `result_coa`
+  MODIFY `id_result` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `sample`
@@ -476,13 +556,13 @@ ALTER TABLE `sampler`
 -- AUTO_INCREMENT for table `sampling_det`
 --
 ALTER TABLE `sampling_det`
-  MODIFY `id_sampling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_sampling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `sk_number`
 --
 ALTER TABLE `sk_number`
-  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -507,14 +587,6 @@ ALTER TABLE `coa`
 ALTER TABLE `quotation`
   ADD CONSTRAINT `quotation_ibfk_2` FOREIGN KEY (`id_int`) REFERENCES `institution` (`id_int`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `quotation_ibfk_3` FOREIGN KEY (`id_analysis`) REFERENCES `analysis` (`id_analysis`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `result_coa`
---
-ALTER TABLE `result_coa`
-  ADD CONSTRAINT `result_coa_ibfk_2` FOREIGN KEY (`id_coa`) REFERENCES `coa` (`id_coa`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `result_coa_ibfk_3` FOREIGN KEY (`id_analysis`) REFERENCES `quotation` (`id_analysis`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `result_coa_ibfk_4` FOREIGN KEY (`id_int`) REFERENCES `quotation` (`id_int`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `sampling_det`
