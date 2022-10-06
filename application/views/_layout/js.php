@@ -307,7 +307,9 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
         Swal.fire({
             title: 'Success!',
             text: flashData,
-            icon: 'success'
+            icon: 'success',
+            timer: 1500,
+            timerProgressBar: true,
         })
   }
 
@@ -320,8 +322,8 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
           text: "Data will be deleted!",
           icon: 'warning',
           showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
+          confirmButtonColor: '#6777EF',
+          cancelButtonColor: '#FC544B',
           confirmButtonText: 'Yes, delete data',
           cancelButtonText: 'Cancel'
         }).then((result) => {
