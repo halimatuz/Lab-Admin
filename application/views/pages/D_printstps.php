@@ -2,6 +2,30 @@
 foreach($sampling_det as $sd) {
   $smpl_det = $sd;
 }
+
+function tgl_indo($tanggal){
+	$bulan = array (
+		1 =>   'Januari',
+		'Februari',
+		'Maret',
+		'April',
+		'Mei',
+		'Juni',
+		'Juli',
+		'Agustus',
+		'September',
+		'Oktober',
+		'November',
+		'Desember'
+	);
+	$pecahkan = explode('/', $tanggal);
+	
+	// variabel pecahkan 0 = tanggal
+	// variabel pecahkan 1 = bulan
+	// variabel pecahkan 2 = tahun
+ 
+	return  $pecahkan[0] . ' ' . $bulan[ (int)$pecahkan[1]] . ' ' . $pecahkan[2];
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -62,7 +86,7 @@ foreach($sampling_det as $sd) {
             <tr>
               <td>Hari/tanggal</td>
               <td>:</td>
-              <td></td>
+              <td><?= $smpl_det->date_sample ?></td>
             </tr>
             <tr>
               <td>Nama Pelanggan&emsp;&emsp;</td>
@@ -110,7 +134,7 @@ foreach($sampling_det as $sd) {
         <div class="col-md-9">
         </div>
         <div class="col-md-3">
-          <p class="text-center">Bekasi, <?= $smpl_det->date_sample ?><br>PT. Delta Indonesia Laboratory</p>
+          <p class="text-center">Bekasi, <?= tgl_indo($smpl_det->date_sample); ?><br>PT. Delta Indonesia Laboratory</p>
           <br><br><br>
           <p class="text-center"><u class="font-weight-bold">Fadhelun</u><br>PJ Teknis</p>
         </div>

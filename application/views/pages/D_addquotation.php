@@ -156,7 +156,9 @@ foreach($specialInstitution as $si) {
                             <tbody>
                                 <?php
                                 $no = 1;
-                                foreach ($quotation as $row) : ?>
+                                foreach ($quotation as $row) :
+                                $amount = ($row->add_price + $row->standart_price) * $row->qty;
+                                @$jumlah += $amount; ?>
                                     <tr>
                                         <td><?= $no++; ?></td>
                                         <td><?= htmlspecialchars($row->name_analysis); ?></td>
@@ -171,6 +173,10 @@ foreach($specialInstitution as $si) {
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
+                                <tr class="font-weight-bold">
+                                    <td colspan="7">Total:</td>
+                                    <td>Rp&nbsp;<?= htmlspecialchars(number_format($jumlah, 0, ',', '.'))?></td>
+                                </tr>
                             </tbody>
                             </table>
                         </div>

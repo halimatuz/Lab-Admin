@@ -150,6 +150,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/datatables/datatables.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/datatables/Select-1.2.4/css/select.bootstrap4.min.css">
+  <style>
+    lottie-player {
+    margin: -80px auto;
+  }
+  </style>
   <!-- Start GA -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
   <script>
@@ -175,4 +180,5 @@ if ($this->uri->segment(2) == "layout_transparent") {
   $this->load->view('_layout/layout');
   $this->load->view('_layout/sidebar');
 }
+
 ?>

@@ -63,6 +63,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <a href="<?= base_url(); ?>D_templatingcoa" class="nav-link"><i class="fas fa-receipt"></i><span>Templating COA</span></a>
       </li>
 
+      <li class="menu-header">Validation</li>
+      <li class="dropdown <?php echo $this->uri->segment(1) == 'D_scancoa' ? 'active' : ''; ?>">
+        <a href="<?= base_url(); ?>D_scancoa" class="nav-link"><i class="fas fa-qrcode"></i><span>Scan COA</span></a>
+      </li>
+
       <li class="menu-header">Starter</li>
       <li class="dropdown<?php echo $this->uri->segment(2) == 'layout_default' || $this->uri->segment(2) == 'layout_transparent' || $this->uri->segment(2) == 'layout_top_navigation' ? 'active' : ''; ?>">
         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
@@ -176,7 +181,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
       <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
-        <i class="fas fa-rocket"></i> Documentation
+        <i class="fas fa-rocket"></i> Change Log
       </a>
     </div>
   </aside>

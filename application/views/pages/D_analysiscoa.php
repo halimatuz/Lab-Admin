@@ -62,11 +62,7 @@ foreach($analysis as $c) {
                                         <td><?= $no++; ?></td>
                                         <td><?= htmlspecialchars($row->name_analysis); ?></td>
                                         <td>
-                                          <?php if($this->uri->segment(2) == 'data_analysis') { ?>
                                             <a href="<?php echo base_url('D_gencoa/input_result/') . $row->id_analysis . '/' . $row->id_int ?>"class="btn btn-success"><i class="fas fa-plus"></i> Input Result</a>
-                                          <?php } else { ?>
-                                            <a href="<?php echo base_url('D_gencoa/print_coa/') . $row->id_int ?>"class="btn btn-success"><i class="fa-solid fa-print"></i> Print COA</a>
-                                          <?php } ?>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

@@ -34,4 +34,16 @@ class D_web extends CI_Model
         $result = $this->db->query($sql);
         return $result->row();
     }
+
+    public function cek_id($id_sk)
+    {
+        $query_str =
+            $this->db->where('id_sk', $id_sk)
+            ->get('sk_number');
+        if ($query_str->num_rows() > 0) {
+            return $query_str->row();
+        } else {
+            return false;
+        }
+    }
 } 

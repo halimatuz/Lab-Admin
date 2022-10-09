@@ -299,6 +299,10 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
 <script src="<?php echo base_url(); ?>assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/modules/jquery-ui/jquery-ui.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/page/modules-datatables.js"></script>
+<!-- Lottie -->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<!-- Zxing Scanner -->
+<script type="text/javascript" src="<?php echo base_url()?>assets/modules/zxing/zxing.min.js"></script>
 <!-- Sweet Alert -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
@@ -332,6 +336,56 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
           }
         })
   });
+
+  window.addEventListener('load', function () {
+    let selectedDeviceId;
+    let audio = new Audio("assets/audio/beep.mp3");
+    const codeReader = new ZXing.BrowserQRCodeReader()
+    console.log('ZXing code reader initialized')
+    codeReader.getVideoInputDevices()
+    .then((videoInputDevices) => {
+        const sourceSelect = document.getElementById('sourceSelect')
+        selectedDeviceId = videoInputDevices[0].deviceId
+        if (videoInputDevices.length >= 1) {
+            videoInputDevices.forEach((element) => {
+                const sourceOption = document.createElement('option')
+                sourceOption.text = element.label
+                sourceOption.value = element.deviceId
+                sourceSelect.appendChild(sourceOption)
+            })
+            sourceSelect.onchange = () => {
+                selectedDeviceId = sourceSelect.value;
+            };
+            const sourceSelectPanel = document.getElementById('sourceSelectPanel')
+            sourceSelectPanel.style.display = 'block'
+        }
+        codeReader.decodeFromInputVideoDevice(selectedDeviceId, 'video').then((result) => {
+            console.log(result)
+            document.getElementById('result').textContent = result.text
+            if(result != null){
+                audio.play();
+            }
+            $('#button').submit();
+        }).catch((err) => {
+            console.error(err)
+            document.getElementById('result').textContent = err
+        })
+        console.log(`Started continous decode from camera with id ${selectedDeviceId}`)
+    })
+    .catch((err) => {
+        console.error(err)
+    })
+})
+
+
+const flashDataError = $('.flash-data-error').data('flashdata');
+  if (flashDataError) {
+        Swal.fire({
+            title: 'Error!',
+            text: flashDataError,
+            icon: 'error'
+        })
+  }
         
 </script>
 </body>

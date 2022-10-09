@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2022 at 03:09 PM
+-- Generation Time: Oct 09, 2022 at 08:59 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -77,7 +77,15 @@ INSERT INTO `assign_sampler` (`id_assign`, `id_sampler`, `id_sk`, `is_sampler`) 
 (4, 12, 2, 1),
 (5, 14, 2, 1),
 (8, 13, 2, 1),
-(9, 11, 2, 0);
+(9, 11, 2, 0),
+(10, 1, 10, 1),
+(11, 12, 10, 1),
+(12, 7, 10, 0),
+(13, 8, 10, 0),
+(14, 1, 11, 1),
+(15, 8, 11, 1),
+(16, 9, 11, 0),
+(17, 11, 11, 0);
 
 -- --------------------------------------------------------
 
@@ -233,7 +241,11 @@ INSERT INTO `quotation` (`id_quotation`, `id_analysis`, `id_int`, `remarks`, `sp
 (22, 4, 5, '<p>Heat stress gaming yt</p>', '<p>asdasdasdas</p>', 12, 8, 100000),
 (23, 13, 3, '<p>asdas</p>', '<p>asdasd</p>', 3, 2, 100000),
 (29, 13, 7, '<p>dsfsdfsdf</p>', '<p>sdfsdffds</p>', 12, 9, 50000),
-(30, 15, 7, '<p>dsfsd</p>', '<p>fsdfsdfsd</p>', 3, 9, 150000);
+(30, 15, 7, '<p>dsfsd</p>', '<p>fsdfsdfsd</p>', 3, 9, 150000),
+(31, 13, 6, '<p>water clean gg gaming    </p>', '<p>mantap spek ram 25gb</p>', 8, 10, 100000),
+(32, 15, 6, '<p>air emission gg gaming</p>', '<p>spek ssd 1tb</p>', 10, 10, 50000),
+(33, 13, 11, '<p>sdfsdfsd</p>', '<p>sdfdsfsdfsd</p>', 10, 11, 100000),
+(34, 15, 11, '<p>ajfdsfds</p>', '<p>dsfdsfsd</p>', 2, 11, 50000);
 
 -- --------------------------------------------------------
 
@@ -264,21 +276,69 @@ INSERT INTO `result_coa` (`id_result`, `id_sk`, `id_coa`, `id_analysis`, `id_int
 (20, 9, 24, 13, 7, ''),
 (21, 9, 25, 13, 7, ''),
 (22, 9, 26, 13, 7, ''),
-(23, 9, 27, 15, 7, NULL),
-(24, 9, 28, 15, 7, NULL),
-(25, 9, 29, 15, 7, NULL),
-(26, 9, 30, 15, 7, NULL),
-(27, 9, 31, 15, 7, NULL),
-(28, 9, 32, 15, 7, NULL),
-(29, 9, 33, 15, 7, NULL),
-(30, 9, 34, 15, 7, NULL),
-(31, 9, 35, 15, 7, NULL),
-(32, 9, 36, 15, 7, NULL),
-(33, 9, 37, 15, 7, NULL),
-(34, 9, 38, 15, 7, NULL),
-(35, 9, 39, 15, 7, NULL),
-(36, 9, 40, 15, 7, NULL),
-(37, 9, 41, 15, 7, NULL);
+(23, 9, 27, 15, 7, ''),
+(24, 9, 28, 15, 7, ''),
+(25, 9, 29, 15, 7, ''),
+(26, 9, 30, 15, 7, ''),
+(27, 9, 31, 15, 7, ''),
+(28, 9, 32, 15, 7, ''),
+(29, 9, 33, 15, 7, ''),
+(30, 9, 34, 15, 7, ''),
+(31, 9, 35, 15, 7, ''),
+(32, 9, 36, 15, 7, ''),
+(33, 9, 37, 15, 7, ''),
+(34, 9, 38, 15, 7, ''),
+(35, 9, 39, 15, 7, ''),
+(36, 9, 40, 15, 7, ''),
+(37, 9, 41, 15, 7, ''),
+(38, 10, 18, 13, 6, 'das'),
+(39, 10, 19, 13, 6, 'asdasd'),
+(40, 10, 20, 13, 6, 'dasasd'),
+(41, 10, 21, 13, 6, 'dasads'),
+(42, 10, 22, 13, 6, 'gg iron'),
+(43, 10, 23, 13, 6, 'dsadas'),
+(44, 10, 24, 13, 6, 'dasasd'),
+(45, 10, 25, 13, 6, 'adsads'),
+(46, 10, 26, 13, 6, 'mantep'),
+(47, 10, 27, 15, 6, 'asdas'),
+(48, 10, 28, 15, 6, 'fgbfg'),
+(49, 10, 29, 15, 6, 'bgffgb'),
+(50, 10, 30, 15, 6, 'gfbfg'),
+(51, 10, 31, 15, 6, 'bfgb'),
+(52, 10, 32, 15, 6, 'fgbfg'),
+(53, 10, 33, 15, 6, 'bfggfb'),
+(54, 10, 34, 15, 6, 'gfbgbf'),
+(55, 10, 35, 15, 6, 'gbfbg'),
+(56, 10, 36, 15, 6, 'fgbfgfb'),
+(57, 10, 37, 15, 6, 'fgb'),
+(58, 10, 38, 15, 6, 'fgbgf'),
+(59, 10, 39, 15, 6, 'bgfbgf'),
+(60, 10, 40, 15, 6, 'bfgb'),
+(61, 10, 41, 15, 6, 'aduh gg bgt'),
+(62, 11, 18, 13, 11, 'dsfds'),
+(63, 11, 19, 13, 11, 'fdds'),
+(64, 11, 20, 13, 11, 'dsfds'),
+(65, 11, 21, 13, 11, 'sdfsdfsd'),
+(66, 11, 22, 13, 11, 'fsdfsdf'),
+(67, 11, 23, 13, 11, 'sdfsdfsd'),
+(68, 11, 24, 13, 11, 'fsdfsd'),
+(69, 11, 25, 13, 11, 'fsdfsdf'),
+(70, 11, 26, 13, 11, 'sdfsd'),
+(71, 11, 27, 15, 11, 'dfsdfsdf'),
+(72, 11, 28, 15, 11, 'fsdfsdf'),
+(73, 11, 29, 15, 11, 'sdfsdfdds'),
+(74, 11, 30, 15, 11, 'sdfsdfdsfdsf'),
+(75, 11, 31, 15, 11, 'dsfdsf'),
+(76, 11, 32, 15, 11, 'dsfsdfds'),
+(77, 11, 33, 15, 11, 'fsdfsdf'),
+(78, 11, 34, 15, 11, 'sdfds'),
+(79, 11, 35, 15, 11, 'fdsfds'),
+(80, 11, 36, 15, 11, 'sdfdsf'),
+(81, 11, 37, 15, 11, 'sdfsdf'),
+(82, 11, 38, 15, 11, 'sdfsd'),
+(83, 11, 39, 15, 11, 'sdfdsfsdf'),
+(84, 11, 40, 15, 11, 'sdfsdfds'),
+(85, 11, 41, 15, 11, 'fdsfsdfds');
 
 -- --------------------------------------------------------
 
@@ -373,13 +433,17 @@ INSERT INTO `sampling_det` (`id_sampling`, `id_sk`, `sample_desc`, `location`, `
 (12, 2, 'ISBB/Heat Stress', '<ul><li>Ruang Heat Treatment Plant 2</li><li>Ruang Heat Treatment Plant 3</li></ul>', 'ghf', '2022-10-02', 'gfh'),
 (13, 2, 'Benzene, Toluene, Xylene (BTX)', '<p>Area Platting Plant 1</p>', 'asdas', '2022-10-04', 'asd'),
 (14, 2, 'SO2, NO2, CO, Partikulat, Opasitas, Laju Alir', '<ul><li>Cerobong Genset 800 kVA Plant 1</li><li>Cerobong Genset 600 kVA Plant 2</li></ul>', 'ads', '2022-10-19', 'asd'),
-(15, 2, 'Pencahayaan', '<ul><li>Ruang Hear Treatment Plant 1</li><li>Ruang Produksi Plant 1</li><li>Ruang Heat Treatment Plant 2</li><li>Ruang Produksi Plant 2</li><li>Ruang Produksi Plant 3</li><li>Ruang Heat Treatment Plant 3</li></ul>', '', '', ''),
+(15, 2, 'Pencahayaan', '<ul><li>Ruang Hear Treatment Plant 1</li><li>Ruang Produksi Plant 1</li><li>Ruang Heat Treatment Plant 2</li><li>Ruang Produksi Plant 2</li><li>Ruang Produksi Plant 3</li><li>Ruang Heat Treatment Plant 3</li></ul>', '', '2022-10-07', ''),
 (16, 2, 'Opasitas', '<ul><li>Forklift (1 titik) Plant 1</li><li>Forklift 2,5 Ton (1 titik) Plant 2</li><li>Truck Hino Tahun 2005 (T 8102 L) Plant 3</li><li>Truck Hino Tahun 2004 (T 8228 K) Plant 3</li><li>Truck Isuzu Tahun 2002 (T 8047 FZ) Plant 3</li></ul>', '', '', ''),
 (17, 2, 'Air Limbah Produksi', '<p>Servis Manhole</p>', '', '', ''),
 (18, 2, 'Air Limbah Domestik', '<p>Servis Manhole</p>', '', '', ''),
 (19, 7, 'Debu, SO2, NO2, CO, NH3, H2S', '<ul><li>Rumah Rezha</li><li>Rumah Pram</li></ul>', NULL, NULL, NULL),
 (22, 6, 'SO2, NO2, CO', '<ul><li>GH Evos</li><li>GH RRQ</li></ul>', 'Cair', '2022-10-06', 'sedang dikerjakan'),
-(23, 9, 'Debu, SO2, NO2, CO', '<p>dsfsdf</p>', 'Gas', '2022-10-06', 'fgfdgdfgdf');
+(23, 9, 'Debu, SO2, NO2, CO', '<p>dsfsdf</p>', 'Gas', '2022-10-06', 'fgfdgdfgdf'),
+(24, 10, 'Debu, SO2, NO2, CO, NH3, H2S, Suhu, Kelembaban', '<p>belakang jgu</p>', 'Cair', '2022-10-08', 'sedang dikerjakan'),
+(25, 10, 'NOISE, ISBB/Heat Stress, Benzene', '<p>depan jgu</p>', 'Cair', '2022-10-08', 'sedang dikerjakan'),
+(26, 11, 'Debu, SO2, NO2, CO, NH3', '<p>depan jgu</p>', 'Cair', '2022-10-15', 'sedang dikerjakan'),
+(27, 11, 'Suhu, Kelembaban, NOISE, ISBB/Heat Stress', '<p>belakang jgu</p>', 'Cair', '2022-10-01', 'sedang dikerjakan');
 
 -- --------------------------------------------------------
 
@@ -405,13 +469,15 @@ CREATE TABLE `sk_number` (
 --
 
 INSERT INTO `sk_number` (`id_sk`, `sk_quotation`, `sk_sample`, `sk_analysis`, `no_certificate`, `date_quotation`, `date_sample`, `date_analysis`, `date_report`, `id_int`) VALUES
-(2, '1/2022/09/27/DIL/QTN', '2/2022/09/30/DIL/STPS', '2/2022/10/04/DIL/STP', '', '', '04/10/2022', '', '', 3),
+(2, '1/2022/09/27/DIL/QTN', '2/2022/09/30/DIL/STPS', '2/2022/10/06/DIL/STP', '', '', '06/10/2022', '', '', 3),
 (4, '3/2022/09/27/DIL/QTN', '', '', '', '', '', '', '', 4),
 (5, '5/2022/09/27/DIL/QTN', '', '', '', '', '', '', '', 9),
 (6, '6/2022/09/27/DIL/QTN', '6/2022/10/03/DIL/STPS', '6/2022/10/04/DIL/STP', '', '', '04/10/2022', '', '', 12),
 (7, '7/2022/09/29/DIL/QTN', '7/2022/09/30/DIL/STPS', '', '', '', '', '', '', 10),
 (8, '8/2022/10/03/DIL/QTN', '', '', '', '03/10/2022', '', '', '', 5),
-(9, '9/2022/10/04/DIL/QTN', '9/2022/10/04/DIL/STPS', '9/2022/10/04/DIL/STP', 'DIL-20221004COA', '04/10/2022', '04/10/2022', '04/10/2022', '04/10/2022', 7);
+(9, '9/2022/10/04/DIL/QTN', '9/2022/10/04/DIL/STPS', '9/2022/10/04/DIL/STP', 'DIL-20221008COA', '04/10/2022', '04/10/2022', '04/10/2022', '08/10/2022', 7),
+(10, '10/2022/10/08/DIL/QTN', '10/2022/10/08/DIL/STPS', '10/2022/10/08/DIL/STP', 'DIL-20221008COA', '08/10/2022', '08/10/2022', '08/10/2022', '08/10/2022', 6),
+(11, '11/2022/10/08/DIL/QTN', '11/2022/10/08/DIL/STPS', '11/2022/10/08/DIL/STP', 'DIL-20221008COA', '08/10/2022', '08/10/2022', '08/10/2022', '08/10/2022', 11);
 
 --
 -- Indexes for dumped tables
@@ -502,13 +568,13 @@ ALTER TABLE `sk_number`
 -- AUTO_INCREMENT for table `analysis`
 --
 ALTER TABLE `analysis`
-  MODIFY `id_analysis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_analysis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `assign_sampler`
 --
 ALTER TABLE `assign_sampler`
-  MODIFY `id_assign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_assign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `coa`
@@ -520,7 +586,7 @@ ALTER TABLE `coa`
 -- AUTO_INCREMENT for table `institution`
 --
 ALTER TABLE `institution`
-  MODIFY `id_int` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_int` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `method`
@@ -532,19 +598,19 @@ ALTER TABLE `method`
 -- AUTO_INCREMENT for table `quotation`
 --
 ALTER TABLE `quotation`
-  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `result_coa`
 --
 ALTER TABLE `result_coa`
-  MODIFY `id_result` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_result` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `sample`
 --
 ALTER TABLE `sample`
-  MODIFY `id_sample` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_sample` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `sampler`
@@ -556,13 +622,13 @@ ALTER TABLE `sampler`
 -- AUTO_INCREMENT for table `sampling_det`
 --
 ALTER TABLE `sampling_det`
-  MODIFY `id_sampling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_sampling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `sk_number`
 --
 ALTER TABLE `sk_number`
-  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables

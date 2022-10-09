@@ -2,6 +2,30 @@
 foreach($coa as $co) {
   $coa_det = $co;
 }
+
+function tgl_indo($tanggal){
+	$bulan = array (
+		1 =>   'Januari',
+		'Februari',
+		'Maret',
+		'April',
+		'Mei',
+		'Juni',
+		'Juli',
+		'Agustus',
+		'September',
+		'Oktober',
+		'November',
+		'Desember'
+	);
+	$pecahkan = explode('/', $tanggal);
+	
+	// variabel pecahkan 0 = tanggal
+	// variabel pecahkan 1 = bulan
+	// variabel pecahkan 2 = tahun
+ 
+	return  $pecahkan[0] . ' ' . $bulan[ (int)$pecahkan[1]] . ' ' . $pecahkan[2];
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -51,7 +75,7 @@ foreach($coa as $co) {
     <div class="container mb-5">
       <div class="row">
         <div class="col-md-6">
-          <img src="<?= base_url('assets/img/logo.png') ?>" alt="">
+          <img src="../../assets/img/logo.png" alt="">
         </div>
         <div class="col-md-6">
           <h4 class="font-weight-bold text-right mb-4">PT. Delta Indonesia Laboratory</h4>
@@ -109,19 +133,20 @@ foreach($coa as $co) {
                 <tr>
                     <td>Sample Receive Date</td>
                     <td>:</td>
-                    <td><?= $coa_det->date_sample ?></td>
+                    <td><?= tgl_indo($coa_det->date_sample) ?></td>
                 </tr>
                 <tr>
                     <td>Sample Analysis Date&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</td>
                     <td>:</td>
-                    <td><?= $coa_det->date_analysis ?></td>
+                    <td><?= tgl_indo($coa_det->date_analysis) ?></td>
                 </tr>
                 <tr>
                     <td>Report Date</td>
                     <td>:</td>
-                    <td><?= $coa_det->date_report ?></td>
+                    <td><?= tgl_indo($coa_det->date_report) ?></td>
                 </tr>
             </table>
+            <img src="<?= site_url('D_gencoa/renderQR/' . $coa_det->id_sk) ?>" alt="" style="margin-top: 100px;">
         </div>
     </div>
 
