@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2022 at 08:59 AM
+-- Generation Time: Oct 10, 2022 at 12:36 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -53,7 +53,8 @@ INSERT INTO `analysis` (`id_analysis`, `name_analysis`, `standart_price`, `coa`,
 (12, 'Surface Water', 300000, 1, NULL),
 (13, 'Clean Water', 450000, 1, NULL),
 (14, 'Transportation', 200000, 0, NULL),
-(15, 'Air Emission (Non-Isocinetic)', 100000, 1, NULL);
+(15, 'Air Emission (Non-Isocinetic)', 100000, 1, NULL),
+(16, 'Air Emission', 250000, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -79,13 +80,9 @@ INSERT INTO `assign_sampler` (`id_assign`, `id_sampler`, `id_sk`, `is_sampler`) 
 (8, 13, 2, 1),
 (9, 11, 2, 0),
 (10, 1, 10, 1),
-(11, 12, 10, 1),
-(12, 7, 10, 0),
-(13, 8, 10, 0),
-(14, 1, 11, 1),
-(15, 8, 11, 1),
-(16, 9, 11, 0),
-(17, 11, 11, 0);
+(11, 7, 10, 1),
+(12, 13, 10, 0),
+(13, 14, 10, 0);
 
 -- --------------------------------------------------------
 
@@ -134,7 +131,101 @@ INSERT INTO `coa` (`id_coa`, `id_analysis`, `params`, `unit`, `reg_standart_1`, 
 (38, 15, 'Antimony (Sb)', 'mg/L', 8, 0, 0, 0, 8, 'Physical'),
 (39, 15, 'Cadmium (Cd)', 'mg/L', 8, 0, 0, 0, 18, 'Physical'),
 (40, 15, 'Zinc (Zn)', 'mg/L', 50, 0, 0, 0, 19, 'Physical'),
-(41, 15, 'Lead (Pb)', 'mg/L', 12, 0, 0, 0, 18, 'Physical');
+(41, 15, 'Lead (Pb)', 'mg/L', 12, 0, 0, 0, 18, 'Physical'),
+(42, 12, 'Temperature', '°C', 1000, 1000, 1000, 1000, 2, 'Physical'),
+(44, 12, 'Biological Oxygen demand (BOD)', 'mg/L', 2, 3, 6, 12, 4, 'Chemistry'),
+(45, 12, 'Total Suspens Solids (TTS)', 'mg/L', 40, 50, 100, 400, 3, 'Physical'),
+(46, 12, 'Total DOscovered Solds (TDS)', 'mg/L', 1000, 1000, 1000, 1000, 3, 'Physical'),
+(47, 12, 'Chemicial Oxygen Demand (COD)', 'mg/L', 10, 25, 40, 80, 7, 'Chemistry'),
+(48, 12, 'pH', '°C', 6, 6, 6, 6, 4, 'Chemistry'),
+(49, 12, 'Total Phospharate (PO4)', 'mg/L', 0.2, 0.2, 1, 0, 3, 'Chemistry'),
+(50, 12, 'Sulfate (s04)', 'mg/L', 300, 300, 300, 400, 3, 'Chemistry'),
+(51, 12, 'Arsenic (As)', 'mg/L', 0.05, 0.05, 0.05, 0.1, 6, 'Chemistry'),
+(52, 12, 'Boron (B)', 'mg/L', 1, 1, 1, 1, 13, 'Chemistry'),
+(53, 12, 'Cadmium (cd)', 'mg/L', 0.01, 0.01, 0.01, 0.01, 12, 'Chemistry'),
+(54, 12, 'Cobalt (Co)', 'mg/L', 0.2, 0.2, 0.2, 0.2, 10, 'Chemistry'),
+(55, 12, 'Chromium Hexavalent (Cr6+)', 'mg/L', 0.05, 0.05, 0.05, 1, 14, 'Chemistry'),
+(56, 12, 'Copper (Cu)', 'mg/L', 0.02, 0.02, 0.02, 0.2, 19, 'Chemistry'),
+(57, 12, 'Lead (pb)', 'mg/L', 0.03, 0.03, 0.03, 0.5, 18, 'Chemistry'),
+(58, 12, 'Mercury (Hg)', 'mg/L', 0.001, 0.002, 0.002, 0.005, 19, 'Chemistry'),
+(59, 12, 'Oil and Grease', 'mg/L', 1, 1, 1, 10, 12, 'Chemistry'),
+(60, 12, 'Selenium (se)', 'mg/L', 0.01, 0.05, 0.05, 0.05, 16, 'Chemistry'),
+(61, 12, 'Zinc (Zn)', 'mg/L', 0.05, 0.05, 0.05, 2, 10, 'Chemistry'),
+(62, 12, 'Nikel (Ni)', 'mg/L', 0.05, 0.05, 0.05, 0.1, 19, 'Chemistry'),
+(63, 12, 'MBAS', 'mg/L', 0.2, 0.2, 0.2, 0, 12, 'Chemistry'),
+(64, 12, 'Mangan (Mn)', 'mg/L', 0.1, 0, 0, 0, 11, 'Chemistry'),
+(65, 6, 'Temperature', '°C', 40, 0, 0, 0, 4, 'Physical'),
+(66, 6, 'Total Dissolved Solids (TDS)', 'mg/L', 4000, 0, 0, 0, 12, 'Physical'),
+(67, 6, 'Total Suspended Solids (TSS)', 'mg/L', 4000, 0, 0, 0, 17, 'Physical'),
+(68, 6, 'Ph', '°C', 5.5, 0, 0, 0, 3, 'Chemistry'),
+(69, 6, 'Iron (fe)', 'mg/L', 10, 0, 0, 0, 4, 'Chemistry'),
+(70, 6, 'Manganese (Mn)', 'mg/L', 4, 0, 0, 0, 4, 'Chemistry'),
+(71, 6, 'Barium (ba)', 'mg/L', 4, 0, 0, 0, 4, 'Chemistry'),
+(72, 6, 'Copper (Cu)', 'mg/L', 4, 0, 0, 0, 3, 'Chemistry'),
+(73, 6, 'Chomium Hexavalent (Cr6+)', 'mg/L', 0.2, 0, 0, 0, 4, 'Chemistry'),
+(74, 6, 'Zinc (Zn)', 'mg/L', 10, 0, 0, 0, 3, 'Chemistry'),
+(75, 6, 'Chromium (Cr)', 'mg/L', 1, 0, 0, 0, 2, 'Chemistry'),
+(76, 6, 'Cadium (cd)', 'mg/L', 0.1, 0, 0, 0, 4, 'Chemistry'),
+(77, 6, 'Total Lead (Pb)', 'mg/L', 0.2, 0, 0, 0, 14, 'Chemistry'),
+(78, 6, 'Stannum (Sn)', 'mg/L', 4, 0, 0, 0, 4, 'Chemistry'),
+(79, 6, 'Mercury (Hg)', 'mg/L', 0.004, 0, 0, 0, 13, 'Chemistry'),
+(80, 6, 'Arsenic (As)', 'mg/L', 0.2, 0, 0, 0, 13, 'Chemistry'),
+(81, 6, 'Selenium (Se)', 'mg/L', 0.1, 0, 0, 0, 16, 'Chemistry'),
+(82, 6, 'Nickel (Ni)', 'mg/L', 0.4, 0, 0, 0, 18, 'Chemistry'),
+(83, 6, 'Cobalt (Co)', 'mg/L', 0.8, 0, 0, 0, 4, 'Chemistry'),
+(84, 6, 'Cyanide (Cn)', 'mg/L', 0.1, 0, 0, 0, 12, 'Chemistry'),
+(85, 6, 'Hydrogen Sulfide (H2S)', 'mg/L', 0.1, 0, 0, 0, 15, 'Chemistry'),
+(86, 6, 'Fluoride (f)', 'mg/L', 4, 0, 0, 0, 12, 'Chemistry'),
+(87, 6, 'Free Chorine (Cl2)', 'mg/L', 2, 0, 0, 0, 2, 'Chemistry'),
+(88, 6, 'Ammonia (NH3N)', 'mg/L', 2, 0, 0, 0, 3, 'Chemistry'),
+(89, 6, 'Nitrate (NO3N)', 'mg/L', 40, 0, 0, 0, 3, 'Chemistry'),
+(90, 6, 'Nitrite (No2N)', 'mg/L', 40, 0, 0, 0, 14, 'Chemistry'),
+(91, 6, 'Total Nitrogen', 'mg/L', 2, 0, 0, 0, 9, 'Chemistry'),
+(92, 6, 'Biological Oxygen Demand (BOD)', 'mg/L', 200, 0, 0, 0, 4, 'Chemistry'),
+(93, 6, 'Chemicial Oxygen demand (COD)', 'mg/L', 400, 0, 0, 0, 4, 'Chemistry'),
+(94, 6, 'MBAS', 'mg/L', 10, 0, 0, 0, 10, 'Chemistry'),
+(96, 6, 'Phenol', 'mg/L', 1, 0, 0, 0, 10, 'Chemistry'),
+(97, 6, 'Oil and Grease', 'mg/L', 10, 0, 0, 0, 3, 'Chemistry'),
+(98, 6, 'Total Coliform ', 'mg/L', 0, 0, 0, 0, 4, 'Microbiology'),
+(99, 10, 'Sulphur Dioxide (S02)', 'mg/L', 0.25, 0, 0, 0, 14, 'Physical'),
+(100, 10, 'Nitrogen Dioxide (No3)', 'mg/L', 0.2, 0, 0, 0, 4, 'Chemistry'),
+(101, 10, 'Carbon Monoxide (Co)', 'mg/L', 29, 0, 0, 0, 5, 'Physical'),
+(102, 10, 'Ammonia (Nh3)', 'mg/L', 17, 0, 0, 0, 13, 'Physical'),
+(103, 10, 'Hydrogen Sulfide (H2s)', 'NTU', 1, 0, 0, 0, 14, 'Physical'),
+(104, 10, 'Total Suspended Particulates (TSP)', 'mg/L', 10, 0, 0, 0, 12, 'Physical'),
+(105, 8, 'Ammonia (Nh3)', 'mg/L', 0.5, 0, 0, 0, 4, 'Physical'),
+(106, 8, 'Chlorine (Cl2)', 'mg/L', 10, 0, 0, 0, 6, 'Physical'),
+(107, 8, 'Hydrogen Chloride (HCl)', 'mg/L', 5, 0, 0, 0, 15, 'Physical'),
+(108, 8, 'Hydrogen Fluoride (Hf)', 'mg/L', 10, 0, 0, 0, 17, 'Physical'),
+(109, 8, 'Nitrogen Dioxide (No2)', 'mg/L', 1000, 0, 0, 0, 17, 'Physical'),
+(110, 8, 'Opacity', '%', 35, 0, 0, 0, 12, 'Physical'),
+(111, 8, 'Particulate', 'mg/L', 350, 0, 0, 0, 12, 'Physical'),
+(112, 8, 'Sulfur Dioxide (S02)', 'mg/L', 800, 0, 0, 0, 12, 'Physical'),
+(113, 8, 'Hydrogen Sulfide (HS2s)', 'mg/L', 35, 0, 0, 0, 14, 'Physical'),
+(114, 8, 'Mercury (Hg)', 'mg/L', 5, 0, 0, 0, 8, 'Physical'),
+(115, 8, 'Arsenic (As)', 'mg/L', 8, 0, 0, 0, 8, 'Physical'),
+(116, 8, 'Antimony (Sb)', 'mg/L', 8, 0, 0, 0, 8, 'Physical'),
+(117, 8, 'Cadmium (Cd)', 'mg/L', 8, 0, 0, 0, 19, 'Physical'),
+(118, 8, 'Zinc (Zn)', 'mg/L', 50, 0, 0, 0, 11, 'Physical'),
+(119, 8, 'Total Lead (Pb)', 'mg/L', 12, 0, 0, 0, 11, 'Physical'),
+(122, 3, 'Methyl Ethyl Ketone (C4H8O)', 'mg/L', 200, 0, 0, 0, 15, 'Physical'),
+(123, 3, 'Acelon (C2H2O)', 'mg/L', 118.12, 0, 0, 0, 3, 'Physical'),
+(124, 3, 'Toluene (C7H8)', 'mg/L', 20, 0, 0, 0, 3, 'Physical'),
+(125, 16, 'Armonia (NH3)', 'mg/L', 0.5, 0, 0, 0, 3, 'Physical'),
+(126, 16, 'Cholrine (Cl2)', 'mg/L', 10, 0, 0, 0, 4, 'Physical'),
+(128, 16, 'Hydrogen Chloride (HCI)', 'mg/L', 5, 0, 0, 0, 3, 'Physical'),
+(129, 16, 'Hydrogen Fluoride (HF)', 'mg/L', 10, 0, 0, 0, 12, 'Physical'),
+(130, 16, 'Nitrogen Dioxide (NO2)', 'mg/L', 1000, 0, 0, 0, 17, 'Physical'),
+(131, 16, 'Opacity', 'mg/L', 35, 0, 0, 0, 2, 'Physical'),
+(132, 16, 'Particulate', 'mg/L', 350, 0, 0, 0, 3, 'Physical'),
+(133, 16, 'Sulfure Dioxide (SO2)', 'mg/L', 35, 0, 0, 0, 14, 'Physical'),
+(134, 16, 'Hydrogen Sulfide (H2S)', 'mg/L', 35, 0, 0, 0, 2, 'Physical'),
+(135, 16, 'Mercury (Hg)', 'mg/L', 5, 0, 0, 0, 4, 'Physical'),
+(136, 16, 'Arsenic (as)', 'mg/L', 8, 0, 0, 0, 4, 'Physical'),
+(137, 16, 'Antimony (Sb)', 'mg/L', 8, 0, 0, 0, 4, 'Physical'),
+(138, 16, 'Cadiuum (Cd)', 'mg/L', 8, 0, 0, 0, 2, 'Physical'),
+(139, 16, 'Zinc (Zn)', 'mg/L', 50, 0, 0, 0, 4, 'Physical'),
+(140, 16, 'Lead (Pb)', 'mg/L', 12, 0, 0, 0, 2, 'Physical');
 
 -- --------------------------------------------------------
 
@@ -165,7 +256,7 @@ INSERT INTO `institution` (`id_int`, `name_int`, `int_phone`, `int_email`, `int_
 (8, 'PT. Oasis Bogor', '081376838901', 'oasisbogor@gmail.com', 'Jl Lipi selatan', '', ''),
 (9, 'PT. Jali Indonesia Utama', '0856956371', 'Jaliindonesia23@gmail.com', 'Jl Topaz nasution', '', ''),
 (10, 'PT. Kingbarbar', '083819588819', 'kingbarbar@gmail.com', 'Jl. H,ahmad dahlan', '', ''),
-(11, 'PT. Lentera Jiwa Project', '08858183202', 'Lenterajiwa@gmail.com', 'Jl. Pesat raya no 25 bogor', '', ''),
+(11, 'PT. Lentera Jiwa Project', '08858183202', 'Lenterajiwa@gmail.com', 'Jl. Pesat raya no 25 bogor', 'Annaufal Arifa', 'CEO of Lentera Jiwa Group'),
 (12, 'PT. Big Mouse Korean', '0858939312', 'bigmousek@gmail.com', 'Jl. Kemang 2 jakarta barat', '', ''),
 (13, 'PT. Zikna Soft', '8564789651', 'azkazikna.aal@gmail.com', 'Blablablabalba Bogor', 'Azkazikna Ageung Laksana', 'Direktur PT. Zikna Soft');
 
@@ -242,10 +333,14 @@ INSERT INTO `quotation` (`id_quotation`, `id_analysis`, `id_int`, `remarks`, `sp
 (23, 13, 3, '<p>asdas</p>', '<p>asdasd</p>', 3, 2, 100000),
 (29, 13, 7, '<p>dsfsdfsdf</p>', '<p>sdfsdffds</p>', 12, 9, 50000),
 (30, 15, 7, '<p>dsfsd</p>', '<p>fsdfsdfsd</p>', 3, 9, 150000),
-(31, 13, 6, '<p>water clean gg gaming    </p>', '<p>mantap spek ram 25gb</p>', 8, 10, 100000),
-(32, 15, 6, '<p>air emission gg gaming</p>', '<p>spek ssd 1tb</p>', 10, 10, 50000),
-(33, 13, 11, '<p>sdfsdfsd</p>', '<p>sdfdsfsdfsd</p>', 10, 11, 100000),
-(34, 15, 11, '<p>ajfdsfds</p>', '<p>dsfdsfsd</p>', 2, 11, 50000);
+(31, 13, 11, '<p>sdfs</p>', '<p>dfsdfsdfs</p>', 23, 10, 100000),
+(32, 15, 11, '<p>sdfsdf</p>', '<p>sdfsdfsd</p>', 1, 10, 150000),
+(33, 6, 11, '<p>dsfsdf</p>', '<p>sdfsdf</p>', 14, 10, 10000),
+(34, 12, 11, '<p>dsfsd</p>', '<p>fsdfsd</p>', 7, 10, 50000),
+(35, 8, 11, '<p>dfgfdgdf</p>', '<p>fdgfdgfd</p>', 12, 10, 80000),
+(36, 10, 11, '<p>sadasd</p>', '<p>asdasdas</p>', 12, 10, 45000),
+(37, 16, 11, '<p>asdasdasd</p>', '<p>asdasdas</p>', 2, 10, 10000),
+(38, 3, 11, '<p>dsc</p>', '<p>sdcsdcds</p>', 12, 10, 80000);
 
 -- --------------------------------------------------------
 
@@ -276,69 +371,141 @@ INSERT INTO `result_coa` (`id_result`, `id_sk`, `id_coa`, `id_analysis`, `id_int
 (20, 9, 24, 13, 7, ''),
 (21, 9, 25, 13, 7, ''),
 (22, 9, 26, 13, 7, ''),
-(23, 9, 27, 15, 7, ''),
-(24, 9, 28, 15, 7, ''),
-(25, 9, 29, 15, 7, ''),
-(26, 9, 30, 15, 7, ''),
-(27, 9, 31, 15, 7, ''),
-(28, 9, 32, 15, 7, ''),
-(29, 9, 33, 15, 7, ''),
-(30, 9, 34, 15, 7, ''),
-(31, 9, 35, 15, 7, ''),
-(32, 9, 36, 15, 7, ''),
-(33, 9, 37, 15, 7, ''),
-(34, 9, 38, 15, 7, ''),
-(35, 9, 39, 15, 7, ''),
-(36, 9, 40, 15, 7, ''),
-(37, 9, 41, 15, 7, ''),
-(38, 10, 18, 13, 6, 'das'),
-(39, 10, 19, 13, 6, 'asdasd'),
-(40, 10, 20, 13, 6, 'dasasd'),
-(41, 10, 21, 13, 6, 'dasads'),
-(42, 10, 22, 13, 6, 'gg iron'),
-(43, 10, 23, 13, 6, 'dsadas'),
-(44, 10, 24, 13, 6, 'dasasd'),
-(45, 10, 25, 13, 6, 'adsads'),
-(46, 10, 26, 13, 6, 'mantep'),
-(47, 10, 27, 15, 6, 'asdas'),
-(48, 10, 28, 15, 6, 'fgbfg'),
-(49, 10, 29, 15, 6, 'bgffgb'),
-(50, 10, 30, 15, 6, 'gfbfg'),
-(51, 10, 31, 15, 6, 'bfgb'),
-(52, 10, 32, 15, 6, 'fgbfg'),
-(53, 10, 33, 15, 6, 'bfggfb'),
-(54, 10, 34, 15, 6, 'gfbgbf'),
-(55, 10, 35, 15, 6, 'gbfbg'),
-(56, 10, 36, 15, 6, 'fgbfgfb'),
-(57, 10, 37, 15, 6, 'fgb'),
-(58, 10, 38, 15, 6, 'fgbgf'),
-(59, 10, 39, 15, 6, 'bgfbgf'),
-(60, 10, 40, 15, 6, 'bfgb'),
-(61, 10, 41, 15, 6, 'aduh gg bgt'),
-(62, 11, 18, 13, 11, 'dsfds'),
-(63, 11, 19, 13, 11, 'fdds'),
-(64, 11, 20, 13, 11, 'dsfds'),
-(65, 11, 21, 13, 11, 'sdfsdfsd'),
-(66, 11, 22, 13, 11, 'fsdfsdf'),
-(67, 11, 23, 13, 11, 'sdfsdfsd'),
-(68, 11, 24, 13, 11, 'fsdfsd'),
-(69, 11, 25, 13, 11, 'fsdfsdf'),
-(70, 11, 26, 13, 11, 'sdfsd'),
-(71, 11, 27, 15, 11, 'dfsdfsdf'),
-(72, 11, 28, 15, 11, 'fsdfsdf'),
-(73, 11, 29, 15, 11, 'sdfsdfdds'),
-(74, 11, 30, 15, 11, 'sdfsdfdsfdsf'),
-(75, 11, 31, 15, 11, 'dsfdsf'),
-(76, 11, 32, 15, 11, 'dsfsdfds'),
-(77, 11, 33, 15, 11, 'fsdfsdf'),
-(78, 11, 34, 15, 11, 'sdfds'),
-(79, 11, 35, 15, 11, 'fdsfds'),
-(80, 11, 36, 15, 11, 'sdfdsf'),
-(81, 11, 37, 15, 11, 'sdfsdf'),
-(82, 11, 38, 15, 11, 'sdfsd'),
-(83, 11, 39, 15, 11, 'sdfdsfsdf'),
-(84, 11, 40, 15, 11, 'sdfsdfds'),
-(85, 11, 41, 15, 11, 'fdsfsdfds');
+(23, 9, 27, 15, 7, NULL),
+(24, 9, 28, 15, 7, NULL),
+(25, 9, 29, 15, 7, NULL),
+(26, 9, 30, 15, 7, NULL),
+(27, 9, 31, 15, 7, NULL),
+(28, 9, 32, 15, 7, NULL),
+(29, 9, 33, 15, 7, NULL),
+(30, 9, 34, 15, 7, NULL),
+(31, 9, 35, 15, 7, NULL),
+(32, 9, 36, 15, 7, NULL),
+(33, 9, 37, 15, 7, NULL),
+(34, 9, 38, 15, 7, NULL),
+(35, 9, 39, 15, 7, NULL),
+(36, 9, 40, 15, 7, NULL),
+(37, 9, 41, 15, 7, NULL),
+(38, 10, 18, 13, 11, 'sdf'),
+(39, 10, 19, 13, 11, 'sdf'),
+(40, 10, 20, 13, 11, 'sdfsdf'),
+(41, 10, 21, 13, 11, 'sdfsd'),
+(42, 10, 22, 13, 11, 'fsdf'),
+(43, 10, 23, 13, 11, 'sdfsd'),
+(44, 10, 24, 13, 11, 'fsd'),
+(45, 10, 25, 13, 11, 'fsdf'),
+(46, 10, 26, 13, 11, 'sdfsdf'),
+(47, 10, 27, 15, 11, 'sdfsdf'),
+(48, 10, 28, 15, 11, 'sdf'),
+(49, 10, 29, 15, 11, 'sdfsd'),
+(50, 10, 30, 15, 11, 'fsdf'),
+(51, 10, 31, 15, 11, 'sdfsd'),
+(52, 10, 32, 15, 11, 'fsd'),
+(53, 10, 33, 15, 11, 'fsdf'),
+(54, 10, 34, 15, 11, 'sdfsd'),
+(55, 10, 35, 15, 11, 'fsd'),
+(56, 10, 36, 15, 11, 'fsdfsd'),
+(57, 10, 37, 15, 11, 'fsd'),
+(58, 10, 38, 15, 11, 'sdfsd'),
+(59, 10, 39, 15, 11, 'fsd'),
+(60, 10, 40, 15, 11, 'fsdf'),
+(61, 10, 41, 15, 11, 'sdfsdf'),
+(62, 10, 65, 6, 11, 'sdfsd'),
+(63, 10, 66, 6, 11, 'fsdfsd'),
+(64, 10, 67, 6, 11, 'fsd'),
+(65, 10, 68, 6, 11, 'fsdf'),
+(66, 10, 69, 6, 11, 'sdf'),
+(67, 10, 70, 6, 11, 'sdfs'),
+(68, 10, 71, 6, 11, 'dfsd'),
+(69, 10, 72, 6, 11, 'fsdf'),
+(70, 10, 73, 6, 11, 'sdfsd'),
+(71, 10, 74, 6, 11, 'fsd'),
+(72, 10, 75, 6, 11, 'fsdfsdsd'),
+(73, 10, 76, 6, 11, 'sdf'),
+(74, 10, 77, 6, 11, 'sdfsdfsd'),
+(75, 10, 78, 6, 11, 'fsd'),
+(76, 10, 79, 6, 11, 'fsdf'),
+(77, 10, 80, 6, 11, 'sdfsdf'),
+(78, 10, 81, 6, 11, 'sdfsd'),
+(79, 10, 82, 6, 11, 'fsdf'),
+(80, 10, 83, 6, 11, 'sdfsd'),
+(81, 10, 84, 6, 11, 'sdf'),
+(82, 10, 85, 6, 11, 'sdfsdfs'),
+(83, 10, 86, 6, 11, 'dfsd'),
+(84, 10, 87, 6, 11, 'sdfsd'),
+(85, 10, 88, 6, 11, 'fsdfsd'),
+(86, 10, 89, 6, 11, 'fsdf'),
+(87, 10, 90, 6, 11, 'sdfs'),
+(88, 10, 91, 6, 11, 'sdfsdf'),
+(89, 10, 92, 6, 11, 'sdfs'),
+(90, 10, 93, 6, 11, 'dfsd'),
+(91, 10, 94, 6, 11, 'fsdfds'),
+(92, 10, 95, 6, 11, 'fsd'),
+(93, 10, 96, 6, 11, 'fsdfds'),
+(94, 10, 97, 6, 11, 'sdf'),
+(95, 10, 98, 6, 11, 'fdssdf'),
+(96, 10, 120, 6, 11, 'sdfsdf'),
+(97, 10, 42, 12, 11, NULL),
+(98, 10, 44, 12, 11, NULL),
+(99, 10, 45, 12, 11, NULL),
+(100, 10, 46, 12, 11, NULL),
+(101, 10, 47, 12, 11, NULL),
+(102, 10, 48, 12, 11, NULL),
+(103, 10, 49, 12, 11, NULL),
+(104, 10, 50, 12, 11, NULL),
+(105, 10, 51, 12, 11, NULL),
+(106, 10, 52, 12, 11, NULL),
+(107, 10, 53, 12, 11, NULL),
+(108, 10, 54, 12, 11, NULL),
+(109, 10, 55, 12, 11, NULL),
+(110, 10, 56, 12, 11, NULL),
+(111, 10, 57, 12, 11, NULL),
+(112, 10, 58, 12, 11, NULL),
+(113, 10, 59, 12, 11, NULL),
+(114, 10, 60, 12, 11, NULL),
+(115, 10, 61, 12, 11, NULL),
+(116, 10, 62, 12, 11, NULL),
+(117, 10, 63, 12, 11, NULL),
+(118, 10, 64, 12, 11, NULL),
+(119, 10, 105, 8, 11, NULL),
+(120, 10, 106, 8, 11, NULL),
+(121, 10, 107, 8, 11, NULL),
+(122, 10, 108, 8, 11, NULL),
+(123, 10, 109, 8, 11, NULL),
+(124, 10, 110, 8, 11, NULL),
+(125, 10, 111, 8, 11, NULL),
+(126, 10, 112, 8, 11, NULL),
+(127, 10, 113, 8, 11, NULL),
+(128, 10, 114, 8, 11, NULL),
+(129, 10, 115, 8, 11, NULL),
+(130, 10, 116, 8, 11, NULL),
+(131, 10, 117, 8, 11, NULL),
+(132, 10, 118, 8, 11, NULL),
+(133, 10, 119, 8, 11, NULL),
+(134, 10, 99, 10, 11, 'sdfsd'),
+(135, 10, 100, 10, 11, 'fsdfs'),
+(136, 10, 101, 10, 11, 'dfsdf'),
+(137, 10, 102, 10, 11, 'sdfsd'),
+(138, 10, 103, 10, 11, 'fsdf'),
+(139, 10, 104, 10, 11, 'sdfsdf'),
+(140, 10, 125, 16, 11, NULL),
+(141, 10, 126, 16, 11, NULL),
+(142, 10, 128, 16, 11, NULL),
+(143, 10, 129, 16, 11, NULL),
+(144, 10, 130, 16, 11, NULL),
+(145, 10, 131, 16, 11, NULL),
+(146, 10, 132, 16, 11, NULL),
+(147, 10, 133, 16, 11, NULL),
+(148, 10, 134, 16, 11, NULL),
+(149, 10, 135, 16, 11, NULL),
+(150, 10, 136, 16, 11, NULL),
+(151, 10, 137, 16, 11, NULL),
+(152, 10, 138, 16, 11, NULL),
+(153, 10, 139, 16, 11, NULL),
+(154, 10, 140, 16, 11, NULL),
+(155, 10, 122, 3, 11, NULL),
+(156, 10, 123, 3, 11, NULL),
+(157, 10, 124, 3, 11, NULL);
 
 -- --------------------------------------------------------
 
@@ -433,17 +600,15 @@ INSERT INTO `sampling_det` (`id_sampling`, `id_sk`, `sample_desc`, `location`, `
 (12, 2, 'ISBB/Heat Stress', '<ul><li>Ruang Heat Treatment Plant 2</li><li>Ruang Heat Treatment Plant 3</li></ul>', 'ghf', '2022-10-02', 'gfh'),
 (13, 2, 'Benzene, Toluene, Xylene (BTX)', '<p>Area Platting Plant 1</p>', 'asdas', '2022-10-04', 'asd'),
 (14, 2, 'SO2, NO2, CO, Partikulat, Opasitas, Laju Alir', '<ul><li>Cerobong Genset 800 kVA Plant 1</li><li>Cerobong Genset 600 kVA Plant 2</li></ul>', 'ads', '2022-10-19', 'asd'),
-(15, 2, 'Pencahayaan', '<ul><li>Ruang Hear Treatment Plant 1</li><li>Ruang Produksi Plant 1</li><li>Ruang Heat Treatment Plant 2</li><li>Ruang Produksi Plant 2</li><li>Ruang Produksi Plant 3</li><li>Ruang Heat Treatment Plant 3</li></ul>', '', '2022-10-07', ''),
+(15, 2, 'Pencahayaan', '<ul><li>Ruang Hear Treatment Plant 1</li><li>Ruang Produksi Plant 1</li><li>Ruang Heat Treatment Plant 2</li><li>Ruang Produksi Plant 2</li><li>Ruang Produksi Plant 3</li><li>Ruang Heat Treatment Plant 3</li></ul>', '', '', ''),
 (16, 2, 'Opasitas', '<ul><li>Forklift (1 titik) Plant 1</li><li>Forklift 2,5 Ton (1 titik) Plant 2</li><li>Truck Hino Tahun 2005 (T 8102 L) Plant 3</li><li>Truck Hino Tahun 2004 (T 8228 K) Plant 3</li><li>Truck Isuzu Tahun 2002 (T 8047 FZ) Plant 3</li></ul>', '', '', ''),
 (17, 2, 'Air Limbah Produksi', '<p>Servis Manhole</p>', '', '', ''),
 (18, 2, 'Air Limbah Domestik', '<p>Servis Manhole</p>', '', '', ''),
 (19, 7, 'Debu, SO2, NO2, CO, NH3, H2S', '<ul><li>Rumah Rezha</li><li>Rumah Pram</li></ul>', NULL, NULL, NULL),
 (22, 6, 'SO2, NO2, CO', '<ul><li>GH Evos</li><li>GH RRQ</li></ul>', 'Cair', '2022-10-06', 'sedang dikerjakan'),
 (23, 9, 'Debu, SO2, NO2, CO', '<p>dsfsdf</p>', 'Gas', '2022-10-06', 'fgfdgdfgdf'),
-(24, 10, 'Debu, SO2, NO2, CO, NH3, H2S, Suhu, Kelembaban', '<p>belakang jgu</p>', 'Cair', '2022-10-08', 'sedang dikerjakan'),
-(25, 10, 'NOISE, ISBB/Heat Stress, Benzene', '<p>depan jgu</p>', 'Cair', '2022-10-08', 'sedang dikerjakan'),
-(26, 11, 'Debu, SO2, NO2, CO, NH3', '<p>depan jgu</p>', 'Cair', '2022-10-15', 'sedang dikerjakan'),
-(27, 11, 'Suhu, Kelembaban, NOISE, ISBB/Heat Stress', '<p>belakang jgu</p>', 'Cair', '2022-10-01', 'sedang dikerjakan');
+(24, 10, 'Debu, SO2, NO2, CO', '<p>sdfsdfsd</p>', 'dsfdsf', '2022-10-11', 'dsfsdf'),
+(25, 10, 'Partikulat, Opasitas, Laju Alir, Pencahayaan', '<p>sdfsdfsd</p>', 'dsfsd', '2022-10-12', 'sdfsdf');
 
 -- --------------------------------------------------------
 
@@ -469,15 +634,14 @@ CREATE TABLE `sk_number` (
 --
 
 INSERT INTO `sk_number` (`id_sk`, `sk_quotation`, `sk_sample`, `sk_analysis`, `no_certificate`, `date_quotation`, `date_sample`, `date_analysis`, `date_report`, `id_int`) VALUES
-(2, '1/2022/09/27/DIL/QTN', '2/2022/09/30/DIL/STPS', '2/2022/10/06/DIL/STP', '', '', '06/10/2022', '', '', 3),
+(2, '1/2022/09/27/DIL/QTN', '2/2022/09/30/DIL/STPS', '2/2022/10/04/DIL/STP', '', '', '04/10/2022', '', '', 3),
 (4, '3/2022/09/27/DIL/QTN', '', '', '', '', '', '', '', 4),
 (5, '5/2022/09/27/DIL/QTN', '', '', '', '', '', '', '', 9),
 (6, '6/2022/09/27/DIL/QTN', '6/2022/10/03/DIL/STPS', '6/2022/10/04/DIL/STP', '', '', '04/10/2022', '', '', 12),
 (7, '7/2022/09/29/DIL/QTN', '7/2022/09/30/DIL/STPS', '', '', '', '', '', '', 10),
 (8, '8/2022/10/03/DIL/QTN', '', '', '', '03/10/2022', '', '', '', 5),
-(9, '9/2022/10/04/DIL/QTN', '9/2022/10/04/DIL/STPS', '9/2022/10/04/DIL/STP', 'DIL-20221008COA', '04/10/2022', '04/10/2022', '04/10/2022', '08/10/2022', 7),
-(10, '10/2022/10/08/DIL/QTN', '10/2022/10/08/DIL/STPS', '10/2022/10/08/DIL/STP', 'DIL-20221008COA', '08/10/2022', '08/10/2022', '08/10/2022', '08/10/2022', 6),
-(11, '11/2022/10/08/DIL/QTN', '11/2022/10/08/DIL/STPS', '11/2022/10/08/DIL/STP', 'DIL-20221008COA', '08/10/2022', '08/10/2022', '08/10/2022', '08/10/2022', 11);
+(9, '9/2022/10/04/DIL/QTN', '9/2022/10/04/DIL/STPS', '9/2022/10/04/DIL/STP', 'DIL-20221004COA', '04/10/2022', '04/10/2022', '04/10/2022', '04/10/2022', 7),
+(10, '10/2022/10/09/DIL/QTN', '10/2022/10/09/DIL/STPS', '10/2022/10/09/DIL/STP', 'DIL-20221009COA', '09/10/2022', '09/10/2022', '09/10/2022', '09/10/2022', 11);
 
 --
 -- Indexes for dumped tables
@@ -574,19 +738,19 @@ ALTER TABLE `analysis`
 -- AUTO_INCREMENT for table `assign_sampler`
 --
 ALTER TABLE `assign_sampler`
-  MODIFY `id_assign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_assign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `coa`
 --
 ALTER TABLE `coa`
-  MODIFY `id_coa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_coa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
 
 --
 -- AUTO_INCREMENT for table `institution`
 --
 ALTER TABLE `institution`
-  MODIFY `id_int` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_int` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `method`
@@ -598,19 +762,19 @@ ALTER TABLE `method`
 -- AUTO_INCREMENT for table `quotation`
 --
 ALTER TABLE `quotation`
-  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `result_coa`
 --
 ALTER TABLE `result_coa`
-  MODIFY `id_result` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id_result` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
 
 --
 -- AUTO_INCREMENT for table `sample`
 --
 ALTER TABLE `sample`
-  MODIFY `id_sample` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_sample` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `sampler`
@@ -622,13 +786,13 @@ ALTER TABLE `sampler`
 -- AUTO_INCREMENT for table `sampling_det`
 --
 ALTER TABLE `sampling_det`
-  MODIFY `id_sampling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_sampling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `sk_number`
 --
 ALTER TABLE `sk_number`
-  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables

@@ -46,6 +46,16 @@ foreach($specialAnalysis as $sa) {
                                 <?php echo form_error('params', '<span class="text-small text-danger">', '</span>') ?>
                             </div>
                             <div class="form-group">
+                                <label>Category Parameters</label>
+                                <select name="category_params" id="" class="form-control <?php if(form_error('category_params')) { echo "is-invalid"; } ?>" value="<?= set_value('category_params')?>">
+                                <option value="<?= $sc->category_params ?>"><?= $sc->category_params ?></option>
+                                    <option value="Physical">Physical</option>
+                                    <option value="Chemistry">Chemistry</option>
+                                    <option value="Microbiology">Microbiology</option>
+                                </select>
+                                <?php echo form_error('category_params', '<span class="text-small text-danger">', '</span>') ?>
+                            </div>
+                            <div class="form-group">
                                 <label>Unit</label>
                                 <select name="unit" id="" class="form-control <?php if(form_error('unit')) { echo "is-invalid"; } ?>" value="<?= set_value('unit')?>">
                                 <option value="<?= $sc->unit ?>"><?= $sc->unit ?></option>

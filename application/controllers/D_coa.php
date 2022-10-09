@@ -136,6 +136,7 @@ class D_coa extends CI_Controller
         $where = array(
             'id_coa' => $id
         );
+        
         $this->web->update_data('coa', $data, $where);
         $this->session->set_flashdata('msg', 'Data COA success changed!');
         redirect('D_coa/add_coa/' . $id_analysis);

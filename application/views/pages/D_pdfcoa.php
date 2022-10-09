@@ -26,12 +26,6 @@ function tgl_indo($tanggal){
  
 	return  $pecahkan[0] . ' ' . $bulan[ (int)$pecahkan[1]] . ' ' . $pecahkan[2];
 }
-
-function toBase64($url) {
-    $data = file_get_contents($url);
-    $base64 = 'data:image/svg+xml;base64,' . base64_encode($data);
-    return $base64;
-  }
 ?>
 <!doctype html>
 <html lang="en"><head>
@@ -42,7 +36,7 @@ function toBase64($url) {
     <title><?= $title . ' ' . $coa_det->name_int ?></title>
     <style>
       table.table-bordered {
-          font-size: 12px;
+          font-size: 11px!important;
       }
       table.table-bordered th{
           padding-top: 0px!important;
@@ -51,6 +45,7 @@ function toBase64($url) {
       table.table-bordered td{
           padding-top: 0px!important;
           padding-bottom: 0px!important;
+          line-height: 13px!important;
       }
       .no-padding {
         padding-top: 0px!important;
@@ -8304,7 +8299,7 @@ a.text-dark:hover {
     }
 }
 .page_break { page-break-after: always; }
-table{font-size:12px!important;}
+table{font-size:12px;}
 
 header {
     height: 200px!important;
@@ -8382,9 +8377,18 @@ footer {
                     <td>Subject</td>
                     <td>:</td>
                     <td>
-                        <?php foreach($analysis as $anl) : ?>
-                            - <?= $anl->name_analysis ?> <br>
-                        <?php endforeach; ?>
+                        <?php for($i = 0; $i<sizeof($analysis); $i++) : ?>
+                            <?php if($i%2 == 0) { ?>
+                            - <?= $analysis[$i]->name_analysis ?> <br>
+                            <?php } ?>
+                        <?php endfor; ?>
+                    </td>
+                    <td>
+                        <?php for($i = 0; $i<sizeof($analysis); $i++) : ?>
+                            <?php if($i%2 == 1) { ?>
+                            - <?= $analysis[$i]->name_analysis ?> <br>
+                            <?php } ?>
+                        <?php endfor; ?>
                     </td>
                 </tr>
                 <tr>
@@ -8411,23 +8415,21 @@ footer {
         </div>
 
         <div class="">
-            <img src="<?= site_url('D_gencoa/renderQR/' . $coa_det->id_sk) ?>" alt="" style="margin-top: 70px; margin-left: 50px; margin-right: 330px;">
+            <img src="<?= site_url('D_gencoa/renderQR/' . $coa_det->id_sk) ?>" alt="" style="margin-top: 50px; margin-left: 50px; margin-right: 330px;">
             <div style="display: inline-block; margin-top: 70px;">
                 <p style="font-size: 12px; margin-left: 50px;">Bekasi, <?= tgl_indo($coa_det->date_report) ?></p>
                 <br><br><br><br>
-                <p style="font-size: 12px; font-weight: bold; text-decoration: underline;">Drs. H. Soekardin Rachman, M.Si</p>
-                <p style="font-size: 12px; font-weight: bold; margin-left: 50px; margin-top: -10px;">Direktur Utama</p>
+                <p style="font-size: 12px; font-weight: bold; text-decoration: underline; margin-bottom: -20px;">Drs. H. Soekardin Rachman, M.Si</p>
+                <p style="font-size: 12px; font-weight: bold; margin-left: 50px;">Direktur Utama</p>
             </div>
         </div>
     </div>
 
-    <div class="page_break"></div>
-
     <?php 
     foreach($analysis as $anl) :
     if($anl->name_analysis == 'Clean Water') { ?>
-
-    <div style="position: relative;">
+        <div class="page_break"></div>
+        <div style="position: relative;">
         <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
         <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
         <table class="table table-bordered">
@@ -8450,7 +8452,7 @@ footer {
                 <td></td>
             </tr>
         </table>
-        <table class="table table-bordered mt-5">
+        <table class="table table-bordered mt-2">
             <tr>
                 <th>No</th>
                 <th>Parameters</th>
@@ -8466,12 +8468,12 @@ footer {
             <?php $no=1; foreach($coa as $c) : if($c->category_params == 'Physical' && $c->name_analysis == 'Clean Water') {  
             ?>
             <tr>
-                <td><?= $no++ ?></td>
+                <td width="25px"><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td><?= $c->unit ?></td>
-                <td><?= $c->result ?></td>
-                <td><?= $c->reg_standart_1 ?></td>
-                <td><?= $c->name_method ?></td>
+                <td width="50px"><?= $c->unit ?></td>
+                <td width="70px"><?= $c->result ?></td>
+                <td width="50px"><?= $c->reg_standart_1 ?></td>
+                <td width="150px"><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>
             <tr>
@@ -8506,7 +8508,7 @@ footer {
             <?php } endforeach; ?>
         </table>
 
-        <table>
+        <table style="font-size: 11px;">
           <tr>
             <td><b>Notes:</b></td>
           </tr>
@@ -8520,14 +8522,10 @@ footer {
           </tr>
         </table>
     </div>
-    <div class="page_break"></div>
-    <?php } endforeach; ?>
-    
-    <?php 
-    foreach($analysis as $anl) :
-    if($anl->name_analysis == 'Air Emission (Non-Isocinetic)') { ?>
 
-    <div style="position: relative;">
+    <?php } elseif ($anl->name_analysis == 'Wastewater') { ?>
+        <div class="page_break"></div>
+        <div style="position: relative;">
         <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
         <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
         <table class="table table-bordered">
@@ -8550,7 +8548,295 @@ footer {
                 <td></td>
             </tr>
         </table>
-        <table class="table table-bordered mt-5">
+        <table class="table table-bordered mt-2">
+            <tr>
+                <th>No</th>
+                <th>Parameters</th>
+                <th>Unit</th>
+                <th>Testing Result</th>
+                <th>Regulatory Standard**</th>
+                <th>Methods</th>
+            </tr>
+            <tr>
+                <td></td>
+                <th colspan="5">Physical Parameters:</th>
+            </tr>
+            <?php $no=1; foreach($coa as $c) : if($c->category_params == 'Physical' && $c->name_analysis == 'Wastewater') {  
+            ?>
+            <tr>
+                <td width="25px"><?= $no++ ?></td>
+                <td><?= $c->params ?></td>
+                <td width="50px"><?= $c->unit ?></td>
+                <td width="70px"><?= $c->result ?></td>
+                <td width="50px"><?= $c->reg_standart_1 ?></td>
+                <td width="150px"><?= $c->name_method ?></td>
+            </tr>
+            <?php } endforeach; ?>
+            <tr>
+                <td></td>
+                <th colspan="5">Chemistry Parameters:</th>
+            </tr>
+            <?php $no=1; foreach($coa as $c) : if($c->category_params == 'Chemistry' && $c->name_analysis == 'Wastewater') {  
+            ?>
+            <tr>
+                <td><?= $no++ ?></td>
+                <td><?= $c->params ?></td>
+                <td><?= $c->unit ?></td>
+                <td><?= $c->result ?></td>
+                <td><?= $c->reg_standart_1 ?></td>
+                <td><?= $c->name_method ?></td>
+            </tr>
+            <?php } endforeach; ?>
+            <tr>
+                <td></td>
+                <th colspan="5">Microbiology Parameters:</th>
+            </tr>
+            <?php $no=1; foreach($coa as $c) : if($c->category_params == 'Microbiology' && $c->name_analysis == 'Wastewater') {  
+            ?>
+            <tr>
+                <td><?= $no++ ?></td>
+                <td><?= $c->params ?></td>
+                <td><?= $c->unit ?></td>
+                <td><?= $c->result ?></td>
+                <td><?= $c->reg_standart_1 ?></td>
+                <td><?= $c->name_method ?></td>
+            </tr>
+            <?php } endforeach; ?>
+        </table>
+
+        <table style="font-size: 11px;">
+          <tr>
+            <td><b>Notes:</b></td>
+          </tr>
+          <tr>
+            <td class="no-padding"><</td>
+            <td class="no-padding">Less Than MDL (Method Detection Limit)</td>
+          </tr>
+          <tr>
+            <td class="no-padding">**&emsp;&emsp;&emsp;</td>
+            <td class="no-padding">Regulation of the Minister of Helath No. 32 of 2017 Regarding Environtmental Health Quality Standards for Water Media for Sanitary Hygiene Purposes</td>
+          </tr>
+        </table>
+    </div>
+
+    <?php } elseif ($anl->name_analysis == 'Surface Water') { ?>
+        <div class="page_break"></div>
+        <div style="position: relative;">
+        <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>Sample No.</th>
+                <th>Sampling Location</th>
+                <th>Sample Description</th>
+                <th>Sampling Date</th>
+                <th>Sampling Time</th>
+                <th>Date Received</th>
+                <th>Interval Testing Date</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->date_analysis ?></td>
+                <td></td>
+                <td><?= $anl->date_sample ?></td>
+                <td></td>
+            </tr>
+        </table>
+        <table class="table table-bordered mt-2">
+            <tr>
+                <th rowspan="2">No</th>
+                <th rowspan="2">Parameters</th>
+                <th rowspan="2">Unit</th>
+                <th rowspan="2">Testing Result</th>
+                <th colspan="4">Regulatory Standard*)</th>
+                <th rowspan="2">Methods</th>
+            </tr>
+            <tr>
+                <th>I</th>
+                <th>II</th>
+                <th>III</th>
+                <th>IV</th>
+            </tr>
+            <tr>
+                <td></td>
+                <th colspan="8">Physical Parameters:</th>
+            </tr>
+            <?php $no=1; foreach($coa as $c) : if($c->category_params == 'Physical' && $c->name_analysis == 'Surface Water') {  
+            ?>
+            <tr>
+                <td><?= $no++ ?></td>
+                <td><?= $c->params ?></td>
+                <td><?= $c->unit ?></td>
+                <td><?= $c->result ?></td>
+                <td><?= $c->reg_standart_1 ?></td>
+                <td><?= $c->reg_standart_2 ?></td>
+                <td><?= $c->reg_standart_3 ?></td>
+                <td><?= $c->reg_standart_4 ?></td>
+                <td><?= $c->name_method ?></td>
+            </tr>
+            <?php } endforeach; ?>
+            <tr>
+                <td></td>
+                <th colspan="8">Chemistry Parameters:</th>
+            </tr>
+            <?php $no=1; foreach($coa as $c) : if($c->category_params == 'Chemistry' && $c->name_analysis == 'Surface Water') {  
+            ?>
+            <tr>
+                <td><?= $no++ ?></td>
+                <td><?= $c->params ?></td>
+                <td><?= $c->unit ?></td>
+                <td><?= $c->result ?></td>
+                <td><?= $c->reg_standart_1 ?></td>
+                <td><?= $c->reg_standart_2 ?></td>
+                <td><?= $c->reg_standart_3 ?></td>
+                <td><?= $c->reg_standart_4 ?></td>
+                <td><?= $c->name_method ?></td>
+            </tr>
+            <?php } endforeach; ?>
+            <tr>
+                <td></td>
+                <th colspan="8">Microbiology Parameters:</th>
+            </tr>
+            <?php $no=1; foreach($coa as $c) : if($c->category_params == 'Microbiology' && $c->name_analysis == 'Surface Water') {  
+            ?>
+            <tr>
+                <td><?= $no++ ?></td>
+                <td><?= $c->params ?></td>
+                <td><?= $c->unit ?></td>
+                <td><?= $c->result ?></td>
+                <td><?= $c->reg_standart_1 ?></td>
+                <td><?= $c->reg_standart_2 ?></td>
+                <td><?= $c->reg_standart_3 ?></td>
+                <td><?= $c->reg_standart_4 ?></td>
+                <td><?= $c->name_method ?></td>
+            </tr>
+            <?php } endforeach; ?>
+        </table>
+
+        <table style="font-size: 11px;">
+          <tr>
+            <td><b>Notes:</b></td>
+          </tr>
+          <tr>
+            <td class="no-padding"><</td>
+            <td class="no-padding">Less Than MDL (Method Detection Limit)</td>
+          </tr>
+          <tr>
+            <td class="no-padding">*</td>
+            <td class="no-padding">Accredited Parameters</td>
+          </tr>
+          <tr>
+            <td class="no-padding">**&emsp;&emsp;&emsp;</td>
+            <td class="no-padding">Regulation of the Minister of Helath No. 32 of 2017 Regarding Environtmental Health Quality Standards for Water Media for Sanitary Hygiene Purposes</td>
+          </tr>
+          <tr style="font-weight: bold;">
+            <td class="no-padding">****</td>
+            <td class="no-padding">Exceeds the Regulatory Standard</td>
+          </tr>
+          <tr>
+            <td class="no-padding">*****</td>
+            <td class="no-padding">Deviation 3 From Ambient Temperature</td>
+          </tr>
+        </table>
+    </div>
+
+    <?php } elseif ($anl->name_analysis == 'Stationary Stack Source Emission') { ?>
+        <div class="page_break"></div>
+        <div style="position: relative;">
+        <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>Sample No.</th>
+                <th>Sampling Location</th>
+                <th>Sample Description</th>
+                <th>Sampling Date</th>
+                <th>Sampling Time</th>
+                <th>Date Received</th>
+                <th>Interval Testing Date</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->date_analysis ?></td>
+                <td></td>
+                <td><?= $anl->date_sample ?></td>
+                <td></td>
+            </tr>
+        </table>
+        <table class="table table-bordered mt-2">
+            <tr>
+                <th>No</th>
+                <th>Parameters</th>
+                <th>Testing Result</th>
+                <th>Regulatory Standard**</th>
+                <th>Unit</th>
+                <th>Methods</th>
+            </tr>
+            <?php $no=1; foreach($coa as $c) : if($c->name_analysis == 'Stationary Stack Source Emission') {  
+            ?>
+            <tr>
+                <td width="25px"><?= $no++ ?></td>
+                <td><?= $c->params ?></td>
+                <td><?= $c->result ?></td>
+                <td><?= $c->reg_standart_1 ?></td>
+                <td><?= $c->unit ?></td>
+                <td><?= $c->name_method ?></td>
+            </tr>
+            <?php } endforeach; ?>
+            <tr>
+              <td colspan="6">Coordinate :<br>Velocity :</td>
+            </tr>
+        </table>
+
+        <table style="font-size: 11px;">
+          <tr>
+            <td><b>Notes:</b></td>
+          </tr>
+          <tr>
+            <td class="no-padding"><</td>
+            <td class="no-padding">Less Than MDL (Method Detection Limit)</td>
+          </tr>
+          <tr>
+            <td class="no-padding">*</td>
+            <td class="no-padding">Accredited Parameters</td>
+          </tr>
+          <tr>
+            <td class="no-padding">**&emsp;&emsp;&emsp;</td>
+            <td class="no-padding">Minister of Environmental Decree of Republic Indonesia No. 13/MENLH/3/1995 Annex VB Gas Volume Under Standard Conditions (25C and 1 atm presurre)</td>
+          </tr>
+        </table>
+    </div>
+
+    <?php } elseif ($anl->name_analysis == 'Air Emission (Non-Isocinetic)') { ?>
+        <div class="page_break"></div>
+        <div style="position: relative;">
+        <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>Sample No.</th>
+                <th>Sampling Location</th>
+                <th>Sample Description</th>
+                <th>Sampling Date</th>
+                <th>Sampling Time</th>
+                <th>Date Received</th>
+                <th>Interval Testing Date</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->date_analysis ?></td>
+                <td></td>
+                <td><?= $anl->date_sample ?></td>
+                <td></td>
+            </tr>
+        </table>
+        <table class="table table-bordered mt-2">
             <tr>
                 <th>No</th>
                 <th>Parameters</th>
@@ -8562,12 +8848,12 @@ footer {
             <?php $no=1; foreach($coa as $c) : if($c->name_analysis == 'Air Emission (Non-Isocinetic)') {  
             ?>
             <tr>
-                <td><?= $no++ ?></td>
+                <td width="25px"><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td><?= $c->result ?></td>
-                <td><?= $c->reg_standart_1 ?></td>
-                <td><?= $c->unit ?></td>
-                <td><?= $c->name_method ?></td>
+                <td width="70px"><?= $c->result ?></td>
+                <td width="50px"><?= $c->reg_standart_1 ?></td>
+                <td width="50px"><?= $c->unit ?></td>
+                <td width="150px"><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>
             <tr>
@@ -8593,9 +8879,215 @@ footer {
           </tr>
         </table>
     </div>
-    <div class="page_break"></div>
-    <?php } endforeach; ?>
-    <footer></footer>
+
+    <?php } elseif ($anl->name_analysis == 'Workplace Air Quality') { ?>
+        <div class="page_break"></div>
+        <div style="position: relative;">
+        <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>Sample No.</th>
+                <th>Sampling Location</th>
+                <th>Sample Description</th>
+                <th>Sampling Date</th>
+                <th>Sampling Time</th>
+                <th>Date Received</th>
+                <th>Interval Testing Date</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->date_analysis ?></td>
+                <td></td>
+                <td><?= $anl->date_sample ?></td>
+                <td></td>
+            </tr>
+        </table>
+        <table class="table table-bordered mt-2">
+            <tr>
+                <th>No</th>
+                <th>Parameters</th>
+                <th>Testing Result</th>
+                <th>Regulatory Standard**</th>
+                <th>Unit</th>
+                <th>Methods</th>
+            </tr>
+            <?php $no=1; foreach($coa as $c) : if($c->name_analysis == 'Workplace Air Quality') {  
+            ?>
+            <tr>
+                <td width="25px"><?= $no++ ?></td>
+                <td><?= $c->params ?></td>
+                <td width="70px"><?= $c->result ?></td>
+                <td width="50px"><?= $c->reg_standart_1 ?></td>
+                <td width="50px"><?= $c->unit ?></td>
+                <td width="150px"><?= $c->name_method ?></td>
+            </tr>
+            <?php } endforeach; ?>
+            <tr>
+              <td colspan="6">Workplace Environtment Condition :<br><br>Coordinate :<br>Velocity :</td>
+            </tr>
+        </table>
+
+        <table>
+          <tr>
+            <td><b>Notes:</b></td>
+          </tr>
+          <tr>
+            <td class="no-padding"><</td>
+            <td class="no-padding">Less Than MDL (Method Detection Limit)</td>
+          </tr>
+          <tr>
+            <td class="no-padding">*</td>
+            <td class="no-padding">Accredited Parameters</td>
+          </tr>
+          <tr>
+            <td class="no-padding">**&emsp;&emsp;&emsp;</td>
+            <td class="no-padding">Minister of Manpower Regulation No. 05 Year 2018</td>
+          </tr>
+        </table>
+    </div>
+
+    <?php } elseif ($anl->name_analysis == 'Air Emission') { ?>
+        <div class="page_break"></div>
+        <div style="position: relative;">
+        <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>Sample No.</th>
+                <th>Sampling Location</th>
+                <th>Sample Description</th>
+                <th>Sampling Date</th>
+                <th>Sampling Time</th>
+                <th>Date Received</th>
+                <th>Interval Testing Date</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->date_analysis ?></td>
+                <td></td>
+                <td><?= $anl->date_sample ?></td>
+                <td></td>
+            </tr>
+        </table>
+        <table class="table table-bordered mt-2">
+            <tr>
+                <th>No</th>
+                <th>Parameters</th>
+                <th>Testing Result</th>
+                <th>Regulatory Standard**</th>
+                <th>Unit</th>
+                <th>Methods</th>
+            </tr>
+            <?php $no=1; foreach($coa as $c) : if($c->name_analysis == 'Air Emission') {  
+            ?>
+            <tr>
+                <td><?= $no++ ?></td>
+                <td><?= $c->params ?></td>
+                <td><?= $c->result ?></td>
+                <td><?= $c->reg_standart_1 ?></td>
+                <td><?= $c->unit ?></td>
+                <td><?= $c->name_method ?></td>
+            </tr>
+            <?php } endforeach; ?>
+            <tr>
+              <td colspan="6">Coordinate :<br>Velocity :</td>
+            </tr>
+        </table>
+
+        <table>
+          <tr>
+            <td><b>Notes:</b></td>
+          </tr>
+          <tr>
+            <td class="no-padding"><</td>
+            <td class="no-padding">Less Than MDL (Method Detection Limit)</td>
+          </tr>
+          <tr>
+            <td class="no-padding">*</td>
+            <td class="no-padding">Accredited Parameters</td>
+          </tr>
+          <tr>
+            <td class="no-padding">**&emsp;&emsp;&emsp;</td>
+            <td class="no-padding">Governor of DKI Jakarta Decree No. 670 of 2000 Regarding Air Emission Quality Standards (Appendix III)</td>
+          </tr>
+          <tr style="font-weight: bold;">
+            <td class="no-padding">***</td>
+            <td class="no-padding">Exceeds the Regulatory Standard</td>
+          </tr>
+        </table>
+    </div>
+
+    <?php } elseif ($anl->name_analysis == 'Odor') { ?>
+        <div class="page_break"></div>
+        <div style="position: relative;">
+        <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>Sample No.</th>
+                <th>Sampling Location</th>
+                <th>Sample Description</th>
+                <th>Sampling Date</th>
+                <th>Sampling Time</th>
+                <th>Date Received</th>
+                <th>Interval Testing Date</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->date_analysis ?></td>
+                <td></td>
+                <td><?= $anl->date_sample ?></td>
+                <td></td>
+            </tr>
+        </table>
+        <table class="table table-bordered mt-2">
+            <tr>
+                <th>No</th>
+                <th>Parameters</th>
+                <th>Testing Result</th>
+                <th>Regulatory Standard**</th>
+                <th>Unit</th>
+                <th>Methods</th>
+            </tr>
+            <?php $no=1; foreach($coa as $c) : if($c->name_analysis == 'Odor') {  
+            ?>
+            <tr>
+                <td><?= $no++ ?></td>
+                <td><?= $c->params ?></td>
+                <td><?= $c->result ?></td>
+                <td><?= $c->reg_standart_1 ?></td>
+                <td><?= $c->unit ?></td>
+                <td><?= $c->name_method ?></td>
+            </tr>
+            <?php } endforeach; ?>
+        </table>
+
+        <table>
+          <tr>
+            <td><b>Notes:</b></td>
+          </tr>
+          <tr>
+            <td class="no-padding"><</td>
+            <td class="no-padding">Less Than MDL (Method Detection Limit)</td>
+          </tr>
+          <tr>
+            <td class="no-padding">*</td>
+            <td class="no-padding">Accredited Parameters</td>
+          </tr>
+          <tr>
+            <td class="no-padding">**&emsp;&emsp;&emsp;</td>
+            <td class="no-padding">Minister of Manpower Regulation No. 05 Year 2018</td>
+          </tr>
+        </table>
+    </div>
+    <?php } endforeach;  ?>
 
 
     <!-- Optional JavaScript -->
