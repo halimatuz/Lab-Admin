@@ -2,6 +2,30 @@
 foreach($sampling_det as $sd) {
   $smpl_det = $sd;
 }
+
+function tgl_indo($tanggal){
+	$bulan = array (
+		1 =>   'Januari',
+		'Februari',
+		'Maret',
+		'April',
+		'Mei',
+		'Juni',
+		'Juli',
+		'Agustus',
+		'September',
+		'Oktober',
+		'November',
+		'Desember'
+	);
+	$pecahkan = explode('/', $tanggal);
+	
+	// variabel pecahkan 0 = tanggal
+	// variabel pecahkan 1 = bulan
+	// variabel pecahkan 2 = tahun
+ 
+	return  $pecahkan[0] . ' ' . $bulan[ (int)$pecahkan[1]] . ' ' . $pecahkan[2];
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -96,7 +120,7 @@ foreach($sampling_det as $sd) {
         <div class="col-md-3"></div>
         <div class="col-md-3"></div>
         <div class="col-md-3">
-          <p class="text-center">Bekasi, <?= $smpl_det->date_analysis ?><br>PT. Delta Indonesia Laboratory</p>
+          <p class="text-center">Bekasi, <?= tgl_indo($smpl_det->date_analysis); ?><br>PT. Delta Indonesia Laboratory</p>
           <br><br><br>
           <p class="text-center"><u class="font-weight-bold">Fadhelun</u><br>PJ Teknis</p>
         </div>
@@ -109,7 +133,7 @@ foreach($sampling_det as $sd) {
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
-      // window.print();
+      window.print();
     </script>
   </body>
 </html>

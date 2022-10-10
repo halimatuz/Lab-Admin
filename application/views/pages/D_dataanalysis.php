@@ -115,7 +115,6 @@
                                 <tr>
                                 <th>No</th>
                                 <th>Name Analysis</th>
-                                <th>Standart Price</th>
                                 <th>COA</th>
                                 <th>Action</th>
                                 </tr>
@@ -127,7 +126,6 @@
                                     <tr>
                                         <td><?= $no++; ?></td>
                                         <td><?= htmlspecialchars($anl->name_analysis); ?></td>
-                                        <td>Rp <?php echo htmlspecialchars(number_format($anl->standart_price, 0, ',', '.')) ?></td>
                                         <td>
                                         <?php if($anl->coa == 1) {
                                                 echo 'Yes';

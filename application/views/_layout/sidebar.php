@@ -57,15 +57,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <li class="<?php echo $this->uri->segment(2) == 'data_quotation_print' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_gencoa/data_quotation_print">Print COA</a></li>
         </ul>
       </li>
-    
-      <li class="menu-header">Template</li>
-      <li class="dropdown <?php echo $this->uri->segment(1) == 'D_templatingcoa' ? 'active' : ''; ?>">
-        <a href="<?= base_url(); ?>D_templatingcoa" class="nav-link"><i class="fas fa-receipt"></i><span>Templating COA</span></a>
-      </li>
 
       <li class="menu-header">Validation</li>
       <li class="dropdown <?php echo $this->uri->segment(1) == 'D_scancoa' ? 'active' : ''; ?>">
         <a href="<?= base_url(); ?>D_scancoa" class="nav-link"><i class="fas fa-qrcode"></i><span>Scan COA</span></a>
+      </li>
+      
+      <li class="menu-header">More</li>
+      <li class="dropdown <?php echo $this->uri->segment(2) == 'add_user' ? 'active' : ''; ?>">
+        <a href="<?= base_url(); ?>D_auth/list_users" class="nav-link"><i class="fas fa-user"></i><span>Users</span></a>
       </li>
 
       <li class="menu-header">Starter</li>

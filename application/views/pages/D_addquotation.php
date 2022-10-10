@@ -83,7 +83,7 @@ foreach($sknumber as $s) {
                             </div>
                             <button type="submit" class="btn btn-primary">Update Quotation</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
-                            <a href="<?php echo base_url('D_quotation/add_quotation/') . $institution->id_int ?>" class="btn btn-danger">Cancel</a>
+                            <a href="<?php echo base_url('D_quotation/add_quotation/') . $institution->id_int . '/' . $sk->id_sk ?>" class="btn btn-danger">Cancel</a>
                         </form>
                     <?php endforeach; } else {?>
                         <form action="<?= base_url('D_quotation/add_quotation_action') ?>" method="POST">
@@ -131,7 +131,7 @@ foreach($sknumber as $s) {
                     <?php } ?>
                     </div>
                     <div class="col-md-8">
-                        <a href="<?= base_url('D_quotation/print_quotation/') . $institution->id_int ?>" class="btn btn-primary">Print</a>
+                        <a href="<?= base_url('D_quotation/print_quotation/') . $sk->id_sk ?>" class="btn btn-primary">Print</a>
                         <hr>
                         <?php if($quotation == NULL) { ?>
                             <div class="empty-state" data-height="400">
@@ -173,7 +173,7 @@ foreach($sknumber as $s) {
                                         <td>Rp <?= htmlspecialchars(number_format($row->standart_price, 0, ',', '.')) ?></td>
                                         <td>Rp <?= htmlspecialchars(number_format($row->add_price, 0, ',', '.')) ?></td>
                                         <td>
-                                            <a href="<?= base_url('D_quotation/update_quotation/') . $row->id_int . '/' . $row->id_quotation ?>"class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                            <a href="<?= base_url('D_quotation/update_quotation/') . $row->id_int . '/'. $row->id_sk . '/'  . $row->id_quotation ?>"class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                             <a href="<?= base_url('D_quotation/delete_quotation/') . $row->id_quotation . '/' . $row->id_int . '/' . $row->id_analysis ?>"class="btn btn-danger tombol-hapus" type="submit"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>

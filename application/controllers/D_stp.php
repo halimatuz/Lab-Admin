@@ -10,7 +10,7 @@ class D_stp extends CI_Controller
         $data = array(
             'title' => 'Data Quotation',
         );
-        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_sample) <> ''")->result();
+        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_sample) <> '' ORDER BY sk_number.id_sk DESC")->result();
         $this->load->view('_layout/header', $data);
         $this->load->view('_layout/sidebar');
         $this->load->view('pages/D_listquotation', $data);
@@ -64,7 +64,7 @@ class D_stp extends CI_Controller
 
         $data_stp = array(
             'sk_analysis' => $sk_analysis,
-            'date_sample' => $today
+            'date_analysis' => $today
         );
         
         $where_sk = array(
@@ -115,7 +115,7 @@ class D_stp extends CI_Controller
             'title' => 'Data STP',
         );
         $data['stp'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int")->result();
-        $data['ceksampler'] = $this->db->query("SELECT *,(SELECT count(*) FROM assign_sampler WHERE id_sk = sk_number.id_sk AND assign_sampler.is_sampler = 0) as st_account FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int")->result();
+        $data['ceksampler'] = $this->db->query("SELECT *,(SELECT count(*) FROM assign_sampler WHERE id_sk = sk_number.id_sk AND assign_sampler.is_sampler = 0) as st_account FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int ORDER BY sk_number.id_sk DESC")->result();
         $this->load->view('_layout/header', $data);
         $this->load->view('_layout/sidebar');
         $this->load->view('pages/D_liststp', $data);

@@ -46,7 +46,7 @@ class D_quotation extends CI_Controller
             'title' => 'List Quotation',
         );
 
-        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE sk_number.id_int = $id_int")->result();
+        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE sk_number.id_int = $id_int ORDER BY id_sk DESC")->result();
         $this->load->view('_layout/header', $data);
         $this->load->view('_layout/sidebar');
         $this->load->view('pages/D_listquotationint', $data);
@@ -126,7 +126,6 @@ class D_quotation extends CI_Controller
         $this->form_validation->set_rules('spec', 'Specification', 'required');
         $this->form_validation->set_rules('qty', 'Quantity', 'required');
         $this->form_validation->set_rules('id_sk', 'SK Number');
-        $this->form_validation->set_rules('add_price', 'Additional Price', 'required');
     }
 
     public function delete_quotation($id, $id_int, $id_analysis, $id_sk)
@@ -138,16 +137,16 @@ class D_quotation extends CI_Controller
 		redirect('D_quotation/add_quotation/' . $id_int . '/' . $id_sk);
 	}
 
-    public function update_quotation($id_int, $id) {
+    public function update_quotation($id_int, $id_sk, $id) {
         $where = array('id_quotation' => $id);
         $data = array(
             'title' => 'Data Quotation',
         );
         $data['specialInstitution'] = $this->db->query("SELECT * FROM institution WHERE id_int = '$id_int'")->result();
-        $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int INNER JOIN sk_number ON quotation.id_int = sk_number.id_int WHERE quotation.id_int = '$id_int'")->result();
+        $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int WHERE quotation.id_sk = '$id_sk'")->result();
         $data['specialQuotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int WHERE quotation.id_quotation = '$id'")->result();
         $data['analysis'] = $this->db->query("SELECT * FROM analysis")->result();
-        $data['sknumber'] = $this->db->query("SELECT * FROM sk_number WHERE id_int = $id_int")->result();
+        $data['sknumber'] = $this->db->query("SELECT * FROM sk_number WHERE id_sk = $id_sk")->result();
         $this->load->view('_layout/header', $data);
         $this->load->view('_layout/sidebar');
         $this->load->view('pages/D_addquotation', $data);
@@ -158,9 +157,10 @@ class D_quotation extends CI_Controller
     {
 		$id = $this->input->post('id_quotation');
 		$id_int = $this->input->post('id_int');
+		$id_sk = $this->input->post('id_sk');
         $this->_rules();
         if ($this->form_validation->run() == FALSE) {
-            $this->update_quotation($id_int, $id);
+            $this->update_quotation($id_sk, $id_int, $id);
         } else {
             $id_analysis = $this->input->post('id_analysis');
             $remarks = $this->input->post('remarks');
@@ -184,7 +184,7 @@ class D_quotation extends CI_Controller
         );
         $this->web->update_data('quotation', $data, $where);
         $this->session->set_flashdata('msg', 'Data Quotation success changed!');
-        redirect('D_quotation/add_quotation/' . $id_int);
+        redirect('D_quotation/add_quotation/' . $id_int .  '/' .$id_sk . '/' . $id);
 		}
     }
 
@@ -192,7 +192,7 @@ class D_quotation extends CI_Controller
         $data = array(
             'title' => 'Print Quotation',
         );
-        $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk INNER JOIN institution ON quotation.id_int = institution.id_int INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis WHERE quotation.id_int = $id")->result();
+        $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk INNER JOIN institution ON quotation.id_int = institution.id_int INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis WHERE quotation.id_sk = $id")->result();
         $this->load->view('pages/D_printquotation', $data);
     }
 }

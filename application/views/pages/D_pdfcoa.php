@@ -8346,32 +8346,32 @@ footer {
     <div style="position: relative;">
         <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
         <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
-        <div class="col-xs-11" style="margin-left: 100px;">
-            <table class="mt-5">
+        <div class="col-xs-11" style="margin-left: 120px;">
+            <table class="mt-5" width="430px">
                 <tr>
-                    <td>Customer</td>
-                    <td>:</td>
-                    <td><?= $coa_det->name_int ?></td>
+                    <td width="70px">Customer</td>
+                    <td width="10px">:</td>
+                    <td colspan="2" width="150px"><?= $coa_det->name_int ?></td>
                 </tr>
                 <tr>
                     <td>Address</td>
                     <td>:</td>
-                    <td><?= $coa_det->int_address ?></td>
+                    <td colspan="2"><?= $coa_det->int_address ?></td>
                 </tr>
                 <tr>
                     <td>Contact Name</td>
                     <td>:</td>
-                    <td><?= $coa_det->name_cp ?></td>
+                    <td colspan="2"><?= $coa_det->name_cp ?></td>
                 </tr>
                 <tr>
                     <td>Email</td>
                     <td>:</td>
-                    <td><?= $coa_det->int_email ?></td>
+                    <td colspan="2"><?= $coa_det->int_email ?></td>
                 </tr>
                 <tr>
                     <td>Phone</td>
                     <td>:</td>
-                    <td><?= $coa_det->int_phone ?></td>
+                    <td colspan="2"><?= $coa_det->int_phone ?></td>
                 </tr>
                 <tr>
                     <td>Subject</td>
@@ -8394,22 +8394,22 @@ footer {
                 <tr>
                     <td>Sample taken by</td>
                     <td>:</td>
-                    <td>PT. Delta Indonesia Laboratory</td>
+                    <td colspan="2">PT. Delta Indonesia Laboratory</td>
                 </tr>
                 <tr>
                     <td>Sample Receive Date</td>
                     <td>:</td>
-                    <td><?= tgl_indo($coa_det->date_sample) ?></td>
+                    <td colspan="2"><?= tgl_indo($coa_det->date_sample) ?></td>
                 </tr>
                 <tr>
                     <td style="padding-right: 50px;">Sample Analysis Date</td>
                     <td style="padding-right: 10px;">:</td>
-                    <td><?= tgl_indo($coa_det->date_analysis) ?></td>
+                    <td colspan="2"><?= tgl_indo($coa_det->date_analysis) ?></td>
                 </tr>
                 <tr>
                     <td>Report Date</td>
                     <td>:</td>
-                    <td><?= tgl_indo($coa_det->date_report) ?></td>
+                    <td colspan="2"><?= tgl_indo($coa_det->date_report) ?></td>
                 </tr>
             </table>
         </div>

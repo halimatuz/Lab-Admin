@@ -43,7 +43,6 @@
                                 <tr>
                                 <th>No</th>
                                 <th>Name Analysis</th>
-                                <th>Standart Price</th>
                                 <th>Action</th>
                                 </tr>
                             </thead>
@@ -54,7 +53,6 @@
                                     <tr>
                                         <td><?= $no++; ?></td>
                                         <td><?= htmlspecialchars($anl->name_analysis); ?></td>
-                                        <td>Rp <?php echo htmlspecialchars(number_format($anl->standart_price, 0, ',', '.')) ?></td>
                                         <td>
                                           <?php if($anl->st_account == 0) { ?>
                                             <a href="<?php echo base_url('D_coa/add_coa/') . $anl->id_analysis ?>"class="btn btn-success"><i class="fas fa-plus"></i> Add COA</a>

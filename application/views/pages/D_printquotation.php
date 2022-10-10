@@ -2,6 +2,30 @@
 foreach($quotation as $quot) {
   $qtn = $quot;
 }
+
+function tgl_indo($tanggal){
+	$bulan = array (
+		1 =>   'Januari',
+		'Februari',
+		'Maret',
+		'April',
+		'Mei',
+		'Juni',
+		'Juli',
+		'Agustus',
+		'September',
+		'Oktober',
+		'November',
+		'Desember'
+	);
+	$pecahkan = explode('/', $tanggal);
+	
+	// variabel pecahkan 0 = tanggal
+	// variabel pecahkan 1 = bulan
+	// variabel pecahkan 2 = tahun
+ 
+	return  $pecahkan[0] . ' ' . $bulan[ (int)$pecahkan[1]] . ' ' . $pecahkan[2];
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -79,7 +103,7 @@ foreach($quotation as $quot) {
             </div>
           </div>
           <div class="col-md-6">
-            <p class="font-weight-bold">Date&emsp;&emsp;:&emsp;&emsp;</p>
+            <p class="font-weight-bold">Date&emsp;&emsp;:&emsp;&emsp;<?= tgl_indo($qtn->date_quotation); ?></p>
             <hr style="background-color: black;">
             <div style="border: 1px solid black;" class="p-1">
               <table class="font-weight-bold">
@@ -113,14 +137,13 @@ foreach($quotation as $quot) {
               <th scope="col">BAKU MUTU / SPESIFIKASI</th>
               <th scope="col">QTY</th>
               <th scope="col">UNIT PRICE</th>
-              <th scope="col">ADD PRICE</th>
               <th scope="col">AMOUNT</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th scope="row">A</th>
-              <th colspan="6">Biaya Sampling & Analisis Laboratorium Terakreditasi KAN</th>
+              <th colspan="5">Biaya Sampling & Analisis Laboratorium Terakreditasi KAN</th>
             </tr>
             <?php $no = 1; foreach($quotation as $qtn) : 
               $amount = ($qtn->add_price + $qtn->standart_price) * $qtn->qty;
@@ -131,13 +154,12 @@ foreach($quotation as $quot) {
                 <td><?= $qtn->remarks; ?></td>
                 <td><?= $qtn->spec; ?></td>
                 <td><?= $qtn->qty; ?></td>
-                <td>Rp&nbsp;<?= htmlspecialchars(number_format($qtn->standart_price, 0, ',', '.')) ?></td>
-                <td>Rp&nbsp;<?= htmlspecialchars(number_format($qtn->add_price, 0, ',', '.')); ?></td>
+                <td>Rp&nbsp;<?= htmlspecialchars(number_format($qtn->standart_price + $qtn->add_price, 0, ',', '.')) ?></td>
                 <td>Rp&nbsp;<?= htmlspecialchars(number_format($amount, 0, ',', '.'))?></td>
               </tr>
             <?php endforeach; ?>
             <tr class="font-weight-bold">
-              <td colspan="6">Total:</td>
+              <td colspan="5">Total:</td>
               <td>Rp&nbsp;<?= htmlspecialchars(number_format($jumlah, 0, ',', '.'))?></td>
             </tr>
           </tbody>

@@ -124,10 +124,9 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   <script src="<?php echo base_url(); ?>assets/modules/jqvmap/dist/maps/jquery.vmap.world.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/jqvmap/dist/maps/jquery.vmap.indonesia.js"></script>
   <?php
-} elseif ($this->uri->segment(2) == "auth_register") {
+} elseif ($this->uri->segment(2) == "add_user") {
   ?>
-  <script src="<?php echo base_url(); ?>assets/modules/jquery-pwstrength/jquery.pwstrength.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/modules/jquery-selectric/jquery.selectric.min.js"></script>
+  
   <?php
 } elseif ($this->uri->segment(2) == "features_post_create") {
   ?>
@@ -288,6 +287,9 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   <script src="<?php echo base_url(); ?>assets/js/page/utilities-contact.js"></script>
   <?php
 } ?>
+<!-- PW Strength -->
+<script src="<?php echo base_url(); ?>assets/modules/jquery-pwstrength/jquery.pwstrength.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/modules/jquery-selectric/jquery.selectric.min.js"></script>
 <!-- Modal -->
 <script src="<?php echo base_url(); ?>assets/modules/prism/prism.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/page/bootstrap-modal.js"></script>

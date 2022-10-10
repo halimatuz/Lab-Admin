@@ -86,7 +86,7 @@ function tgl_indo($tanggal){
             <tr>
               <td>Hari/tanggal</td>
               <td>:</td>
-              <td><?= $smpl_det->date_sample ?></td>
+              <td><?= tgl_indo($smpl_det->date_sample); ?></td>
             </tr>
             <tr>
               <td>Nama Pelanggan&emsp;&emsp;</td>

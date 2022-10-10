@@ -25,7 +25,7 @@ foreach($total_quotation as $tq) {
       <div class="col-12 mb-4">
           <div class="hero text-white hero-bg-image hero-bg-parallax" style="background-image: url('<?= base_url('assets/img/unsplash/laboratorium.jpeg') ?>');">
             <div class="hero-inner">
-              <h2>Welcome, Azkazikna!</h2>
+              <h2>Welcome, <?= $user['fullname'] ?>!</h2>
               <p class="lead">
                 This page is a place to manage data laboratory, quotation, letter, and more.
               </p>

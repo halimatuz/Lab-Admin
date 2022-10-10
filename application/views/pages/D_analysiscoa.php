@@ -31,7 +31,7 @@ foreach($analysis as $c) {
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
-                    <h6 class="text-primary">List Analysis For <?= $analysis_spec->name_int ?></h6>
+                    <h6 class="text-primary">List Analysis For <?= @$analysis_spec->name_int ?></h6>
                     <hr>
                       <?php if($analysis == NULL) { ?>
                             <div class="empty-state" data-height="400">

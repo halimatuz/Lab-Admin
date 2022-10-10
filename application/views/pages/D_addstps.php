@@ -39,7 +39,7 @@ foreach($specialSK as $sk) {
                                 <label>Sample</label>
                                 <input type="hidden" name="id_sk" value="<?= $sk_number->id_sk ?>">
                                 <select name="sample_desc[]" class="form-control selectric <?php if(form_error('sample_desc')) { echo "is-invalid"; } ?>" multiple="">
-                                <option value="<?php if( set_value('sample_desc') == NULL) { echo "";}else { echo set_value('sample_desc');}?>"><?php if( set_value('sample_desc') == NULL) { echo "-- Select Sample --";}else { echo set_value('name_sample');}?></option>
+                                  <option value="">-- Select Sample --</option>
                                     <?php foreach($sample as $smpl) : ?>
                                         <option value="<?= $smpl->name_sample ?>"><?= $smpl->name_sample ?></option>
                                     <?php endforeach; ?>

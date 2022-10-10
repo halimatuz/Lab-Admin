@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2022 at 06:54 AM
+-- Generation Time: Oct 10, 2022 at 03:45 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -84,7 +84,8 @@ INSERT INTO `assign_sampler` (`id_assign`, `id_sampler`, `id_sk`, `is_sampler`) 
 (12, 13, 10, 0),
 (13, 14, 10, 0),
 (14, 13, 13, 1),
-(15, 8, 13, 0);
+(15, 8, 13, 0),
+(16, 7, 14, 1);
 
 -- --------------------------------------------------------
 
@@ -312,7 +313,7 @@ CREATE TABLE `quotation` (
   `spec` text NOT NULL,
   `qty` int(11) NOT NULL,
   `id_sk` int(11) NOT NULL,
-  `add_price` int(11) NOT NULL
+  `add_price` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -346,7 +347,10 @@ INSERT INTO `quotation` (`id_quotation`, `id_analysis`, `id_int`, `remarks`, `sp
 (40, 2, 11, '<p>asdas</p>', '<p>sad</p>', 1, 13, 10),
 (41, 3, 11, '<p>sasd</p>', '<p>asdas</p>', 12, 13, 130000),
 (42, 13, 11, '<p>dsfds</p>', '<p>sdfsd</p>', 12, 13, 10000),
-(43, 15, 11, '<p>asdas</p>', '<p>das</p>', 12, 13, 10000);
+(43, 15, 11, '<p>asdas</p>', '<p>das</p>', 12, 13, 10000),
+(44, 8, 11, '<p>sdfsd</p>', '<p>fsfsdfs</p>', 12, 13, 0),
+(45, 3, 3, '<p>upodatean</p>', '<p>dsfdsf</p>', 10, 14, 120000),
+(46, 8, 3, '<p>stationary</p>', '<p>asda</p>', 5, 14, 0);
 
 -- --------------------------------------------------------
 
@@ -529,7 +533,40 @@ INSERT INTO `result_coa` (`id_result`, `id_sk`, `id_coa`, `id_analysis`, `id_int
 (190, 13, 38, 15, 11, NULL),
 (191, 13, 39, 15, 11, NULL),
 (192, 13, 40, 15, 11, NULL),
-(193, 13, 41, 15, 11, NULL);
+(193, 13, 41, 15, 11, NULL),
+(194, 13, 105, 8, 11, NULL),
+(195, 13, 106, 8, 11, NULL),
+(196, 13, 107, 8, 11, NULL),
+(197, 13, 108, 8, 11, NULL),
+(198, 13, 109, 8, 11, NULL),
+(199, 13, 110, 8, 11, NULL),
+(200, 13, 111, 8, 11, NULL),
+(201, 13, 112, 8, 11, NULL),
+(202, 13, 113, 8, 11, NULL),
+(203, 13, 114, 8, 11, NULL),
+(204, 13, 115, 8, 11, NULL),
+(205, 13, 116, 8, 11, NULL),
+(206, 13, 117, 8, 11, NULL),
+(207, 13, 118, 8, 11, NULL),
+(208, 13, 119, 8, 11, NULL),
+(209, 14, 122, 3, 3, 'asdas'),
+(210, 14, 123, 3, 3, 'dasd'),
+(211, 14, 124, 3, 3, 'asdas'),
+(212, 14, 105, 8, 3, NULL),
+(213, 14, 106, 8, 3, NULL),
+(214, 14, 107, 8, 3, NULL),
+(215, 14, 108, 8, 3, NULL),
+(216, 14, 109, 8, 3, NULL),
+(217, 14, 110, 8, 3, NULL),
+(218, 14, 111, 8, 3, NULL),
+(219, 14, 112, 8, 3, NULL),
+(220, 14, 113, 8, 3, NULL),
+(221, 14, 114, 8, 3, NULL),
+(222, 14, 115, 8, 3, NULL),
+(223, 14, 116, 8, 3, NULL),
+(224, 14, 117, 8, 3, NULL),
+(225, 14, 118, 8, 3, NULL),
+(226, 14, 119, 8, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -633,7 +670,8 @@ INSERT INTO `sampling_det` (`id_sampling`, `id_sk`, `sample_desc`, `location`, `
 (23, 9, 'Debu, SO2, NO2, CO', '<p>dsfsdf</p>', 'Gas', '2022-10-06', 'fgfdgdfgdf'),
 (24, 10, 'Debu, SO2, NO2, CO', '<p>sdfsdfsd</p>', 'dsfdsf', '2022-10-11', 'dsfsdf'),
 (25, 10, 'Partikulat, Opasitas, Laju Alir, Pencahayaan', '<p>sdfsdfsd</p>', 'dsfsd', '2022-10-12', 'sdfsdf'),
-(26, 13, 'Kelembaban, NOISE, ISBB/Heat Stress', '<p>dsfdsfds</p>', 'Cair', '2022-10-10', 'dsfds');
+(26, 13, 'Kelembaban, NOISE, ISBB/Heat Stress', '<p>dsfdsfds</p>', 'Cair', '2022-10-10', 'dsfds'),
+(27, 14, 'SO2, NO2, CO, NH3', '<p>xcvxc</p>', 'Cair', '2022-10-10', 'ewfsd');
 
 -- --------------------------------------------------------
 
@@ -667,7 +705,49 @@ INSERT INTO `sk_number` (`id_sk`, `sk_quotation`, `sk_sample`, `sk_analysis`, `n
 (8, '8/2022/10/03/DIL/QTN', '', '', '', '03/10/2022', '', '', '', 5),
 (9, '9/2022/10/04/DIL/QTN', '9/2022/10/04/DIL/STPS', '9/2022/10/04/DIL/STP', 'DIL-20221004COA', '04/10/2022', '04/10/2022', '04/10/2022', '04/10/2022', 7),
 (10, '10/2022/10/09/DIL/QTN', '10/2022/10/09/DIL/STPS', '10/2022/10/09/DIL/STP', 'DIL-20221009COA', '09/10/2022', '09/10/2022', '09/10/2022', '09/10/2022', 11),
-(13, '11/2022/10/10/DIL/QTN', '13/2022/10/10/DIL/STPS', '13/2022/10/10/DIL/STP', 'DIL-20221010COA', '10/10/2022', '10/10/2022', '10/10/2022', '10/10/2022', 11);
+(13, '11/2022/10/10/DIL/QTN', '13/2022/10/10/DIL/STPS', '13/2022/10/10/DIL/STP', 'DIL-20221010COA', '10/10/2022', '10/10/2022', '10/10/2022', '10/10/2022', 11),
+(14, '14/2022/10/10/DIL/QTN', '14/2022/10/10/DIL/STPS', '14/2022/10/10/DIL/STP', 'DIL-20221010COA', '10/10/2022', '10/10/2022', '10/10/2022', '10/10/2022', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id_user` int(11) NOT NULL,
+  `fullname` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  `date_created` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id_user`, `fullname`, `email`, `image`, `password`, `role_id`, `date_created`) VALUES
+(1, 'Azkazikna Ageung Laksana', 'azkazikna.aal@gmail.com', 'default.jpg', '$2y$10$q7dD4pXKRtUcIhOh6sCpdeMW10DpAsarhbTUihtS9ozYDOvbtC3Q2', 1, 1665406432);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_role`
+--
+
+CREATE TABLE `user_role` (
+  `id_role` int(11) NOT NULL,
+  `role` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_role`
+--
+
+INSERT INTO `user_role` (`id_role`, `role`) VALUES
+(1, 'Administrator');
 
 --
 -- Indexes for dumped tables
@@ -751,6 +831,18 @@ ALTER TABLE `sk_number`
   ADD KEY `id_int` (`id_int`);
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id_user`);
+
+--
+-- Indexes for table `user_role`
+--
+ALTER TABLE `user_role`
+  ADD PRIMARY KEY (`id_role`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -764,7 +856,7 @@ ALTER TABLE `analysis`
 -- AUTO_INCREMENT for table `assign_sampler`
 --
 ALTER TABLE `assign_sampler`
-  MODIFY `id_assign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_assign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `coa`
@@ -788,13 +880,13 @@ ALTER TABLE `method`
 -- AUTO_INCREMENT for table `quotation`
 --
 ALTER TABLE `quotation`
-  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `result_coa`
 --
 ALTER TABLE `result_coa`
-  MODIFY `id_result` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
+  MODIFY `id_result` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=227;
 
 --
 -- AUTO_INCREMENT for table `sample`
@@ -812,13 +904,25 @@ ALTER TABLE `sampler`
 -- AUTO_INCREMENT for table `sampling_det`
 --
 ALTER TABLE `sampling_det`
-  MODIFY `id_sampling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_sampling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `sk_number`
 --
 ALTER TABLE `sk_number`
-  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `user_role`
+--
+ALTER TABLE `user_role`
+  MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
