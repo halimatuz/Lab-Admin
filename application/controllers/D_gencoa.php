@@ -41,12 +41,12 @@ class D_gencoa extends CI_Controller
         $this->load->view('_layout/footer');
     }
     
-    public function input_result($id, $id_int)
+    public function input_result($id, $id_sk)
     {
         $data = array(
             'title' => 'Data COA',
         );
-        $data['coa'] = $this->db->query("SELECT * FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.method = method.id_method WHERE result_coa.id_int = $id_int AND result_coa.id_analysis = $id")->result();
+        $data['coa'] = $this->db->query("SELECT * FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.method = method.id_method WHERE result_coa.id_sk = $id_sk AND result_coa.id_analysis = $id")->result();
         $this->load->view('_layout/header', $data);
         $this->load->view('_layout/sidebar');
         $this->load->view('pages/D_inputresult', $data);
@@ -85,7 +85,7 @@ class D_gencoa extends CI_Controller
 
         $this->web->update_data('sk_number', $data_number, $where_sk);
         $this->session->set_flashdata('msg', 'Input result success!');
-        redirect('D_gencoa/input_result/' . $this->input->post('id_analysis') . '/' . $this->input->post('id_int'));
+        redirect('D_gencoa/input_result/' . $this->input->post('id_analysis') . '/' . $id_sk);
     }
 
     public function data_quotation_print()
@@ -139,14 +139,14 @@ class D_gencoa extends CI_Controller
         $this->load->view('pages/D_printcoa', $data);
     }
 
-    public function pdf_coa($id_int) {
+    public function pdf_coa($id_sk) {
         $this->load->library('dompdf_gen');
         $data = array(
             'title' => 'Export PDF',
         );
 
-        $data['coa'] = $this->db->query("SELECT * FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk WHERE result_coa.id_int = $id_int")->result();
-        $data['analysis'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk WHERE quotation.id_int = $id_int")->result();
+        $data['coa'] = $this->db->query("SELECT * FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk WHERE result_coa.id_sk = $id_sk")->result();
+        $data['analysis'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk WHERE quotation.id_sk = $id_sk")->result();
 
         $paper_size = 'A4';
         $orientation = 'potrait';

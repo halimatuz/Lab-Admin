@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2022 at 12:36 AM
+-- Generation Time: Oct 10, 2022 at 06:54 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -82,7 +82,9 @@ INSERT INTO `assign_sampler` (`id_assign`, `id_sampler`, `id_sk`, `is_sampler`) 
 (10, 1, 10, 1),
 (11, 7, 10, 1),
 (12, 13, 10, 0),
-(13, 14, 10, 0);
+(13, 14, 10, 0),
+(14, 13, 13, 1),
+(15, 8, 13, 0);
 
 -- --------------------------------------------------------
 
@@ -340,7 +342,11 @@ INSERT INTO `quotation` (`id_quotation`, `id_analysis`, `id_int`, `remarks`, `sp
 (35, 8, 11, '<p>dfgfdgdf</p>', '<p>fdgfdgfd</p>', 12, 10, 80000),
 (36, 10, 11, '<p>sadasd</p>', '<p>asdasdas</p>', 12, 10, 45000),
 (37, 16, 11, '<p>asdasdasd</p>', '<p>asdasdas</p>', 2, 10, 10000),
-(38, 3, 11, '<p>dsc</p>', '<p>sdcsdcds</p>', 12, 10, 80000);
+(38, 3, 11, '<p>dsc</p>', '<p>sdcsdcds</p>', 12, 10, 80000),
+(40, 2, 11, '<p>asdas</p>', '<p>sad</p>', 1, 13, 10),
+(41, 3, 11, '<p>sasd</p>', '<p>asdas</p>', 12, 13, 130000),
+(42, 13, 11, '<p>dsfds</p>', '<p>sdfsd</p>', 12, 13, 10000),
+(43, 15, 11, '<p>asdas</p>', '<p>das</p>', 12, 13, 10000);
 
 -- --------------------------------------------------------
 
@@ -386,15 +392,6 @@ INSERT INTO `result_coa` (`id_result`, `id_sk`, `id_coa`, `id_analysis`, `id_int
 (35, 9, 39, 15, 7, NULL),
 (36, 9, 40, 15, 7, NULL),
 (37, 9, 41, 15, 7, NULL),
-(38, 10, 18, 13, 11, 'sdf'),
-(39, 10, 19, 13, 11, 'sdf'),
-(40, 10, 20, 13, 11, 'sdfsdf'),
-(41, 10, 21, 13, 11, 'sdfsd'),
-(42, 10, 22, 13, 11, 'fsdf'),
-(43, 10, 23, 13, 11, 'sdfsd'),
-(44, 10, 24, 13, 11, 'fsd'),
-(45, 10, 25, 13, 11, 'fsdf'),
-(46, 10, 26, 13, 11, 'sdfsdf'),
 (47, 10, 27, 15, 11, 'sdfsdf'),
 (48, 10, 28, 15, 11, 'sdf'),
 (49, 10, 29, 15, 11, 'sdfsd'),
@@ -505,7 +502,34 @@ INSERT INTO `result_coa` (`id_result`, `id_sk`, `id_coa`, `id_analysis`, `id_int
 (154, 10, 140, 16, 11, NULL),
 (155, 10, 122, 3, 11, NULL),
 (156, 10, 123, 3, 11, NULL),
-(157, 10, 124, 3, 11, NULL);
+(157, 10, 124, 3, 11, NULL),
+(167, 13, 122, 3, 11, NULL),
+(168, 13, 123, 3, 11, NULL),
+(169, 13, 124, 3, 11, NULL),
+(170, 13, 18, 13, 11, 'asd'),
+(171, 13, 19, 13, 11, 'asda'),
+(172, 13, 20, 13, 11, 'sdas'),
+(173, 13, 21, 13, 11, 'dasd'),
+(174, 13, 22, 13, 11, 'sadas'),
+(175, 13, 23, 13, 11, 'sad'),
+(176, 13, 24, 13, 11, 'asd'),
+(177, 13, 25, 13, 11, 'asasdd'),
+(178, 13, 26, 13, 11, 'keren coli form'),
+(179, 13, 27, 15, 11, NULL),
+(180, 13, 28, 15, 11, NULL),
+(181, 13, 29, 15, 11, NULL),
+(182, 13, 30, 15, 11, NULL),
+(183, 13, 31, 15, 11, NULL),
+(184, 13, 32, 15, 11, NULL),
+(185, 13, 33, 15, 11, NULL),
+(186, 13, 34, 15, 11, NULL),
+(187, 13, 35, 15, 11, NULL),
+(188, 13, 36, 15, 11, NULL),
+(189, 13, 37, 15, 11, NULL),
+(190, 13, 38, 15, 11, NULL),
+(191, 13, 39, 15, 11, NULL),
+(192, 13, 40, 15, 11, NULL),
+(193, 13, 41, 15, 11, NULL);
 
 -- --------------------------------------------------------
 
@@ -608,7 +632,8 @@ INSERT INTO `sampling_det` (`id_sampling`, `id_sk`, `sample_desc`, `location`, `
 (22, 6, 'SO2, NO2, CO', '<ul><li>GH Evos</li><li>GH RRQ</li></ul>', 'Cair', '2022-10-06', 'sedang dikerjakan'),
 (23, 9, 'Debu, SO2, NO2, CO', '<p>dsfsdf</p>', 'Gas', '2022-10-06', 'fgfdgdfgdf'),
 (24, 10, 'Debu, SO2, NO2, CO', '<p>sdfsdfsd</p>', 'dsfdsf', '2022-10-11', 'dsfsdf'),
-(25, 10, 'Partikulat, Opasitas, Laju Alir, Pencahayaan', '<p>sdfsdfsd</p>', 'dsfsd', '2022-10-12', 'sdfsdf');
+(25, 10, 'Partikulat, Opasitas, Laju Alir, Pencahayaan', '<p>sdfsdfsd</p>', 'dsfsd', '2022-10-12', 'sdfsdf'),
+(26, 13, 'Kelembaban, NOISE, ISBB/Heat Stress', '<p>dsfdsfds</p>', 'Cair', '2022-10-10', 'dsfds');
 
 -- --------------------------------------------------------
 
@@ -641,7 +666,8 @@ INSERT INTO `sk_number` (`id_sk`, `sk_quotation`, `sk_sample`, `sk_analysis`, `n
 (7, '7/2022/09/29/DIL/QTN', '7/2022/09/30/DIL/STPS', '', '', '', '', '', '', 10),
 (8, '8/2022/10/03/DIL/QTN', '', '', '', '03/10/2022', '', '', '', 5),
 (9, '9/2022/10/04/DIL/QTN', '9/2022/10/04/DIL/STPS', '9/2022/10/04/DIL/STP', 'DIL-20221004COA', '04/10/2022', '04/10/2022', '04/10/2022', '04/10/2022', 7),
-(10, '10/2022/10/09/DIL/QTN', '10/2022/10/09/DIL/STPS', '10/2022/10/09/DIL/STP', 'DIL-20221009COA', '09/10/2022', '09/10/2022', '09/10/2022', '09/10/2022', 11);
+(10, '10/2022/10/09/DIL/QTN', '10/2022/10/09/DIL/STPS', '10/2022/10/09/DIL/STP', 'DIL-20221009COA', '09/10/2022', '09/10/2022', '09/10/2022', '09/10/2022', 11),
+(13, '11/2022/10/10/DIL/QTN', '13/2022/10/10/DIL/STPS', '13/2022/10/10/DIL/STP', 'DIL-20221010COA', '10/10/2022', '10/10/2022', '10/10/2022', '10/10/2022', 11);
 
 --
 -- Indexes for dumped tables
@@ -738,7 +764,7 @@ ALTER TABLE `analysis`
 -- AUTO_INCREMENT for table `assign_sampler`
 --
 ALTER TABLE `assign_sampler`
-  MODIFY `id_assign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_assign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `coa`
@@ -762,13 +788,13 @@ ALTER TABLE `method`
 -- AUTO_INCREMENT for table `quotation`
 --
 ALTER TABLE `quotation`
-  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `result_coa`
 --
 ALTER TABLE `result_coa`
-  MODIFY `id_result` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
+  MODIFY `id_result` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
 
 --
 -- AUTO_INCREMENT for table `sample`
@@ -786,13 +812,13 @@ ALTER TABLE `sampler`
 -- AUTO_INCREMENT for table `sampling_det`
 --
 ALTER TABLE `sampling_det`
-  MODIFY `id_sampling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_sampling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `sk_number`
 --
 ALTER TABLE `sk_number`
-  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables

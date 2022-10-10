@@ -1,8 +1,13 @@
+<?php
+foreach($quotation as $q) {
+    $qtn = $q;
+}
+?>
 <!-- Main Content -->
 <div class="main-content">
   <section class="section">
     <div class="section-header">
-      <h1>Add Quotation</h1>
+      <h1>List Quotation</h1>
       <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active">
           <a href="#">Dashboard</a>
@@ -24,9 +29,9 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
-                    <h6 class="text-primary">List Institution</h6>
+                    <h6 class="text-primary">List Quotation <?= $qtn->name_int ?></h6>
                     <hr>
-                      <?php if($institution == NULL) { ?>
+                      <?php if($quotation == NULL) { ?>
                             <div class="empty-state" data-height="400">
                                 <div class="empty-state-icon">
                                 <i class="fas fa-question"></i>
@@ -42,26 +47,21 @@
                             <thead>
                                 <tr>
                                 <th>No</th>
-                                <th>Name Institution</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Address</th>
+                                <th>SK Quotation</th>
+                                <th>Created at</th>
                                 <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 $no = 1;
-                                foreach ($institution as $int) : ?>
+                                foreach ($quotation as $qtn) : ?>
                                     <tr>
                                         <td><?= $no++; ?></td>
-                                        <td><?= htmlspecialchars($int->name_int); ?></td>
-                                        <td><?= htmlspecialchars($int->int_phone); ?></td>
-                                        <td><?= htmlspecialchars($int->int_email); ?></td>
-                                        <td><?= htmlspecialchars($int->int_address); ?></td>
+                                        <td><?= htmlspecialchars($qtn->sk_quotation); ?></td>
+                                        <td><?= htmlspecialchars($qtn->date_quotation); ?></td>
                                         <td>
-                                            <a href="<?= base_url('D_quotation/generate_sk/') . $int->id_int ?>" class="btn btn-success tombol-generate"><i class="fas fa-plus"></i> Generate SK</a>
-                                            <a href="<?= base_url('D_quotation/list_quotation/') . $int->id_int ?>"class="btn btn-primary"><i class="fas fa-file"></i> List Quotation</a>
+                                            <a href="<?= base_url('D_quotation/add_quotation/') . $qtn->id_int . '/' . $qtn->id_sk ?>" class="btn btn-success"><i class="fas fa-plus"></i> Add Quotation</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

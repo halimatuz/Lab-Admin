@@ -173,7 +173,7 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   <?php
 } elseif ($this->uri->segment(2) == "bootstrap_modal") {
   ?>
-  <script src="<?php echo base_url(); ?>assets/js/page/bootstrap-modal.js"></script>
+  
   <?php
 } elseif ($this->uri->segment(2) == "components_chat_box") {
   ?>
@@ -288,7 +288,10 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   <script src="<?php echo base_url(); ?>assets/js/page/utilities-contact.js"></script>
   <?php
 } ?>
-
+<!-- Modal -->
+<script src="<?php echo base_url(); ?>assets/modules/prism/prism.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/page/bootstrap-modal.js"></script>
+<!-- Summernote -->
 <script src="<?php echo base_url(); ?>assets/modules/summernote/summernote-bs4.js"></script>
 <!-- Template JS File -->
 <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
@@ -329,6 +332,26 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
           confirmButtonColor: '#6777EF',
           cancelButtonColor: '#FC544B',
           confirmButtonText: 'Yes, delete data',
+          cancelButtonText: 'Cancel'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            document.location.href = href;
+          }
+        })
+  });
+
+  $('.tombol-generate').on('click', function(e) {
+          e.preventDefault();
+          const href = $(this).attr('href');
+
+          Swal.fire({
+          title: 'Do you want to generate SK Number?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#6777EF',
+          cancelButtonColor: '#FC544B',
+          confirmButtonText: 'Yes, Generate',
           cancelButtonText: 'Cancel'
         }).then((result) => {
           if (result.isConfirmed) {

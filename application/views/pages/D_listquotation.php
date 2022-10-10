@@ -71,8 +71,7 @@
                                           <?php } elseif($this->uri->segment(2) == 'data_quotation') { ?>
                                               <a href="<?php echo base_url('D_gencoa/data_analysis/') . $qtn->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> Generate COA</a>
                                           <?php } else {?>
-                                              <a href="<?php echo base_url('D_gencoa/print_coa/') . $qtn->id_int ?>"class="btn btn-success"><i class="fas fa-print"></i> Print COA</a>
-                                              <a href="<?php echo base_url('D_gencoa/pdf_coa/') . $qtn->id_int ?>"class="btn btn-primary"><i class="fas fa-print"></i> PDF</a>
+                                              <a href="<?php echo base_url('D_gencoa/pdf_coa/') . $qtn->id_sk ?>"class="btn btn-primary"><i class="fas fa-print"></i> PDF</a>
                                           <?php } ?>
                                         </td>
                                     </tr>

@@ -62,7 +62,7 @@ foreach($analysis as $c) {
                                         <td><?= $no++; ?></td>
                                         <td><?= htmlspecialchars($row->name_analysis); ?></td>
                                         <td>
-                                            <a href="<?php echo base_url('D_gencoa/input_result/') . $row->id_analysis . '/' . $row->id_int ?>"class="btn btn-success"><i class="fas fa-plus"></i> Input Result</a>
+                                            <a href="<?php echo base_url('D_gencoa/input_result/') . $row->id_analysis . '/' . $row->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> Input Result</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

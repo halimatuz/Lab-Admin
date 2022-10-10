@@ -4,6 +4,10 @@ foreach($specialInstitution as $si) {
     $institution = $si;
 }
 
+foreach($sknumber as $s) {
+    $sk = $s;
+}
+
 ?>
 <!-- Main Content -->
 <div class="main-content">
@@ -86,6 +90,7 @@ foreach($specialInstitution as $si) {
                             <div class="form-group">
                                 <label>Analysis</label>
                                 <input type="hidden" name="id_int" value="<?= $institution->id_int ?>">
+                                <input type="hidden" name="id_sk" value="<?= $sk->id_sk ?>">
                                 <select name="id_analysis" class="form-control select2 <?php if(form_error('id_analysis')) { echo "is-invalid"; } ?>">
                                 <option value="<?php if( set_value('id_analysis') == NULL) { echo "";}else { echo set_value('id_analysis');}?>"><?php if( set_value('id_analysis') == NULL) { echo "-- Select Analysis --";}else { echo set_value('analysis');}?></option>
                                     <?php foreach($analysis as $anl) : ?>
