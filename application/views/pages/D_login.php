@@ -42,14 +42,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
                       Login
                     </button>
+                  <a href="<?= base_url('D_scancoa') ?>" class="btn btn-success btn-lg btn-block" tabindex="4">
+                    <i class="fas fa-qrcode"></i> Scan COA
+                  </a>
                   </div>
                 </form>
 
               </div>
             </div>
-            <div class="mt-5 text-muted text-center">
-              Don't have an account? <a href="<?php echo base_url(); ?>dist/auth_register">Create One</a>
-            </div>
+
             <div class="simple-footer">
               Copyright &copy; Stisla 2018
             </div>

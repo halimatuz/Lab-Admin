@@ -13,25 +13,8 @@ $this->load->view('_layout/header');
               You do not have access to this page.
             </div>
             <div class="page-search">
-              <form>
-                <div class="form-group floating-addon floating-addon-not-append">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">
-                        <i class="fas fa-search"></i>
-                      </div>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Search">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary btn-lg">
-                        Search
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </form>
               <div class="mt-3">
-                <a href="<?php echo base_url(); ?>dist/index">Back to Home</a>
+                <a href="<?php echo base_url('D_auth'); ?>">Back to Login</a>
               </div>
             </div>
           </div>

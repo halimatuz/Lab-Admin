@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2022 at 03:45 PM
+-- Generation Time: Oct 12, 2022 at 06:51 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -85,7 +85,9 @@ INSERT INTO `assign_sampler` (`id_assign`, `id_sampler`, `id_sk`, `is_sampler`) 
 (13, 14, 10, 0),
 (14, 13, 13, 1),
 (15, 8, 13, 0),
-(16, 7, 14, 1);
+(16, 7, 14, 1),
+(17, 9, 14, 1),
+(19, 14, 14, 0);
 
 -- --------------------------------------------------------
 
@@ -350,7 +352,8 @@ INSERT INTO `quotation` (`id_quotation`, `id_analysis`, `id_int`, `remarks`, `sp
 (43, 15, 11, '<p>asdas</p>', '<p>das</p>', 12, 13, 10000),
 (44, 8, 11, '<p>sdfsd</p>', '<p>fsfsdfs</p>', 12, 13, 0),
 (45, 3, 3, '<p>upodatean</p>', '<p>dsfdsf</p>', 10, 14, 120000),
-(46, 8, 3, '<p>stationary</p>', '<p>asda</p>', 5, 14, 0);
+(46, 8, 3, '<p>stationary</p>', '<p>asda</p>', 5, 14, 0),
+(48, 2, 3, '<p>dfgdf</p>', '<p>fdgd</p>', 12, 15, 434);
 
 -- --------------------------------------------------------
 
@@ -551,7 +554,7 @@ INSERT INTO `result_coa` (`id_result`, `id_sk`, `id_coa`, `id_analysis`, `id_int
 (208, 13, 119, 8, 11, NULL),
 (209, 14, 122, 3, 3, 'asdas'),
 (210, 14, 123, 3, 3, 'dasd'),
-(211, 14, 124, 3, 3, 'asdas'),
+(211, 14, 124, 3, 3, 'asdasdsgg'),
 (212, 14, 105, 8, 3, NULL),
 (213, 14, 106, 8, 3, NULL),
 (214, 14, 107, 8, 3, NULL),
@@ -671,7 +674,8 @@ INSERT INTO `sampling_det` (`id_sampling`, `id_sk`, `sample_desc`, `location`, `
 (24, 10, 'Debu, SO2, NO2, CO', '<p>sdfsdfsd</p>', 'dsfdsf', '2022-10-11', 'dsfsdf'),
 (25, 10, 'Partikulat, Opasitas, Laju Alir, Pencahayaan', '<p>sdfsdfsd</p>', 'dsfsd', '2022-10-12', 'sdfsdf'),
 (26, 13, 'Kelembaban, NOISE, ISBB/Heat Stress', '<p>dsfdsfds</p>', 'Cair', '2022-10-10', 'dsfds'),
-(27, 14, 'SO2, NO2, CO, NH3', '<p>xcvxc</p>', 'Cair', '2022-10-10', 'ewfsd');
+(27, 14, 'SO2, NO2, CO, NH3', '<p>xcvxc</p>', 'Cair', '2022-10-10', 'ewfsd'),
+(29, 14, 'Pencahayaan, Air Limbah Produksi, Air Limbah Domestik', '<p>asdas</p>', 'Gas', '2022-10-12', 'ad');
 
 -- --------------------------------------------------------
 
@@ -706,7 +710,8 @@ INSERT INTO `sk_number` (`id_sk`, `sk_quotation`, `sk_sample`, `sk_analysis`, `n
 (9, '9/2022/10/04/DIL/QTN', '9/2022/10/04/DIL/STPS', '9/2022/10/04/DIL/STP', 'DIL-20221004COA', '04/10/2022', '04/10/2022', '04/10/2022', '04/10/2022', 7),
 (10, '10/2022/10/09/DIL/QTN', '10/2022/10/09/DIL/STPS', '10/2022/10/09/DIL/STP', 'DIL-20221009COA', '09/10/2022', '09/10/2022', '09/10/2022', '09/10/2022', 11),
 (13, '11/2022/10/10/DIL/QTN', '13/2022/10/10/DIL/STPS', '13/2022/10/10/DIL/STP', 'DIL-20221010COA', '10/10/2022', '10/10/2022', '10/10/2022', '10/10/2022', 11),
-(14, '14/2022/10/10/DIL/QTN', '14/2022/10/10/DIL/STPS', '14/2022/10/10/DIL/STP', 'DIL-20221010COA', '10/10/2022', '10/10/2022', '10/10/2022', '10/10/2022', 3);
+(14, '14/2022/10/10/DIL/QTN', '14/2022/10/11/DIL/STPS', '14/2022/10/11/DIL/STP', 'DIL-20221011COA', '10/10/2022', '11/10/2022', '11/10/2022', '11/10/2022', 3),
+(15, '15/2022/10/11/DIL/QTN', '', '', '', '11/10/2022', '', '', '', 3);
 
 -- --------------------------------------------------------
 
@@ -720,7 +725,7 @@ CREATE TABLE `user` (
   `email` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role_id` int(11) NOT NULL,
+  `role` varchar(255) NOT NULL,
   `date_created` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -728,26 +733,11 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id_user`, `fullname`, `email`, `image`, `password`, `role_id`, `date_created`) VALUES
-(1, 'Azkazikna Ageung Laksana', 'azkazikna.aal@gmail.com', 'default.jpg', '$2y$10$q7dD4pXKRtUcIhOh6sCpdeMW10DpAsarhbTUihtS9ozYDOvbtC3Q2', 1, 1665406432);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_role`
---
-
-CREATE TABLE `user_role` (
-  `id_role` int(11) NOT NULL,
-  `role` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `user_role`
---
-
-INSERT INTO `user_role` (`id_role`, `role`) VALUES
-(1, 'Administrator');
+INSERT INTO `user` (`id_user`, `fullname`, `email`, `image`, `password`, `role`, `date_created`) VALUES
+(1, 'Azkazikna Ageung Laksana', 'azkazikna.aal@gmail.com', 'default.jpg', '$2y$10$q7dD4pXKRtUcIhOh6sCpdeMW10DpAsarhbTUihtS9ozYDOvbtC3Q2', 'superadmin', 1665406432),
+(2, 'Dhabit Muhammad Faqih', 'dhabit@gmail.com', 'default.jpg', '$2y$10$Zx5iBXRkmA8stjeB0VEate1yoA0YD6IcDC9QUWvFu7pN5WqVZ6Ah2', 'admin', 1665499668),
+(3, 'Azkazikna Ageung Laksana', 'azka@gmail.com', 'default.jpg', '$2y$10$HgIKzAmP.CFEHM71t2VxQuXY2DcG1fnjc9OiK.yzXFbuihMObccUi', 'superadmin', 1665550195),
+(4, 'Genius Laborant', 'laborant@gmail.com', 'default.jpg', '$2y$10$8yza1Dm3jEwJHiUIbSqLg.RJjmeRg.gH08QWSb7GbazjlQ85nb.6S', 'laborant', 1665550257);
 
 --
 -- Indexes for dumped tables
@@ -837,12 +827,6 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- Indexes for table `user_role`
---
-ALTER TABLE `user_role`
-  ADD PRIMARY KEY (`id_role`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -850,37 +834,37 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `analysis`
 --
 ALTER TABLE `analysis`
-  MODIFY `id_analysis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_analysis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `assign_sampler`
 --
 ALTER TABLE `assign_sampler`
-  MODIFY `id_assign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_assign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `coa`
 --
 ALTER TABLE `coa`
-  MODIFY `id_coa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `id_coa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
 
 --
 -- AUTO_INCREMENT for table `institution`
 --
 ALTER TABLE `institution`
-  MODIFY `id_int` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_int` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `method`
 --
 ALTER TABLE `method`
-  MODIFY `id_method` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_method` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `quotation`
 --
 ALTER TABLE `quotation`
-  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `result_coa`
@@ -892,37 +876,31 @@ ALTER TABLE `result_coa`
 -- AUTO_INCREMENT for table `sample`
 --
 ALTER TABLE `sample`
-  MODIFY `id_sample` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_sample` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `sampler`
 --
 ALTER TABLE `sampler`
-  MODIFY `id_sampler` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_sampler` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `sampling_det`
 --
 ALTER TABLE `sampling_det`
-  MODIFY `id_sampling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_sampling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `sk_number`
 --
 ALTER TABLE `sk_number`
-  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `user_role`
---
-ALTER TABLE `user_role`
-  MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

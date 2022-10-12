@@ -44,7 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="section-body">
     <div class="flash-data-error" data-flashdata="<?= $this->session->flashdata('error'); ?>"></div>
       <div class="row">
-        <div class="col-12">
+        <div class="col-12 col-md-9 mx-auto">
           <div class="card card-success">
             <div class="card-body">
                 <div class="row">

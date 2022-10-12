@@ -7,6 +7,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class D_web extends CI_Model
 {
+    function auth($data)
+	{
+		$query = $this->db->where("email", $data['email'])->where("password", $data['password'])->get('user');
+		return array(
+			'res'	=> $query->row(),
+			'sum'	=> $query->num_rows()
+		);
+	}
+
     function insert_data($data, $table)
     {
         $this->db->insert($table, $data);

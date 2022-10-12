@@ -5,13 +5,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class D_scancoa extends CI_Controller 
 {
+
     public function index()
     {
         $data = array(
             'title' => 'Scan COA',
         );
-        $this->load->view('_layout/header', $data);
-        $this->load->view('_layout/sidebar');
         $this->load->view('pages/D_scancoa');
         $this->load->view('_layout/footer');
     }
@@ -27,7 +26,7 @@ class D_scancoa extends CI_Controller
 		$cek_id = $this->web->cek_id($decrypted);
         if(!$cek_id) {
             $this->session->set_flashdata('error', 'Unknown QR Code!');
-            redirect('D_scancoa');
+            redirect('D_superadmin/scan_coa');
         } else {
             $data = array(
                 'title' => 'Result Scan',

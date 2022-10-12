@@ -12,20 +12,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
     <ul class="sidebar-menu">
     <li class="menu-header">Dashboard</li>
-      <li class="dropdown <?php echo $this->uri->segment(1) == '' ? 'active' : ''; ?>">
-        <a href="<?= base_url(); ?>" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+      <li class="dropdown <?php echo $this->uri->segment(1) == 'D_admin' ? 'active' : ''; ?>">
+        <a href="<?= base_url('D_superadmin'); ?>" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
       </li>
 
     <li class="menu-header">Data Master</li>
       <li class="dropdown <?php echo $this->uri->segment(1) == 'D_institution' || $this->uri->segment(1) == 'D_analysis' || $this->uri->segment(1) == 'D_sampler' || $this->uri->segment(1) == 'D_sample' || $this->uri->segment(1) == 'D_method' || $this->uri->segment(1) == 'D_coa' ? 'active' : ''; ?>">
         <a href="#" class="nav-link has-dropdown"><i class="fas fa-file-upload"></i><span>Add Data</span></a>
         <ul class="dropdown-menu">
-          <li class="<?php echo $this->uri->segment(1) == 'D_institution' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_institution">Add Institution</a></li>
+          <li class="<?php echo $this->uri->segment(2) == 'D_institution' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_institution">Add Institution</a></li>
           <li class="<?php echo $this->uri->segment(1) == 'D_analysis' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_analysis">Add Analysis</a></li>
           <li class="<?php echo $this->uri->segment(1) == 'D_sampler' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_sampler">Add Sampler</a></li>
           <li class="<?php echo $this->uri->segment(1) == 'D_sample' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_sample">Add Sample</a></li>
           <li class="<?php echo $this->uri->segment(1) == 'D_method' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_method">Add Method</a></li>
-          <li class="<?php echo $this->uri->segment(1) == 'D_coa' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_coa">Add COA</a></li>
+          <li class="<?php echo $this->uri->segment(1) == 'data_coa' || $this->uri->segment(1) == 'add_coa' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_coa">Add COA</a></li>
         </ul>
       </li>
 

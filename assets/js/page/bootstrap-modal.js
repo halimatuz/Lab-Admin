@@ -1,6 +1,9 @@
 "use strict";
 
-$("#modal-1").fireModal({body: 'Modal body text goes here.'});
+$("#modal-1").fireModal({
+  title: 'PSPO PENUS Ver 1.0.0',
+  body: '<h6>Admin</h6><ul><li>Dashboard Admin ( summary data asesi/user online )</li><li>Verifikasi Data Asesi</li><li>Kelulusan( cek dokumen asesi, Cek Form APL 02, set pengumuman lulus/tidak )</li><li>Kirim Pesan ( ke asesi )</li><li>Data Asesi ( semua jurusan dan kompetensi )</li><li>Data Asesor ( Semua Jurusan )</li><li>Data Pesan ( semua pesan yang dilakukan asesor/asesi )</li></ul>'
+});
 $("#modal-2").fireModal({body: 'Modal body text goes here.', center: true});
 
 let modal_3_body = '<p>Object to create a button on the modal.</p><pre class="language-javascript"><code>';

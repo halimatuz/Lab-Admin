@@ -4,17 +4,28 @@ defined('BASEPATH') or exit ('No direct script access allowed');
 class D_auth extends CI_Controller 
 {
     public function index() {
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-        $this->form_validation->set_rules('password', 'Password', 'trim|required');
+        $sess_superadmin = $this->session->userdata('id_superadmin');
+        $sess_admin = $this->session->userdata('id_admin');
+        $sess_laborant = $this->session->userdata('id_laborant');
+		if ($sess_superadmin != NULL) {
+			redirect('D_superadmin');
+        } elseif($sess_admin != NULL) {
+            redirect('D_admin');
+        } elseif($sess_laborant != NULL) {
+            redirect('D_laborant');
+		} else {
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+            $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
-        if($this->form_validation->run() == false) {
-            $data = array(
-                'title' => "Login"
-            );
-            $this->load->view('_layout/header_auth', $data);
-            $this->load->view('pages/D_login');
-        } else {
-            $this->_login();
+            if($this->form_validation->run() == false) {
+                $data = array(
+                    'title' => "Login"
+                );
+                $this->load->view('_layout/header_auth', $data);
+                $this->load->view('pages/D_login');
+            } else {
+                $this->_login();
+            }
         }
     }
 
@@ -26,76 +37,71 @@ class D_auth extends CI_Controller
 
         if($user) {
             if (password_verify($password, $user['password'])) {
-                $data = array(
-                    'email' => $user['email'],
-                    'role_id' => $user['role_id'],
-                );
-                $this->session->set_userdata($data);
-                redirect('D_admin');
+                if($user['role'] == 'superadmin') {
+                    $data = array(
+                        'id_superadmin' => $user['email'],
+                        'role' => $user['role'],
+                        'fullname' => $user['fullname'],
+                    );
+                } elseif($user['role'] == 'admin') {
+                    $data = array(
+                        'id_admin' => $user['email'],
+                        'role' => $user['role'],
+                        'fullname' => $user['fullname'],
+                    );
+                }
+
+                if($user['role'] == 'superadmin') {
+                    $this->session->set_userdata($data);
+                    $this->session->set_flashdata('msglogin', 'You are logged in as Super Admin!');
+                    redirect('D_superadmin');
+                }
+                if($user['role'] == 'admin') {
+                    $this->session->set_userdata($data);
+                    $this->session->set_flashdata('msglogin', 'You are logged in as Admin!');
+                    redirect('D_admin');
+                }
+                
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible show fade">
+                <div class="alert-body">
+                  <button class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                  </button>
+                  Wrong Password.
+                </div>
+              </div>');
                 redirect('D_auth');
             }
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email is not registered!</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible show fade">
+            <div class="alert-body">
+              <button class="close" data-dismiss="alert">
+                <span>&times;</span>
+              </button>
+              Email not registered.
+            </div>
+          </div>');
             redirect('D_auth');
         }
         
     }
 
-    public function list_users()
-    {
-        $data = array(
-            'title' => 'List Users',
-        );
-        $data['user'] = $this->db->query("SELECT * FROM user")->result();
-        $this->load->view('_layout/header', $data);
-        $this->load->view('_layout/sidebar');
-        $this->load->view('pages/D_listusers', $data);
-        $this->load->view('_layout/footer');
-    }
-
-    public function add_user() {
-        $data = array(
-            'title' => "Add User"
-        );
-
-        $this->load->view('_layout/header', $data);
-        $this->load->view('_layout/sidebar');
-        $this->load->view('pages/D_adduser');
-        $this->load->view('_layout/footer');
-    }
-
-    public function add_user_action() {
-        $this->form_validation->set_rules('fullname', 'Name', 'required|trim');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
-            'is_unique' => 'This email has already registered!'
-        ]);
-        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]|matches[password2]');
-        $this->form_validation->set_rules('password2', 'Password Confirmation', 'required|trim|matches[password]');
-        if($this->form_validation->run() == false) {
-            $this->add_user();
-        } else {
-            $data = array(
-                'fullname' => htmlspecialchars($this->input->post('fullname', true)),
-                'email' => htmlspecialchars($this->input->post('email', true)),
-                'image' => 'default.jpg',
-                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-                'role_id' => 1,
-                'date_created' => time()
-            );
-
-            $this->db->insert('user', $data);
-            $this->session->set_flashdata('msg', 'User success added!');
-            redirect('D_auth/list_users/');
-        }
-    }
-
     public function logout() {
-        $this->session->unset_userdata('email');
-        $this->session->unset_userdata('role_id');
+        $this->session->unset_userdata('id_admin');
+        $this->session->unset_userdata('id_laborant');
+        $this->session->unset_userdata('id_superadmin');
+        $this->session->unset_userdata('role');
+        $this->session->unset_userdata('fullname');
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">You have been logout!</div>');
         redirect('D_auth');
+    }
+
+    public function errors_403() {
+        $data = array(
+            'title' => "403"
+        );
+        $this->load->view('D_error_403', $data);
     }
 }

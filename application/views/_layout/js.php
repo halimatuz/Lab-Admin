@@ -66,7 +66,7 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   ?>
   <script src="<?php echo base_url(); ?>assets/modules/owlcarousel2/dist/owl.carousel.min.js"></script>
   <?php
-} elseif ($this->uri->segment(2) == "forms_advanced_form" || $this->uri->segment(1) == "D_coa" || $this->uri->segment(1) == "D_quotation" || $this->uri->segment(1) == "D_stps" || $this->uri->segment(1) == "D_stp") {
+} elseif ($this->uri->segment(2) == "forms_advanced_form" || $this->uri->segment(2) == "add_coa" || $this->uri->segment(2) == "add_quotation" || $this->uri->segment(1) == "D_stps" || $this->uri->segment(1) == "data_stp") {
   ?>
   <script src="<?php echo base_url(); ?>assets/modules/cleave-js/dist/cleave.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/cleave-js/dist/addons/cleave-phone.us.js"></script>
@@ -287,9 +287,6 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   <script src="<?php echo base_url(); ?>assets/js/page/utilities-contact.js"></script>
   <?php
 } ?>
-<!-- PW Strength -->
-<script src="<?php echo base_url(); ?>assets/modules/jquery-pwstrength/jquery.pwstrength.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/modules/jquery-selectric/jquery.selectric.min.js"></script>
 <!-- Modal -->
 <script src="<?php echo base_url(); ?>assets/modules/prism/prism.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/page/bootstrap-modal.js"></script>
@@ -312,6 +309,19 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
   const flashData = $('.flash-data').data('flashdata');
+  const flashDataLogin = $('.flash-data-login').data('flashdata');
+
+  if (flashDataLogin) {
+        Swal.fire({
+            position: 'top-end',
+            title: 'You have successfully logged in',
+            text: flashDataLogin,
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500
+        })
+  }
+
   if (flashData) {
         Swal.fire({
             title: 'Success!',
