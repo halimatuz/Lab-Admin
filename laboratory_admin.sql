@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2022 at 06:51 AM
+-- Generation Time: Oct 14, 2022 at 02:02 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -235,6 +235,33 @@ INSERT INTO `coa` (`id_coa`, `id_analysis`, `params`, `unit`, `reg_standart_1`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `company_profile`
+--
+
+CREATE TABLE `company_profile` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `website` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `norek` varchar(255) NOT NULL,
+  `behalf_account` varchar(255) NOT NULL,
+  `bank` varchar(255) NOT NULL,
+  `director` varchar(255) NOT NULL,
+  `director_signature` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `company_profile`
+--
+
+INSERT INTO `company_profile` (`id`, `name`, `address`, `phone`, `website`, `email`, `norek`, `behalf_account`, `bank`, `director`, `director_signature`) VALUES
+(1, 'PT. Delta Indonesia Laboratory', 'Ruko Prima Orchard No.C 2 Prima Harapan Regency Bekasi Utara, Kota Bekasi 17123, Provinsi Jawa Barat', ' 021 - 88382018', 'www.deltaindonesialab.com', 'marketing@deltaindonesialab.com', '156-00-1713846-4', 'PT. DELTA INDONESIA LABORATORY', 'MANDIRI KC HARAPAN BARU BEKASI UTARA', 'Drs. H. Soekardin Rachman, M.Si', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `institution`
 --
 
@@ -346,14 +373,14 @@ INSERT INTO `quotation` (`id_quotation`, `id_analysis`, `id_int`, `remarks`, `sp
 (36, 10, 11, '<p>sadasd</p>', '<p>asdasdas</p>', 12, 10, 45000),
 (37, 16, 11, '<p>asdasdasd</p>', '<p>asdasdas</p>', 2, 10, 10000),
 (38, 3, 11, '<p>dsc</p>', '<p>sdcsdcds</p>', 12, 10, 80000),
-(40, 2, 11, '<p>asdas</p>', '<p>sad</p>', 1, 13, 10),
 (41, 3, 11, '<p>sasd</p>', '<p>asdas</p>', 12, 13, 130000),
 (42, 13, 11, '<p>dsfds</p>', '<p>sdfsd</p>', 12, 13, 10000),
 (43, 15, 11, '<p>asdas</p>', '<p>das</p>', 12, 13, 10000),
 (44, 8, 11, '<p>sdfsd</p>', '<p>fsfsdfs</p>', 12, 13, 0),
 (45, 3, 3, '<p>upodatean</p>', '<p>dsfdsf</p>', 10, 14, 120000),
 (46, 8, 3, '<p>stationary</p>', '<p>asda</p>', 5, 14, 0),
-(48, 2, 3, '<p>dfgdf</p>', '<p>fdgd</p>', 12, 15, 434);
+(48, 2, 3, '<p>dfgdf</p>', '<p>fdgd</p>', 12, 15, 434),
+(49, 3, 3, '<p>sdfsd</p>', '<p>sdfsdf</p>', 12, 15, 0);
 
 -- --------------------------------------------------------
 
@@ -555,21 +582,24 @@ INSERT INTO `result_coa` (`id_result`, `id_sk`, `id_coa`, `id_analysis`, `id_int
 (209, 14, 122, 3, 3, 'asdas'),
 (210, 14, 123, 3, 3, 'dasd'),
 (211, 14, 124, 3, 3, 'asdasdsgg'),
-(212, 14, 105, 8, 3, NULL),
-(213, 14, 106, 8, 3, NULL),
-(214, 14, 107, 8, 3, NULL),
-(215, 14, 108, 8, 3, NULL),
-(216, 14, 109, 8, 3, NULL),
-(217, 14, 110, 8, 3, NULL),
-(218, 14, 111, 8, 3, NULL),
-(219, 14, 112, 8, 3, NULL),
-(220, 14, 113, 8, 3, NULL),
-(221, 14, 114, 8, 3, NULL),
-(222, 14, 115, 8, 3, NULL),
-(223, 14, 116, 8, 3, NULL),
-(224, 14, 117, 8, 3, NULL),
-(225, 14, 118, 8, 3, NULL),
-(226, 14, 119, 8, 3, NULL);
+(212, 14, 105, 8, 3, 'dfg'),
+(213, 14, 106, 8, 3, 'dfgdfg'),
+(214, 14, 107, 8, 3, 'dsfsd'),
+(215, 14, 108, 8, 3, 'gg'),
+(216, 14, 109, 8, 3, ''),
+(217, 14, 110, 8, 3, ''),
+(218, 14, 111, 8, 3, ''),
+(219, 14, 112, 8, 3, ''),
+(220, 14, 113, 8, 3, ''),
+(221, 14, 114, 8, 3, ''),
+(222, 14, 115, 8, 3, ''),
+(223, 14, 116, 8, 3, ''),
+(224, 14, 117, 8, 3, ''),
+(225, 14, 118, 8, 3, ''),
+(226, 14, 119, 8, 3, ''),
+(227, 15, 122, 3, 3, NULL),
+(228, 15, 123, 3, 3, NULL),
+(229, 15, 124, 3, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -710,7 +740,7 @@ INSERT INTO `sk_number` (`id_sk`, `sk_quotation`, `sk_sample`, `sk_analysis`, `n
 (9, '9/2022/10/04/DIL/QTN', '9/2022/10/04/DIL/STPS', '9/2022/10/04/DIL/STP', 'DIL-20221004COA', '04/10/2022', '04/10/2022', '04/10/2022', '04/10/2022', 7),
 (10, '10/2022/10/09/DIL/QTN', '10/2022/10/09/DIL/STPS', '10/2022/10/09/DIL/STP', 'DIL-20221009COA', '09/10/2022', '09/10/2022', '09/10/2022', '09/10/2022', 11),
 (13, '11/2022/10/10/DIL/QTN', '13/2022/10/10/DIL/STPS', '13/2022/10/10/DIL/STP', 'DIL-20221010COA', '10/10/2022', '10/10/2022', '10/10/2022', '10/10/2022', 11),
-(14, '14/2022/10/10/DIL/QTN', '14/2022/10/11/DIL/STPS', '14/2022/10/11/DIL/STP', 'DIL-20221011COA', '10/10/2022', '11/10/2022', '11/10/2022', '11/10/2022', 3),
+(14, '14/2022/10/10/DIL/QTN', '14/2022/10/11/DIL/STPS', '14/2022/10/11/DIL/STP', 'DIL-20221013COA', '10/10/2022', '11/10/2022', '11/10/2022', '13/10/2022', 3),
 (15, '15/2022/10/11/DIL/QTN', '', '', '', '11/10/2022', '', '', '', 3);
 
 -- --------------------------------------------------------
@@ -736,7 +766,6 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `fullname`, `email`, `image`, `password`, `role`, `date_created`) VALUES
 (1, 'Azkazikna Ageung Laksana', 'azkazikna.aal@gmail.com', 'default.jpg', '$2y$10$q7dD4pXKRtUcIhOh6sCpdeMW10DpAsarhbTUihtS9ozYDOvbtC3Q2', 'superadmin', 1665406432),
 (2, 'Dhabit Muhammad Faqih', 'dhabit@gmail.com', 'default.jpg', '$2y$10$Zx5iBXRkmA8stjeB0VEate1yoA0YD6IcDC9QUWvFu7pN5WqVZ6Ah2', 'admin', 1665499668),
-(3, 'Azkazikna Ageung Laksana', 'azka@gmail.com', 'default.jpg', '$2y$10$HgIKzAmP.CFEHM71t2VxQuXY2DcG1fnjc9OiK.yzXFbuihMObccUi', 'superadmin', 1665550195),
 (4, 'Genius Laborant', 'laborant@gmail.com', 'default.jpg', '$2y$10$8yza1Dm3jEwJHiUIbSqLg.RJjmeRg.gH08QWSb7GbazjlQ85nb.6S', 'laborant', 1665550257);
 
 --
@@ -763,6 +792,12 @@ ALTER TABLE `assign_sampler`
 ALTER TABLE `coa`
   ADD PRIMARY KEY (`id_coa`),
   ADD KEY `id_analysis` (`id_analysis`);
+
+--
+-- Indexes for table `company_profile`
+--
+ALTER TABLE `company_profile`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `institution`
@@ -849,6 +884,12 @@ ALTER TABLE `coa`
   MODIFY `id_coa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
 
 --
+-- AUTO_INCREMENT for table `company_profile`
+--
+ALTER TABLE `company_profile`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `institution`
 --
 ALTER TABLE `institution`
@@ -864,13 +905,13 @@ ALTER TABLE `method`
 -- AUTO_INCREMENT for table `quotation`
 --
 ALTER TABLE `quotation`
-  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `result_coa`
 --
 ALTER TABLE `result_coa`
-  MODIFY `id_result` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=227;
+  MODIFY `id_result` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=230;
 
 --
 -- AUTO_INCREMENT for table `sample`

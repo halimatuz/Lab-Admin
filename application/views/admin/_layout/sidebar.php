@@ -5,10 +5,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
       <img src="<?= base_url() ?>assets/img/logo.png" alt="" width="50" class="mr-2">
-      <a href="<?php echo base_url(); ?>example/index">Information</a>
+      <a href="<?php echo base_url(); ?>D_admin">Information</a>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
-      <a href="<?php echo base_url(); ?>example/index">DIL</a>
+      <a href="<?php echo base_url(); ?>D_admin">DIL</a>
     </div>
     <ul class="sidebar-menu">
     <li class="menu-header">Dashboard</li>
@@ -62,6 +62,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <li class="dropdown <?php echo $this->uri->segment(2) == 'scan_coa' ? 'active' : ''; ?>">
         <a href="<?= base_url(); ?>D_admin/scan_coa" class="nav-link"><i class="fas fa-qrcode"></i><span>Scan COA</span></a>
       </li>
+
+      <li class="menu-header">More</li>
+      <li class="dropdown <?php echo $this->uri->segment(2) == 'add_user' || $this->uri->segment(2) == 'list_users' ? 'active' : ''; ?>">
+      </li>
+
+      <li class="dropdown <?php echo $this->uri->segment(2) == 'profile' || $this->uri->segment(2) == 'settings' || $this->uri->segment(2) == 'update_company_profile' ? 'active' : ''; ?>">
+        <a href="#" class="nav-link has-dropdown"><i class="fas fa-bicycle"></i> <span>Features</span></a>
+        <ul class="dropdown-menu">
+          <li class="<?php echo $this->uri->segment(2) == 'profile' || $this->uri->segment(2) == 'update_company_profile' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_admin/profile">Profile</a></li>
+        </ul>
+      </li>
+    </ul>
 
     </ul>
 

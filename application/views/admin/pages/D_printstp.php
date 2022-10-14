@@ -3,6 +3,10 @@ foreach($sampling_det as $sd) {
   $smpl_det = $sd;
 }
 
+foreach($company as $c) {
+  $cmp = $c;
+}
+
 function tgl_indo($tanggal){
 	$bulan = array (
 		1 =>   'Januari',
@@ -63,10 +67,9 @@ function tgl_indo($tanggal){
           <img src="<?= base_url('assets/img/logo.png') ?>" alt="">
         </div>
         <div class="col-md-6">
-          <h4 class="font-weight-bold text-right mb-4">PT. Delta Indonesia Laboratory</h4>
-          <p class="text-right">Jln. Perum Prima Harapan Regency, Gedung Prima Orchard Block C, No 2</p>
-          <p class="text-right">Bekasi Utara, Kota Bekasi 17123, Provinsi Jawa Barat</p>
-          <p class="text-right">Telp : 021 - 88382018</p>
+          <h4 class="font-weight-bold text-right mb-4"><?= $cmp->name ?></h4>
+          <p class="text-right"><?= $cmp->address ?></p>
+          <p class="text-right">Telp : <?= $cmp->phone ?></p>
         </div>
       </div>
       <hr style="height: 2px; background-color: black;">
@@ -120,7 +123,7 @@ function tgl_indo($tanggal){
         <div class="col-md-3"></div>
         <div class="col-md-3"></div>
         <div class="col-md-3">
-          <p class="text-center">Bekasi, <?= tgl_indo($smpl_det->date_analysis); ?><br>PT. Delta Indonesia Laboratory</p>
+          <p class="text-center">Bekasi, <?= tgl_indo($smpl_det->date_analysis); ?><br><?= $cmp->name ?></p>
           <br><br><br>
           <p class="text-center"><u class="font-weight-bold">Fadhelun</u><br>PJ Teknis</p>
         </div>

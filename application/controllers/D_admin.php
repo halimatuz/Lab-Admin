@@ -821,7 +821,7 @@ class D_admin extends CI_Controller
             'title' => 'Add Quotation',
         );
         $data['specialInstitution'] = $this->db->query("SELECT * FROM institution WHERE id_int = '$id_int'")->result();
-        $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk WHERE quotation.id_sk = $id_sk")->result();
+        $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk WHERE quotation.id_sk = $id_sk ORDER BY id_quotation DESC")->result();
         $data['analysis'] = $this->db->query("SELECT * FROM analysis")->result();
         $data['sknumber'] = $this->db->query("SELECT * FROM sk_number WHERE id_sk = $id_sk")->result();
         $this->load->view('admin/_layout/header', $data);
@@ -972,6 +972,7 @@ class D_admin extends CI_Controller
         $data = array(
             'title' => 'Print Quotation',
         );
+        $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
         $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk INNER JOIN institution ON quotation.id_int = institution.id_int INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis WHERE quotation.id_sk = $id")->result();
         $this->load->view('admin/pages/D_printquotation', $data);
     }
@@ -1086,6 +1087,7 @@ class D_admin extends CI_Controller
         $data = array(
             'title' => 'Print STPS',
         );
+        $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
         $data['sampling_det'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE sk_number.id_sk = $id")->result();
         $data['sampler'] = $this->db->query("SELECT * FROM assign_sampler INNER JOIN sampler ON assign_sampler.id_sampler = sampler.id_sampler INNER JOIN sk_number ON assign_sampler.id_sk = sk_number.id_sk WHERE sk_number.id_sk = $id AND assign_sampler.is_sampler = 1")->result();
         $this->load->view('admin/pages/D_printstps', $data);
@@ -1332,6 +1334,7 @@ class D_admin extends CI_Controller
         $data = array(
             'title' => 'Print STP',
         );
+        $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
         $data['sampling_det'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE sk_number.id_sk = $id")->result();
         $data['sampler'] = $this->db->query("SELECT * FROM assign_sampler INNER JOIN sampler ON assign_sampler.id_sampler = sampler.id_sampler INNER JOIN sk_number ON assign_sampler.id_sk = sk_number.id_sk WHERE sk_number.id_sk = $id AND assign_sampler.is_sampler = 0")->result();
         $this->load->view('admin/pages/D_printstp', $data);
@@ -1614,11 +1617,6 @@ class D_admin extends CI_Controller
     }
 
     public function renderQR($id_sk) {
-        $sess = $this->session->userdata('id_admin');
-		if ($sess == NULL) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
-			redirect('D_auth');
-		} else {
         $cipher = "AES-256-CBC";
         $secret = "12345678901234567890123456789012";
         $options = 0;
@@ -1632,7 +1630,6 @@ class D_admin extends CI_Controller
             $size = 3.5,
             $margin = 1
         );
-        }
     }
 
     public function pdf_coa($id_sk) {
@@ -1646,8 +1643,10 @@ class D_admin extends CI_Controller
             'title' => 'Export PDF',
         );
 
+        $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
         $data['coa'] = $this->db->query("SELECT * FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk WHERE result_coa.id_sk = $id_sk")->result();
         $data['analysis'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk WHERE quotation.id_sk = $id_sk")->result();
+        $data['count'] = count($data['analysis']) + 1;
 
         $paper_size = 'A4';
         $orientation = 'potrait';
@@ -1753,5 +1752,22 @@ class D_admin extends CI_Controller
             $this->session->set_flashdata('msg', 'User success added!');
             redirect('D_admin/list_users/');
         }
+    }
+
+    public function profile(){
+        $sess = $this->session->userdata('id_admin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $data = array(
+            'title' => "Profile"
+        );
+        $data['user'] = $this->db->query("SELECT * FROM user WHERE email = '$sess'")->result();
+        $this->load->view('admin/_layout/header', $data);
+        $this->load->view('admin/_layout/sidebar');
+        $this->load->view('admin/pages/D_profile');
+        $this->load->view('admin/_layout/footer');
+    }
     }
 }

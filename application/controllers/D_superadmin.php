@@ -821,7 +821,7 @@ class D_superadmin extends CI_Controller
             'title' => 'Add Quotation',
         );
         $data['specialInstitution'] = $this->db->query("SELECT * FROM institution WHERE id_int = '$id_int'")->result();
-        $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk WHERE quotation.id_sk = $id_sk")->result();
+        $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk WHERE quotation.id_sk = $id_sk ORDER BY id_quotation DESC")->result();
         $data['analysis'] = $this->db->query("SELECT * FROM analysis")->result();
         $data['sknumber'] = $this->db->query("SELECT * FROM sk_number WHERE id_sk = $id_sk")->result();
         $this->load->view('superadmin/_layout/header', $data);
@@ -972,6 +972,7 @@ class D_superadmin extends CI_Controller
         $data = array(
             'title' => 'Print Quotation',
         );
+        $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
         $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk INNER JOIN institution ON quotation.id_int = institution.id_int INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis WHERE quotation.id_sk = $id")->result();
         $this->load->view('superadmin/pages/D_printquotation', $data);
     }
@@ -1086,6 +1087,7 @@ class D_superadmin extends CI_Controller
         $data = array(
             'title' => 'Print STPS',
         );
+        $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
         $data['sampling_det'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE sk_number.id_sk = $id")->result();
         $data['sampler'] = $this->db->query("SELECT * FROM assign_sampler INNER JOIN sampler ON assign_sampler.id_sampler = sampler.id_sampler INNER JOIN sk_number ON assign_sampler.id_sk = sk_number.id_sk WHERE sk_number.id_sk = $id AND assign_sampler.is_sampler = 1")->result();
         $this->load->view('superadmin/pages/D_printstps', $data);
@@ -1332,6 +1334,7 @@ class D_superadmin extends CI_Controller
         $data = array(
             'title' => 'Print STP',
         );
+        $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
         $data['sampling_det'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE sk_number.id_sk = $id")->result();
         $data['sampler'] = $this->db->query("SELECT * FROM assign_sampler INNER JOIN sampler ON assign_sampler.id_sampler = sampler.id_sampler INNER JOIN sk_number ON assign_sampler.id_sk = sk_number.id_sk WHERE sk_number.id_sk = $id AND assign_sampler.is_sampler = 0")->result();
         $this->load->view('superadmin/pages/D_printstp', $data);
@@ -1614,11 +1617,6 @@ class D_superadmin extends CI_Controller
     }
 
     public function renderQR($id_sk) {
-        $sess = $this->session->userdata('id_superadmin');
-		if ($sess == NULL) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
-			redirect('D_auth');
-		} else {
         $cipher = "AES-256-CBC";
         $secret = "12345678901234567890123456789012";
         $options = 0;
@@ -1632,7 +1630,6 @@ class D_superadmin extends CI_Controller
             $size = 3.5,
             $margin = 1
         );
-        }
     }
 
     public function pdf_coa($id_sk) {
@@ -1645,9 +1642,11 @@ class D_superadmin extends CI_Controller
         $data = array(
             'title' => 'Export PDF',
         );
-
+        
+        $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
         $data['coa'] = $this->db->query("SELECT * FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk WHERE result_coa.id_sk = $id_sk")->result();
-        $data['analysis'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk WHERE quotation.id_sk = $id_sk")->result();
+        $data['analysis'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk WHERE quotation.id_sk = $id_sk AND analysis.coa = 1")->result();
+        $data['count'] = count($data['analysis']) + 1;
 
         $paper_size = 'A4';
         $orientation = 'potrait';
@@ -1709,6 +1708,11 @@ class D_superadmin extends CI_Controller
 
     public function list_users()
     {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
         $data = array(
             'title' => 'List Users',
         );
@@ -1718,8 +1722,14 @@ class D_superadmin extends CI_Controller
         $this->load->view('superadmin/pages/D_listusers', $data);
         $this->load->view('superadmin/_layout/footer');
     }
+    }
 
     public function add_user() {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
         $data = array(
             'title' => "Add User"
         );
@@ -1729,8 +1739,14 @@ class D_superadmin extends CI_Controller
         $this->load->view('superadmin/pages/D_adduser');
         $this->load->view('superadmin/_layout/footer');
     }
+    }
 
     public function add_user_action() {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
         $this->form_validation->set_rules('fullname', 'Name', 'required|trim');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
             'is_unique' => 'This email has already registered!'
@@ -1753,5 +1769,107 @@ class D_superadmin extends CI_Controller
             $this->session->set_flashdata('msg', 'User success added!');
             redirect('D_superadmin/list_users/');
         }
+    }
+    }
+
+    public function delete_user($id) {
+        $where = array('id_user' => $id);
+		$this->web->delete_data($where, 'user');
+        $this->session->set_flashdata('msg', 'User success deleted.');
+		redirect('D_superadmin/list_users');
+    }
+
+    public function settings() {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $data = array(
+            'title' => "Settings"
+        );
+
+        $this->load->view('superadmin/_layout/header', $data);
+        $this->load->view('superadmin/_layout/sidebar');
+        $this->load->view('superadmin/pages/D_settings');
+        $this->load->view('superadmin/_layout/footer');
+    }
+    }
+
+    public function update_company_profile() {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $data = array(
+            'title' => "Settings Company Profile"
+        );
+        $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
+
+        $this->load->view('superadmin/_layout/header', $data);
+        $this->load->view('superadmin/_layout/sidebar');
+        $this->load->view('superadmin/pages/D_settingscompany');
+        $this->load->view('superadmin/_layout/footer');
+    }
+    }
+
+    public function update_company_profile_action() {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $this->form_validation->set_rules('name', 'Company Name', 'required');
+        $this->form_validation->set_rules('address', 'Address', 'required');
+        $this->form_validation->set_rules('phone', 'Phone', 'required');
+        $this->form_validation->set_rules('website', 'Website', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required');
+        $this->form_validation->set_rules('norek', 'Rekening Number', 'required');
+        $this->form_validation->set_rules('behalf_account', 'Behalf Account', 'required');
+        $this->form_validation->set_rules('bank', 'Bank', 'required');
+        $this->form_validation->set_rules('director', 'Director', 'required');
+
+        if($this->form_validation->run() == false) {
+            $this->update_company_profile();
+        } else {
+            $data = array (
+                'name' => $this->input->post('name'),
+                'address' => $this->input->post('address'),
+                'phone' => $this->input->post('phone'),
+                'website' => $this->input->post('website'),
+                'email' => $this->input->post('email'),
+                'norek' => $this->input->post('norek'),
+                'behalf_account' => $this->input->post('behalf_account'),
+                'bank' => $this->input->post('bank'),
+                'director' => $this->input->post('director'),
+            );
+
+            $where = array(
+                'id' => $this->input->post('id')
+            );
+
+            $this->web->update_data('company_profile', $data, $where);
+            $this->session->set_flashdata('msg', 'Update company profile success!');
+            redirect('D_superadmin/update_company_profile/');
+        }
+    }
+    }
+
+    public function profile(){
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $data = array(
+            'title' => "Profile"
+        );
+        $data['user'] = $this->db->query("SELECT * FROM user WHERE email = '$sess'")->result();
+        $this->load->view('superadmin/_layout/header', $data);
+        $this->load->view('superadmin/_layout/sidebar');
+        $this->load->view('superadmin/pages/D_profile');
+        $this->load->view('superadmin/_layout/footer');
+    }
     }
 }

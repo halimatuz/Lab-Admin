@@ -5,10 +5,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
       <img src="<?= base_url() ?>assets/img/logo.png" alt="" width="50" class="mr-2">
-      <a href="<?php echo base_url(); ?>example/index">Information</a>
+      <a href="<?php echo base_url(); ?>D_superadmin">Information</a>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
-      <a href="<?php echo base_url(); ?>example/index">DIL</a>
+      <a href="<?php echo base_url(); ?>D_superadmin">DIL</a>
     </div>
     <ul class="sidebar-menu">
     <li class="menu-header">Dashboard</li>
@@ -64,25 +64,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </li>
       
       <li class="menu-header">More</li>
-      <li class="dropdown <?php echo $this->uri->segment(2) == 'add_user' ? 'active' : ''; ?>">
+      <li class="dropdown <?php echo $this->uri->segment(2) == 'add_user' || $this->uri->segment(2) == 'list_users' ? 'active' : ''; ?>">
         <a href="<?= base_url(); ?>D_superadmin/list_users" class="nav-link"><i class="fas fa-user"></i><span>Users</span></a>
       </li>
-      
-      <li class="menu-header">Pages</li>
-      <li class="dropdown">
-        <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Auth</span></a>
-        <ul class="dropdown-menu">
-          <li><a href="<?php echo base_url(); ?>example/auth_forgot_password">Forgot Password</a></li>
-          <li><a href="<?php echo base_url(); ?>example/auth_login">Login</a></li>
-          <li><a href="<?php echo base_url(); ?>example/auth_register">Register</a></li>
-          <li><a href="<?php echo base_url(); ?>example/auth_reset_password">Reset Password</a></li>
-        </ul>
-      </li>
-      <li class="dropdown<?php echo $this->uri->segment(2) == 'features_activities' || $this->uri->segment(2) == 'features_post_create' || $this->uri->segment(2) == 'features_posts' || $this->uri->segment(2) == 'features_profile' || $this->uri->segment(2) == 'features_settings' || $this->uri->segment(2) == 'features_setting_detail' || $this->uri->segment(2) == 'features_tickets' ? 'active' : ''; ?>">
+
+      <li class="dropdown <?php echo $this->uri->segment(2) == 'profile' || $this->uri->segment(2) == 'settings' || $this->uri->segment(2) == 'update_company_profile' ? 'active' : ''; ?>">
         <a href="#" class="nav-link has-dropdown"><i class="fas fa-bicycle"></i> <span>Features</span></a>
         <ul class="dropdown-menu">
-          <li class="<?php echo $this->uri->segment(2) == 'features_profile' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>example/features_profile">Profile</a></li>
-          <li class="<?php echo $this->uri->segment(2) == 'features_settings' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>example/features_settings">Settings</a></li>
+          <li class="<?php echo $this->uri->segment(2) == 'profile' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/profile">Profile</a></li>
+          <li class="<?php echo $this->uri->segment(2) == 'settings' || $this->uri->segment(2) == 'update_company_profile' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/settings">Settings</a></li>
         </ul>
       </li>
     </ul>

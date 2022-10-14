@@ -20,19 +20,21 @@
     <div class="flash-data-error" data-flashdata="<?= $this->session->flashdata('error'); ?>"></div>
       <div class="row">
         <div class="col-12">
-          <div class="card">
+          <div class="card card-primary">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-12">
-                        <?php
+                    <div class="col-12 text-center">
+                    <h5 class="text-center text-primary">Please point the QR Code in front of your camera!</h5>
+                    <hr>
+                    <?php
                         $attributes = array('id' => 'button');
                         echo form_open('D_superadmin/cek_id',$attributes);?>
-                        <div id="sourceSelectPanel" style="display:none">
+                        <div class="mx-auto">
+                            <video id="video" style="border: 1px solid gray;" width="50%"></video>
+                        </div>
+                        <div id="sourceSelectPanel" style="display:none;" class="mx-auto mt-2">
                             <label for="sourceSelect">Change video source:</label>
                             <select id="sourceSelect"></select>
-                        </div>
-                        <div>
-                            <video id="video" style="border: 1px solid gray" width="50%"></video>
                         </div>
                         <textarea hidden="" name="id_sk" id="result" readonly></textarea>
                         <?php echo form_close();?>

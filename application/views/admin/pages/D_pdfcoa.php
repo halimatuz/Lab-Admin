@@ -8324,6 +8324,10 @@ footer {
     opacity: 0.4;
 }
 
+.page:before {
+    content: "Page " counter(page) " of ";
+}
+
     </style>
   </head><body>
     <header>
@@ -8337,6 +8341,7 @@ footer {
     <footer>
         <p style="font-size: 9px; font-weight: bold;">Ruko Prima Orchard No.C 2 <br>Prima Harapan Regency Bekasi Utara, <br> Kota Bekasi 17123, Provinsi Jawa Barat <br>Telp : 021 - 88382018</p>
         <a href="www.deltaindonesialab.com" style="font-size: 10px; color: blue; text-decoration: underline;">www.deltaindonesialab.com</a>
+        <span style="font-size: 10px; margin-left: 500px; display: inline-block;" class="page">&nbsp;<?= $count; ?></span>
     </footer>
 
     <div class="watermark">
@@ -8415,10 +8420,11 @@ footer {
         </div>
 
         <div class="">
-            <img src="<?= site_url('D_superadmin/renderQR/' . $coa_det->id_sk) ?>" alt="" style="margin-top: 50px; margin-left: 50px; margin-right: 330px;">
-            <div style="display: inline-block; margin-top: 70px;">
+            <img src="<?= site_url('D_admin/renderQR/' . $coa_det->id_sk) ?>" alt="" style="margin-top: 50px; margin-left: 50px; margin-right: 330px;">
+            <div style="display: inline-block; margin-top: 40px;">
+                <p style="font-size: 12px; margin-left: -60px;">This Certificate of Analysis consist of <?= $count; ?> pages</p>
                 <p style="font-size: 12px; margin-left: 50px;">Bekasi, <?= tgl_indo($coa_det->date_report) ?></p>
-                <br><br><br><br>
+                <img src="<?= base_url('assets/img/ttd.png') ?>" alt="" style="margin-left: -10px;" width="250px">
                 <p style="font-size: 12px; font-weight: bold; text-decoration: underline; margin-bottom: -20px;">Drs. H. Soekardin Rachman, M.Si</p>
                 <p style="font-size: 12px; font-weight: bold; margin-left: 50px;">Direktur Utama</p>
             </div>

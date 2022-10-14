@@ -74,7 +74,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/codemirror/theme/duotone-dark.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/jquery-selectric/selectric.css">
     <?php
-  } elseif ($this->uri->segment(1) == "D_superadmin" && $this->uri->segment(2) == "") {
+  } elseif ($this->uri->segment(1) == "D_admin" && $this->uri->segment(2) == "") {
     ?>
     <?php
   } elseif ($this->uri->segment(2) == "modules_datatables") {
@@ -171,14 +171,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <?php
 if ($this->uri->segment(2) == "layout_transparent") {
-  $this->load->view('superadmin/_layout/layout-2');
-  $this->load->view('superadmin/_layout/sidebar-2');
+  $this->load->view('admin/_layout/layout-2');
+  $this->load->view('admin/_layout/sidebar-2');
 } elseif ($this->uri->segment(2) == "layout_top_navigation") {
-  $this->load->view('superadmin/_layout/layout-3');
-  $this->load->view('superadmin/_layout/navbar');
+  $this->load->view('admin/_layout/layout-3');
+  $this->load->view('admin/_layout/navbar');
 } elseif ($this->uri->segment(2) != "login" && $this->uri->segment(2) != "auth_forgot_password" && $this->uri->segment(2) != "auth_register" && $this->uri->segment(2) != "auth_reset_password" && $this->uri->segment(2) != "errors_503" && $this->uri->segment(2) != "errors_403" && $this->uri->segment(2) != "errors_404" && $this->uri->segment(2) != "errors_500" && $this->uri->segment(2) != "utilities_contact" && $this->uri->segment(2) != "utilities_subscribe") {
-  $this->load->view('superadmin/_layout/layout');
-  $this->load->view('superadmin/_layout/sidebar');
+  $this->load->view('admin/_layout/layout');
+  $this->load->view('admin/_layout/sidebar');
 }
 
 ?>

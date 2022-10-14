@@ -11,7 +11,7 @@ class D_scancoa extends CI_Controller
         $data = array(
             'title' => 'Scan COA',
         );
-        $this->load->view('pages/D_scancoa');
+        $this->load->view('pages/D_scancoa', $data);
         $this->load->view('_layout/footer');
     }
 

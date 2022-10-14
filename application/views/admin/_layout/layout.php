@@ -207,14 +207,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <img alt="image" src="<?php echo base_url(); ?>assets/img/avatar/default.jpg" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">Hi, <?= $nama[0] ?></div></a>
             <div class="dropdown-menu dropdown-menu-right">
-              <div class="dropdown-title">Logged in 5 min ago</div>
-              <a href="<?php echo base_url(); ?>dist/features_profile" class="dropdown-item has-icon">
+              <div class="dropdown-title">Menu</div>
+              <a href="<?php echo base_url(); ?>D_admin/profile" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
               </a>
-              <a href="<?php echo base_url(); ?>dist/features_activities" class="dropdown-item has-icon">
-                <i class="fas fa-bolt"></i> Activities
-              </a>
-              <a href="<?php echo base_url(); ?>dist/features_settings" class="dropdown-item has-icon">
+              <a href="<?php echo base_url(); ?>D_admin/profile" class="dropdown-item has-icon">
                 <i class="fas fa-cog"></i> Settings
               </a>
               <div class="dropdown-divider"></div>

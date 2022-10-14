@@ -49,6 +49,12 @@ class D_auth extends CI_Controller
                         'role' => $user['role'],
                         'fullname' => $user['fullname'],
                     );
+                } elseif($user['role'] == 'laborant') {
+                    $data = array(
+                        'id_laborant' => $user['email'],
+                        'role' => $user['role'],
+                        'fullname' => $user['fullname'],
+                    );
                 }
 
                 if($user['role'] == 'superadmin') {
@@ -60,6 +66,11 @@ class D_auth extends CI_Controller
                     $this->session->set_userdata($data);
                     $this->session->set_flashdata('msglogin', 'You are logged in as Admin!');
                     redirect('D_admin');
+                }
+                if($user['role'] == 'laborant') {
+                    $this->session->set_userdata($data);
+                    $this->session->set_flashdata('msglogin', 'You are logged in as Laborant!');
+                    redirect('D_laborant');
                 }
                 
             } else {

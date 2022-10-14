@@ -2,6 +2,9 @@
 foreach($quotation as $quot) {
   $qtn = $quot;
 }
+foreach($company as $c) {
+  $cmp = $c;
+}
 
 function tgl_indo($tanggal){
 	$bulan = array (
@@ -72,11 +75,10 @@ function tgl_indo($tanggal){
         <div class="col-md-3">
         </div>
         <div class="col-md-6">
-          <h5 class="font-weight-bold text-right">PT. Delta Indonesia Laboratory</h5>
-          <p class="text-right">Jln. Perum Prima Harapan Regency, Gedung Prima Orchard Block C, No 2</p>
-          <p class="text-right">Bekasi Utara, Kota Bekasi 17123, Provinsi Jawa Barat</p>
-          <p class="text-right">email: marketing@deltaindonesialab.com</p>
-          <p class="text-right">www.deltaindonesialab.com</p>
+          <h4 class="font-weight-bold text-right"><?= $cmp->name ?></h4>
+          <p class="text-right"><?= $cmp->address ?></p>
+          <p class="text-right"><?= $cmp->email ?></p>
+          <p class="text-right"><?= $cmp->website ?></p>
         </div>
       </div>
       <hr style="height: 2px; background-color: black;">
@@ -182,17 +184,17 @@ function tgl_indo($tanggal){
             <tr>
               <td>No. Rek&emsp;&emsp;</td>
               <td>:&emsp;</td>
-              <td>156-00-1713846-4</td>
+              <td><?= $cmp->norek ?></td>
             </tr>
             <tr>
               <td>Nama</td>
               <td>:</td>
-              <td>PT. DELTA INDONESIA LABORATORY</td>
+              <td><?= $cmp->behalf_account ?></td>
             </tr>
             <tr>
               <td>Bank</td>
               <td>:</td>
-              <td>MANDIRI KC HARAPAN BARU BEKASI UTARA</td>
+              <td><?= $cmp->bank ?></td>
             </tr>
           </table>
         </li>
@@ -201,9 +203,10 @@ function tgl_indo($tanggal){
       <div class="row mt-5">
         <div class="col-md-8"></div>
         <div class="col-md-4">
-          <p class="text-center">Drs. H. Soekardin Rachman, M.Si</p>
+          <img src="<?= base_url('assets/img/ttd.png') ?>" alt="" class="ml-3">
+          <p class="text-center"><?= $cmp->director ?></p>
           <hr style="height:2px; background-color: black;">
-          <p class="font-weight-bold text-center">PT. DELTA INDONESIA LABORATORY</p>
+          <p class="font-weight-bold text-center" style="margin-top: -10px;"><?= $cmp->name ?></p>
         </div>
       </div>
       <hr style="height:2px; background-color: black;" class="mt-4">

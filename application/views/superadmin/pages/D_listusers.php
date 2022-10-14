@@ -59,7 +59,7 @@
                                         <td><?= htmlspecialchars($row->email); ?></td>
                                         <td><?= htmlspecialchars($row->role); ?></td>
                                         <td>
-                                            <a href="<?php echo base_url('D_superadmin/delete_user/') . $row->id_user ?>"class="btn btn-danger"><i class="fas fa-trash"></i> Delete User</a>
+                                            <a href="<?php echo base_url('D_superadmin/delete_user/') . $row->id_user ?>"class="btn btn-danger tombol-hapus"><i class="fas fa-trash"></i> Delete User</a>
                                         </td>
                                     </tr>
                                 <?php endforeach;?>
