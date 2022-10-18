@@ -126,14 +126,9 @@ foreach($specialAnalysis as $sa) {
                                 <label>Unit</label>
                                 <select name="unit" id="" class="form-control <?php if(form_error('unit')) { echo "is-invalid"; } ?>" value="<?= set_value('unit')?>">
                                 <option value="<?php if( set_value('unit') == NULL) { echo "";}else { echo set_value('unit');}?>"><?php if( set_value('unit') == NULL) { echo "-- Select Unit --";}else { echo set_value('unit');}?></option>
-                                    <option value="°C">°C</option>
-                                    <option value="%">%</option>
-                                    <option value="mg/L">mg/L</option>
-                                    <option value="mg/L">mg/m³</option>
-                                    <option value="mg/Nm³">mg/Nm³</option>
-                                    <option value="NTU">NTU</option>
-                                    <option value="Pt-Co">Pt-Co</option>
-                                    <option value="CFU/100ml">CFU/100ml</option>
+                                    <?php foreach($unit as $unt) : ?>
+                                        <option value="<?= $unt->name_unit ?>"><?= $unt->name_unit ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                                 <?php echo form_error('unit', '<span class="text-small text-danger">', '</span>') ?>
                             </div>

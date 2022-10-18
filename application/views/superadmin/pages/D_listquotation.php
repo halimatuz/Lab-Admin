@@ -2,7 +2,7 @@
 <div class="main-content">
   <section class="section">
     <div class="section-header">
-      <h1><?php if($this->uri->segment(2) == 'data_stp_index'){echo'Add STP';}elseif($this->uri->segment(2) == 'data_stps_index'){echo 'Add STPS';}elseif($this->uri->segment(2) == 'data_quotation_coa'){echo 'Generate COA';}elseif($this->uri->segment(2) == "data_quotation"){echo 'Input Result COA';}else{echo "Print COA";} ?></h1>
+      <h1><?php if($this->uri->segment(2) == 'list_quotation'){echo'List Quotation';}elseif($this->uri->segment(2) == 'data_stp_index'){echo'Add STP';}elseif($this->uri->segment(2) == 'data_stps_index'){echo 'Add STPS';}elseif($this->uri->segment(2) == 'data_quotation_coa'){echo 'Generate COA';}elseif($this->uri->segment(2) == "data_quotation"){echo 'Input Result COA';}else{echo "Print COA";} ?></h1>
       <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active">
           <a href="#">Dashboard</a>
@@ -44,6 +44,10 @@
                                 <th>No</th>
                                 <th>Name Institution</th>
                                 <th>SK Quotation</th>
+                                <th>Date</th>
+                                <?php if($this->uri->segment(2) == 'list_quotation') { ?>
+                                <th>Purchase Order</th>
+                                <?php } ?>
                                 <th>Action</th>
                                 </tr>
                             </thead>
@@ -55,8 +59,25 @@
                                         <td><?= $no++; ?></td>
                                         <td><?= htmlspecialchars($qtn->name_int); ?></td>
                                         <td><?= htmlspecialchars($qtn->sk_quotation); ?></td>
+                                        <td><?= htmlspecialchars($qtn->date_quotation); ?></td>
+                                        <?php if($this->uri->segment(2) == 'list_quotation') { ?>
+                                        <td align="center">
+                                          <?php if ($qtn->status_po == 1) { ?>
+                                            <label class="badge badge-success">PO</label>
+                                          <?php } else { ?>
+                                            <label class="badge badge-danger">Not yet</label>
+                                          <?php } ?>
+                                        </td>
+                                        <?php } ?>
                                         <td>
-                                          <?php if($this->uri->segment(2) == 'data_stps_index') { ?>
+                                          <?php if($this->uri->segment(2) == 'list_quotation') { ?>
+                                              <a href="<?= base_url('D_superadmin/add_quotation/') . $qtn->id_sk ?>" class="btn btn-primary"><i class="fas fa-edit"></i> Edit Quotation</a>
+                                              <?php if ($qtn->status_po == 0) { ?>
+                                                <a href="<?= base_url('D_superadmin/verifikasi/cek/') . $qtn->id_sk ?>" class="btn btn-success btn-xs" title="PO"><i class="fas fa-check"></i></a>
+                                              <?php } else { ?>
+                                                <a href="<?= base_url('D_superadmin/verifikasi/cek/') . $qtn->id_sk ?>" class="btn btn-danger btn-xs" title="Cancel PO"><i class="fas fa-times"></i></a>
+                                              <?php } ?>
+                                          <?php } elseif($this->uri->segment(2) == 'data_stps_index') { ?>
                                             <?php if($qtn->sk_sample == 0) { ?>
                                               <a href="<?php echo base_url('D_superadmin/add_stps/') . $qtn->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> Add STPS</a>
                                             <?php } else { ?>

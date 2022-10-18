@@ -61,7 +61,6 @@
                                         <td><?= htmlspecialchars($int->int_address); ?></td>
                                         <td>
                                             <a href="<?= base_url('D_superadmin/generate_sk/') . $int->id_int ?>" class="btn btn-success tombol-generate"><i class="fas fa-plus"></i> Generate SK</a>
-                                            <a href="<?= base_url('D_superadmin/list_quotation/') . $int->id_int ?>"class="btn btn-primary"><i class="fas fa-file"></i> List Quotation</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

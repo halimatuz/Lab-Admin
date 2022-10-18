@@ -67,9 +67,9 @@ function tgl_indo($tanggal){
           <img src="<?= base_url('assets/img/logo.png') ?>" alt="">
         </div>
         <div class="col-md-6">
-          <h4 class="font-weight-bold text-right mb-4"><?= $cmp->name ?></h4>
-          <p class="text-right"><?= $cmp->address ?></p>
-          <p class="text-right">Telp : <?= $cmp->phone ?></p>
+          <img src="<?= base_url('assets/img/kan.png') ?>" alt="" width="150px" style="margin-left: 300px;">
+          <p style="font-size:10px; font-weight: bold; margin-top:10px;" class="text-right">SK-KLHK No 00161/LPJ/Labling-1/LRK/KLHK</p>
+          <p style="font-size: 9px; margin-left: 75px; margin-top: -10px;" class="text-right">7.8.1/DIL/VII/2018/FORM REV . 2</p>
         </div>
       </div>
       <hr style="height: 2px; background-color: black;">
@@ -118,7 +118,7 @@ function tgl_indo($tanggal){
         <div class="col-md-3">
           <p class="text-center">Admin</p>
           <br><br><br>
-          <p class="text-center font-weight-bold">Novita Putridiana</p>
+          <p class="text-center font-weight-bold mt-3">Novita Putridiana</p>
         </div>
         <div class="col-md-3"></div>
         <div class="col-md-3"></div>
@@ -127,6 +127,16 @@ function tgl_indo($tanggal){
           <br><br><br>
           <p class="text-center"><u class="font-weight-bold">Fadhelun</u><br>PJ Teknis</p>
         </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+          <div class="col-md-3">
+            <p style="font-size: 10px!important; font-weight: bold; margin-top: 70px; margin-bottom: -8px;"><?= $cmp->address ?> <br>Telp : <?= $cmp->phone ?></p>
+            <a href="<?= $cmp->website ?>" style="font-size: 10px; color: blue; text-decoration: underline;" class="block"><?= $cmp->website ?></a>
+          </div>
+          <div class="col-md-9"></div>
       </div>
     </div>
 

@@ -46,7 +46,7 @@
                         <option value="">--- Select Role ---</option>
                         <option value="superadmin">Super Admin</option>
                         <option value="admin">Admin</option>
-                        <option value="laborant">Laborant</option>
+                        <option value="marketing">Marketing</option>
                       </select>
                       <?php echo form_error('role', '<span class="text-small text-danger">', '</span>') ?>
                     </div>

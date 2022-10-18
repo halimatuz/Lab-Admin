@@ -22,8 +22,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </button>
               </div>
               <div class="modal-body">
-                <p>This application is still in beta test so there may still be many bugs and errors that occur but we are trying to improve.</p>
-                <h6 class="font-weight-bold">Dashboard Admin :</h6>
+                <p>This application is still in beta test so there may still be many bugs and errors that occur but we are trying to improve</p>
+                <h6 class="font-weight-bold">Dashboard Super Admin :</h6>
                 <hr>
                 <ul>
                   <li>Add Data Master</li>
@@ -32,6 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <li>Add STP</li>
                   <li>Add COA</li>
                   <li>Scan COA</li>
+                  <li>Add User</li>
                 </ul>
                 <h6 class="font-weight-bold">Issues Fixed</h6>
                 <hr>
@@ -46,4 +47,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
 </div>
 
-<?php $this->load->view('superadmin/_layout/js'); ?>
+<?php $this->load->view('admin/_layout/js'); ?>

@@ -7,10 +7,6 @@ foreach($total_institution as $ti) {
     $total_data_institution = $ti;
 }
 
-foreach($total_analysis as $ta) {
-    $total_data_analysis = $ta;
-}
-
 foreach($total_quotation as $tq) {
     $total_data_quotation = $tq;
 }
@@ -57,7 +53,7 @@ foreach($total_quotation as $tq) {
           </div>
           <div class="card-wrap">
             <div class="card-header">
-              <h4>Total Institution</h4>
+              <h4>Total Customer</h4>
             </div>
             <div class="card-body">
                 <?= $total_data_institution ?>
@@ -72,10 +68,10 @@ foreach($total_quotation as $tq) {
           </div>
           <div class="card-wrap">
             <div class="card-header">
-              <h4>Total Analysis</h4>
+              <h4>Total COA</h4>
             </div>
             <div class="card-body">
-              <?= $total_data_analysis ?>
+              <?= $total_coa ?>
             </div>
           </div>
         </div>

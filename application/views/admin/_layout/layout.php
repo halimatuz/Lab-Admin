@@ -211,7 +211,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <a href="<?php echo base_url(); ?>D_admin/profile" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
               </a>
-              <a href="<?php echo base_url(); ?>D_admin/profile" class="dropdown-item has-icon">
+              <a href="<?php echo base_url(); ?>D_admin/settings" class="dropdown-item has-icon">
                 <i class="fas fa-cog"></i> Settings
               </a>
               <div class="dropdown-divider"></div>

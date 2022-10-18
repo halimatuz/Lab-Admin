@@ -8323,9 +8323,9 @@ footer {
 
 .watermark {
     position: fixed;
-    top: 320px;
-    left: 160px;
-    opacity: 0.3;
+    top: 300px;
+    left: 100px;
+    opacity: 0.1;
 }
 
 .page:before {
@@ -8345,20 +8345,20 @@ footer {
     <footer>
         <div class="" style="width: 170px;">
         <p style="font-size: 9px; font-weight: bold;"><?= $cmp->address ?> <br>Telp : <?= $cmp->phone ?></p>
-        <a href="www.deltaindonesialab.com" style="font-size: 10px; color: blue; text-decoration: underline;"><?= $cmp->website ?></a>
+        <a href="<?= $cmp->website ?>" style="font-size: 10px; color: blue; text-decoration: underline;"><?= $cmp->website ?></a>
         </div>
         <span style="font-size: 10px; margin-left: 450px; display: inline-block;" class="page">&nbsp;<?= $count; ?></span>
     </footer>
 
     <div class="watermark">
-        <img src="<?= base_url('assets/img/logo-grayscale.png') ?>" alt="" style="width: 400px; opacity: 40%">
+        <img src="<?= base_url('assets/img/logo-grayscale.png') ?>" alt="" style="width: 500px;">
     </div>
 
     <div style="position: relative;">
         <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
         <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
         <div class="col-xs-11" style="margin-left: 120px;">
-            <table class="mt-5" width="430px">
+            <table class="mt-2" width="430px">
                 <tr>
                     <td width="70px">Customer</td>
                     <td width="10px">:</td>
@@ -8427,10 +8427,10 @@ footer {
 
         <div class="">
             <img src="<?= site_url('D_superadmin/renderQR/' . $coa_det->id_sk) ?>" alt="" style="margin-top: 50px; margin-left: 50px; margin-right: 330px;">
-            <div style="display: inline-block; margin-top: 40px;">
+            <div style="display: inline-block; margin-top: 20px;">
                 <p style="font-size: 12px; margin-left: -55px;">This Certificate of Analysis consist of <?= $count; ?> pages</p>
                 <p style="font-size: 12px; margin-left: 60px;">Bekasi, <?= tgl_indo($coa_det->date_report) ?></p>
-                <img src="<?= base_url('assets/img/ttd.png') ?>" alt="" style="margin-left: -10px;" width="250px">
+                <img src="<?= base_url('assets/img/ttd.png') ?>" alt="" style="margin-left: -30px;" width="250px">
                 <p style="font-size: 12px; font-weight: bold; text-decoration: underline; margin-bottom: -20px;"><?= $cmp->director ?></p>
                 <p style="font-size: 12px; font-weight: bold; margin-left: 50px;">Direktur Utama</p>
             </div>
@@ -8525,7 +8525,7 @@ footer {
             <td><b>Notes:</b></td>
           </tr>
           <tr>
-            <td class="no-padding"><</td>
+            <td class="no-padding">&lt;</td>
             <td class="no-padding">Less Than MDL (Method Detection Limit)</td>
           </tr>
           <tr>
@@ -8621,7 +8621,7 @@ footer {
             <td><b>Notes:</b></td>
           </tr>
           <tr>
-            <td class="no-padding"><</td>
+            <td class="no-padding">&lt;</td>
             <td class="no-padding">Less Than MDL (Method Detection Limit)</td>
           </tr>
           <tr>
@@ -8732,7 +8732,7 @@ footer {
             <td><b>Notes:</b></td>
           </tr>
           <tr>
-            <td class="no-padding"><</td>
+            <td class="no-padding">&lt;</td>
             <td class="no-padding">Less Than MDL (Method Detection Limit)</td>
           </tr>
           <tr>
@@ -8809,7 +8809,7 @@ footer {
             <td><b>Notes:</b></td>
           </tr>
           <tr>
-            <td class="no-padding"><</td>
+            <td class="no-padding">&lt;</td>
             <td class="no-padding">Less Than MDL (Method Detection Limit)</td>
           </tr>
           <tr>
@@ -8878,7 +8878,7 @@ footer {
             <td><b>Notes:</b></td>
           </tr>
           <tr>
-            <td class="no-padding"></td>
+            <td class="no-padding">&lt;</td>
             <td class="no-padding">Less Than MDL (Method Detection Limit)</td>
           </tr>
           <tr>
@@ -8947,7 +8947,7 @@ footer {
             <td><b>Notes:</b></td>
           </tr>
           <tr>
-            <td class="no-padding"><</td>
+            <td class="no-padding">&lt;</td>
             <td class="no-padding">Less Than MDL (Method Detection Limit)</td>
           </tr>
           <tr>
@@ -9016,7 +9016,7 @@ footer {
             <td><b>Notes:</b></td>
           </tr>
           <tr>
-            <td class="no-padding"><</td>
+            <td class="no-padding">&lt;</td>
             <td class="no-padding">Less Than MDL (Method Detection Limit)</td>
           </tr>
           <tr>
@@ -9086,7 +9086,7 @@ footer {
             <td><b>Notes:</b></td>
           </tr>
           <tr>
-            <td class="no-padding"><</td>
+            <td class="no-padding">&lt;</td>
             <td class="no-padding">Less Than MDL (Method Detection Limit)</td>
           </tr>
           <tr>
@@ -9095,6 +9095,232 @@ footer {
           </tr>
           <tr>
             <td class="no-padding">**&emsp;&emsp;&emsp;</td>
+            <td class="no-padding">Minister of Manpower Regulation No. 05 Year 2018</td>
+          </tr>
+        </table>
+    </div>
+    
+    <?php } elseif ($anl->name_analysis == 'Ambient Air') { ?>
+        <div class="page_break"></div>
+        <div style="position: relative;">
+        <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>Sample No.</th>
+                <th>Sampling Location</th>
+                <th>Sample Description</th>
+                <th>Sampling Date</th>
+                <th>Sampling Time</th>
+                <th>Date Received</th>
+                <th>Interval Testing Date</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->date_analysis ?></td>
+                <td></td>
+                <td><?= $anl->date_sample ?></td>
+                <td></td>
+            </tr>
+        </table>
+        <table class="table table-bordered mt-2">
+            <tr>
+                <th>No</th>
+                <th>Parameters</th>
+                <th>Sampling Time</th>
+                <th>Testing Result</th>
+                <th>Regulatory Standard**</th>
+                <th>Unit</th>
+                <th>Methods</th>
+            </tr>
+            <?php $no=1; foreach($coa as $c) : if($c->name_analysis == 'Ambient Air') {  
+            ?>
+            <tr>
+                <td><?= $no++ ?></td>
+                <td><?= $c->params ?></td>
+                <td><?= $c->sampling_time ?></td>
+                <td><?= $c->result ?></td>
+                <td><?= $c->reg_standart_1 ?></td>
+                <td><?= $c->unit ?></td>
+                <td><?= $c->name_method ?></td>
+            </tr>
+            <?php } endforeach; ?>
+            <tr>
+              <td colspan="7">Ambient Environtmental Condition :<br>Humidity :<br>Coordinate :<br>Temperature :<br>Wind Speed :<br>Wind Direction :</td>
+            </tr>
+        </table>
+
+        <table>
+          <tr>
+            <td><b>Notes:</b></td>
+          </tr>
+          <tr>
+            <td class="no-padding">&lt;</td>
+            <td class="no-padding">Less Than MDL (Method Detection Limit)</td>
+          </tr>
+          <tr>
+            <td class="no-padding">*</td>
+            <td class="no-padding">Accredited Parameters</td>
+          </tr>
+          <tr>
+            <td class="no-padding">**</td>
+            <td class="no-padding">Government Regulation of Republiv Indonesia No.22 of 2021 Regarding Implementation of Environtmental Protection and Management Appendix VII</td>
+          </tr>
+          <tr>
+            <td class="no-padding">***&emsp;&emsp;&emsp;</td>
+            <td class="no-padding">Minister of Environmental Decree of Republic of Indonesia Regarding Odor Level Standard (KEP-50/MENLH/11/1996)</td>
+          </tr>
+        </table>
+    </div>
+    
+    <?php } elseif ($anl->name_analysis == 'Vibration') { ?>
+        <div class="page_break"></div>
+        <div style="position: relative;">
+        <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>Sample No.</th>
+                <th>Sampling Location</th>
+                <th>Sample Description</th>
+                <th>Sampling Date</th>
+                <th>Sampling Time</th>
+                <th>Date Received</th>
+                <th>Interval Testing Date</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td><i>(See Table)</i></td>
+                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->date_analysis ?></td>
+                <td></td>
+                <td><?= $anl->date_sample ?></td>
+                <td></td>
+            </tr>
+        </table>
+        <table class="table table-bordered mt-2">
+            <tr>
+                <th>Vehicle Brand</th>
+                <th>Time</th>
+                <th>Unit</th>
+                <th>Testing Result</th>
+                <th>Methods</th>
+            </tr>
+            <?php foreach($coa as $c) : if($c->name_analysis == 'Vibration') {  
+            ?>
+            <tr>
+                <td><?= $c->vehicle_brand ?></td>
+                <td><?= $c->time ?></td>
+                <td><?= $c->unit ?></td>
+                <td><?= $c->result ?></td>
+                <td><?= $c->name_method ?></td>
+            </tr>
+            <?php } endforeach; ?>
+        </table>
+
+        <table class="table table-bordered mt-2 text-center">
+            <tr>
+                <th>Time Amount Exposure Working Day (Hours)</th>
+                <th>Threshold Value m/s²</th>
+            </tr>
+            <tr>
+                <td>0.5</td>
+                <td>3.4644</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2.4497</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>1.7322</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>1.2249</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>0.8661</td>
+            </tr>
+        </table>
+
+        <table>
+          <tr>
+            <td><b>Notes:</b></td>
+          </tr>
+          <tr>
+            <td class="no-padding">&lt;</td>
+            <td class="no-padding">Less Than MDL (Method Detection Limit)</td>
+          </tr>
+          <tr>
+            <td class="no-padding">*</td>
+            <td class="no-padding">Accredited Parameters</td>
+          </tr>
+          <tr>
+            <td class="no-padding">**</td>
+            <td class="no-padding">Minister of Manpower Regulation No. 05 Year 2018</td>
+          </tr>
+        </table>
+    </div>
+    
+    <?php } elseif ($anl->name_analysis == 'Noise') { ?>
+        <div class="page_break"></div>
+        <div style="position: relative;">
+        <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>Sample No.</th>
+                <th>Sampling Location</th>
+                <th>Sample Description</th>
+                <th>Sampling Date</th>
+                <th>Sampling Time</th>
+                <th>Date Received</th>
+                <th>Interval Testing Date</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td><i>(See Table)</i></td>
+                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->date_analysis ?></td>
+                <td></td>
+                <td><?= $anl->date_sample ?></td>
+                <td></td>
+            </tr>
+        </table>
+        <table class="table table-bordered mt-2">
+            <tr>
+                <th>No</th>
+                <th>Sampling Location</th>
+                <th>Testing Result</th>
+                <th>Time</th>
+                <th>Regulatory Standard**</th>
+                <th>Unit</th>
+                <th>Methods</th>
+            </tr>
+            <?php $no = 1; foreach($coa as $c) : if($c->name_analysis == 'Noise') {  
+            ?>
+            <tr>
+                <td><?= $no++ ?></td>
+                <td></td>
+                <td><?= $c->result ?></td>
+                <td><?= $c->time ?></td>
+                <td><?= $c->reg_standart_1 ?></td>
+                <td><?= $c->unit ?></td>
+                <td><?= $c->name_method ?></td>
+            </tr>
+            <?php } endforeach; ?>
+        </table>
+
+        <table>
+            <tr>
+            <td><b>Notes:</b></td>
+          </tr>
+          <tr>
+            <td class="no-padding">**</td>
             <td class="no-padding">Minister of Manpower Regulation No. 05 Year 2018</td>
           </tr>
         </table>

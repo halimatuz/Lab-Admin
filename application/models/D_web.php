@@ -55,4 +55,25 @@ class D_web extends CI_Model
             return false;
         }
     }
+    
+    function cek_status($id_sk)
+	{
+		return $this->db->get_where('sk_number', "id_sk='$id_sk'")->row();
+	}
+
+    function update($menu = '', $data = '')
+	{
+		switch ($menu) {
+			case 'change-stu-po':
+				$param = array(
+					'status_po' => $data['status_po']
+				);
+				$this->db->update('sk_number', $param, array('id_sk' => $data['id_sk']));
+				break;
+
+			default:
+				# code...
+				break;
+		}
+	}
 } 

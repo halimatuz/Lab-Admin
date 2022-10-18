@@ -52,8 +52,19 @@ foreach($coa as $c) {
                                 <thead>
                                     <tr>
                                     <th>No</th>
+                                    <?php if($coa_spec->name_analysis != 'Vibration' && $coa_spec->name_analysis != 'Noise') { ?>
                                     <th>Parameters</th>
+                                    <?php } ?>
+                                    <?php if($coa_spec->name_analysis == 'Vibration') { ?>
+                                    <th>Vehicle Brand</th>
+                                    <?php } ?>
+                                    <?php if($coa_spec->name_analysis == 'Vibration' || $coa_spec->name_analysis == 'Noise') { ?>
+                                    <th>Time</th>
+                                    <?php } ?>
                                     <th>Unit</th>
+                                    <?php if($coa_spec->name_analysis == 'Ambient Air') { ?>
+                                    <th>Sampling Time</th>
+                                    <?php } ?>
                                     <th>Testing Result</th>
                                     <th>Method</th>
                                     </tr>
@@ -65,8 +76,19 @@ foreach($coa as $c) {
                                     
                                         <tr>
                                             <td><?= $no++; ?></td>
+                                            <?php if($coa_spec->name_analysis != 'Vibration' && $coa_spec->name_analysis != 'Noise') { ?>
                                             <td><?= htmlspecialchars($row->params); ?></td>
+                                            <?php } ?>
+                                            <?php if($coa_spec->name_analysis == 'Vibration') { ?>
+                                            <td><input type="text" name="vehicle_brand[]" value="<?= $row->vehicle_brand ?>" class="form-control"></td>
+                                            <?php } ?>
+                                            <?php if($coa_spec->name_analysis == 'Vibration' || $coa_spec->name_analysis == 'Noise') { ?>
+                                            <td><input type="text" name="time[]" value="<?= $row->time ?>" class="form-control"></td>
+                                            <?php } ?>
                                             <td><?= htmlspecialchars($row->unit); ?></td>
+                                            <?php if($coa_spec->name_analysis == 'Ambient Air') { ?>
+                                            <td><?= htmlspecialchars($row->sampling_time); ?></td> 
+                                            <?php } ?>
                                             <input type="hidden" name="id_sk" value="<?= $row->id_sk ?>">
                                             <input type="hidden" name="id_analysis" value="<?= $row->id_analysis ?>">
                                             <input type="hidden" name="id_int" value="<?= $row->id_int ?>">

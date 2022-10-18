@@ -17,7 +17,7 @@ class D_superadmin extends CI_Controller
             
             $data['total_sampler'] = $this->web->get_count('sampler');
             $data['total_institution'] = $this->web->get_count('institution');
-            $data['total_analysis'] = $this->web->get_count('analysis');
+            $data['total_coa'] = count($this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_analysis) <> '' ORDER BY sk_number.id_sk DESC")->result());
             $data['total_quotation'] = $this->web->get_count('sk_number');
             $this->load->view('superadmin/_layout/header', $data);
             $this->load->view('superadmin/_layout/sidebar');
@@ -576,6 +576,109 @@ class D_superadmin extends CI_Controller
 		}
     }
 
+    public function data_unit()
+    {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $data = array(
+            'title' => 'Data Unit',
+        );
+        $data['unit'] = $this->web->get_data('unit', 'id_unit')->result();
+        $this->load->view('superadmin/_layout/header', $data);
+        $this->load->view('superadmin/_layout/sidebar');
+        $this->load->view('superadmin/pages/D_dataunit');
+        $this->load->view('superadmin/_layout/footer');
+    }
+    }
+
+    public function add_unit()
+    {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $this->_rules_unit();
+        if($this->form_validation->run() == FALSE) {
+            $this->data_unit();
+        } else {
+            $name_unit = $this->input->post('name_unit');
+
+            $data = array(
+                'name_unit' => $name_unit,
+            );
+
+            $this->web->insert_data($data, 'unit');
+            $this->session->set_flashdata('msg', 'Data unit success added.');
+            redirect('D_superadmin/data_unit');
+        }
+    }
+    }
+
+    public function _rules_unit()
+    {
+        $this->form_validation->set_rules('name_unit', 'Name unit', 'required');
+    }
+
+    public function delete_unit($id)
+	{
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $where = array('id_unit' => $id);
+		$this->web->delete_data($where, 'unit');
+        $this->session->set_flashdata('msg', 'Data unit success deleted.');
+		redirect('D_superadmin/data_unit');
+        }
+	}
+
+    public function update_unit($id) {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $where = array('id_unit' => $id);
+        $data = array(
+            'title' => 'Data unit',
+        );
+        $data['unit'] = $this->web->get_data('unit', 'id_unit')->result();
+        $data['specialunit'] = $this->db->query("SELECT * FROM unit WHERE id_unit = '$id'")->result();
+        $this->load->view('superadmin/_layout/header', $data);
+        $this->load->view('superadmin/_layout/sidebar');
+        $this->load->view('superadmin/pages/D_dataunit', $data);
+        $this->load->view('superadmin/_layout/footer');
+    }
+    }
+
+    public function update_unit_action()
+    {
+		$id = $this->input->post('id_unit');
+        $this->_rules_unit();
+        if ($this->form_validation->run() == FALSE) {
+            $this->update_unit($id);
+        } else {
+            $id = $this->input->post('id_unit');
+            $name_unit = $this->input->post('name_unit');
+
+        $data = array(
+            'name_unit' => $name_unit
+        );
+
+        $where = array(
+            'id_unit' => $id
+        );
+        $this->web->update_data('unit', $data, $where);
+        $this->session->set_flashdata('msg', 'Data unit success changed!');
+        redirect('D_superadmin/data_unit');
+		}
+    }
+
     public function data_coa()
     {
         $sess = $this->session->userdata('id_superadmin');
@@ -604,8 +707,10 @@ class D_superadmin extends CI_Controller
         $data = array(
             'title' => 'Add COA',
         );
+
+        $data['unit'] = $this->web->get_data('unit', 'id_unit')->result();
         $data['specialAnalysis'] = $this->db->query("SELECT * FROM analysis WHERE id_analysis = '$id'")->result();
-        $data['coa'] = $this->db->query("SELECT * FROM coa INNER JOIN method ON coa.method = method.id_method WHERE coa.id_analysis = '$id'")->result();
+        $data['coa'] = $this->db->query("SELECT * FROM coa INNER JOIN method ON coa.method = method.id_method WHERE coa.id_analysis = '$id' ORDER BY id_coa DESC")->result();
         $data['methods'] = $this->db->query("SELECT * FROM method")->result();
         $this->load->view('superadmin/_layout/header', $data);
         $this->load->view('superadmin/_layout/sidebar');
@@ -624,6 +729,7 @@ class D_superadmin extends CI_Controller
             $id_analysis = $this->input->post('id_analysis');
             $params = $this->input->post('params');
             $category_params = $this->input->post('category_params');
+            $sampling_time = $this->input->post('sampling_time');
             $unit = $this->input->post('unit');
             $reg_standart_1 = $this->input->post('reg_standart_1');
             $reg_standart_2 = $this->input->post('reg_standart_2');
@@ -635,6 +741,7 @@ class D_superadmin extends CI_Controller
                 'id_analysis' => $id_analysis,
                 'params' => $params,
                 'category_params' => $category_params,
+                'sampling_time' => $sampling_time,
                 'unit' => $unit,
                 'reg_standart_1' => $reg_standart_1,
                 'reg_standart_2' => $reg_standart_2,
@@ -651,13 +758,7 @@ class D_superadmin extends CI_Controller
 
     public function _rules_coa()
     {
-        $this->form_validation->set_rules('params', 'Parameters', 'required');
-        $this->form_validation->set_rules('category_params', 'Category Parameters', 'required');
         $this->form_validation->set_rules('unit', 'Unit', 'required');
-        $this->form_validation->set_rules('reg_standart_1', 'Regulatory Standard', 'required');
-        $this->form_validation->set_rules('reg_standart_2', 'Parameters');
-        $this->form_validation->set_rules('reg_standart_3', 'Parameters');
-        $this->form_validation->set_rules('reg_standart_4', 'Parameters');
         $this->form_validation->set_rules('method', 'Method', 'required');
     }
 
@@ -685,6 +786,8 @@ class D_superadmin extends CI_Controller
         $data = array(
             'title' => 'Data COA',
         );
+
+        $data['unit'] = $this->web->get_data('unit', 'id_unit')->result();
         $data['specialAnalysis'] = $this->db->query("SELECT * FROM analysis WHERE id_analysis = '$id_anl'")->result();
         $data['coa'] = $this->db->query("SELECT * FROM coa INNER JOIN method ON coa.method = method.id_method WHERE coa.id_analysis = '$id_anl'")->result();
         $data['specialcoa'] = $this->db->query("SELECT * FROM coa INNER JOIN method ON coa.method = method.id_method WHERE id_coa = '$id'")->result();
@@ -713,6 +816,7 @@ class D_superadmin extends CI_Controller
             $id_analysis = $this->input->post('id_analysis');
             $params = $this->input->post('params');
             $category_params = $this->input->post('category_params');
+            $sampling_time = $this->input->post('sampling_time');
             $unit = $this->input->post('unit');
             $reg_standart_1 = $this->input->post('reg_standart_1');
             $reg_standart_2 = $this->input->post('reg_standart_2');
@@ -725,6 +829,7 @@ class D_superadmin extends CI_Controller
             'id_analysis' => $id_analysis,
             'params' => $params,
             'category_params' => $category_params,
+            'sampling_time' => $sampling_time,
             'unit' => $unit,
             'reg_standart_1' => $reg_standart_1,
             'reg_standart_2' => $reg_standart_2,
@@ -777,7 +882,7 @@ class D_superadmin extends CI_Controller
         $code++;
         $sk_quotation = $code . '/' . date('Y') . '/' . date('m') . '/' . date('d') . '/' . "DIL/QTN";
         // end SK Number
-        $today = date ( "d/m/Y" );
+        $today = date ("Y-m-d");
 
         $data_sk = array(
             'sk_quotation' => $sk_quotation,
@@ -792,25 +897,61 @@ class D_superadmin extends CI_Controller
     }
     }
 
-    public function list_quotation($id_int) {
+    public function list_quotation() {
         $sess = $this->session->userdata('id_superadmin');
 		if ($sess == NULL) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
 			redirect('D_auth');
 		} else {
-        $data = array(
-            'title' => 'List Quotation',
-        );
-
-        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE sk_number.id_int = $id_int ORDER BY id_sk DESC")->result();
-        $this->load->view('superadmin/_layout/header', $data);
-        $this->load->view('superadmin/_layout/sidebar');
-        $this->load->view('superadmin/pages/D_listquotationint', $data);
-        $this->load->view('superadmin/_layout/footer');
-    }
+            $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int ORDER BY id_sk DESC")->result();
+            $this->load->view('superadmin/_layout/header', $data);
+            $this->load->view('superadmin/_layout/sidebar');
+            $this->load->view('superadmin/pages/D_listquotation', $data);
+            $this->load->view('superadmin/_layout/footer');
+        } 
     }
 
-    public function add_quotation($id_int, $id_sk)
+    public function report_quotation() {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+            $this->_rules_filter();
+            if($this->form_validation->run() == FALSE) {
+                $data = array(
+                    'title' => 'List Quotation',
+                );
+
+                $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int ORDER BY id_sk DESC")->result();
+                $this->load->view('superadmin/_layout/header', $data);
+                $this->load->view('superadmin/_layout/sidebar');
+                $this->load->view('superadmin/pages/D_reportquotation', $data);
+                $this->load->view('superadmin/_layout/footer');
+            } else {
+                $from = $_GET['from'];
+                $to = $_GET['to'];
+                $data = array(
+                    'title' => 'List Quotation',
+                    'from' => $from,
+                    'to' => $to,
+                );
+
+                $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE DATE(date_quotation) >= '$from' AND DATE(date_quotation) <= '$to' ORDER BY id_sk DESC")->result();
+                $this->load->view('superadmin/_layout/header', $data);
+                $this->load->view('superadmin/_layout/sidebar');
+                $this->load->view('superadmin/pages/D_reportquotation', $data);
+                $this->load->view('superadmin/_layout/footer');
+            }
+        }
+    }
+
+    public function _rules_filter() {
+        $this->form_validation->set_data($_GET)->set_rules('from', 'From Date', 'required');
+        $this->form_validation->set_data($_GET)->set_rules('to', 'To Date', 'required');
+    }
+
+    public function add_quotation($id_sk)
     {
         $sess = $this->session->userdata('id_superadmin');
 		if ($sess == NULL) {
@@ -820,10 +961,9 @@ class D_superadmin extends CI_Controller
         $data = array(
             'title' => 'Add Quotation',
         );
-        $data['specialInstitution'] = $this->db->query("SELECT * FROM institution WHERE id_int = '$id_int'")->result();
         $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk WHERE quotation.id_sk = $id_sk ORDER BY id_quotation DESC")->result();
         $data['analysis'] = $this->db->query("SELECT * FROM analysis")->result();
-        $data['sknumber'] = $this->db->query("SELECT * FROM sk_number WHERE id_sk = $id_sk")->result();
+        $data['sknumber'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE id_sk = $id_sk")->result();
         $this->load->view('superadmin/_layout/header', $data);
         $this->load->view('superadmin/_layout/sidebar');
         $this->load->view('superadmin/pages/D_addquotation', $data);
@@ -833,11 +973,10 @@ class D_superadmin extends CI_Controller
 
     public function add_quotation_action()
     {
-        $id = $this->input->post('id_int');
-        $id_sk_params = $this->input->post('id_sk');
+        $id = $this->input->post('id_sk');
         $this->_rules_quotation();
         if($this->form_validation->run() == FALSE) {
-            $this->add_quotation($id, $id_sk_params);
+            $this->add_quotation($id);
         } else {
 
             $id_int = $this->input->post('id_int');
@@ -877,7 +1016,7 @@ class D_superadmin extends CI_Controller
 
             $this->web->insert_data($data_qtn, 'quotation');
             $this->session->set_flashdata('msg', 'Data Quotation success added.');
-            redirect('D_superadmin/add_quotation/' . $id . '/' . $id_sk_params);
+            redirect('D_superadmin/add_quotation/' . $id);
         }
     }
 
@@ -902,11 +1041,11 @@ class D_superadmin extends CI_Controller
 		$this->web->delete_data($where, 'quotation');
         $this->db->query("DELETE FROM result_coa WHERE id_int = $id_int AND id_analysis = $id_analysis AND id_sk = $id_sk");
         $this->session->set_flashdata('msg', 'Data Quotation success deleted.');
-		redirect('D_superadmin/add_quotation/' . $id_int . '/' . $id_sk);
+		redirect('D_superadmin/add_quotation/' . $id_sk);
         }
 	}
 
-    public function update_quotation($id_int, $id_sk, $id) {
+    public function update_quotation($id_sk, $id) {
         $sess = $this->session->userdata('id_superadmin');
 		if ($sess == NULL) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
@@ -916,11 +1055,10 @@ class D_superadmin extends CI_Controller
         $data = array(
             'title' => 'Data Quotation',
         );
-        $data['specialInstitution'] = $this->db->query("SELECT * FROM institution WHERE id_int = '$id_int'")->result();
         $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int WHERE quotation.id_sk = '$id_sk'")->result();
         $data['specialQuotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int WHERE quotation.id_quotation = '$id'")->result();
         $data['analysis'] = $this->db->query("SELECT * FROM analysis")->result();
-        $data['sknumber'] = $this->db->query("SELECT * FROM sk_number WHERE id_sk = $id_sk")->result();
+        $data['sknumber'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE id_sk = $id_sk")->result();
         $this->load->view('superadmin/_layout/header', $data);
         $this->load->view('superadmin/_layout/sidebar');
         $this->load->view('superadmin/pages/D_addquotation', $data);
@@ -959,7 +1097,7 @@ class D_superadmin extends CI_Controller
         );
         $this->web->update_data('quotation', $data, $where);
         $this->session->set_flashdata('msg', 'Data Quotation success changed!');
-        redirect('D_superadmin/add_quotation/' . $id_int .  '/' .$id_sk . '/' . $id);
+        redirect('D_superadmin/add_quotation/' . $id_sk);
 		}
     }
 
@@ -977,7 +1115,7 @@ class D_superadmin extends CI_Controller
         $this->load->view('superadmin/pages/D_printquotation', $data);
     }
     }
-
+    
     public function data_stps_index()
     {
         $sess = $this->session->userdata('id_superadmin');
@@ -988,7 +1126,7 @@ class D_superadmin extends CI_Controller
         $data = array(
             'title' => 'Data Quotation',
         );
-        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int ORDER BY id_sk DESC")->result();
+        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE status_po = 1 ORDER BY id_sk DESC")->result();
         $this->load->view('superadmin/_layout/header', $data);
         $this->load->view('superadmin/_layout/sidebar');
         $this->load->view('superadmin/pages/D_listquotation', $data);
@@ -1231,7 +1369,7 @@ class D_superadmin extends CI_Controller
         $data = array(
             'title' => 'Data Quotation',
         );
-        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_sample) <> '' ORDER BY sk_number.id_sk DESC")->result();
+        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_sample) <> '' AND status_po = 1 ORDER BY sk_number.id_sk DESC")->result();
         $this->load->view('superadmin/_layout/header', $data);
         $this->load->view('superadmin/_layout/sidebar');
         $this->load->view('superadmin/pages/D_listquotation', $data);
@@ -1496,7 +1634,7 @@ class D_superadmin extends CI_Controller
         $data = array(
             'title' => 'Data Quotation',
         );
-        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_analysis) <> '' ORDER BY sk_number.id_sk DESC")->result();
+        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_analysis) <> '' AND status_po = 1 ORDER BY sk_number.id_sk DESC")->result();
         $this->load->view('superadmin/_layout/header', $data);
         $this->load->view('superadmin/_layout/sidebar');
         $this->load->view('superadmin/pages/D_listquotation', $data);
@@ -1548,6 +1686,8 @@ class D_superadmin extends CI_Controller
 		} else {
         $id_result = $this->input->post('id_result');
         $result = $this->input->post('result');
+        $vehicle_brand = $this->input->post('vehicle_brand');
+        $time = $this->input->post('time');
         $id_sk = $this->input->post('id_sk');
         $today = date ( "d/m/Y" );
         $no_certificate = 'DIL-' . date('Y') . date('m') . date('d') . 'COA';
@@ -1565,6 +1705,8 @@ class D_superadmin extends CI_Controller
 
             $data = array(
                 'result' => $result[$i],
+                'vehicle_brand' => $vehicle_brand[$i],
+                'time' => $time[$i],
             );
 
             $where = array(
@@ -1587,14 +1729,14 @@ class D_superadmin extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
 			redirect('D_auth');
 		} else {
-        $data = array(
-            'title' => 'Print COA',
-        );
-        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_analysis) <> '' ORDER BY sk_number.id_sk DESC")->result();
-        $this->load->view('superadmin/_layout/header', $data);
-        $this->load->view('superadmin/_layout/sidebar');
-        $this->load->view('superadmin/pages/D_listquotation', $data);
-        $this->load->view('superadmin/_layout/footer');
+            $data = array(
+                'title' => 'Print COA',
+            );
+            $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_analysis) <> '' AND status_po = 1 ORDER BY sk_number.id_sk DESC")->result();
+            $this->load->view('superadmin/_layout/header', $data);
+            $this->load->view('superadmin/_layout/sidebar');
+            $this->load->view('superadmin/pages/D_listquotation', $data);
+            $this->load->view('superadmin/_layout/footer');
         }
     }
 
@@ -1872,4 +2014,35 @@ class D_superadmin extends CI_Controller
         $this->load->view('superadmin/_layout/footer');
     }
     }
+
+    public function verifikasi($aksi = '', $id_sk = '')
+	{
+		$sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+			redirect('D_auth');
+		} else {
+			switch ($aksi) {
+				case 'cek':
+					$cek_status = $this->web->cek_status($id_sk);
+					$data = array(
+						'id_sk'				=> $id_sk,
+						'status_po'	=> ($cek_status->status_po == 1) ? 0 : 1
+					);
+					$this->web->update('change-stu-po', $data);
+					$this->session->set_flashdata('msg', 'Data berhasil diubah!');
+					redirect('D_superadmin/list_quotation');
+					break;
+
+				case 'thn':
+					$thn = $id_sk;
+					break;
+
+				default:
+					$thn = date('Y');
+					break;
+			}
+		}
+    }
+
+    
 }

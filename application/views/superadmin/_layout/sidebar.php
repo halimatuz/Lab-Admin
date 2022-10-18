@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </li>
 
     <li class="menu-header">Data Master</li>
-      <li class="dropdown <?php echo $this->uri->segment(2) == 'data_int' || $this->uri->segment(2) == 'data_analysis' || $this->uri->segment(2) == 'data_sampler' || $this->uri->segment(2) == 'data_sample' || $this->uri->segment(2) == 'data_method' || $this->uri->segment(2) == 'data_coa' || $this->uri->segment(2) == 'add_coa' || $this->uri->segment(2) == 'update_coa' ? 'active' : ''; ?>">
+      <li class="dropdown <?php echo $this->uri->segment(2) == 'data_int' || $this->uri->segment(2) == 'data_analysis' || $this->uri->segment(2) == 'data_sampler' || $this->uri->segment(2) == 'data_sample' || $this->uri->segment(2) == 'data_method' || $this->uri->segment(2) == 'data_coa' || $this->uri->segment(2) == 'add_coa' || $this->uri->segment(2) == 'update_coa' || $this->uri->segment(2) == 'data_unit' ? 'active' : ''; ?>">
         <a href="#" class="nav-link has-dropdown"><i class="fas fa-file-upload"></i><span>Add Data</span></a>
         <ul class="dropdown-menu">
           <li class="<?php echo $this->uri->segment(2) == 'data_int' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_int">Add Institution</a></li>
@@ -25,6 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <li class="<?php echo $this->uri->segment(2) == 'data_sampler' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_sampler">Add Sampler</a></li>
           <li class="<?php echo $this->uri->segment(2) == 'data_sample' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_sample">Add Sample</a></li>
           <li class="<?php echo $this->uri->segment(2) == 'data_method' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_method">Add Method</a></li>
+          <li class="<?php echo $this->uri->segment(2) == 'data_unit' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_unit">Add Unit</a></li>
           <li class="<?php echo $this->uri->segment(2) == 'data_coa' || $this->uri->segment(2) == 'add_coa' || $this->uri->segment(2) == 'update_coa' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_coa">Add COA</a></li>
         </ul>
       </li>
@@ -33,7 +34,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <li class="dropdown <?php echo $this->uri->segment(2) == 'data_quotation' || $this->uri->segment(2) == 'list_quotation' || $this->uri->segment(2) == 'add_quotation' || $this->uri->segment(2) == 'update_quotation' ? 'active' : ''; ?>">
         <a href="#" class="nav-link has-dropdown"><i class="fas fa-file-contract"></i><span>Quotation</span></a>
         <ul class="dropdown-menu">
-          <li class="<?php echo $this->uri->segment(2) == 'data_quotation' || $this->uri->segment(2) == 'list_quotation' || $this->uri->segment(2) == 'add_quotation' || $this->uri->segment(2) == 'update_quotation' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_quotation">Add Quotation</a></li>
+          <li class="<?php echo $this->uri->segment(2) == 'data_quotation' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_quotation">Generate SK Number</a></li>
+          <li class="<?php echo $this->uri->segment(2) == 'list_quotation' || $this->uri->segment(2) == 'add_quotation' || $this->uri->segment(2) == 'update_quotation' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/list_quotation">List Quotation</a></li>
         </ul>
       </li>
       <li class="dropdown <?php echo $this->uri->segment(2) == 'data_stps_index' || $this->uri->segment(2) == 'data_stps' || $this->uri->segment(2) == 'add_stps' || $this->uri->segment(2) == 'add_sampler_stps' || $this->uri->segment(2) == 'update_sampler_stps' ? 'active' : ''; ?>">
@@ -56,6 +58,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <li class="<?php echo $this->uri->segment(2) == 'data_quotation_coa' || $this->uri->segment(2) == 'data_analysis_coa' || $this->uri->segment(2) == 'input_result' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_quotation_coa">Generate COA</a></li>
           <li class="<?php echo $this->uri->segment(2) == 'data_quotation_print' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_quotation_print">Print COA</a></li>
         </ul>
+      </li>
+
+      <li class="menu-header">Report</li>
+      <li class="dropdown <?php echo $this->uri->segment(2) == 'report_quotation' ? 'active' : ''; ?>">
+        <a href="<?= base_url(); ?>D_superadmin/report_quotation" class="nav-link"><i class="fas fa-file-export"></i><span>Report Quotation</span></a>
       </li>
 
       <li class="menu-header">Validation</li>

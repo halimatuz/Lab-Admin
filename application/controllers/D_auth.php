@@ -6,13 +6,13 @@ class D_auth extends CI_Controller
     public function index() {
         $sess_superadmin = $this->session->userdata('id_superadmin');
         $sess_admin = $this->session->userdata('id_admin');
-        $sess_laborant = $this->session->userdata('id_laborant');
+        $sess_marketing = $this->session->userdata('id_marketing');
 		if ($sess_superadmin != NULL) {
 			redirect('D_superadmin');
         } elseif($sess_admin != NULL) {
             redirect('D_admin');
-        } elseif($sess_laborant != NULL) {
-            redirect('D_laborant');
+        } elseif($sess_marketing != NULL) {
+            redirect('D_marketing');
 		} else {
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
             $this->form_validation->set_rules('password', 'Password', 'trim|required');
@@ -49,9 +49,9 @@ class D_auth extends CI_Controller
                         'role' => $user['role'],
                         'fullname' => $user['fullname'],
                     );
-                } elseif($user['role'] == 'laborant') {
+                } elseif($user['role'] == 'marketing') {
                     $data = array(
-                        'id_laborant' => $user['email'],
+                        'id_marketing' => $user['email'],
                         'role' => $user['role'],
                         'fullname' => $user['fullname'],
                     );
@@ -67,10 +67,10 @@ class D_auth extends CI_Controller
                     $this->session->set_flashdata('msglogin', 'You are logged in as Admin!');
                     redirect('D_admin');
                 }
-                if($user['role'] == 'laborant') {
+                if($user['role'] == 'marketing') {
                     $this->session->set_userdata($data);
-                    $this->session->set_flashdata('msglogin', 'You are logged in as Laborant!');
-                    redirect('D_laborant');
+                    $this->session->set_flashdata('msglogin', 'You are logged in as marketing!');
+                    redirect('D_marketing');
                 }
                 
             } else {
@@ -100,7 +100,7 @@ class D_auth extends CI_Controller
 
     public function logout() {
         $this->session->unset_userdata('id_admin');
-        $this->session->unset_userdata('id_laborant');
+        $this->session->unset_userdata('id_marketing');
         $this->session->unset_userdata('id_superadmin');
         $this->session->unset_userdata('role');
         $this->session->unset_userdata('fullname');

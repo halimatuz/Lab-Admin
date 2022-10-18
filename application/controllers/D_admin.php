@@ -17,120 +17,13 @@ class D_admin extends CI_Controller
             
             $data['total_sampler'] = $this->web->get_count('sampler');
             $data['total_institution'] = $this->web->get_count('institution');
-            $data['total_analysis'] = $this->web->get_count('analysis');
+            $data['total_coa'] = count($this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_analysis) <> '' ORDER BY sk_number.id_sk DESC")->result());
             $data['total_quotation'] = $this->web->get_count('sk_number');
             $this->load->view('admin/_layout/header', $data);
             $this->load->view('admin/_layout/sidebar');
             $this->load->view('admin/pages/index');
             $this->load->view('admin/_layout/footer');
         }
-    }
-
-    public function data_analysis()
-    {
-        $sess = $this->session->userdata('id_admin');
-		if ($sess == NULL) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
-			redirect('D_auth');
-		} else {
-            $data = array(
-            'title' => 'Data Analysis',
-        );
-            $data['analysis'] = $this->web->get_data('analysis', 'id_analysis')->result();
-            $this->load->view('admin/_layout/header', $data);
-            $this->load->view('admin/_layout/sidebar');
-            $this->load->view('admin/pages/D_dataanalysis');
-            $this->load->view('admin/_layout/footer');
-        }   
-    }
-
-    public function add_analysis()
-    {
-        $sess = $this->session->userdata('id_admin');
-		if ($sess == NULL) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
-			redirect('D_auth');
-		} else {
-            $this->_rules_analysis();
-            if($this->form_validation->run() == FALSE) {
-                $this->data_analysis();
-            } else {
-                $name_analysis = $this->input->post('name_analysis');
-                $standart_price = $this->input->post('standart_price');
-                $coa = $this->input->post('coa');
-
-                $data = array(
-                    'name_analysis' => $name_analysis,
-                    'standart_price' => $standart_price,
-                    'coa' => $coa,
-                );
-
-                $this->web->insert_data($data, 'analysis');
-                $this->session->set_flashdata('msg', 'Data Analysis success added.');
-                redirect('D_admin/data_analysis');
-            }
-        }
-    }
-
-    public function _rules_analysis()
-    {
-        $this->form_validation->set_rules('name_analysis', 'Name Analysis', 'required');
-        $this->form_validation->set_rules('standart_price', 'Standart Price', 'required');
-        $this->form_validation->set_rules('coa', 'COA', 'required');
-    }
-
-    public function delete_analysis($id)
-	{
-        $where = array('id_analysis' => $id);
-		$this->web->delete_data($where, 'analysis');
-        $this->session->set_flashdata('msg', 'Data Analysis success deleted.');
-		redirect('D_admin/data_analysis');
-	}
-
-    public function update_analysis($id) {
-        $sess = $this->session->userdata('id_admin');
-		if ($sess == NULL) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
-			redirect('D_auth');
-		} else {
-        $where = array('id_analysis' => $id);
-        $data = array(
-            'title' => 'Data Analysis',
-        );
-        $data['analysis'] = $this->web->get_data('analysis', 'id_analysis')->result();
-        $data['specialAnalysis'] = $this->db->query("SELECT * FROM analysis WHERE id_analysis = '$id'")->result();
-        $this->load->view('admin/_layout/header', $data);
-        $this->load->view('admin/_layout/sidebar');
-        $this->load->view('admin/pages/D_dataanalysis', $data);
-        $this->load->view('admin/_layout/footer');
-        }
-    }
-
-    public function update_analysis_action()
-    {
-		$id = $this->input->post('id_analysis');
-        $this->_rules_analysis();
-        if ($this->form_validation->run() == FALSE) {
-            $this->update_analysis($id);
-        } else {
-            $id = $this->input->post('id_analysis');
-            $name_analysis = $this->input->post('name_analysis');
-            $standart_price = $this->input->post('standart_price');
-            $coa = $this->input->post('coa');
-
-        $data = array(
-            'name_analysis' => $name_analysis,
-            'standart_price' => $standart_price,
-            'coa' => $coa,
-        );
-
-        $where = array(
-            'id_analysis' => $id
-        );
-        $this->web->update_data('analysis', $data, $where);
-        $this->session->set_flashdata('msg', 'Data analysis success changed!');
-        redirect('D_admin/data_analysis');
-		}
     }
 
     public function data_int()
@@ -576,6 +469,109 @@ class D_admin extends CI_Controller
 		}
     }
 
+    public function data_unit()
+    {
+        $sess = $this->session->userdata('id_admin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $data = array(
+            'title' => 'Data Unit',
+        );
+        $data['unit'] = $this->web->get_data('unit', 'id_unit')->result();
+        $this->load->view('admin/_layout/header', $data);
+        $this->load->view('admin/_layout/sidebar');
+        $this->load->view('admin/pages/D_dataunit');
+        $this->load->view('admin/_layout/footer');
+    }
+    }
+
+    public function add_unit()
+    {
+        $sess = $this->session->userdata('id_admin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $this->_rules_unit();
+        if($this->form_validation->run() == FALSE) {
+            $this->data_unit();
+        } else {
+            $name_unit = $this->input->post('name_unit');
+
+            $data = array(
+                'name_unit' => $name_unit,
+            );
+
+            $this->web->insert_data($data, 'unit');
+            $this->session->set_flashdata('msg', 'Data unit success added.');
+            redirect('D_admin/data_unit');
+        }
+    }
+    }
+
+    public function _rules_unit()
+    {
+        $this->form_validation->set_rules('name_unit', 'Name unit', 'required');
+    }
+
+    public function delete_unit($id)
+	{
+        $sess = $this->session->userdata('id_admin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $where = array('id_unit' => $id);
+		$this->web->delete_data($where, 'unit');
+        $this->session->set_flashdata('msg', 'Data unit success deleted.');
+		redirect('D_admin/data_unit');
+        }
+	}
+
+    public function update_unit($id) {
+        $sess = $this->session->userdata('id_admin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $where = array('id_unit' => $id);
+        $data = array(
+            'title' => 'Data unit',
+        );
+        $data['unit'] = $this->web->get_data('unit', 'id_unit')->result();
+        $data['specialunit'] = $this->db->query("SELECT * FROM unit WHERE id_unit = '$id'")->result();
+        $this->load->view('admin/_layout/header', $data);
+        $this->load->view('admin/_layout/sidebar');
+        $this->load->view('admin/pages/D_dataunit', $data);
+        $this->load->view('admin/_layout/footer');
+    }
+    }
+
+    public function update_unit_action()
+    {
+		$id = $this->input->post('id_unit');
+        $this->_rules_unit();
+        if ($this->form_validation->run() == FALSE) {
+            $this->update_unit($id);
+        } else {
+            $id = $this->input->post('id_unit');
+            $name_unit = $this->input->post('name_unit');
+
+        $data = array(
+            'name_unit' => $name_unit
+        );
+
+        $where = array(
+            'id_unit' => $id
+        );
+        $this->web->update_data('unit', $data, $where);
+        $this->session->set_flashdata('msg', 'Data unit success changed!');
+        redirect('D_admin/data_unit');
+		}
+    }
+
     public function data_coa()
     {
         $sess = $this->session->userdata('id_admin');
@@ -604,6 +600,8 @@ class D_admin extends CI_Controller
         $data = array(
             'title' => 'Add COA',
         );
+
+        $data['unit'] = $this->web->get_data('unit', 'id_unit')->result();
         $data['specialAnalysis'] = $this->db->query("SELECT * FROM analysis WHERE id_analysis = '$id'")->result();
         $data['coa'] = $this->db->query("SELECT * FROM coa INNER JOIN method ON coa.method = method.id_method WHERE coa.id_analysis = '$id'")->result();
         $data['methods'] = $this->db->query("SELECT * FROM method")->result();
@@ -762,37 +760,7 @@ class D_admin extends CI_Controller
     }
     }
 
-    public function generate_sk($id_int) {
-        $sess = $this->session->userdata('id_admin');
-		if ($sess == NULL) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
-			redirect('D_auth');
-		} else {
-        
-        // create SK NUMBER
-        $sql = $this->db->query("SELECT MAX(id_sk) AS maxID FROM sk_number")->result();
-        foreach($sql as $sql2) {
-            $code = $sql2->maxID;
-        }
-        $code++;
-        $sk_quotation = $code . '/' . date('Y') . '/' . date('m') . '/' . date('d') . '/' . "DIL/QTN";
-        // end SK Number
-        $today = date ( "d/m/Y" );
-
-        $data_sk = array(
-            'sk_quotation' => $sk_quotation,
-            'sk_sample' => '',
-            'sk_analysis' => '',
-            'id_int' => $id_int,
-            'date_quotation' => $today,
-        );
-        $this->web->insert_data($data_sk, 'sk_number');
-        $this->session->set_flashdata('msg', 'SK Quotation success generated.');
-		redirect('D_admin/data_quotation');
-    }
-    }
-
-    public function list_quotation($id_int) {
+    public function list_quotation() {
         $sess = $this->session->userdata('id_admin');
 		if ($sess == NULL) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
@@ -802,165 +770,12 @@ class D_admin extends CI_Controller
             'title' => 'List Quotation',
         );
 
-        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE sk_number.id_int = $id_int ORDER BY id_sk DESC")->result();
+        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE status_po = 1 ORDER BY id_sk DESC")->result();
         $this->load->view('admin/_layout/header', $data);
         $this->load->view('admin/_layout/sidebar');
-        $this->load->view('admin/pages/D_listquotationint', $data);
+        $this->load->view('admin/pages/D_listquotation', $data);
         $this->load->view('admin/_layout/footer');
     }
-    }
-
-    public function add_quotation($id_int, $id_sk)
-    {
-        $sess = $this->session->userdata('id_admin');
-		if ($sess == NULL) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
-			redirect('D_auth');
-		} else {
-        $data = array(
-            'title' => 'Add Quotation',
-        );
-        $data['specialInstitution'] = $this->db->query("SELECT * FROM institution WHERE id_int = '$id_int'")->result();
-        $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk WHERE quotation.id_sk = $id_sk ORDER BY id_quotation DESC")->result();
-        $data['analysis'] = $this->db->query("SELECT * FROM analysis")->result();
-        $data['sknumber'] = $this->db->query("SELECT * FROM sk_number WHERE id_sk = $id_sk")->result();
-        $this->load->view('admin/_layout/header', $data);
-        $this->load->view('admin/_layout/sidebar');
-        $this->load->view('admin/pages/D_addquotation', $data);
-        $this->load->view('admin/_layout/footer');
-    }
-    }
-
-    public function add_quotation_action()
-    {
-        $id = $this->input->post('id_int');
-        $id_sk_params = $this->input->post('id_sk');
-        $this->_rules_quotation();
-        if($this->form_validation->run() == FALSE) {
-            $this->add_quotation($id, $id_sk_params);
-        } else {
-
-            $id_int = $this->input->post('id_int');
-            $id_analysis = $this->input->post('id_analysis');
-            $remarks = $this->input->post('remarks');
-            $spec = $this->input->post('spec');
-            $qty = $this->input->post('qty');
-            $add_price = $this->input->post('add_price');
-            $id_sk = $this->db->query("SELECT * FROM sk_number WHERE id_int = $id_int")->result();
-            $coa = $this->db->query("SELECT id_coa FROM coa WHERE id_analysis = $id_analysis")->result();
-
-            foreach($id_sk as $sk) {
-                $sk_qtn = $sk->id_sk;
-            }
-
-            $data_qtn = array(
-                'id_analysis' => $id_analysis,
-                'id_int' => $id_int,
-                'remarks' => $remarks,
-                'spec' => $spec,
-                'qty' => $qty,
-                'id_sk' => $sk_qtn,
-                'add_price' => $add_price,
-            );
-
-            foreach($coa as $c) {
-                $id_coa = $c->id_coa;
-                $data_result = array(
-                    'id_analysis' => $id_analysis,
-                    'id_int' => $id_int,
-                    'id_sk' => $sk_qtn,
-                    'id_coa' => $id_coa
-                );
-
-                $this->web->insert_data($data_result, 'result_coa');
-            }
-
-            $this->web->insert_data($data_qtn, 'quotation');
-            $this->session->set_flashdata('msg', 'Data Quotation success added.');
-            redirect('D_admin/add_quotation/' . $id . '/' . $id_sk_params);
-        }
-    }
-
-    public function _rules_quotation()
-    {
-        $this->form_validation->set_rules('id_analysis', 'Analysis', 'required');
-        $this->form_validation->set_rules('id_int', 'Institution', 'required');
-        $this->form_validation->set_rules('remarks', 'Remarks', 'required');
-        $this->form_validation->set_rules('spec', 'Specification', 'required');
-        $this->form_validation->set_rules('qty', 'Quantity', 'required');
-        $this->form_validation->set_rules('id_sk', 'SK Number');
-    }
-
-    public function delete_quotation($id, $id_int, $id_analysis, $id_sk)
-	{
-        $sess = $this->session->userdata('id_admin');
-		if ($sess == NULL) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
-			redirect('D_auth');
-		} else {
-        $where = array('id_quotation' => $id);
-		$this->web->delete_data($where, 'quotation');
-        $this->db->query("DELETE FROM result_coa WHERE id_int = $id_int AND id_analysis = $id_analysis AND id_sk = $id_sk");
-        $this->session->set_flashdata('msg', 'Data Quotation success deleted.');
-		redirect('D_admin/add_quotation/' . $id_int . '/' . $id_sk);
-        }
-	}
-
-    public function update_quotation($id_int, $id_sk, $id) {
-        $sess = $this->session->userdata('id_admin');
-		if ($sess == NULL) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
-			redirect('D_auth');
-		} else {
-        $where = array('id_quotation' => $id);
-        $data = array(
-            'title' => 'Data Quotation',
-        );
-        $data['specialInstitution'] = $this->db->query("SELECT * FROM institution WHERE id_int = '$id_int'")->result();
-        $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int WHERE quotation.id_sk = '$id_sk'")->result();
-        $data['specialQuotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int WHERE quotation.id_quotation = '$id'")->result();
-        $data['analysis'] = $this->db->query("SELECT * FROM analysis")->result();
-        $data['sknumber'] = $this->db->query("SELECT * FROM sk_number WHERE id_sk = $id_sk")->result();
-        $this->load->view('admin/_layout/header', $data);
-        $this->load->view('admin/_layout/sidebar');
-        $this->load->view('admin/pages/D_addquotation', $data);
-        $this->load->view('admin/_layout/footer');
-    }
-    }
-
-    public function update_quotation_action()
-    {
-		$id = $this->input->post('id_quotation');
-		$id_int = $this->input->post('id_int');
-		$id_sk = $this->input->post('id_sk');
-        $this->_rules_quotation();
-        if ($this->form_validation->run() == FALSE) {
-            $this->update_quotation($id_sk, $id_int, $id);
-        } else {
-            $id_analysis = $this->input->post('id_analysis');
-            $remarks = $this->input->post('remarks');
-            $spec = $this->input->post('spec');
-            $qty = $this->input->post('qty');
-            $add_price = $this->input->post('add_price');
-            $id_sk = $this->input->post('id_sk');
-
-        $data = array(
-            'id_analysis' => $id_analysis,
-            'id_int' => $id_int,
-            'remarks' => $remarks,
-            'spec' => $spec,
-            'qty' => $qty,
-            'id_sk' => $id_sk,
-            'add_price' => $add_price,
-        );
-
-        $where = array(
-            'id_quotation' => $id
-        );
-        $this->web->update_data('quotation', $data, $where);
-        $this->session->set_flashdata('msg', 'Data Quotation success changed!');
-        redirect('D_admin/add_quotation/' . $id_int .  '/' .$id_sk . '/' . $id);
-		}
     }
 
     public function print_quotation($id) {
@@ -977,7 +792,7 @@ class D_admin extends CI_Controller
         $this->load->view('admin/pages/D_printquotation', $data);
     }
     }
-
+    
     public function data_stps_index()
     {
         $sess = $this->session->userdata('id_admin');
@@ -988,7 +803,7 @@ class D_admin extends CI_Controller
         $data = array(
             'title' => 'Data Quotation',
         );
-        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int ORDER BY id_sk DESC")->result();
+        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE status_po = 1 ORDER BY id_sk DESC")->result();
         $this->load->view('admin/_layout/header', $data);
         $this->load->view('admin/_layout/sidebar');
         $this->load->view('admin/pages/D_listquotation', $data);
@@ -1231,7 +1046,7 @@ class D_admin extends CI_Controller
         $data = array(
             'title' => 'Data Quotation',
         );
-        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_sample) <> '' ORDER BY sk_number.id_sk DESC")->result();
+        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_sample) <> '' AND status_po = 1 ORDER BY sk_number.id_sk DESC")->result();
         $this->load->view('admin/_layout/header', $data);
         $this->load->view('admin/_layout/sidebar');
         $this->load->view('admin/pages/D_listquotation', $data);
@@ -1496,7 +1311,7 @@ class D_admin extends CI_Controller
         $data = array(
             'title' => 'Data Quotation',
         );
-        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_analysis) <> '' ORDER BY sk_number.id_sk DESC")->result();
+        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_analysis) <> '' AND status_po = 1 ORDER BY sk_number.id_sk DESC")->result();
         $this->load->view('admin/_layout/header', $data);
         $this->load->view('admin/_layout/sidebar');
         $this->load->view('admin/pages/D_listquotation', $data);
@@ -1590,7 +1405,7 @@ class D_admin extends CI_Controller
         $data = array(
             'title' => 'Print COA',
         );
-        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_analysis) <> '' ORDER BY sk_number.id_sk DESC")->result();
+        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_analysis) <> '' AND status_po = 1 ORDER BY sk_number.id_sk DESC")->result();
         $this->load->view('admin/_layout/header', $data);
         $this->load->view('admin/_layout/sidebar');
         $this->load->view('admin/pages/D_listquotation', $data);
@@ -1642,10 +1457,10 @@ class D_admin extends CI_Controller
         $data = array(
             'title' => 'Export PDF',
         );
-
+        
         $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
         $data['coa'] = $this->db->query("SELECT * FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk WHERE result_coa.id_sk = $id_sk")->result();
-        $data['analysis'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk WHERE quotation.id_sk = $id_sk")->result();
+        $data['analysis'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk WHERE quotation.id_sk = $id_sk AND analysis.coa = 1")->result();
         $data['count'] = count($data['analysis']) + 1;
 
         $paper_size = 'A4';
@@ -1706,52 +1521,21 @@ class D_admin extends CI_Controller
         }
 	}
 
-    public function list_users()
-    {
+    public function settings() {
+        $sess = $this->session->userdata('id_admin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
         $data = array(
-            'title' => 'List Users',
-        );
-        $data['user'] = $this->db->query("SELECT * FROM user")->result();
-        $this->load->view('admin/_layout/header', $data);
-        $this->load->view('admin/_layout/sidebar');
-        $this->load->view('admin/pages/D_listusers', $data);
-        $this->load->view('admin/_layout/footer');
-    }
-
-    public function add_user() {
-        $data = array(
-            'title' => "Add User"
+            'title' => "Settings"
         );
 
         $this->load->view('admin/_layout/header', $data);
         $this->load->view('admin/_layout/sidebar');
-        $this->load->view('admin/pages/D_adduser');
+        $this->load->view('admin/pages/D_settings');
         $this->load->view('admin/_layout/footer');
     }
-
-    public function add_user_action() {
-        $this->form_validation->set_rules('fullname', 'Name', 'required|trim');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
-            'is_unique' => 'This email has already registered!'
-        ]);
-        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]|matches[password2]');
-        $this->form_validation->set_rules('password2', 'Password Confirmation', 'required|trim|matches[password]');
-        if($this->form_validation->run() == false) {
-            $this->add_user();
-        } else {
-            $data = array(
-                'fullname' => htmlspecialchars($this->input->post('fullname', true)),
-                'email' => htmlspecialchars($this->input->post('email', true)),
-                'image' => 'default.jpg',
-                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-                'role' => 'admin',
-                'date_created' => time()
-            );
-
-            $this->db->insert('user', $data);
-            $this->session->set_flashdata('msg', 'User success added!');
-            redirect('D_admin/list_users/');
-        }
     }
 
     public function profile(){
@@ -1770,4 +1554,6 @@ class D_admin extends CI_Controller
         $this->load->view('admin/_layout/footer');
     }
     }
+
+    
 }

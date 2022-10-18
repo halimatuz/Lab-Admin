@@ -3,6 +3,10 @@ foreach($coa as $co) {
   $coa_det = $co;
 }
 
+foreach($company as $c) {
+  $cmp = $c;
+}
+
 function tgl_indo($tanggal){
 	$bulan = array (
 		1 =>   'Januari',
@@ -8319,9 +8323,9 @@ footer {
 
 .watermark {
     position: fixed;
-    top: 350px;
-    left: 200px;
-    opacity: 0.4;
+    top: 320px;
+    left: 160px;
+    opacity: 0.3;
 }
 
 .page:before {
@@ -8339,13 +8343,15 @@ footer {
         </div>
     </header>
     <footer>
-        <p style="font-size: 9px; font-weight: bold;">Ruko Prima Orchard No.C 2 <br>Prima Harapan Regency Bekasi Utara, <br> Kota Bekasi 17123, Provinsi Jawa Barat <br>Telp : 021 - 88382018</p>
-        <a href="www.deltaindonesialab.com" style="font-size: 10px; color: blue; text-decoration: underline;">www.deltaindonesialab.com</a>
-        <span style="font-size: 10px; margin-left: 500px; display: inline-block;" class="page">&nbsp;<?= $count; ?></span>
+        <div class="" style="width: 170px;">
+        <p style="font-size: 9px; font-weight: bold;"><?= $cmp->address ?> <br>Telp : <?= $cmp->phone ?></p>
+        <a href="<?= $cmp->website ?>" style="font-size: 10px; color: blue; text-decoration: underline;"><?= $cmp->website ?></a>
+        </div>
+        <span style="font-size: 10px; margin-left: 450px; display: inline-block;" class="page">&nbsp;<?= $count; ?></span>
     </footer>
 
     <div class="watermark">
-        <img src="<?= base_url('assets/img/logo-grayscale.png') ?>" alt="" style="width: 300px; opacity: 50%">
+        <img src="<?= base_url('assets/img/logo-grayscale.png') ?>" alt="" style="width: 400px; opacity: 40%">
     </div>
 
     <div style="position: relative;">
@@ -8422,10 +8428,10 @@ footer {
         <div class="">
             <img src="<?= site_url('D_admin/renderQR/' . $coa_det->id_sk) ?>" alt="" style="margin-top: 50px; margin-left: 50px; margin-right: 330px;">
             <div style="display: inline-block; margin-top: 40px;">
-                <p style="font-size: 12px; margin-left: -60px;">This Certificate of Analysis consist of <?= $count; ?> pages</p>
-                <p style="font-size: 12px; margin-left: 50px;">Bekasi, <?= tgl_indo($coa_det->date_report) ?></p>
+                <p style="font-size: 12px; margin-left: -55px;">This Certificate of Analysis consist of <?= $count; ?> pages</p>
+                <p style="font-size: 12px; margin-left: 60px;">Bekasi, <?= tgl_indo($coa_det->date_report) ?></p>
                 <img src="<?= base_url('assets/img/ttd.png') ?>" alt="" style="margin-left: -10px;" width="250px">
-                <p style="font-size: 12px; font-weight: bold; text-decoration: underline; margin-bottom: -20px;">Drs. H. Soekardin Rachman, M.Si</p>
+                <p style="font-size: 12px; font-weight: bold; text-decoration: underline; margin-bottom: -20px;"><?= $cmp->director ?></p>
                 <p style="font-size: 12px; font-weight: bold; margin-left: 50px;">Direktur Utama</p>
             </div>
         </div>
@@ -8479,7 +8485,7 @@ footer {
                 <td width="50px"><?= $c->unit ?></td>
                 <td width="70px"><?= $c->result ?></td>
                 <td width="50px"><?= $c->reg_standart_1 ?></td>
-                <td width="150px"><?= $c->name_method ?></td>
+                <td><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>
             <tr>
@@ -8856,10 +8862,10 @@ footer {
             <tr>
                 <td width="25px"><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td width="70px"><?= $c->result ?></td>
+                <td><?= $c->result ?></td>
                 <td width="50px"><?= $c->reg_standart_1 ?></td>
                 <td width="50px"><?= $c->unit ?></td>
-                <td width="150px"><?= $c->name_method ?></td>
+                <td><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>
             <tr>

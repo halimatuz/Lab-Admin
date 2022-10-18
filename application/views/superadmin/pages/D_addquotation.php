@@ -1,9 +1,5 @@
 <?php
 
-foreach($specialInstitution as $si) {
-    $institution = $si;
-}
-
 foreach($sknumber as $s) {
     $sk = $s;
 }
@@ -35,7 +31,7 @@ foreach($sknumber as $s) {
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-4">
-                    <h6 class="text-primary">Add Quotation For <?= $institution->name_int; ?></h6>
+                    <h6 class="text-primary">Add Quotation For <?= $sk->name_int; ?></h6>
                     <p class="font-weight-bold">No. <?php foreach($sknumber as $sn) { echo $sn->sk_quotation; } ?></p>
                     <hr>
                     <?php 
@@ -45,7 +41,7 @@ foreach($sknumber as $s) {
                             <div class="form-group">
                                 <label>Analysis</label>
                                 <input type="hidden" name="id_quotation" value="<?= $qtn->id_quotation ?>">
-                                <input type="hidden" name="id_int" value="<?= $institution->id_int ?>">
+                                <input type="hidden" name="id_int" value="<?= $sk->id_int ?>">
                                 <input type="hidden" name="id_sk" value="<?= $qtn->id_sk ?>">
                                 <select name="id_analysis" class="form-control select2 <?php if(form_error('id_analysis')) { echo "is-invalid"; } ?>">
                                 <option value="<?= $qtn->id_analysis ?>"><?= $qtn->name_analysis ?></option>
@@ -77,19 +73,19 @@ foreach($sknumber as $s) {
                                     Rp
                                     </div>
                                 </div>
-                                <input type="number" class="form-control <?php if(form_error('add_price')) { echo "is-invalid"; } ?>" id="tanpa-rupiah" name="add_price" value="<?= $qtn->add_price ?>" autocomplete="off" placeholder="Insert standart price...">
+                                <input type="number" class="form-control <?php if(form_error('add_price')) { echo "is-invalid"; } ?>" id="tanpa-rupiah" name="add_price" value="<?= $qtn->add_price ?>" autocomplete="off" placeholder="Insert additional price...">
                                 </div>
                                 <?php echo form_error('add_price', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
                             <button type="submit" class="btn btn-primary">Update Quotation</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
-                            <a href="<?php echo base_url('D_superadmin/add_quotation/') . $institution->id_int . '/' . $sk->id_sk ?>" class="btn btn-danger">Cancel</a>
+                            <a href="<?php echo base_url('D_superadmin/add_quotation/') . $sk->id_sk ?>" class="btn btn-danger">Cancel</a>
                         </form>
                     <?php endforeach; } else {?>
                         <form action="<?= base_url('D_superadmin/add_quotation_action') ?>" method="POST">
                             <div class="form-group">
                                 <label>Analysis</label>
-                                <input type="hidden" name="id_int" value="<?= $institution->id_int ?>">
+                                <input type="hidden" name="id_int" value="<?= $sk->id_int ?>">
                                 <input type="hidden" name="id_sk" value="<?= $sk->id_sk ?>">
                                 <select name="id_analysis" class="form-control select2 <?php if(form_error('id_analysis')) { echo "is-invalid"; } ?>">
                                 <option value="<?php if( set_value('id_analysis') == NULL) { echo "";}else { echo set_value('id_analysis');}?>"><?php if( set_value('id_analysis') == NULL) { echo "-- Select Analysis --";}else { echo set_value('analysis');}?></option>
@@ -121,7 +117,7 @@ foreach($sknumber as $s) {
                                     Rp
                                     </div>
                                 </div>
-                                <input type="number" class="form-control <?php if(form_error('add_price')) { echo "is-invalid"; } ?>" id="tanpa-rupiah" name="add_price" value="<?= set_value('add_price')?>" autocomplete="off" placeholder="Insert standart price...">
+                                <input type="number" class="form-control <?php if(form_error('add_price')) { echo "is-invalid"; } ?>" id="tanpa-rupiah" name="add_price" value="<?= set_value('add_price')?>" autocomplete="off" placeholder="Insert additional price...">
                                 </div>
                                 <?php echo form_error('add_price', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
@@ -173,8 +169,8 @@ foreach($sknumber as $s) {
                                         <td>Rp <?= htmlspecialchars(number_format($row->standart_price, 0, ',', '.')) ?></td>
                                         <td>Rp <?= htmlspecialchars(number_format($row->add_price, 0, ',', '.')) ?></td>
                                         <td>
-                                            <a href="<?= base_url('D_superadmin/update_quotation/') . $row->id_int . '/'. $row->id_sk . '/'  . $row->id_quotation ?>"class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                            <a href="<?= base_url('D_superadmin/delete_quotation/') . $row->id_quotation . '/' . $row->id_int . '/' . $row->id_analysis . '/' . $row->id_sk?>"class="btn btn-danger tombol-hapus" type="submit"><i class="fas fa-trash"></i></a>
+                                            <a href="<?= base_url('D_superadmin/update_quotation/') . $row->id_sk . '/'  . $row->id_quotation ?>"class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                            <a href="<?= base_url('D_superadmin/delete_quotation/') . $row->id_quotation . '/' . $row->id_int . '/'  . $row->id_analysis . '/' . $row->id_sk?>"class="btn btn-danger tombol-hapus" type="submit"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

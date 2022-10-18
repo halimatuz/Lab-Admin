@@ -21,13 +21,13 @@ function tgl_indo($tanggal){
 		'November',
 		'Desember'
 	);
-	$pecahkan = explode('/', $tanggal);
+	$pecahkan = explode('-', $tanggal);
 	
 	// variabel pecahkan 0 = tanggal
 	// variabel pecahkan 1 = bulan
 	// variabel pecahkan 2 = tahun
  
-	return  $pecahkan[0] . ' ' . $bulan[ (int)$pecahkan[1]] . ' ' . $pecahkan[2];
+	return  $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1]] . ' ' . $pecahkan[0];
 }
 ?>
 <!doctype html>
@@ -47,12 +47,18 @@ function tgl_indo($tanggal){
       }
       table.table-bordered > thead > tr > th {
           border:1px solid black!important;
+          padding-bottom: 5px!important;
+          padding-top: 5px!important;
       }
       table.table-bordered tr th {
           border:1px solid black!important;
+          padding-bottom: 0px!important;
+          padding-top: 0px!important;
       }
       table.table-bordered > tbody > tr > td {
           border:1px solid black!important;
+          padding-bottom: 0px!important;
+          padding-top: 0px!important;
       }
       p {
         font-size: 14px!important;
@@ -75,10 +81,9 @@ function tgl_indo($tanggal){
         <div class="col-md-3">
         </div>
         <div class="col-md-6">
-          <h4 class="font-weight-bold text-right"><?= $cmp->name ?></h4>
-          <p class="text-right"><?= $cmp->address ?></p>
-          <p class="text-right"><?= $cmp->email ?></p>
-          <p class="text-right"><?= $cmp->website ?></p>
+          <img src="<?= base_url('assets/img/kan.png') ?>" alt="" width="150px" style="margin-left: 300px;">
+          <p style="font-size:10px; font-weight: bold; margin-top:10px;" class="text-right">SK-KLHK No 00161/LPJ/Labling-1/LRK/KLHK</p>
+          <p style="font-size: 9px; margin-left: 75px; margin-top: -10px;" class="text-right">7.8.1/DIL/VII/2018/FORM REV . 2</p>
         </div>
       </div>
       <hr style="height: 2px; background-color: black;">
@@ -201,7 +206,11 @@ function tgl_indo($tanggal){
         <li>Maksimal 30 hari setelah tagihan diterima oleh customer</li>
       </ul>
       <div class="row mt-5">
-        <div class="col-md-8"></div>
+        <div class="col-md-3">
+          <p style="font-size: 10px!important; font-weight: bold; margin-top: 70px; margin-bottom: -8px;"><?= $cmp->address ?> <br>Telp : <?= $cmp->phone ?></p>
+          <a href="<?= $cmp->website ?>" style="font-size: 10px; color: blue; text-decoration: underline;" class="block"><?= $cmp->website ?></a>
+        </div>
+        <div class="col-md-5"></div>
         <div class="col-md-4">
           <img src="<?= base_url('assets/img/ttd.png') ?>" alt="" class="ml-3">
           <p class="text-center"><?= $cmp->director ?></p>
