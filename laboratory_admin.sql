@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2022 at 08:46 AM
+-- Generation Time: Oct 24, 2022 at 03:26 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -69,26 +69,6 @@ CREATE TABLE `assign_sampler` (
   `id_sk` int(11) NOT NULL,
   `is_sampler` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `assign_sampler`
---
-
-INSERT INTO `assign_sampler` (`id_assign`, `id_sampler`, `id_sk`, `is_sampler`) VALUES
-(3, 1, 2, 1),
-(4, 12, 2, 1),
-(5, 14, 2, 1),
-(8, 13, 2, 1),
-(9, 11, 2, 0),
-(10, 1, 10, 1),
-(11, 7, 10, 1),
-(12, 13, 10, 0),
-(13, 14, 10, 0),
-(14, 13, 13, 1),
-(15, 8, 13, 0),
-(16, 7, 14, 1),
-(17, 9, 14, 1),
-(19, 14, 14, 0);
 
 -- --------------------------------------------------------
 
@@ -392,51 +372,6 @@ CREATE TABLE `quotation` (
   `add_price` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `quotation`
---
-
-INSERT INTO `quotation` (`id_quotation`, `id_analysis`, `id_int`, `remarks`, `spec`, `qty`, `id_sk`, `add_price`) VALUES
-(8, 2, 4, '<p>asd12</p>', '<p>asdasd</p>', 12, 4, 12312312),
-(10, 14, 4, '<p>dsfsd</p>', '<p>sdfsd</p>', 12, 4, 12312),
-(11, 12, 9, '<p>fdsdfsd</p>', '<p>sfddsfds</p>', 12, 5, 1423432),
-(13, 2, 12, '<p>123432</p>', '<p>32432</p>', 123123, 6, 234234),
-(14, 14, 12, '<p>weewrwe</p>', '<p>ewrwer</p>', 12, 6, 12421423),
-(15, 14, 3, '<p>Transportasi dan akomodasi sampling (Lokasi SUBANG, Jawa Barat)</p>', '<p>Paket, 2 Teknisi</p>', 1, 2, 50000),
-(16, 11, 3, '<p>Pemantauan Kualitas Udara Ambient Outdoor untuk Area:</p><ul><li>Area Upwind</li><li>Area Down wind</li></ul>', '<p>Lampiran VII Peraturan Pemerintah No. 22 Tahun 2021</p><p><b>Sesaat: </b>SO2, CO, NO2, O3, HC, TSP, Pb</p>', 2, 2, 100000),
-(17, 9, 3, '<p>Udara Kualitas Kebisingan (Noise) Ambient Sesaat</p><ul><li>Area Upwind</li><li>Area Down wind</li></ul>', '<p>Keputusan Menteri Negara Lingkungan Hidup KEP-48/MENLH/11/1996</p>', 2, 2, 20000),
-(18, 10, 3, '<p>Pemantauan Kualitas Udara Kerja Produksi</p><ul><li>Ruang Produksi</li></ul>', '<p>Permenaker No. 5 Tahun 2018</p><p>CO, NO2, SO2, TSP, NOISE</p>', 1, 2, 10000),
-(19, 6, 3, '<p>Pemantauan Kualitas Air Limbah</p><ul><li>Biotank</li></ul>', '<p>Permenlhk No. P.68/Menlhk/Setjen/Kum.1/8/2016</p>', 1, 2, 50000),
-(20, 7, 3, '<p>Pemantauan Kualitas Emisi Sumber Tidak Bergerak:</p><ul><li>Cerobong Boiler 1</li><li>Cerobong Boiler 2</li></ul>', '<p>Permenlhk No. P.15/MENLHK/SETJEN/KUM.1/4/2019 tentang Baku Mutu Emisi Pembangkit Listrik Tenaga Termal <b>(NON ISOKINETIK)</b></p><p>Total Partikulat, SO2, NO2, CO</p>', 2, 2, 50000),
-(22, 4, 5, '<p>Heat stress gaming yt</p>', '<p>asdasdasdas</p>', 12, 8, 100000),
-(23, 13, 3, '<p>asdas</p>', '<p>asdasd</p>', 3, 2, 100000),
-(29, 13, 7, '<p>dsfsdfsdf</p>', '<p>sdfsdffds</p>', 12, 9, 50000),
-(30, 15, 7, '<p>dsfsd</p>', '<p>fsdfsdfsd</p>', 3, 9, 150000),
-(31, 13, 11, '<p>sdfs</p>', '<p>dfsdfsdfs</p>', 23, 10, 100000),
-(32, 15, 11, '<p>sdfsdf</p>', '<p>sdfsdfsd</p>', 1, 10, 150000),
-(33, 6, 11, '<p>dsfsdf</p>', '<p>sdfsdf</p>', 14, 10, 10000),
-(34, 12, 11, '<p>dsfsd</p>', '<p>fsdfsd</p>', 7, 10, 50000),
-(35, 8, 11, '<p>dfgfdgdf</p>', '<p>fdgfdgfd</p>', 12, 10, 80000),
-(36, 10, 11, '<p>sadasd</p>', '<p>asdasdas</p>', 12, 10, 45000),
-(37, 16, 11, '<p>asdasdasd</p>', '<p>asdasdas</p>', 2, 10, 10000),
-(38, 3, 11, '<p>dsc</p>', '<p>sdcsdcds</p>', 12, 10, 80000),
-(41, 3, 11, '<p>sasd</p>', '<p>asdas</p>', 12, 13, 130000),
-(42, 13, 11, '<p>dsfds</p>', '<p>sdfsd</p>', 12, 13, 10000),
-(43, 15, 11, '<p>asdas</p>', '<p>das</p>', 12, 13, 10000),
-(44, 8, 11, '<p>sdfsd</p>', '<p>fsfsdfs</p>', 12, 13, 0),
-(45, 3, 3, '<p>upodatean</p>', '<p>dsfdsf</p>', 10, 14, 120000),
-(46, 8, 3, '<p>stationary</p>', '<p>asda</p>', 5, 14, 0),
-(48, 2, 3, '<p>dfgdf</p>', '<p>fdgd</p>', 12, 15, 434),
-(49, 3, 3, '<p>sdfsd</p>', '<p>sdfsdf</p>', 12, 15, 0),
-(51, 14, 3, '<p>fdggddgggbgt</p>', '<p>dfgfdg</p>', 34, 15, 0),
-(54, 11, 11, '<p>sadasd</p>', '<p>sadasdas</p>', 3, 13, 0),
-(55, 5, 11, '<p>asd</p>', '<p>asdas</p>', 10, 13, 40000),
-(56, 9, 11, '<p>asdasd</p>', '<p>das</p>', 2, 13, 0),
-(57, 4, 11, '<p>dfgh</p>', '<p>dfgdfgd</p>', 4, 13, 0),
-(63, 2, 11, '<p>sdfd</p>', '<p>sfsd</p>', 1, 13, 50000),
-(64, 7, 11, '<p>asdas</p>', '<p>dasdas</p>', 1, 13, 0),
-(65, 19, 11, '<p>sadsa</p>', '<p>dasd</p>', 1, 13, 20000);
-
 -- --------------------------------------------------------
 
 --
@@ -465,243 +400,6 @@ CREATE TABLE `result_coa` (
   `lm` varchar(25) NOT NULL,
   `lsm` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `result_coa`
---
-
-INSERT INTO `result_coa` (`id_result`, `id_sk`, `id_coa`, `id_analysis`, `id_int`, `result`, `vehicle_brand`, `time`, `humidity`, `wet`, `dew`, `globe`, `wbgt_index`, `sampling_location`, `code`, `opacity`, `leq`, `ls`, `lm`, `lsm`) VALUES
-(14, 9, 18, 13, 7, 'berhasil mantap banget gg', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(15, 9, 19, 13, 7, 'sdfsdfs', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(16, 9, 20, 13, 7, 'hguygtuytuy', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(17, 9, 21, 13, 7, 'asdsad', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(18, 9, 22, 13, 7, 'sdfsdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(19, 9, 23, 13, 7, 'sdfsdfsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(20, 9, 24, 13, 7, '', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(21, 9, 25, 13, 7, '', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(22, 9, 26, 13, 7, '', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(23, 9, 27, 15, 7, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(24, 9, 28, 15, 7, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(25, 9, 29, 15, 7, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(26, 9, 30, 15, 7, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(27, 9, 31, 15, 7, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(28, 9, 32, 15, 7, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(29, 9, 33, 15, 7, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(30, 9, 34, 15, 7, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(31, 9, 35, 15, 7, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(32, 9, 36, 15, 7, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(33, 9, 37, 15, 7, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(34, 9, 38, 15, 7, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(35, 9, 39, 15, 7, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(36, 9, 40, 15, 7, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(37, 9, 41, 15, 7, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(47, 10, 27, 15, 11, 'sdfsdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(48, 10, 28, 15, 11, 'sdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(49, 10, 29, 15, 11, 'sdfsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(50, 10, 30, 15, 11, 'fsdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(51, 10, 31, 15, 11, 'sdfsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(52, 10, 32, 15, 11, 'fsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(53, 10, 33, 15, 11, 'fsdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(54, 10, 34, 15, 11, 'sdfsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(55, 10, 35, 15, 11, 'fsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(56, 10, 36, 15, 11, 'fsdfsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(57, 10, 37, 15, 11, 'fsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(58, 10, 38, 15, 11, 'sdfsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(59, 10, 39, 15, 11, 'fsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(60, 10, 40, 15, 11, 'fsdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(61, 10, 41, 15, 11, 'sdfsdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(62, 10, 65, 6, 11, 'sdfsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(63, 10, 66, 6, 11, 'fsdfsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(64, 10, 67, 6, 11, 'fsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(65, 10, 68, 6, 11, 'fsdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(66, 10, 69, 6, 11, 'sdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(67, 10, 70, 6, 11, 'sdfs', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(68, 10, 71, 6, 11, 'dfsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(69, 10, 72, 6, 11, 'fsdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(70, 10, 73, 6, 11, 'sdfsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(71, 10, 74, 6, 11, 'fsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(72, 10, 75, 6, 11, 'fsdfsdsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(73, 10, 76, 6, 11, 'sdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(74, 10, 77, 6, 11, 'sdfsdfsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(75, 10, 78, 6, 11, 'fsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(76, 10, 79, 6, 11, 'fsdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(77, 10, 80, 6, 11, 'sdfsdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(78, 10, 81, 6, 11, 'sdfsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(79, 10, 82, 6, 11, 'fsdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(80, 10, 83, 6, 11, 'sdfsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(81, 10, 84, 6, 11, 'sdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(82, 10, 85, 6, 11, 'sdfsdfs', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(83, 10, 86, 6, 11, 'dfsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(84, 10, 87, 6, 11, 'sdfsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(85, 10, 88, 6, 11, 'fsdfsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(86, 10, 89, 6, 11, 'fsdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(87, 10, 90, 6, 11, 'sdfs', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(88, 10, 91, 6, 11, 'sdfsdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(89, 10, 92, 6, 11, 'sdfs', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(90, 10, 93, 6, 11, 'dfsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(91, 10, 94, 6, 11, 'fsdfds', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(92, 10, 95, 6, 11, 'fsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(93, 10, 96, 6, 11, 'fsdfds', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(94, 10, 97, 6, 11, 'sdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(95, 10, 98, 6, 11, 'fdssdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(96, 10, 120, 6, 11, 'sdfsdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(97, 10, 42, 12, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(98, 10, 44, 12, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(99, 10, 45, 12, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(100, 10, 46, 12, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(101, 10, 47, 12, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(102, 10, 48, 12, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(103, 10, 49, 12, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(104, 10, 50, 12, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(105, 10, 51, 12, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(106, 10, 52, 12, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(107, 10, 53, 12, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(108, 10, 54, 12, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(109, 10, 55, 12, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(110, 10, 56, 12, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(111, 10, 57, 12, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(112, 10, 58, 12, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(113, 10, 59, 12, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(114, 10, 60, 12, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(115, 10, 61, 12, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(116, 10, 62, 12, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(117, 10, 63, 12, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(118, 10, 64, 12, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(119, 10, 105, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(120, 10, 106, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(121, 10, 107, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(122, 10, 108, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(123, 10, 109, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(124, 10, 110, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(125, 10, 111, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(126, 10, 112, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(127, 10, 113, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(128, 10, 114, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(129, 10, 115, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(130, 10, 116, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(131, 10, 117, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(132, 10, 118, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(133, 10, 119, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(134, 10, 99, 10, 11, 'sdfsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(135, 10, 100, 10, 11, 'fsdfs', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(136, 10, 101, 10, 11, 'dfsdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(137, 10, 102, 10, 11, 'sdfsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(138, 10, 103, 10, 11, 'fsdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(139, 10, 104, 10, 11, 'sdfsdf', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(140, 10, 125, 16, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(141, 10, 126, 16, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(142, 10, 128, 16, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(143, 10, 129, 16, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(144, 10, 130, 16, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(145, 10, 131, 16, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(146, 10, 132, 16, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(147, 10, 133, 16, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(148, 10, 134, 16, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(149, 10, 135, 16, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(150, 10, 136, 16, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(151, 10, 137, 16, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(152, 10, 138, 16, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(153, 10, 139, 16, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(154, 10, 140, 16, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(155, 10, 122, 3, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(156, 10, 123, 3, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(157, 10, 124, 3, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(167, 13, 122, 3, 11, '< 10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(168, 13, 123, 3, 11, '< 40', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(169, 13, 124, 3, 11, '< 55', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(170, 13, 18, 13, 11, 'asd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(171, 13, 19, 13, 11, 'asda', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(172, 13, 20, 13, 11, 'sdas', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(173, 13, 21, 13, 11, 'dasd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(174, 13, 22, 13, 11, 'sadas', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(175, 13, 23, 13, 11, 'sad', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(176, 13, 24, 13, 11, 'asd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(177, 13, 25, 13, 11, 'asasdd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(178, 13, 26, 13, 11, 'keren coli form', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(179, 13, 27, 15, 11, 'dfg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(180, 13, 28, 15, 11, 'dfgdf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(181, 13, 29, 15, 11, 'gdfgdf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(182, 13, 30, 15, 11, 'dfgdf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(183, 13, 31, 15, 11, 'gdfgdf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(184, 13, 32, 15, 11, 'gdfgdf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(185, 13, 33, 15, 11, 'gdf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(186, 13, 34, 15, 11, '<10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(187, 13, 35, 15, 11, '<50', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(188, 13, 36, 15, 11, '>30', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(189, 13, 37, 15, 11, '<10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(190, 13, 38, 15, 11, '20', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(191, 13, 39, 15, 11, '>10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(192, 13, 40, 15, 11, '23', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(193, 13, 41, 15, 11, '10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(194, 13, 105, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(195, 13, 106, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(196, 13, 107, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(197, 13, 108, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(198, 13, 109, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(199, 13, 110, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(200, 13, 111, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(201, 13, 112, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(202, 13, 113, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(203, 13, 114, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(204, 13, 115, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(205, 13, 116, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(206, 13, 117, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(207, 13, 118, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(208, 13, 119, 8, 11, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(209, 14, 122, 3, 3, 'asdas', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(210, 14, 123, 3, 3, 'dasd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(211, 14, 124, 3, 3, 'asdasdsgg', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(212, 14, 105, 8, 3, 'dfg', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(213, 14, 106, 8, 3, 'dfgdfg', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(214, 14, 107, 8, 3, 'dsfsd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(215, 14, 108, 8, 3, 'gg', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(216, 14, 109, 8, 3, '', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(217, 14, 110, 8, 3, '', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(218, 14, 111, 8, 3, '', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(219, 14, 112, 8, 3, '', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(220, 14, 113, 8, 3, '', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(221, 14, 114, 8, 3, '', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(222, 14, 115, 8, 3, '', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(223, 14, 116, 8, 3, '', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(224, 14, 117, 8, 3, '', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(225, 14, 118, 8, 3, '', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(226, 14, 119, 8, 3, '', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(227, 15, 122, 3, 3, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(228, 15, 123, 3, 3, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(229, 15, 124, 3, 3, NULL, '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(245, 13, 142, 11, 11, 'asdas', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(246, 13, 143, 11, 11, 'dasd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(247, 13, 144, 11, 11, 'asdas', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(248, 13, 145, 11, 11, 'dasd', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(249, 13, 146, 11, 11, 'asdas', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(250, 13, 147, 11, 11, 'asdas', '', '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
-(251, 13, 148, 5, 11, '>10', 'Suzuki Alphard', '10 Hours', NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(252, 13, 149, 5, 11, '>9', 'Honda Innova', '14 Hours', NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(253, 13, 150, 9, 11, 'asd', NULL, '10 Hours', NULL, NULL, NULL, NULL, NULL, 'Dirumah Sodara', '', NULL, '', '', '', ''),
-(254, 13, 151, 4, 11, NULL, NULL, '10 Hours', '50', '18', '35', '23', 28, 'Area Plant 1', '', NULL, '', '', '', ''),
-(309, 13, 152, 2, 11, '>230', NULL, '10 Hours', NULL, NULL, NULL, NULL, NULL, 'Area Plant 1', '', NULL, '', '', '', ''),
-(310, 13, 153, 2, 11, '<200', NULL, '5 Minutes', NULL, NULL, NULL, NULL, NULL, 'Area Plant 2', '', NULL, '', '', '', ''),
-(311, 13, 154, 2, 11, '540', NULL, '7 Hours', NULL, NULL, NULL, NULL, NULL, 'Area Plant 3', '', NULL, '', '', '', ''),
-(312, 13, 155, 2, 11, '<200', NULL, '7 Minutes', NULL, NULL, NULL, NULL, NULL, 'Belakang JGU', '', NULL, '', '', '', ''),
-(313, 13, 156, 2, 11, '900', NULL, '1 Minutes', NULL, NULL, NULL, NULL, NULL, 'Depan JGU', '', NULL, '', '', '', ''),
-(314, 13, 157, 7, 11, NULL, 'Xpander', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'XP1434', 50, '', '', '', ''),
-(315, 13, 158, 7, 11, NULL, 'Honda Innova', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'HN1432', 70, '', '', '', ''),
-(316, 13, 159, 7, 11, NULL, 'Lamborghini', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'LM2342', 30, '', '', '', ''),
-(317, 13, 160, 7, 11, NULL, 'SUV ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'SV1242', 20, '', '', '', ''),
-(318, 13, 161, 19, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, 'dsf', 'sdf', 'sd', 'fsd'),
-(319, 13, 162, 19, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, 'fsd', 'fds', 'dfsd', 'fsdf'),
-(320, 13, 163, 19, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, 'sdf', 'sdf', 'fsdf', 'fsdds'),
-(321, 13, 164, 19, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, 'sdfsd', 'fsdfs', 'dfsd', 'fsdf'),
-(322, 13, 165, 19, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, 'sdf', 'sdfsdf', 'fsdf', 'sdfsd'),
-(323, 13, 166, 19, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, 'sdf', 'sdfsd', 'fsd', 'fsdf'),
-(324, 13, 167, 19, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(325, 13, 168, 19, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(326, 13, 169, 19, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(327, 13, 170, 19, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(328, 13, 171, 19, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(329, 13, 172, 19, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(330, 13, 173, 19, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(331, 13, 174, 19, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -777,6 +475,7 @@ INSERT INTO `sampler` (`id_sampler`, `name_smp`, `gender_smp`, `phone_smp`, `ema
 CREATE TABLE `sampling_det` (
   `id_sampling` int(11) NOT NULL,
   `id_sk` int(11) NOT NULL,
+  `id_quotation` int(11) NOT NULL,
   `id_analysis` int(11) NOT NULL,
   `sample_id` varchar(10) NOT NULL,
   `sample_desc` varchar(255) NOT NULL,
@@ -785,40 +484,6 @@ CREATE TABLE `sampling_det` (
   `deadline` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `sampling_det`
---
-
-INSERT INTO `sampling_det` (`id_sampling`, `id_sk`, `id_analysis`, `sample_id`, `sample_desc`, `location`, `sample_type`, `deadline`, `description`) VALUES
-(8, 2, 0, '', 'Debu, SO2, NO2, CO, NH3, H2S, Suhu, Kelembaban', '<ul><li>Halaman Depan Plant 1</li><li>Halaman Belakang Plant 2</li><li>Halaman Belakang Plant 3</li></ul>', 'Cair', '2022-10-14', 'gg gaming'),
-(9, 2, 0, '', 'Debu, SO2, NO2, CO, NH3, H2S, Suhu, Kelembaban', '<ul><li>Ruang Produksi Plant 1</li><li>Ruang Produksi Plant 2</li><li>Ruang Heat Treatment Plant 3</li><li>Ruang Produksi Plant 3</li><li>Ruang Heat Treatment Plant 3</li></ul>', 'Padat', '2022-10-13', 'mantap'),
-(10, 2, 0, '', 'NOISE', '<ul><li>Batas Pabrik Sebelah Utara</li><li>Batas Pabrik Sebelah Selatan</li><li>Batas Pabrik Sebelah Timur</li><li>Batas Pabrik Sebelah Barat</li></ul>', 'Gas', '2022-10-01', 'Ini deskripsi singkat'),
-(11, 2, 0, '', 'NOISE', '<ul><li>Ruang Produksi Plant 1</li><li>Area Barel Machine Plant 1</li><li>Ruang Produksi Plant 2</li><li>Ruang Heat Treatment Plant 2</li><li>Ruang Produksi Plant 3</li><li>Ruang Heat Treatment Plant 3</li></ul>', 'Gas', '2022-10-20', 'ini deskripsi sangat singkat.'),
-(12, 2, 0, '', 'ISBB/Heat Stress', '<ul><li>Ruang Heat Treatment Plant 2</li><li>Ruang Heat Treatment Plant 3</li></ul>', 'ghf', '2022-10-02', 'gfh'),
-(13, 2, 0, '', 'Benzene, Toluene, Xylene (BTX)', '<p>Area Platting Plant 1</p>', 'asdas', '2022-10-04', 'asd'),
-(14, 2, 0, '', 'SO2, NO2, CO, Partikulat, Opasitas, Laju Alir', '<ul><li>Cerobong Genset 800 kVA Plant 1</li><li>Cerobong Genset 600 kVA Plant 2</li></ul>', 'ads', '2022-10-19', 'asd'),
-(15, 2, 0, '', 'Pencahayaan', '<ul><li>Ruang Hear Treatment Plant 1</li><li>Ruang Produksi Plant 1</li><li>Ruang Heat Treatment Plant 2</li><li>Ruang Produksi Plant 2</li><li>Ruang Produksi Plant 3</li><li>Ruang Heat Treatment Plant 3</li></ul>', '', '', ''),
-(16, 2, 0, '', 'Opasitas', '<ul><li>Forklift (1 titik) Plant 1</li><li>Forklift 2,5 Ton (1 titik) Plant 2</li><li>Truck Hino Tahun 2005 (T 8102 L) Plant 3</li><li>Truck Hino Tahun 2004 (T 8228 K) Plant 3</li><li>Truck Isuzu Tahun 2002 (T 8047 FZ) Plant 3</li></ul>', '', '', ''),
-(17, 2, 0, '', 'Air Limbah Produksi', '<p>Servis Manhole</p>', '', '', ''),
-(18, 2, 0, '', 'Air Limbah Domestik', '<p>Servis Manhole</p>', '', '', ''),
-(19, 7, 0, '', 'Debu, SO2, NO2, CO, NH3, H2S', '<ul><li>Rumah Rezha</li><li>Rumah Pram</li></ul>', NULL, NULL, NULL),
-(22, 6, 0, '', 'SO2, NO2, CO', '<ul><li>GH Evos</li><li>GH RRQ</li></ul>', 'Cair', '2022-10-06', 'sedang dikerjakan'),
-(23, 9, 0, '', 'Debu, SO2, NO2, CO', '<p>dsfsdf</p>', 'Gas', '2022-10-06', 'fgfdgdfgdf'),
-(24, 10, 0, '', 'Debu, SO2, NO2, CO', '<p>sdfsdfsd</p>', 'dsfdsf', '2022-10-11', 'dsfsdf'),
-(25, 10, 0, '', 'Partikulat, Opasitas, Laju Alir, Pencahayaan', '<p>sdfsdfsd</p>', 'dsfsd', '2022-10-12', 'sdfsdf'),
-(27, 14, 0, '14.01', 'SO2, NO2, CO, NH3', '<p>xcvxc</p>', 'Cair', '2022-10-10', 'ewfsd'),
-(29, 14, 0, '14.02', 'Pencahayaan, Air Limbah Produksi, Air Limbah Domestik', '<p>asdas</p>', 'Gas', '2022-10-12', 'ad'),
-(31, 13, 2, '13.01', 'Debu, SO2, NO2, NH3', '<p>dfsdf</p>', 'dsfdsf', '2022-10-27', 'sedang dikerjakan'),
-(32, 13, 3, '13.02', 'SO2, NO2, NH3, Pencahayaan', '<p>asxsa</p>', 'Cair', '2022-10-24', 'sedang dikerjakan'),
-(33, 13, 4, '13.03', 'Laju Alir, Pencahayaan, Air Limbah Produksi, Air Limbah Domestik', '<p>asdasd</p>', 'Cair', '2022-10-25', 'sedang dikerjakan'),
-(34, 13, 5, '13.04', 'Laju Alir, Pencahayaan, Air Limbah Produksi', '<p>asdasd</p>', 'Padat', '2022-10-25', 'sedang dikerjakan'),
-(35, 13, 8, '13.05', 'Laju Alir, Pencahayaan, Air Limbah Produksi, Air Limbah Domestik', '<p>asdasd</p>', 'Cair', '2022-10-27', 'sedang dikerjakan'),
-(36, 13, 9, '13.06', 'CO, NH3, H2S, Pencahayaan, Air Limbah Produksi', '<p>sad</p>', 'Cair', '2022-10-26', 'sedang dikerjakan'),
-(37, 13, 11, '13.07', 'Partikulat, Laju Alir, Pencahayaan, Air Limbah Produksi', '<p>sadas</p>', 'Cair', '2022-10-24', 'sedang dikerjakan'),
-(38, 13, 13, '13.08', 'Kelembaban, NOISE, ISBB/Heat Stress, Benzene', '<p>sadasdas</p>', 'Padat', '2022-10-23', 'sedang dikerjakan'),
-(39, 13, 15, '13.09', 'SO2, NO2, CO, H2S', '<p>sadasd</p>', 'Cair', '2022-10-25', 'sedang dikerjakan'),
-(42, 13, 19, '13.10', 'Debu, SO2, NO2, CO', '<p>fgdfg</p>', 'Cair', '2022-10-27', 'sedang dikerjakan');
 
 -- --------------------------------------------------------
 
@@ -839,24 +504,6 @@ CREATE TABLE `sk_number` (
   `id_int` int(11) NOT NULL,
   `status_po` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `sk_number`
---
-
-INSERT INTO `sk_number` (`id_sk`, `sk_quotation`, `sk_sample`, `sk_analysis`, `no_certificate`, `date_quotation`, `date_sample`, `date_analysis`, `date_report`, `id_int`, `status_po`) VALUES
-(2, '1/2022/09/27/DIL/QTN', '2/2022/09/30/DIL/STPS', '2/2022/10/04/DIL/STP', '', '2022-09-27', '2022-10-04', NULL, NULL, 3, 0),
-(4, '3/2022/09/27/DIL/QTN', '', '', '', '2022-09-27', NULL, NULL, NULL, 4, 0),
-(5, '5/2022/09/27/DIL/QTN', '', '', '', '2022-09-27', NULL, NULL, NULL, 9, 0),
-(6, '6/2022/09/27/DIL/QTN', '6/2022/10/03/DIL/STPS', '6/2022/10/04/DIL/STP', '', '2022-09-27', NULL, NULL, NULL, 12, 0),
-(7, '7/2022/09/29/DIL/QTN', '7/2022/09/30/DIL/STPS', '', '', '2022-09-29', NULL, NULL, NULL, 10, 0),
-(8, '8/2022/10/03/DIL/QTN', '', '', '', '2022-10-03', NULL, NULL, NULL, 5, 0),
-(9, '9/2022/10/04/DIL/QTN', '9/2022/10/04/DIL/STPS', '9/2022/10/04/DIL/STP', 'DIL-20221004COA', '2022-10-04', '2022-10-04', '2022-10-04', '2022-10-04', 7, 0),
-(10, '10/2022/10/09/DIL/QTN', '10/2022/10/09/DIL/STPS', '10/2022/10/09/DIL/STP', 'DIL-20221009COA', '2022-10-09', '2022-10-09', '2022-10-09', '2022-10-09', 11, 0),
-(13, '11/2022/10/10/DIL/QTN', '13/2022/10/23/DIL/STPS', '13/2022/10/23/DIL/STP', 'DIL-20221023COA', '2022-10-10', '2022-10-23', '2022-10-23', '2022-10-23', 11, 1),
-(14, '14/2022/10/10/DIL/QTN', '14/2022/10/11/DIL/STPS', '14/2022/10/22/DIL/STP', 'DIL-20221013COA', '2022-10-10', '2022-10-11', '2022-10-22', '2022-10-11', 3, 1),
-(15, '15/2022/10/11/DIL/QTN', '', '', '', '2022-10-11', NULL, NULL, NULL, 3, 1),
-(16, '16/2022/10/14/DIL/QTN', '', '', '', '2022-10-14', NULL, NULL, NULL, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -1027,7 +674,7 @@ ALTER TABLE `analysis`
 -- AUTO_INCREMENT for table `assign_sampler`
 --
 ALTER TABLE `assign_sampler`
-  MODIFY `id_assign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_assign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `coa`
@@ -1045,7 +692,7 @@ ALTER TABLE `company_profile`
 -- AUTO_INCREMENT for table `institution`
 --
 ALTER TABLE `institution`
-  MODIFY `id_int` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_int` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `method`
@@ -1057,13 +704,13 @@ ALTER TABLE `method`
 -- AUTO_INCREMENT for table `quotation`
 --
 ALTER TABLE `quotation`
-  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `result_coa`
 --
 ALTER TABLE `result_coa`
-  MODIFY `id_result` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=332;
+  MODIFY `id_result` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=357;
 
 --
 -- AUTO_INCREMENT for table `sample`
@@ -1081,13 +728,13 @@ ALTER TABLE `sampler`
 -- AUTO_INCREMENT for table `sampling_det`
 --
 ALTER TABLE `sampling_det`
-  MODIFY `id_sampling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_sampling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `sk_number`
 --
 ALTER TABLE `sk_number`
-  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `unit`

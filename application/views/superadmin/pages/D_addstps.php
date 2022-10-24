@@ -48,13 +48,13 @@ foreach($specialSK as $sk) {
                             </div>
                             <div class="form-group">
                               <label for="">Analysis</label>
-                              <select name="id_analysis" id="" class="form-control <?php if(form_error('id_analysis')) { echo "is-invalid"; } ?>">
+                              <select name="id_quotation" id="" class="form-control <?php if(form_error('id_quotation')) { echo "is-invalid"; } ?>">
                                 <option value="">-- Select Analysis --</option>
                                 <?php foreach($analysis as $anl) : ?>
-                                <option value="<?= $anl->id_analysis ?>"><?= $anl->name_analysis ?></option>
+                                <option value="<?= $anl->id_quotation ?>"><?= $anl->name_analysis ?></option>
                                 <?php endforeach; ?>
                               </select>
-                              <?php echo form_error('id_analysis', '<span class="text-small text-danger">', '</span>') ?>
+                              <?php echo form_error('id_quotation', '<span class="text-small text-danger">', '</span>') ?>
                             </div>
                             <div class="form-group">
                                 <label>Location</label>

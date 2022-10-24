@@ -164,7 +164,7 @@
                                     <tr>
                                         <td><?= $no++; ?></td>
                                         <td><?= htmlspecialchars($int->name_int); ?></td>
-                                        <td><?= htmlspecialchars($int->int_phone); ?></td>
+                                        <td><?= htmlspecialchars('+62'.$int->int_phone); ?></td>
                                         <td><?= htmlspecialchars($int->int_email); ?></td>
                                         <td><?= htmlspecialchars($int->int_address); ?></td>
                                         <td><?= htmlspecialchars($int->name_cp); ?></td>

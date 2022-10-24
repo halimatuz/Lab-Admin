@@ -8359,7 +8359,7 @@ footer {
                 <tr>
                     <td>Phone</td>
                     <td>:</td>
-                    <td colspan="2"><?= $coa_det->int_phone ?></td>
+                    <td colspan="2">+62<?= $coa_det->int_phone ?></td>
                 </tr>
                 <tr>
                     <td>Subject</td>
@@ -9282,7 +9282,7 @@ footer {
             ?>
             <tr>
                 <td><?= $no++ ?></td>
-                <td><?= $c->sampling_location ?></td>
+                <td><?= $c->sampling_location_coa ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->time ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
@@ -9347,7 +9347,7 @@ footer {
             ?>
             <tr>
                 <td><?= $no++ ?></td>
-                <td><?= $c->sampling_location ?></td>
+                <td><?= $c->sampling_location_coa ?></td>
                 <td><?= $c->time ?></td>
                 <td><?= $c->humidity ?></td>
                 <td><?= $c->wet ?></td>
@@ -9453,7 +9453,7 @@ footer {
             ?>
             <tr>
                 <td><?= $no++ ?></td>
-                <td><?= $c->sampling_location ?></td>
+                <td><?= $c->sampling_location_coa ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->time ?></td>
                 <td><?= $c->reg_standart_1 ?></td>

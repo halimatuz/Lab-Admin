@@ -6,29 +6,6 @@ foreach($company as $c) {
   $cmp = $c;
 }
 
-function tgl_indo($tanggal){
-	$bulan = array (
-		1 =>   'Januari',
-		'Februari',
-		'Maret',
-		'April',
-		'Mei',
-		'Juni',
-		'Juli',
-		'Agustus',
-		'September',
-		'Oktober',
-		'November',
-		'Desember'
-	);
-	$pecahkan = explode('-', $tanggal);
-	
-	// variabel pecahkan 0 = tanggal
-	// variabel pecahkan 1 = bulan
-	// variabel pecahkan 2 = tahun
- 
-	return  $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1]] . ' ' . $pecahkan[0];
-}
 ?>
 <!doctype html>
 <html lang="en">
@@ -110,7 +87,7 @@ function tgl_indo($tanggal){
             </div>
           </div>
           <div class="col-md-6">
-            <p class="font-weight-bold">Date&emsp;&emsp;:&emsp;&emsp;<?= tgl_indo(@$qtn->date_quotation); ?></p>
+            <p class="font-weight-bold">Date&emsp;&emsp;:&emsp;&emsp;<?= date('dS F, Y', strtotime($qtn->date_quotation));?></p>
             <hr style="background-color: black;">
             <div style="border: 1px solid black;" class="p-1">
               <table class="font-weight-bold">

@@ -8351,7 +8351,7 @@ footer {
                 <tr>
                     <td>Phone</td>
                     <td>:</td>
-                    <td colspan="2"><?= $coa_det->int_phone ?></td>
+                    <td colspan="2">+62<?= $coa_det->int_phone ?></td>
                 </tr>
                 <tr>
                     <td>Subject</td>
@@ -8395,7 +8395,7 @@ footer {
         </div>
 
         <div class="">
-            <div style="margin-top: 20px; margin-left: 480px;">
+            <div style="margin-top: 20px; margin-left: 280px">
                 <p style="font-size: 12px; margin-left: -55px;">This Certificate of Analysis consist of <?= $count; ?> pages</p>
                 <p style="font-size: 12px; margin-left: 45px;">Bekasi, <?= date('dS F, Y', strtotime($coa_det->date_report)); ?></p>
                 <br><br><br><br>
@@ -9273,7 +9273,7 @@ footer {
             ?>
             <tr>
                 <td><?= $no++ ?></td>
-                <td><?= $c->sampling_location ?></td>
+                <td><?= $c->sampling_location_coa ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->time ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
@@ -9338,7 +9338,7 @@ footer {
             ?>
             <tr>
                 <td><?= $no++ ?></td>
-                <td><?= $c->sampling_location ?></td>
+                <td><?= $c->sampling_location_coa ?></td>
                 <td><?= $c->time ?></td>
                 <td><?= $c->humidity ?></td>
                 <td><?= $c->wet ?></td>
@@ -9444,7 +9444,7 @@ footer {
             ?>
             <tr>
                 <td><?= $no++ ?></td>
-                <td><?= $c->sampling_location ?></td>
+                <td><?= $c->sampling_location_coa ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->time ?></td>
                 <td><?= $c->reg_standart_1 ?></td>

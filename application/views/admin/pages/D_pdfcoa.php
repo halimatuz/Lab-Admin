@@ -9212,7 +9212,7 @@ footer {
             ?>
             <tr>
                 <td><?= $c->vehicle_brand ?></td>
-                <td><?= $c->time ?></td>
+                <td><?= $c->time_coa ?></td>
                 <td><?= $c->unit ?></td>
                 <td><?= $c->result ?></td>
                 <td><?= $c->name_method ?></td>
@@ -9307,7 +9307,7 @@ footer {
                 <td><?= $no++ ?></td>
                 <td></td>
                 <td><?= $c->result ?></td>
-                <td><?= $c->time ?></td>
+                <td><?= $c->time_coa ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->unit ?></td>
                 <td><?= $c->name_method ?></td>
