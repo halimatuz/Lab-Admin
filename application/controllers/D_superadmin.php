@@ -1170,7 +1170,7 @@ class D_superadmin extends CI_Controller
         $data['specialSK'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE id_sk = '$id'")->result();
         $data['sampling_det'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk INNER JOIN institution ON sk_number.id_int = institution.id_int INNER JOIN analysis ON analysis.id_analysis = sampling_det.id_analysis WHERE sk_number.id_sk = $id ORDER BY id_sampling DESC")->result();
         $data['sample'] = $this->db->query("SELECT * FROM sample")->result();
-        $data['analysis'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON analysis.id_analysis = quotation.id_analysis WHERE quotation.id_sk = $id")->result();
+        $data['analysis'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON analysis.id_analysis = quotation.id_analysis WHERE quotation.id_sk = $id AND analysis.coa = 1")->result();
         $this->load->view('superadmin/_layout/header', $data);
         $this->load->view('superadmin/_layout/sidebar');
         $this->load->view('superadmin/pages/D_addstps', $data);
