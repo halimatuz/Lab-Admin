@@ -66,6 +66,13 @@
                       <?php echo form_error('email', '<span class="text-small text-danger">', '</span>') ?>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label for="director_email" class="d-block">Director Email</label>
+                      <input id="director_email" type="text" class="form-control" name="director_email" value="<?= $cmp->director_email ?>">
+                      <?php echo form_error('director_email', '<span class="text-small text-danger">', '</span>') ?>
+                    </div>
+                  </div>
 
                   <h6 class="text-primary mt-2">Company Rekening</h6>
                   <hr>

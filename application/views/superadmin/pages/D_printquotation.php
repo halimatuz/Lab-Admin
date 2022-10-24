@@ -1,6 +1,6 @@
 <?php
 foreach($quotation as $quot) {
-  $qtn = $quot;
+  @$qtn = $quot;
 }
 foreach($company as $c) {
   $cmp = $c;
@@ -99,35 +99,35 @@ function tgl_indo($tanggal){
                 <tr>
                   <td>To</td>
                   <td>:</td>
-                  <td><?= $qtn->name_int ?></td>
+                  <td><?= @$qtn->name_int ?></td>
                 </tr>
                 <tr>
                   <td>Address&emsp;&emsp;&emsp;</td>
                   <td>:&emsp;</td>
-                  <td><?= $qtn->int_address ?></td>
+                  <td><?= @$qtn->int_address ?></td>
                 </tr>
               </table>
             </div>
           </div>
           <div class="col-md-6">
-            <p class="font-weight-bold">Date&emsp;&emsp;:&emsp;&emsp;<?= tgl_indo($qtn->date_quotation); ?></p>
+            <p class="font-weight-bold">Date&emsp;&emsp;:&emsp;&emsp;<?= tgl_indo(@$qtn->date_quotation); ?></p>
             <hr style="background-color: black;">
             <div style="border: 1px solid black;" class="p-1">
               <table class="font-weight-bold">
                 <tr>
                   <td>Up</td>
                   <td>:</td>
-                  <td><?= $qtn->name_cp ?></td>
+                  <td><?= @$qtn->name_cp ?></td>
                 </tr>
                 <tr>
                   <td>Title</td>
                   <td>:</td>
-                  <td><?= $qtn->title_cp ?></td>
+                  <td><?= @$qtn->title_cp ?></td>
                 </tr>
                 <tr>
                   <td>Email&emsp;&emsp;&emsp;</td>
                   <td>:&emsp;</td>
-                  <td><?= $qtn->int_email ?></td>
+                  <td><?= @$qtn->int_email ?></td>
                 </tr>
               </table>
             </div>

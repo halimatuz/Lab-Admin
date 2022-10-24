@@ -74,6 +74,7 @@
                                               <a href="<?php echo base_url('D_admin/data_analysis_coa/') . $qtn->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> Generate COA</a>
                                           <?php } else {?>
                                               <a href="<?php echo base_url('D_admin/pdf_coa/') . $qtn->id_sk ?>"class="btn btn-primary"><i class="fas fa-print"></i> PDF</a>
+                                              <a href="<?php echo base_url('D_admin/draft_coa/') . $qtn->id_sk ?>"class="btn btn-primary"><i class="fas fa-print"></i> Draft</a>
                                           <?php } ?>
                                         </td>
                                     </tr>

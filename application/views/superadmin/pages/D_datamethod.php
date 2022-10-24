@@ -35,7 +35,7 @@
                                 <input type="hidden" class="form-control" name="id_method" value="<?= $ss->id_method ?>">
                                 <input type="text" class="form-control" name="name_method" value="<?= $ss->name_method ?>" autocomplete="off" placeholder="Insert name method..." autofocus>
                             </div>
-                            <button type="submit" class="btn btn-primary">Update method</button>
+                            <button type="submit" class="btn btn-primary">Update Method</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
                             <a href="<?php echo base_url('D_superadmin/data_method') ?>" class="btn btn-danger">Cancel</a>
                         </form>
@@ -46,7 +46,7 @@
                                 <input type="text" class="form-control <?php if(form_error('name_method')) { echo "is-invalid"; } ?>" name="name_method" value="<?= set_value('name_method')?>" autocomplete="off" placeholder="Insert name method..." autofocus>
                                 <?php echo form_error('name_method', '<span class="text-small text-danger">', '</span>') ?>
                             </div>
-                            <button type="submit" class="btn btn-primary">Add method</button>
+                            <button type="submit" class="btn btn-primary">Add Method</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
                         </form>
                     <?php } ?>

@@ -55,6 +55,7 @@ foreach($specialSK as $sk) {
                               <thead>
                                   <tr>
                                       <th>No</th>
+                                      <th>ID Sample</th>
                                       <th>Test Parameters</th>
                                       <th>Sample Type</th>
                                       <th>Deadline Testing</th>
@@ -66,7 +67,8 @@ foreach($specialSK as $sk) {
                                   $no = 1;
                                   foreach ($sampling_det as $row) : ?>
                                       <tr>
-                                          <td><?= $no++; ?></td>
+                                          <td><?= $no; ?></td>
+                                          <td><input type="text" name="sample_id[]" class="form-control" value="<?= $row->id_sk . '.' . sprintf('%02d', $no++); ?>" readonly></td>
                                           <td><?= htmlspecialchars($row->sample_desc); ?></td>
                                           <input type="hidden" name="id_sampling[]" value="<?= $row->id_sampling ?>">
                                           <input type="hidden" name="id_sk" value="<?= $row->id_sk ?>">

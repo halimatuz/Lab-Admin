@@ -47,6 +47,16 @@ foreach($specialSK as $sk) {
                                 <?php echo form_error('sample_desc[]', '<span class="text-small text-danger">', '</span>') ?>
                             </div>
                             <div class="form-group">
+                              <label for="">Analysis</label>
+                              <select name="id_analysis" id="" class="form-control <?php if(form_error('id_analysis')) { echo "is-invalid"; } ?>">
+                                <option value="">-- Select Analysis --</option>
+                                <?php foreach($analysis as $anl) : ?>
+                                <option value="<?= $anl->id_analysis ?>"><?= $anl->name_analysis ?></option>
+                                <?php endforeach; ?>
+                              </select>
+                              <?php echo form_error('id_analysis', '<span class="text-small text-danger">', '</span>') ?>
+                            </div>
+                            <div class="form-group">
                                 <label>Location</label>
                                 <textarea class="summernote-simple" name="location"><?= set_value('location') ?></textarea>
                                 <?php echo form_error('location', '<span class="text-small text-danger">', '</span>') ?>
@@ -74,6 +84,7 @@ foreach($specialSK as $sk) {
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Analysis</th>
                                     <th>Sample Description</th>
                                     <th>Location</th>
                                     <th>Action</th>
@@ -85,6 +96,7 @@ foreach($specialSK as $sk) {
                                 foreach ($sampling_det as $row) : ?>
                                     <tr>
                                         <td><?= $no++; ?></td>
+                                        <td><?= htmlspecialchars($row->name_analysis); ?></td>
                                         <td><?= htmlspecialchars($row->sample_desc); ?></td>
                                         <td><?= ($row->location); ?></td>
                                         <td>

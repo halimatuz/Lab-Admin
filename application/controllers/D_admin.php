@@ -2,6 +2,9 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 // Import PHPMailer classes into the global namespace
 // These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 class D_admin extends CI_Controller 
 {
@@ -1445,6 +1448,34 @@ class D_admin extends CI_Controller
             $size = 3.5,
             $margin = 1
         );
+    }
+
+    public function draft_coa($id_sk) {
+        $sess = $this->session->userdata('id_admin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $this->load->library('dompdf_gen');
+        $data = array(
+            'title' => 'Export PDF',
+        );
+        
+        $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
+        $data['coa'] = $this->db->query("SELECT * FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk WHERE result_coa.id_sk = $id_sk")->result();
+        $data['analysis'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk WHERE quotation.id_sk = $id_sk AND analysis.coa = 1")->result();
+        $data['count'] = count($data['analysis']) + 1;
+
+        $paper_size = 'A4';
+        $orientation = 'potrait';
+        $html = $this->load->view('admin/pages/D_draftcoa', $data, TRUE);;
+        $this->dompdf->set_paper($paper_size, $orientation);
+
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("COA " . $data['coa']->name_int .".pdf", array('Attachment' => 0));
+        }
+
     }
 
     public function pdf_coa($id_sk) {

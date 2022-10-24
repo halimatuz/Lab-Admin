@@ -38,11 +38,28 @@ foreach($specialAnalysis as $sa) {
                     foreach ($specialcoa as $ss) : ?>
                         <form action="<?= base_url('D_superadmin/update_coa_action') ?>" method="POST">
                         <?php foreach($specialcoa as $sc) : ?>
-                            <?php if($analysis->name_analysis != 'Vibration' && $analysis->name_analysis != 'Noise') { ?>
+                            <?php if($analysis->name_analysis != 'Vibration' && $analysis->name_analysis != 'Noise' && $analysis->name_analysis != 'Heat Stress' && $analysis->name_analysis != 'Illumination' && $analysis->name_analysis != 'Non-Stationary Source Emission' && $analysis->name_analysis != '24 HOURS NOISE') { ?>
                             <div class="form-group">
                                 <label>Parameters</label>
                                 <input type="text" class="form-control <?php if(form_error('params')) { echo "is-invalid"; } ?>" name="params" value="<?= $sc->params ?>" autocomplete="off" placeholder="Insert parameters" autofocus>
                                 <?php echo form_error('params', '<span class="text-small text-danger">', '</span>') ?>
+                            </div>
+                            <?php } ?>
+                            <?php if($analysis->name_analysis == '24 HOURS NOISE') { ?>
+                            <div class="form-group">
+                                <label>Sampling Location</label>
+                                <input type="text" class="form-control <?php if(form_error('sampling_location')) { echo "is-invalid"; } ?>" name="sampling_location" value="<?= $sc->sampling_location ?>" autocomplete="off" placeholder="Insert sampling location" autofocus>
+                                <?php echo form_error('sampling_location', '<span class="text-small text-danger">', '</span>') ?>
+                            </div>
+                            <div class="form-group">
+                                <label>Noise</label>
+                                <input type="text" class="form-control <?php if(form_error('noise')) { echo "is-invalid"; } ?>" name="noise" value="<?= $sc->noise ?>" autocomplete="off" placeholder="Insert noise" autofocus>
+                                <?php echo form_error('noise', '<span class="text-small text-danger">', '</span>') ?>
+                            </div>
+                            <div class="form-group">
+                                <label>Time</label>
+                                <input type="text" class="form-control <?php if(form_error('time')) { echo "is-invalid"; } ?>" name="time" value="<?= $sc->time ?>" autocomplete="off" placeholder="Insert time" autofocus>
+                                <?php echo form_error('time', '<span class="text-small text-danger">', '</span>') ?>
                             </div>
                             <?php } ?>
                             <?php if($analysis->name_analysis == 'Surface Water' || $analysis->name_analysis == 'Wastewater' || $analysis->name_analysis == 'Clean Water' ) { ?>
@@ -70,6 +87,19 @@ foreach($specialAnalysis as $sa) {
                                 <?php echo form_error('sampling_time', '<span class="text-small text-danger">', '</span>') ?>
                             </div>
                             <?php } ?>
+                            <?php if($analysis->name_analysis == 'Non-Stationary Source Emission') { ?>
+                            <div class="form-group">
+                                <label>Year</label>
+                                <input type="text" class="form-control <?php if(form_error('year')) { echo "is-invalid"; } ?>" name="year" value="<?= $sc->year ?>" autocomplete="off" placeholder="Insert year">
+                                <?php echo form_error('year', '<span class="text-small text-danger">', '</span>') ?>
+                            </div>
+                            <div class="form-group">
+                                <label>Capacity</label>
+                                <input type="text" class="form-control <?php if(form_error('capacity')) { echo "is-invalid"; } ?>" name="capacity" value="<?= $sc->capacity ?>" autocomplete="off" placeholder="Insert capacity">
+                                <?php echo form_error('capacity', '<span class="text-small text-danger">', '</span>') ?>
+                            </div>
+                            <?php } ?>
+                            <?php if($analysis->name_analysis != 'Heat Stress' && $analysis->name_analysis != 'Non-Stationary Source Emission')  {?>
                             <div class="form-group">
                                 <label>Unit</label>
                                 <select name="unit" id="" class="form-control <?php if(form_error('unit')) { echo "is-invalid"; } ?>" value="<?= set_value('unit')?>">
@@ -80,7 +110,8 @@ foreach($specialAnalysis as $sa) {
                                 </select>
                                 <?php echo form_error('unit', '<span class="text-small text-danger">', '</span>') ?>
                             </div>
-                            <?php if($analysis->name_analysis != 'Vibration') { ?>
+                            <?php } ?>
+                            <?php if($analysis->name_analysis != 'Vibration' && $analysis->name_analysis != 'Heat Stress') { ?>
                             <div class="form-group">
                                 <label>Regulatory Standard</label>
                                 <input type="text" class="form-control <?php if(form_error('reg_standart_1')) { echo "is-invalid"; } ?>" name="reg_standart_1" value="<?= $sc->reg_standart_1 ?>" autocomplete="off" placeholder="Insert regulatory standard 1">
@@ -117,17 +148,46 @@ foreach($specialAnalysis as $sa) {
                                 <?php echo form_error('method', '<span class="text-small text-danger">', '</span>') ?>
                             </div>
                             <?php endforeach; ?>
-                            <button type="submit" class="btn btn-primary">Update coa</button>
+                            <button type="submit" class="btn btn-primary">Update COA</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
                             <a href="<?php echo base_url('D_superadmin/add_coa/' . $analysis->id_analysis) ?>" class="btn btn-danger">Cancel</a>
                         </form>
                     <?php endforeach; } else {?>
                         <form action="<?= base_url('D_superadmin/add_coa_action') ?>" method="POST">
-                            <?php if($analysis->name_analysis != 'Vibration' && $analysis->name_analysis != 'Noise') { ?>
+                            <?php if($analysis->name_analysis != 'Vibration' && $analysis->name_analysis != 'Noise' && $analysis->name_analysis != 'Heat Stress' && $analysis->name_analysis != 'Illumination' && $analysis->name_analysis != 'Non-Stationary Source Emission' && $analysis->name_analysis != '24 HOURS NOISE') { ?>
                             <div class="form-group">
                                 <label>Parameters</label>
                                 <input type="text" class="form-control <?php if(form_error('params')) { echo "is-invalid"; } ?>" name="params" value="<?= set_value('params')?>" autocomplete="off" placeholder="Insert parameters" autofocus>
                                 <?php echo form_error('params', '<span class="text-small text-danger">', '</span>') ?>
+                            </div>
+                            <?php } ?>
+                            <?php if($analysis->name_analysis == '24 HOURS NOISE') { ?>
+                            <div class="form-group">
+                                <label>Sampling Location</label>
+                                <input type="text" class="form-control <?php if(form_error('sampling_location')) { echo "is-invalid"; } ?>" name="sampling_location" value="<?= set_value('sampling_location')?>" autocomplete="off" placeholder="Insert sampling location" autofocus>
+                                <?php echo form_error('sampling_location', '<span class="text-small text-danger">', '</span>') ?>
+                            </div>
+                            <div class="form-group">
+                                <label>Noise</label>
+                                <input type="text" class="form-control <?php if(form_error('noise')) { echo "is-invalid"; } ?>" name="noise" value="<?= set_value('noise')?>" autocomplete="off" placeholder="Insert noise" autofocus>
+                                <?php echo form_error('noise', '<span class="text-small text-danger">', '</span>') ?>
+                            </div>
+                            <div class="form-group">
+                                <label>Time</label>
+                                <input type="text" class="form-control <?php if(form_error('time')) { echo "is-invalid"; } ?>" name="time" value="<?= set_value('time')?>" autocomplete="off" placeholder="Insert time" autofocus>
+                                <?php echo form_error('time', '<span class="text-small text-danger">', '</span>') ?>
+                            </div>
+                            <?php } ?>
+                            <?php if($analysis->name_analysis == 'Non-Stationary Source Emission') { ?>
+                            <div class="form-group">
+                                <label>Year</label>
+                                <input type="text" class="form-control <?php if(form_error('year')) { echo "is-invalid"; } ?>" name="year" value="<?= set_value('year')?>" autocomplete="off" placeholder="Insert year">
+                                <?php echo form_error('year', '<span class="text-small text-danger">', '</span>') ?>
+                            </div>
+                            <div class="form-group">
+                                <label>Capacity</label>
+                                <input type="text" class="form-control <?php if(form_error('capacity')) { echo "is-invalid"; } ?>" name="capacity" value="<?= set_value('capacity')?>" autocomplete="off" placeholder="Insert capacity">
+                                <?php echo form_error('capacity', '<span class="text-small text-danger">', '</span>') ?>
                             </div>
                             <?php } ?>
                             <?php if($analysis->name_analysis == 'Surface Water' || $analysis->name_analysis == 'Wastewater' || $analysis->name_analysis == 'Clean Water' ) { ?>
@@ -155,6 +215,7 @@ foreach($specialAnalysis as $sa) {
                                 <?php echo form_error('sampling_time', '<span class="text-small text-danger">', '</span>') ?>
                             </div>
                             <?php } ?>
+                            <?php if($analysis->name_analysis != 'Heat Stress' && $analysis->name_analysis != 'Non-Stationary Source Emission') { ?>
                             <div class="form-group">
                                 <label>Unit</label>
                                 <select name="unit" id="" class="form-control <?php if(form_error('unit')) { echo "is-invalid"; } ?>" value="<?= set_value('unit')?>">
@@ -165,10 +226,11 @@ foreach($specialAnalysis as $sa) {
                                 </select>
                                 <?php echo form_error('unit', '<span class="text-small text-danger">', '</span>') ?>
                             </div>
-                            <?php if($analysis->name_analysis != 'Vibration') { ?>
+                            <?php } ?>
+                            <?php if($analysis->name_analysis != 'Vibration' && $analysis->name_analysis != 'Heat Stress') { ?>
                             <div class="form-group">
                                 <label>Regulatory Standard</label>
-                                <input type="text" class="form-control <?php if(form_error('reg_standart_1')) { echo "is-invalid"; } ?>" name="reg_standart_1" value="<?= set_value('reg_standart_1')?>" autocomplete="off" placeholder="Insert regulatory standard 1">
+                                <input type="text" class="form-control <?php if(form_error('reg_standart_1')) { echo "is-invalid"; } ?>" name="reg_standart_1" value="<?= set_value('reg_standart_1')?>" autocomplete="off" placeholder="Insert regulatory standard">
                                 <?php echo form_error('reg_standart_1', '<span class="text-small text-danger">', '</span>') ?>
                             </div>
                             <?php } ?>
@@ -222,14 +284,25 @@ foreach($specialAnalysis as $sa) {
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <?php if($analysis->name_analysis != 'Vibration' && $analysis->name_analysis != 'Noise' ) { ?>
+                                    <?php if($analysis->name_analysis != 'Vibration' && $analysis->name_analysis != 'Noise' && $analysis->name_analysis != 'Heat Stress' && $analysis->name_analysis != 'Illumination' && $analysis->name_analysis != 'Non-Stationary Source Emission' && $analysis->name_analysis != '24 HOURS NOISE') { ?>
                                     <th>Parameters</th>
+                                    <?php } ?>
+                                    <?php if($analysis->name_analysis == '24 HOURS NOISE') { ?>
+                                    <th>Sampling Location</th>
+                                    <th>Noise</th>
+                                    <th>Time</th>
                                     <?php } ?>
                                     <?php if($analysis->name_analysis == 'Ambient Air') { ?>
                                     <th>Sampling Time</th>
                                     <?php } ?>
+                                    <?php if($analysis->name_analysis == 'Non-Stationary Source Emission') { ?>
+                                    <th>Year</th>
+                                    <th>Capacity</th>
+                                    <?php } ?>
+                                    <?php if($analysis->name_analysis != 'Heat Stress' && $analysis->name_analysis != 'Non-Stationary Source Emission') { ?>
                                     <th>Unit</th>
-                                    <?php if($analysis->name_analysis != 'Vibration') { ?>
+                                    <?php } ?>
+                                    <?php if($analysis->name_analysis != 'Vibration' && $analysis->name_analysis != 'Heat Stress') { ?>
                                     <th>Regulatory Standard</th>
                                     <?php } ?>
                                     <?php if($analysis->name_analysis == 'Surface Water') { ?>
@@ -247,14 +320,25 @@ foreach($specialAnalysis as $sa) {
                                 foreach ($coa as $row) : ?>
                                     <tr>
                                         <td><?= $no++; ?></td>
-                                        <?php if($analysis->name_analysis != 'Vibration' && $analysis->name_analysis != 'Noise') { ?>
+                                        <?php if($analysis->name_analysis != 'Vibration' && $analysis->name_analysis != 'Noise' && $analysis->name_analysis != 'Heat Stress' && $analysis->name_analysis != 'Illumination' && $analysis->name_analysis != 'Non-Stationary Source Emission' && $analysis->name_analysis != '24 HOURS NOISE') { ?>
                                         <td><?= htmlspecialchars($row->params); ?></td>
+                                        <?php } ?>
+                                        <?php if($analysis->name_analysis == '24 HOURS NOISE') { ?>
+                                        <td><?= htmlspecialchars($row->sampling_location); ?></td>
+                                        <td><?= htmlspecialchars($row->noise); ?></td>
+                                        <td><?= htmlspecialchars($row->time); ?></td>
                                         <?php } ?>
                                         <?php if($analysis->name_analysis == 'Ambient Air') { ?>
                                         <td><?= htmlspecialchars($row->sampling_time); ?></td>
                                         <?php } ?>
+                                        <?php if($analysis->name_analysis == 'Non-Stationary Source Emission') { ?>
+                                        <td><?= htmlspecialchars($row->year); ?></td>
+                                        <td><?= htmlspecialchars($row->capacity); ?></td>
+                                        <?php } ?>
+                                        <?php if($analysis->name_analysis != 'Heat Stress' && $analysis->name_analysis != 'Non-Stationary Source Emission') { ?>
                                         <td><?= htmlspecialchars($row->unit); ?></td>
-                                        <?php if($analysis->name_analysis != 'Vibration') { ?>
+                                        <?php } ?>
+                                        <?php if($analysis->name_analysis != 'Vibration' && $analysis->name_analysis != 'Heat Stress') { ?>
                                         <td><?= htmlspecialchars($row->reg_standart_1); ?></td>
                                         <?php } ?>
                                         <?php if($analysis->name_analysis == 'Surface Water') { ?>
