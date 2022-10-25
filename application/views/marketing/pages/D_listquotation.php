@@ -44,6 +44,7 @@
                                 <th>No</th>
                                 <th>Name Institution</th>
                                 <th>SK Quotation</th>
+                                <th>Date</th>
                                 <?php if($this->uri->segment(2) == 'list_quotation') { ?>
                                 <th>Purchase Order</th>
                                 <?php } ?>
@@ -58,6 +59,7 @@
                                         <td><?= $no++; ?></td>
                                         <td><?= htmlspecialchars($qtn->name_int); ?></td>
                                         <td><?= htmlspecialchars($qtn->sk_quotation); ?></td>
+                                        <td><?= htmlspecialchars($qtn->date_quotation); ?></td>
                                         <?php if($this->uri->segment(2) == 'list_quotation') { ?>
                                         <td align="center">
                                           <?php if ($qtn->status_po == 1) { ?>
@@ -91,6 +93,7 @@
                                               <a href="<?php echo base_url('D_marketing/data_analysis_coa/') . $qtn->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> Generate COA</a>
                                           <?php } else {?>
                                               <a href="<?php echo base_url('D_marketing/pdf_coa/') . $qtn->id_sk ?>"class="btn btn-primary"><i class="fas fa-print"></i> PDF</a>
+                                              <a href="<?php echo base_url('D_marketing/draft_coa/') . $qtn->id_sk ?>"class="btn btn-primary"><i class="fas fa-print"></i> Draft</a>
                                           <?php } ?>
                                         </td>
                                     </tr>

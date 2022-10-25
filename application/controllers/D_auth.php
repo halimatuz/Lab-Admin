@@ -7,12 +7,15 @@ class D_auth extends CI_Controller
         $sess_superadmin = $this->session->userdata('id_superadmin');
         $sess_admin = $this->session->userdata('id_admin');
         $sess_marketing = $this->session->userdata('id_marketing');
+        $sess_analyst = $this->session->userdata('id_analyst');
 		if ($sess_superadmin != NULL) {
 			redirect('D_superadmin');
         } elseif($sess_admin != NULL) {
             redirect('D_admin');
         } elseif($sess_marketing != NULL) {
             redirect('D_marketing');
+        } elseif($sess_analyst != NULL) {
+            redirect('D_analyst');
 		} else {
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
             $this->form_validation->set_rules('password', 'Password', 'trim|required');
@@ -55,6 +58,12 @@ class D_auth extends CI_Controller
                         'role' => $user['role'],
                         'fullname' => $user['fullname'],
                     );
+                } elseif($user['role'] == 'analyst') {
+                    $data = array(
+                        'id_analyst' => $user['email'],
+                        'role' => $user['role'],
+                        'fullname' => $user['fullname'],
+                    );
                 }
 
                 if($user['role'] == 'superadmin') {
@@ -69,8 +78,13 @@ class D_auth extends CI_Controller
                 }
                 if($user['role'] == 'marketing') {
                     $this->session->set_userdata($data);
-                    $this->session->set_flashdata('msglogin', 'You are logged in as marketing!');
+                    $this->session->set_flashdata('msglogin', 'You are logged in as Marketing!');
                     redirect('D_marketing');
+                }
+                if($user['role'] == 'analyst') {
+                    $this->session->set_userdata($data);
+                    $this->session->set_flashdata('msglogin', 'You are logged in as Analyst!');
+                    redirect('D_analyst');
                 }
                 
             } else {
@@ -102,6 +116,7 @@ class D_auth extends CI_Controller
         $this->session->unset_userdata('id_admin');
         $this->session->unset_userdata('id_marketing');
         $this->session->unset_userdata('id_superadmin');
+        $this->session->unset_userdata('id_analyst');
         $this->session->unset_userdata('role');
         $this->session->unset_userdata('fullname');
 

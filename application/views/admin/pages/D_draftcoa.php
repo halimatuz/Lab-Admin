@@ -8282,6 +8282,14 @@ a.text-dark:hover {
 .page_break { page-break-after: always; }
 table{font-size:12px;}
 
+header {
+    height: 200px!important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
 footer {
     height: 100px!important;
     position: fixed;
@@ -8343,7 +8351,7 @@ footer {
                 <tr>
                     <td>Phone</td>
                     <td>:</td>
-                    <td colspan="2"><?= $coa_det->int_phone ?></td>
+                    <td colspan="2">+62<?= $coa_det->int_phone ?></td>
                 </tr>
                 <tr>
                     <td>Subject</td>
@@ -8371,26 +8379,26 @@ footer {
                 <tr>
                     <td>Sample Receive Date</td>
                     <td>:</td>
-                    <td colspan="2"><?= tgl_indo($coa_det->date_sample) ?></td>
+                    <td colspan="2"><?= date('dS F, Y', strtotime($coa_det->date_sample)); ?></td>
                 </tr>
                 <tr>
                     <td style="padding-right: 50px;">Sample Analysis Date</td>
                     <td style="padding-right: 10px;">:</td>
-                    <td colspan="2"><?= tgl_indo($coa_det->date_analysis) ?></td>
+                    <td colspan="2"><?= date('dS F, Y', strtotime($coa_det->date_analysis));?></td>
                 </tr>
                 <tr>
                     <td>Report Date</td>
                     <td>:</td>
-                    <td colspan="2"><?= tgl_indo($coa_det->date_report) ?></td>
+                    <td colspan="2"><?= date('dS F, Y', strtotime($coa_det->date_report)); ?></td>
                 </tr>
             </table>
         </div>
 
         <div class="">
-            <div style="display: inline-block; margin-top: 40px; margin-left: 500px;">
+            <div style="margin-top: 20px; margin-left: 480px">
                 <p style="font-size: 12px; margin-left: -55px;">This Certificate of Analysis consist of <?= $count; ?> pages</p>
-                <p style="font-size: 12px; margin-left: 60px;">Bekasi, <?= tgl_indo($coa_det->date_report) ?></p>
-                <br><br><br>
+                <p style="font-size: 12px; margin-left: 45px;">Bekasi, <?= date('dS F, Y', strtotime($coa_det->date_report)); ?></p>
+                <br><br><br><br>
                 <p style="font-size: 12px; font-weight: bold; text-decoration: underline; margin-bottom: -20px;"><?= $cmp->director ?></p>
                 <p style="font-size: 12px; font-weight: bold; margin-left: 50px;">Direktur Utama</p>
             </div>
@@ -8415,13 +8423,13 @@ footer {
                 <th>Interval Testing Date</th>
             </tr>
             <tr>
-                <td></td>
+                <td><?= $anl->sample_id ?></td>
                 <td></td>
                 <td><?= $anl->name_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
-                <td></td>
+                <td><?= $anl->date_analysis ?> to <?= $anl->deadline ?></td>
             </tr>
         </table>
         <table class="table table-bordered mt-2">
@@ -8443,7 +8451,7 @@ footer {
                 <td width="25px"><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
                 <td width="50px"><?= $c->unit ?></td>
-                <td width="70px"><?= $c->result ?></td>
+                <td width="70px"><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td width="50px"><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
@@ -8458,7 +8466,7 @@ footer {
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
                 <td><?= $c->unit ?></td>
-                <td><?= $c->result ?></td>
+                <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
@@ -8473,7 +8481,7 @@ footer {
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
                 <td><?= $c->unit ?></td>
-                <td><?= $c->result ?></td>
+                <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
@@ -8511,13 +8519,13 @@ footer {
                 <th>Interval Testing Date</th>
             </tr>
             <tr>
-                <td></td>
+                <td><?= $anl->sample_id ?></td>
                 <td></td>
                 <td><?= $anl->name_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
-                <td></td>
+                <td><?= $anl->date_analysis ?> to <?= $anl->deadline ?></td>
             </tr>
         </table>
         <table class="table table-bordered mt-2">
@@ -8539,7 +8547,7 @@ footer {
                 <td width="25px"><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
                 <td width="50px"><?= $c->unit ?></td>
-                <td width="70px"><?= $c->result ?></td>
+                <td width="70px"><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td width="50px"><?= $c->reg_standart_1 ?></td>
                 <td width="150px"><?= $c->name_method ?></td>
             </tr>
@@ -8554,7 +8562,7 @@ footer {
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
                 <td><?= $c->unit ?></td>
-                <td><?= $c->result ?></td>
+                <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
@@ -8569,7 +8577,7 @@ footer {
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
                 <td><?= $c->unit ?></td>
-                <td><?= $c->result ?></td>
+                <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
@@ -8607,13 +8615,13 @@ footer {
                 <th>Interval Testing Date</th>
             </tr>
             <tr>
-                <td></td>
+                <td><?= $anl->sample_id ?></td>
                 <td></td>
                 <td><?= $anl->name_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
-                <td></td>
+                <td><?= $anl->date_analysis ?> to <?= $anl->deadline ?></td>
             </tr>
         </table>
         <table class="table table-bordered mt-2">
@@ -8641,7 +8649,7 @@ footer {
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
                 <td><?= $c->unit ?></td>
-                <td><?= $c->result ?></td>
+                <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->reg_standart_2 ?></td>
                 <td><?= $c->reg_standart_3 ?></td>
@@ -8659,7 +8667,7 @@ footer {
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
                 <td><?= $c->unit ?></td>
-                <td><?= $c->result ?></td>
+                <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->reg_standart_2 ?></td>
                 <td><?= $c->reg_standart_3 ?></td>
@@ -8677,7 +8685,7 @@ footer {
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
                 <td><?= $c->unit ?></td>
-                <td><?= $c->result ?></td>
+                <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->reg_standart_2 ?></td>
                 <td><?= $c->reg_standart_3 ?></td>
@@ -8730,13 +8738,13 @@ footer {
                 <th>Interval Testing Date</th>
             </tr>
             <tr>
-                <td></td>
+                <td><?= $anl->sample_id ?></td>
                 <td></td>
                 <td><?= $anl->name_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
-                <td></td>
+                <td><?= $anl->date_analysis ?> to <?= $anl->deadline ?></td>
             </tr>
         </table>
         <table class="table table-bordered mt-2">
@@ -8753,7 +8761,7 @@ footer {
             <tr>
                 <td width="25px"><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td><?= $c->result ?></td>
+                <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->unit ?></td>
                 <td><?= $c->name_method ?></td>
@@ -8799,13 +8807,13 @@ footer {
                 <th>Interval Testing Date</th>
             </tr>
             <tr>
-                <td></td>
+                <td><?= $anl->sample_id ?></td>
                 <td></td>
                 <td><?= $anl->name_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
-                <td></td>
+                <td><?= $anl->date_analysis ?> to <?= $anl->deadline ?></td>
             </tr>
         </table>
         <table class="table table-bordered mt-2">
@@ -8822,7 +8830,7 @@ footer {
             <tr>
                 <td width="25px"><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td><?= $c->result ?></td>
+                <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td width="50px"><?= $c->reg_standart_1 ?></td>
                 <td width="50px"><?= $c->unit ?></td>
                 <td><?= $c->name_method ?></td>
@@ -8868,13 +8876,13 @@ footer {
                 <th>Interval Testing Date</th>
             </tr>
             <tr>
-                <td></td>
+                <td><?= $anl->sample_id ?></td>
                 <td></td>
                 <td><?= $anl->name_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
-                <td></td>
+                <td><?= $anl->date_analysis ?> to <?= $anl->deadline ?></td>
             </tr>
         </table>
         <table class="table table-bordered mt-2">
@@ -8891,7 +8899,7 @@ footer {
             <tr>
                 <td width="25px"><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td width="70px"><?= $c->result ?></td>
+                <td width="70px"><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td width="50px"><?= $c->reg_standart_1 ?></td>
                 <td width="50px"><?= $c->unit ?></td>
                 <td width="150px"><?= $c->name_method ?></td>
@@ -8937,13 +8945,13 @@ footer {
                 <th>Interval Testing Date</th>
             </tr>
             <tr>
-                <td></td>
+                <td><?= $anl->sample_id ?></td>
                 <td></td>
                 <td><?= $anl->name_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
-                <td></td>
+                <td><?= $anl->date_analysis ?> to <?= $anl->deadline ?></td>
             </tr>
         </table>
         <table class="table table-bordered mt-2">
@@ -8960,7 +8968,7 @@ footer {
             <tr>
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td><?= $c->result ?></td>
+                <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->unit ?></td>
                 <td><?= $c->name_method ?></td>
@@ -9010,13 +9018,13 @@ footer {
                 <th>Interval Testing Date</th>
             </tr>
             <tr>
-                <td></td>
+                <td><?= $anl->sample_id ?></td>
                 <td></td>
                 <td><?= $anl->name_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
-                <td></td>
+                <td><?= $anl->date_analysis ?> to <?= $anl->deadline ?></td>
             </tr>
         </table>
         <table class="table table-bordered mt-2">
@@ -9033,7 +9041,7 @@ footer {
             <tr>
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td><?= $c->result ?></td>
+                <td><?= str_replace('<', '&lt;', $c->result); ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->unit ?></td>
                 <td><?= $c->name_method ?></td>
@@ -9076,13 +9084,13 @@ footer {
                 <th>Interval Testing Date</th>
             </tr>
             <tr>
-                <td></td>
+                <td><?= $anl->sample_id ?></td>
                 <td></td>
                 <td><?= $anl->name_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
-                <td></td>
+                <td><?= $anl->date_analysis ?> to <?= $anl->deadline ?></td>
             </tr>
         </table>
         <table class="table table-bordered mt-2">
@@ -9101,7 +9109,7 @@ footer {
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
                 <td><?= $c->sampling_time ?></td>
-                <td><?= $c->result ?></td>
+                <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->unit ?></td>
                 <td><?= $c->name_method ?></td>
@@ -9151,13 +9159,13 @@ footer {
                 <th>Interval Testing Date</th>
             </tr>
             <tr>
-                <td></td>
+                <td><?= $anl->sample_id ?></td>
                 <td><i>(See Table)</i></td>
                 <td><?= $anl->name_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
-                <td></td>
+                <td><?= $anl->date_analysis ?> to <?= $anl->deadline ?></td>
             </tr>
         </table>
         <table class="table table-bordered mt-2">
@@ -9174,7 +9182,7 @@ footer {
                 <td><?= $c->vehicle_brand ?></td>
                 <td><?= $c->time ?></td>
                 <td><?= $c->unit ?></td>
-                <td><?= $c->result ?></td>
+                <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>
@@ -9242,13 +9250,13 @@ footer {
                 <th>Interval Testing Date</th>
             </tr>
             <tr>
-                <td></td>
+                <td><?= $anl->sample_id ?></td>
                 <td><i>(See Table)</i></td>
                 <td><?= $anl->name_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
-                <td></td>
+                <td><?= $anl->date_analysis ?> to <?= $anl->deadline ?></td>
             </tr>
         </table>
         <table class="table table-bordered mt-2">
@@ -9265,8 +9273,8 @@ footer {
             ?>
             <tr>
                 <td><?= $no++ ?></td>
-                <td></td>
-                <td><?= $c->result ?></td>
+                <td><?= $c->sampling_location_coa ?></td>
+                <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->time ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->unit ?></td>
@@ -9282,6 +9290,307 @@ footer {
           <tr>
             <td class="no-padding">**</td>
             <td class="no-padding">Minister of Manpower Regulation No. 05 Year 2018</td>
+          </tr>
+        </table>
+    </div>
+    
+    <?php } elseif ($anl->name_analysis == 'Heat Stress') { ?>
+        <div class="page_break"></div>
+        <div style="position: relative;">
+        <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>Sample No.</th>
+                <th>Sampling Location</th>
+                <th>Sample Description</th>
+                <th>Sampling Date</th>
+                <th>Sampling Time</th>
+                <th>Date Received</th>
+                <th>Interval Testing Date</th>
+            </tr>
+            <tr>
+                <td><?= $anl->sample_id ?></td>
+                <td><i>(See Table)</i></td>
+                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->date_analysis ?></td>
+                <td></td>
+                <td><?= $anl->date_sample ?></td>
+                <td><?= $anl->date_analysis ?> to <?= $anl->deadline ?></td>
+            </tr>
+        </table>
+        <table class="table table-bordered mt-2">
+            <tr>
+                <th rowspan="2">No</th>
+                <th rowspan="2">Sampling Location</th>
+                <th rowspan="2">Time</th>
+                <th rowspan="2">Humidity (%)</th>
+                <th colspan="3">Temperature(°C)</th>
+                <th rowspan="2">WBGT INDEX</th>
+                <th rowspan="2">Methods</th>
+            </tr>
+            <tr>
+                <th>Wet</th>
+                <th>Dew</th>
+                <th>Globe</th>
+            </tr>
+            <?php $no = 1; foreach($coa as $c) : if($c->name_analysis == 'Heat Stress') {  
+            ?>
+            <tr>
+                <td><?= $no++ ?></td>
+                <td><?= $c->sampling_location_coa ?></td>
+                <td><?= $c->time ?></td>
+                <td><?= $c->humidity ?></td>
+                <td><?= $c->wet ?></td>
+                <td><?= $c->dew ?></td>
+                <td><?= $c->globe ?></td>
+                <td><?= $c->wbgt_index ?></td>
+                <td><?= $c->name_method ?></td>
+            </tr>
+            <?php } endforeach; ?>
+        </table>
+
+        <table class="table table-bordered mt-2 text-center">
+            <tr>
+                <th rowspan="3">Hourly Working Time Setting</th>
+                <th colspan="4">WBGT INDEX</th>
+            </tr>
+            <tr>
+                <th colspan="4">Workload</th>
+            </tr>
+            <tr>
+                <th>Light</th>
+                <th>Medium</th>
+                <th>Heavy</th>
+                <th>Very Heavy</th>
+            </tr>
+            <tr>
+                <td>75%-100%</td>
+                <td>31.0</td>
+                <td>28.0</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>50%-75%</td>
+                <td>31.0</td>
+                <td>29.0</td>
+                <td>27.5</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>25%-50%</td>
+                <td>32.0</td>
+                <td>30.0</td>
+                <td>29.0</td>
+                <td>28.0</td>
+            </tr>
+            <tr>
+                <td>0%-25%</td>
+                <td>32.2</td>
+                <td>31.1</td>
+                <td>30.5</td>
+                <td>30.0</td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+            <td><b>Notes:</b></td>
+          </tr>
+          <tr>
+            <td class="no-padding">*</td>
+            <td class="no-padding">WBGT INDEX Quality Standards, Minister of Manpower Regulation No. 05 Year 2018</td>
+          </tr>
+        </table>
+    </div>
+    
+    <?php } elseif ($anl->name_analysis == 'Illumination') { ?>
+        <div class="page_break"></div>
+        <div style="position: relative;">
+        <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>Sample No.</th>
+                <th>Sampling Location</th>
+                <th>Sample Description</th>
+                <th>Sampling Date</th>
+                <th>Sampling Time</th>
+                <th>Date Received</th>
+                <th>Interval Testing Date</th>
+            </tr>
+            <tr>
+                <td><?= $anl->sample_id ?></td>
+                <td><i>(See Table)</i></td>
+                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->date_analysis ?></td>
+                <td></td>
+                <td><?= $anl->date_sample ?></td>
+                <td><?= $anl->date_analysis ?> to <?= $anl->deadline ?></td>
+            </tr>
+        </table>
+        <table class="table table-bordered mt-2">
+            <tr>
+                <th>No</th>
+                <th>Sampling Location</th>
+                <th>Testing Result</th>
+                <th>Time</th>
+                <th>Regulatory Standard**</th>
+                <th>Unit</th>
+                <th>Methods</th>
+            </tr>
+            <?php $no = 1; foreach($coa as $c) : if($c->name_analysis == 'Illumination') {  
+            ?>
+            <tr>
+                <td><?= $no++ ?></td>
+                <td><?= $c->sampling_location_coa ?></td>
+                <td><?= str_replace('<', '&lt;', $c->result) ?></td>
+                <td><?= $c->time ?></td>
+                <td><?= $c->reg_standart_1 ?></td>
+                <td><?= $c->unit ?></td>
+                <td><?= $c->name_method ?></td>
+            </tr>
+            <?php } endforeach; ?>
+        </table>
+
+        <table>
+            <tr>
+            <td><b>Notes:</b></td>
+          </tr>
+          <tr>
+            <td class="no-padding">**</td>
+            <td class="no-padding">Minimum Value, Minister of Manpower Regulation No. 05 Year 2018 : >300 Lux</td>
+          </tr>
+        </table>
+    </div>
+    
+    <?php } elseif ($anl->name_analysis == 'Non-Stationary Source Emission') { ?>
+        <div class="page_break"></div>
+        <div style="position: relative;">
+        <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>Sample No.</th>
+                <th>Sampling Location</th>
+                <th>Sample Description</th>
+                <th>Sampling Date</th>
+                <th>Sampling Time</th>
+                <th>Date Received</th>
+                <th>Interval Testing Date</th>
+            </tr>
+            <tr>
+                <td><?= $anl->sample_id ?></td>
+                <td><i>(See Table)</i></td>
+                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->date_analysis ?></td>
+                <td></td>
+                <td><?= $anl->date_sample ?></td>
+                <td><?= $anl->date_analysis ?> to <?= $anl->deadline ?></td>
+            </tr>
+        </table>
+        <table class="table table-bordered mt-2">
+            <tr>
+                <th>No</th>
+                <th>Brand</th>
+                <th>Year</th>
+                <th>Capacity</th>
+                <th>Code</th>
+                <th>Opacity (%)</th>
+                <th>Regulatory Standard**</th>
+                <th>Methods</th>
+            </tr>
+            <?php $no = 1; foreach($coa as $c) : if($c->name_analysis == 'Non-Stationary Source Emission') {  
+            ?>
+            <tr>
+                <td><?= $no++ ?></td>
+                <td><?= $c->vehicle_brand ?></td>
+                <td><?= str_replace('<', '&lt;', $c->year) ?></td>
+                <td><?= str_replace('<', '&lt;', $c->capacity) ?></td>
+                <td><?= $c->code ?></td>
+                <td><?= $c->opacity ?></td>
+                <td><?= $c->reg_standart_1 ?></td>
+                <td><?= $c->name_method ?></td>
+            </tr>
+            <?php } endforeach; ?>
+        </table>
+
+        <table>
+            <tr>
+            <td><b>Notes:</b></td>
+          </tr>
+          <tr>
+            <td class="no-padding">**</td>
+            <td class="no-padding">Minister of Environmental Decree of Republic Indonesia No. 05 of 2006, Regarding the Threshold of Exhaust Gas Emissions for Old Motorized Vehicles (Appendix I)</td>
+          </tr>
+        </table>
+    </div>
+    
+    <?php } elseif ($anl->name_analysis == '24 HOURS NOISE') { ?>
+        <div class="page_break"></div>
+        <div style="position: relative;">
+        <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>Sample No.</th>
+                <th>Sampling Location</th>
+                <th>Sample Description</th>
+                <th>Sampling Date</th>
+                <th>Sampling Time</th>
+                <th>Date Received</th>
+                <th>Interval Testing Date</th>
+            </tr>
+            <tr>
+                <td><?= $anl->sample_id ?></td>
+                <td><i>(See Table)</i></td>
+                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->date_analysis ?></td>
+                <td>(See Table)</td>
+                <td><?= $anl->date_sample ?></td>
+                <td><?= $anl->date_analysis ?> to <?= $anl->deadline ?></td>
+            </tr>
+        </table>
+        <table class="table table-bordered mt-2">
+            <tr>
+                <th>No</th>
+                <th>Sampling Location</th>
+                <th>Noise</th>
+                <th>Time</th>
+                <th>Leq</th>
+                <th>Ls</th>
+                <th>Lm</th>
+                <th>Lsm</th>
+                <th>Regulatory Standard**</th>
+                <th>Unit</th>
+                <th>Methods</th>
+            </tr>
+            <?php $no = 1; foreach($coa as $c) : if($c->name_analysis == '24 HOURS NOISE') {  
+            ?>
+            <tr>
+                <td><?= $no++ ?></td>
+                <td><?= $c->sampling_location ?></td>
+                <td><?= $c->noise ?></td>
+                <td><?= $c->time ?></td>
+                <td><?= $c->leq ?></td>
+                <td><?= $c->ls ?></td>
+                <td><?= $c->lm ?></td>
+                <td><?= $c->lsm ?></td>
+                <td><?= $c->reg_standart_1 ?></td>
+                <td><?= $c->unit ?></td>
+                <td><?= $c->name_method ?></td>
+            </tr>
+            <?php } endforeach; ?>
+        </table>
+
+        <table>
+            <tr>
+            <td><b>Notes:</b></td>
+          </tr>
+          <tr>
+            <td class="no-padding">**</td>
+            <td class="no-padding">Governor of DKI Jakarta Decree No. 551 of 2001 Regarding Ambient Air Quality and Noise Standards in DKI Jakarta</td>
           </tr>
         </table>
     </div>

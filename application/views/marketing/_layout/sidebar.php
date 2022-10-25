@@ -38,11 +38,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <li class="<?php echo $this->uri->segment(2) == 'list_quotation' || $this->uri->segment(2) == 'add_quotation' || $this->uri->segment(2) == 'update_quotation' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_marketing/list_quotation">List Quotation</a></li>
         </ul>
       </li>
-
-      <li class="menu-header">Validation</li>
-      <li class="dropdown <?php echo $this->uri->segment(2) == 'scan_coa' ? 'active' : ''; ?>">
-        <a href="<?= base_url(); ?>D_marketing/scan_coa" class="nav-link"><i class="fas fa-qrcode"></i><span>Scan COA</span></a>
+      
+      <li class="menu-header">Report</li>
+      <li class="dropdown <?php echo $this->uri->segment(2) == 'report_quotation' ? 'active' : ''; ?>">
+        <a href="<?= base_url(); ?>D_marketing/report_quotation" class="nav-link"><i class="fas fa-file-export"></i><span>Report Quotation</span></a>
       </li>
+
       
       <li class="menu-header">More</li>
       <li class="dropdown <?php echo $this->uri->segment(2) == 'profile' || $this->uri->segment(2) == 'settings' || $this->uri->segment(2) == 'update_company_profile' ? 'active' : ''; ?>">

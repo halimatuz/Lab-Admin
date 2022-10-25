@@ -37,7 +37,7 @@ foreach($sknumber as $s) {
                     <?php 
                     if($this->uri->segment(2) == 'update_quotation') {
                     foreach ($specialQuotation as $qtn) : ?>
-                        <form action="<?= base_url('D_admin/update_quotation_action') ?>" method="POST">
+                        <form action="<?= base_url('D_superadmin/update_quotation_action') ?>" method="POST">
                             <div class="form-group">
                                 <label>Analysis</label>
                                 <input type="hidden" name="id_quotation" value="<?= $qtn->id_quotation ?>">
@@ -79,10 +79,10 @@ foreach($sknumber as $s) {
                             </div>
                             <button type="submit" class="btn btn-primary">Update Quotation</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
-                            <a href="<?php echo base_url('D_admin/add_quotation/') . $sk->id_sk ?>" class="btn btn-danger">Cancel</a>
+                            <a href="<?php echo base_url('D_superadmin/add_quotation/') . $sk->id_sk ?>" class="btn btn-danger">Cancel</a>
                         </form>
                     <?php endforeach; } else {?>
-                        <form action="<?= base_url('D_admin/add_quotation_action') ?>" method="POST">
+                        <form action="<?= base_url('D_superadmin/add_quotation_action') ?>" method="POST">
                             <div class="form-group">
                                 <label>Analysis</label>
                                 <input type="hidden" name="id_int" value="<?= $sk->id_int ?>">
@@ -127,7 +127,7 @@ foreach($sknumber as $s) {
                     <?php } ?>
                     </div>
                     <div class="col-md-8">
-                        <a href="<?= base_url('D_admin/print_quotation/') . $sk->id_sk ?>" class="btn btn-primary">Print</a>
+                        <a href="<?= base_url('D_superadmin/print_quotation/') . $sk->id_sk ?>" class="btn btn-primary">Print</a>
                         <hr>
                         <?php if($quotation == NULL) { ?>
                             <div class="empty-state" data-height="400">
@@ -169,8 +169,8 @@ foreach($sknumber as $s) {
                                         <td>Rp <?= htmlspecialchars(number_format($row->standart_price, 0, ',', '.')) ?></td>
                                         <td>Rp <?= htmlspecialchars(number_format($row->add_price, 0, ',', '.')) ?></td>
                                         <td>
-                                            <a href="<?= base_url('D_admin/update_quotation/') . $row->id_sk . '/'  . $row->id_quotation ?>"class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                            <a href="<?= base_url('D_admin/delete_quotation/') . $row->id_quotation . '/' . $row->id_int . '/'  . $row->id_analysis . '/' . $row->id_sk?>"class="btn btn-danger tombol-hapus" type="submit"><i class="fas fa-trash"></i></a>
+                                            <a href="<?= base_url('D_superadmin/update_quotation/') . $row->id_sk . '/'  . $row->id_quotation ?>"class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                            <a href="<?= base_url('D_superadmin/delete_quotation/') . $row->id_quotation . '/' . $row->id_int . '/'  . $row->id_analysis . '/' . $row->id_sk?>"class="btn btn-danger tombol-hapus" type="submit"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

@@ -44,6 +44,10 @@
                                 <th>No</th>
                                 <th>Name Institution</th>
                                 <th>SK Quotation</th>
+                                <th>Date</th>
+                                <?php if($this->uri->segment(2) == 'list_quotation') { ?>
+                                <th>Purchase Order</th>
+                                <?php } ?>
                                 <th>Action</th>
                                 </tr>
                             </thead>
@@ -55,9 +59,19 @@
                                         <td><?= $no++; ?></td>
                                         <td><?= htmlspecialchars($qtn->name_int); ?></td>
                                         <td><?= htmlspecialchars($qtn->sk_quotation); ?></td>
+                                        <td><?= htmlspecialchars($qtn->date_quotation); ?></td>
+                                        <?php if($this->uri->segment(2) == 'list_quotation') { ?>
+                                        <td align="center">
+                                          <?php if ($qtn->status_po == 1) { ?>
+                                            <label class="badge badge-success">PO</label>
+                                          <?php } else { ?>
+                                            <label class="badge badge-danger">Not yet</label>
+                                          <?php } ?>
+                                        </td>
+                                        <?php } ?>
                                         <td>
                                           <?php if($this->uri->segment(2) == 'list_quotation') { ?>
-                                              <a href="<?= base_url('D_admin/print_quotation/') . $qtn->id_sk ?>" class="btn btn-primary"><i class="far fa-eye"></i> View PO</a>
+                                              <a href="<?= base_url('D_admin/print_quotation/') . $qtn->id_sk ?>" class="btn btn-primary"><i class="fas fa-eye"></i> View PO</a>
                                           <?php } elseif($this->uri->segment(2) == 'data_stps_index') { ?>
                                             <?php if($qtn->sk_sample == 0) { ?>
                                               <a href="<?php echo base_url('D_admin/add_stps/') . $qtn->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> Add STPS</a>

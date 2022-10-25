@@ -28,7 +28,7 @@
                     <hr>
                     <?php
                         $attributes = array('id' => 'button');
-                        echo form_open('D_marketing/cek_id',$attributes);?>
+                        echo form_open('D_superadmin/cek_id',$attributes);?>
                         <div class="mx-auto">
                             <video id="video" style="border: 1px solid gray;" width="50%"></video>
                         </div>

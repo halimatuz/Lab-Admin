@@ -8395,7 +8395,7 @@ footer {
         </div>
 
         <div class="">
-            <div style="margin-top: 20px; margin-left: 280px">
+            <div style="margin-top: 20px; margin-left: 480px">
                 <p style="font-size: 12px; margin-left: -55px;">This Certificate of Analysis consist of <?= $count; ?> pages</p>
                 <p style="font-size: 12px; margin-left: 45px;">Bekasi, <?= date('dS F, Y', strtotime($coa_det->date_report)); ?></p>
                 <br><br><br><br>

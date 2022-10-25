@@ -1,34 +1,11 @@
 <?php
 foreach($quotation as $quot) {
-  $qtn = $quot;
+  @$qtn = $quot;
 }
 foreach($company as $c) {
   $cmp = $c;
 }
 
-function tgl_indo($tanggal){
-	$bulan = array (
-		1 =>   'Januari',
-		'Februari',
-		'Maret',
-		'April',
-		'Mei',
-		'Juni',
-		'Juli',
-		'Agustus',
-		'September',
-		'Oktober',
-		'November',
-		'Desember'
-	);
-	$pecahkan = explode('/', $tanggal);
-	
-	// variabel pecahkan 0 = tanggal
-	// variabel pecahkan 1 = bulan
-	// variabel pecahkan 2 = tahun
- 
-	return  @$pecahkan[0] . ' ' . @$bulan[ (int)$pecahkan[1]] . ' ' . @$pecahkan[2];
-}
 ?>
 <!doctype html>
 <html lang="en">
@@ -40,7 +17,7 @@ function tgl_indo($tanggal){
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title><?= $title . ' ' . @$qtn->name_int ?></title>
+    <title><?= $title . ' ' . $qtn->name_int ?></title>
     <style>
       table.table-bordered {
           border:1px solid black!important;
@@ -92,7 +69,7 @@ function tgl_indo($tanggal){
         <h5 class="text-center font-weight-bold"><u>QUOTATION</u></h5>
         <div class="row mt-5">
           <div class="col-md-6">
-            <p class="font-weight-bold">No Quot.&emsp;&emsp;:&emsp;&emsp;<?= @$qtn->sk_quotation ?></p>
+            <p class="font-weight-bold">No Quot.&emsp;&emsp;:&emsp;&emsp;<?= $qtn->sk_quotation ?></p>
             <hr style="background-color: black;">
             <div style="border: 1px solid black;" class="p-1">
               <table class="font-weight-bold">
@@ -110,7 +87,7 @@ function tgl_indo($tanggal){
             </div>
           </div>
           <div class="col-md-6">
-            <p class="font-weight-bold">Date&emsp;&emsp;:&emsp;&emsp;<?= tgl_indo(@$qtn->date_quotation); ?></p>
+            <p class="font-weight-bold">Date&emsp;&emsp;:&emsp;&emsp;<?= date('dS F, Y', strtotime($qtn->date_quotation));?></p>
             <hr style="background-color: black;">
             <div style="border: 1px solid black;" class="p-1">
               <table class="font-weight-bold">
@@ -148,17 +125,15 @@ function tgl_indo($tanggal){
           <tbody>
             <tr>
               <th scope="row">A</th>
-              <th colspan="3">Biaya Sampling & Analisis Laboratorium Terakreditasi KAN</th>
+              <th colspan="5">Biaya Sampling & Analisis Laboratorium Terakreditasi KAN</th>
             </tr>
-            <?php $no = 1; foreach($quotation as $qtn) : 
-              $amount = ($qtn->add_price + $qtn->standart_price) * $qtn->qty;
-              @$jumlah += $amount;
+            <?php $no = 1; foreach($quotation as $qtn) :
             ?>
               <tr>
                 <td><?= $no++; ?></td>
-                <td><?= @$qtn->remarks; ?></td>
-                <td><?= @$qtn->spec; ?></td>
-                <td><?= @$qtn->qty; ?></td>
+                <td><?= $qtn->remarks; ?></td>
+                <td><?= $qtn->spec; ?></td>
+                <td><?= $qtn->qty; ?></td>
               </tr>
             <?php endforeach; ?>
           </tbody>
@@ -219,7 +194,7 @@ function tgl_indo($tanggal){
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
-      window.print();
+      // window.print();
     </script>
   </body>
 </html>
