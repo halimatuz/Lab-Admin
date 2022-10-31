@@ -10,17 +10,6 @@ foreach($specialAnalysis as $sa) {
   <section class="section">
     <div class="section-header">
       <h1>Data COA</h1>
-      <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active">
-          <a href="#">Dashboard</a>
-        </div>
-        <div class="breadcrumb-item">
-          <a href="#">Modules</a>
-        </div>
-        <div class="breadcrumb-item">
-          DataTables
-        </div>
-      </div>
     </div>
 
     <div class="section-body">
@@ -103,10 +92,9 @@ foreach($specialAnalysis as $sa) {
                             <div class="form-group">
                                 <label>Unit</label>
                                 <select name="unit" id="" class="form-control <?php if(form_error('unit')) { echo "is-invalid"; } ?>" value="<?= set_value('unit')?>">
-                                <option value="<?= $sc->unit ?>"><?= $sc->unit ?></option>
-                                    <?php foreach($unit as $unt) : ?>
-                                        <option value="<?= $unt->name_unit ?>"><?= $unt->name_unit ?></option>
-                                    <?php endforeach; ?>
+                                <?php foreach($unit as $unt) : ?>
+                                    <option value="<?= $unt->name_unit ?>" <?php if($unt->name_unit == $sc->unit){echo"selected";} ?>><?= $unt->name_unit ?></option>
+                                <?php endforeach; ?>
                                 </select>
                                 <?php echo form_error('unit', '<span class="text-small text-danger">', '</span>') ?>
                             </div>
@@ -138,9 +126,8 @@ foreach($specialAnalysis as $sa) {
                             <div class="form-group">
                                 <label>Method</label>
                                 <select name="method" class="form-control select2 <?php if(form_error('method')) { echo "is-invalid"; } ?>">
-                                <option value="<?= $sc->method ?>"><?= $sc->name_method ?></option>
                                     <?php foreach($methods as $method) : ?>
-                                        <option value="<?= $method->id_method ?>"><?= $method->name_method ?></option>
+                                        <option value="<?= $method->id_method ?>" <?php if($method->name_method == $sc->name_method){echo "selected";} ?>><?= $method->name_method ?></option>
                                     <?php endforeach; ?>
                                 </select>
                                 <input type="hidden" name="id_coa" value="<?= $sc->id_coa ?>">

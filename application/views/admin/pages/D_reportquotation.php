@@ -3,17 +3,6 @@
   <section class="section">
     <div class="section-header">
       <h1><?php if($this->uri->segment(2) == 'list_quotation'){echo'List Quotation';}elseif($this->uri->segment(2) == 'data_stp_index'){echo'Add STP';}elseif($this->uri->segment(2) == 'data_stps_index'){echo 'Add STPS';}elseif($this->uri->segment(2) == 'data_quotation_coa'){echo 'Generate COA';}elseif($this->uri->segment(2) == "data_quotation"){echo 'Input Result COA';}else{echo "Print COA";} ?></h1>
-      <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active">
-          <a href="#">Dashboard</a>
-        </div>
-        <div class="breadcrumb-item">
-          <a href="#">Modules</a>
-        </div>
-        <div class="breadcrumb-item">
-          DataTables
-        </div>
-      </div>
     </div>
 
     <div class="section-body">

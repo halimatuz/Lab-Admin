@@ -30,7 +30,7 @@
               <p>
                 Company profile settings such as, company name, address, director name and so on.
               </p>
-              <a href="<?php echo base_url('D_superadmin/update_company_profile'); ?>" class="card-cta">Change Setting <i class="fas fa-chevron-right"></i></a>
+              <a href="<?php echo base_url('D_analyst/update_company_profile'); ?>" class="card-cta">Change Setting <i class="fas fa-chevron-right"></i></a>
             </div>
           </div>
         </div>

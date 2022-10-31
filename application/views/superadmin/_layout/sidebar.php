@@ -17,16 +17,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </li>
 
     <li class="menu-header">Data Master</li>
-      <li class="dropdown <?php echo $this->uri->segment(2) == 'data_int' || $this->uri->segment(2) == 'data_analysis' || $this->uri->segment(2) == 'data_sampler' || $this->uri->segment(2) == 'data_sample' || $this->uri->segment(2) == 'data_method' || $this->uri->segment(2) == 'data_coa' || $this->uri->segment(2) == 'add_coa' || $this->uri->segment(2) == 'update_coa' || $this->uri->segment(2) == 'data_unit' ? 'active' : ''; ?>">
+      <li class="dropdown <?php echo $this->uri->segment(2) == 'data_int' || $this->uri->segment(2) == 'data_analysis' || $this->uri->segment(2) == 'data_sampler' || $this->uri->segment(2) == 'data_sample' || $this->uri->segment(2) == 'data_method' || $this->uri->segment(2) == 'data_coa' || $this->uri->segment(2) == 'add_coa' || $this->uri->segment(2) == 'update_coa' || $this->uri->segment(2) == 'data_unit' || $this->uri->segment(2) == 'update_sampler' || $this->uri->segment(2) == 'update_int' || $this->uri->segment(2) == 'update_analysis' || $this->uri->segment(2) == 'update_sample' || $this->uri->segment(2) == 'update_method' || $this->uri->segment(2) == 'update_unit' ? 'active' : ''; ?>">
         <a href="#" class="nav-link has-dropdown"><i class="fas fa-file-upload"></i><span>Add Data</span></a>
         <ul class="dropdown-menu">
-          <li class="<?php echo $this->uri->segment(2) == 'data_int' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_int">Add Institution</a></li>
-          <li class="<?php echo $this->uri->segment(2) == 'data_analysis' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_analysis">Add Analysis</a></li>
-          <li class="<?php echo $this->uri->segment(2) == 'data_sampler' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_sampler">Add Sampler</a></li>
-          <li class="<?php echo $this->uri->segment(2) == 'data_sample' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_sample">Add Sample</a></li>
-          <li class="<?php echo $this->uri->segment(2) == 'data_method' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_method">Add Method</a></li>
-          <li class="<?php echo $this->uri->segment(2) == 'data_unit' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_unit">Add Unit</a></li>
-          <li class="<?php echo $this->uri->segment(2) == 'data_coa' || $this->uri->segment(2) == 'add_coa' || $this->uri->segment(2) == 'update_coa' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_coa">Add COA</a></li>
+          <li class="<?php echo $this->uri->segment(2) == 'data_int' || $this->uri->segment(2) == 'update_int' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_int">Add Institution</a></li>
+          <li class="<?php echo $this->uri->segment(2) == 'data_analysis' || $this->uri->segment(2) == 'update_analysis' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_analysis">Add Analysis</a></li>
+          <li class="<?php echo $this->uri->segment(2) == 'data_sampler' || $this->uri->segment(2) == 'update_sampler' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_sampler">Add Sampler</a></li>
+          <li class="<?php echo $this->uri->segment(2) == 'data_sample' || $this->uri->segment(2) == 'update_sample' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_sample">Add Sample</a></li>
+          <li class="<?php echo $this->uri->segment(2) == 'data_method' || $this->uri->segment(2) == 'update_method' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_method">Add Method</a></li>
+          <li class="<?php echo $this->uri->segment(2) == 'data_unit' || $this->uri->segment(2) == 'update_unit' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_unit">Add Unit</a></li>
+          <li class="<?php echo $this->uri->segment(2) == 'data_coa' || $this->uri->segment(2) == 'update_coa' || $this->uri->segment(2) == 'add_coa' || $this->uri->segment(2) == 'update_coa' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_coa">Add COA</a></li>
         </ul>
       </li>
 

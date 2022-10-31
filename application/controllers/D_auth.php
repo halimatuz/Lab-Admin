@@ -130,4 +130,33 @@ class D_auth extends CI_Controller
         );
         $this->load->view('D_error_403', $data);
     }
+
+    public function approve($encrypt) {
+        // Decrypt params
+        $encrypt_method = "AES-256-CBC";
+        $secret_key = "XDT-YUGHH-GYGF-YUTY-GHRGFR";
+        $iv = "DASFDSYHFSDUYFFSD";
+        $id_sk = base64_decode($encrypt);
+        $key = hash('sha256', $secret_key);
+        $iv = substr(hash('sha256', $iv), 0, 16);
+        $id_sk = openssl_decrypt($id_sk, $encrypt_method, $key, 0, $iv);
+
+        $data = array(
+            'title' => 'Approve COA'
+        );
+
+        $data_status = array (
+            'status_approve' => 1,
+        );
+
+        $where = array (
+            'id_sk' => $id_sk
+        );
+        $this->web->update_data('sk_number', $data_status, $where);
+        $this->session->set_flashdata('msg', 'COA success verified!');
+        
+        $data['result'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE id_sk = $id_sk")->result();
+        $this->load->view('pages/D_approve', $data);
+        $this->load->view('_layout/footer');
+    }
 }

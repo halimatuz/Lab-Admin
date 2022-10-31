@@ -3,17 +3,6 @@
   <section class="section">
     <div class="section-header">
       <h1>List Users</h1>
-      <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active">
-          <a href="#">Dashboard</a>
-        </div>
-        <div class="breadcrumb-item">
-          <a href="#">Modules</a>
-        </div>
-        <div class="breadcrumb-item">
-          DataTables
-        </div>
-      </div>
     </div>
 
     <div class="section-body">
@@ -69,6 +58,33 @@
                         <?php } ?>
                     </div>
                 </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h4>Users</h4>
+            </div>
+            <div class="card-body">
+              <div class="owl-carousel owl-theme" id="users-carousel">
+                <?php foreach($user as $row) : ?>
+                  <div>
+                    <div class="user-item">
+                      <img alt="image" src="<?= base_url() ?>assets/img/avatar/<?= $row->image ?>" class="img-fluid">
+                      <div class="user-details">
+                        <div class="user-name"><?= $row->fullname ?></div>
+                        <div class="text-job text-muted"><?= $row->role ?></div>
+                        <div class="user-cta">
+                          <button class="btn btn-primary follow-btn" data-follow-action="alert('user5 followed');" data-unfollow-action="alert('user5 unfollowed');">Follow</button>
+                        </div>
+                      </div>  
+                    </div>
+                  </div>
+                <?php endforeach; ?>
+              </div>
             </div>
           </div>
         </div>

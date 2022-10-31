@@ -24,6 +24,28 @@ class D_superadmin extends CI_Controller
             $data['total_institution'] = $this->web->get_count('institution');
             $data['total_coa'] = count($this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_analysis) <> '' ORDER BY sk_number.id_sk DESC")->result());
             $data['total_quotation'] = $this->web->get_count('sk_number');
+
+            //chart quotation
+            $today = date('Y-m-d');
+            $yesterday = date('Y-m-d', strtotime(date('Y-m-d') .' -1 day'));
+            $yesterday2 = date('Y-m-d', strtotime(date('Y-m-d') .' -2 day'));
+            $yesterday3 = date('Y-m-d', strtotime(date('Y-m-d') .' -3 day'));
+            $yesterday4 = date('Y-m-d', strtotime(date('Y-m-d') .' -4 day'));
+            $yesterday5 = date('Y-m-d', strtotime(date('Y-m-d') .' -5 day'));
+            $yesterday6 = date('Y-m-d', strtotime(date('Y-m-d') .' -6 day'));
+            $data['today'] = $this->db->query("SELECT count(*) FROM sk_number WHERE date_quotation = '$today'")->result_array();
+            $data['yesterday'] = $this->db->query("SELECT count(*) FROM sk_number WHERE date_quotation = '$yesterday'")->result_array();
+            $data['yesterday2'] = $this->db->query("SELECT count(*) FROM sk_number WHERE date_quotation = '$yesterday2'")->result_array();
+            $data['yesterday3'] = $this->db->query("SELECT count(*) FROM sk_number WHERE date_quotation = '$yesterday3'")->result_array();
+            $data['yesterday4'] = $this->db->query("SELECT count(*) FROM sk_number WHERE date_quotation = '$yesterday4'")->result_array();
+            $data['yesterday5'] = $this->db->query("SELECT count(*) FROM sk_number WHERE date_quotation = '$yesterday5'")->result_array();
+            $data['yesterday6'] = $this->db->query("SELECT count(*) FROM sk_number WHERE date_quotation = '$yesterday6'")->result_array();
+            //end chart quotation
+            
+            $data['total_qtn'] = $this->db->query("SELECT count(*) FROM sk_number")->result_array();
+            $data['approve'] = $this->db->query("SELECT count(*) FROM sk_number WHERE status_approve = 1")->result_array();
+            $data['nonapprove'] = $this->db->query("SELECT count(*) FROM sk_number WHERE status_approve = 0")->result_array();
+
             $this->load->view('superadmin/_layout/header', $data);
             $this->load->view('superadmin/_layout/sidebar');
             $this->load->view('superadmin/pages/index');
@@ -928,12 +950,20 @@ class D_superadmin extends CI_Controller
             $data = array (
                 'title' =>  'List Quotation'
             );
-
-            $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int ORDER BY id_sk DESC")->result();
-            $this->load->view('superadmin/_layout/header', $data);
-            $this->load->view('superadmin/_layout/sidebar');
-            $this->load->view('superadmin/pages/D_listquotation', $data);
-            $this->load->view('superadmin/_layout/footer');
+            if(isset($_GET['date'])) {
+                $date = $_GET['date'];
+                $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE date_quotation = '$date' ORDER BY id_sk DESC")->result();
+                $this->load->view('superadmin/_layout/header', $data);
+                $this->load->view('superadmin/_layout/sidebar');
+                $this->load->view('superadmin/pages/D_listquotation', $data);
+                $this->load->view('superadmin/_layout/footer');
+            } else {
+                $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int ORDER BY id_sk DESC")->result();
+                $this->load->view('superadmin/_layout/header', $data);
+                $this->load->view('superadmin/_layout/sidebar');
+                $this->load->view('superadmin/pages/D_listquotation', $data);
+                $this->load->view('superadmin/_layout/footer');
+            }
         } 
     }
 
@@ -1814,18 +1844,18 @@ class D_superadmin extends CI_Controller
 			//Server settings
 			// $mail->SMTPDebug = SMTP::DEBUG_SERVER;                   // Enable verbose debug output
 			$mail->isSMTP();                                            // Send using SMTP
-			$mail->Host       = 'smtp.gmail.com';                    	// Set the SMTP server to send through
+			$mail->Host       = 'validasi.sttj.ac.id';                    	// Set the SMTP server to send through
 			$mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-			$mail->Username   = 'akunpokemon1976@gmail.com';            // SMTP username
-			$mail->Password   = 'wdmzhkwiqcwvrcvh';                         // SMTP password
+			$mail->Username   = 'deltaindo@validasi.sttj.ac.id';            // SMTP username
+			$mail->Password   = 'kuningan1976!';                         // SMTP password
 			// $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;      // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
 			$mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 		
 			//Recipients
-			$mail->setFrom('akunpokemon1976@gmail.com', 'PT. DELTA INDONESIA LABORATORY');
+			$mail->setFrom('deltaindo@validasi.sttj.ac.id', 'PT. DELTA INDONESIA LABORATORY');
 			$mail->addAddress($institution->director_email, 'DIRECTOR LABORATORY');     // Add a recipient
 			
-			$mail->addReplyTo('akunpokemon1976@gmail.com', 'PT. DELTA INDONESIA LABORATORY');
+			$mail->addReplyTo('deltaindo@validasi.sttj.ac.id', 'PT. DELTA INDONESIA LABORATORY');
 			// $mail->addCC('cc@example.com');
 			// $mail->addBCC('bcc@example.com');
 		
@@ -2296,7 +2326,7 @@ class D_superadmin extends CI_Controller
         
                                                                     <div align="center">
                                                                         <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://unlayer.com" style="height:60px; v-text-anchor:middle; width:372px;" arcsize="5%" stroke="f" fillcolor="#2a74f1"><w:anchorlock/><center style="color:#FFFFFF;"><![endif]-->
-                                                                        <a href="https://unlayer.com" target="_blank"
+                                                                        <a href="'. base_url("D_auth/approve/") . encryptId($id_sk) .'" target="_blank"
                                                                             class="v-size-width"
                                                                             style="box-sizing: border-box;display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #2DD99A; border-radius: 3px;-webkit-border-radius: 3px; -moz-border-radius: 3px; width:64%; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;">
                                                                             <span
@@ -2650,7 +2680,7 @@ class D_superadmin extends CI_Controller
             <!--[if IE]></div><![endif]-->
         </body>
         
-        </html>'; 
+        </html>';
         
         if($mail->send())
 		{

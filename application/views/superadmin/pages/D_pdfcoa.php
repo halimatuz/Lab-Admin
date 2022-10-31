@@ -9348,7 +9348,7 @@ footer {
             <tr>
                 <td><?= $no++ ?></td>
                 <td><?= $c->sampling_location_coa ?></td>
-                <td><?= $c->time ?></td>
+                <td><?= $c->time_coa ?></td>
                 <td><?= $c->humidity ?></td>
                 <td><?= $c->wet ?></td>
                 <td><?= $c->dew ?></td>

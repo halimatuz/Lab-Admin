@@ -3,17 +3,6 @@
   <section class="section">
     <div class="section-header">
       <h1>Add COA</h1>
-      <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active">
-          <a href="#">Dashboard</a>
-        </div>
-        <div class="breadcrumb-item">
-          <a href="#">Modules</a>
-        </div>
-        <div class="breadcrumb-item">
-          DataTables
-        </div>
-      </div>
     </div>
 
     <div class="section-body">
@@ -55,9 +44,9 @@
                                         <td><?= htmlspecialchars($anl->name_analysis); ?></td>
                                         <td>
                                           <?php if($anl->st_account == 0) { ?>
-                                            <a href="<?php echo base_url('D_superadmin/add_coa/') . $anl->id_analysis ?>"class="btn btn-success"><i class="fas fa-plus"></i> Add COA</a>
+                                            <a href="<?php echo base_url('D_analyst/add_coa/') . $anl->id_analysis ?>"class="btn btn-success"><i class="fas fa-plus"></i> Add COA</a>
                                           <?php } else { ?>
-                                            <a href="<?php echo base_url('D_superadmin/add_coa/') . $anl->id_analysis ?>"class="btn btn-primary"><i class="fas fa-edit"></i> Edit COA</a>
+                                            <a href="<?php echo base_url('D_analyst/add_coa/') . $anl->id_analysis ?>"class="btn btn-primary"><i class="fas fa-edit"></i> Edit COA</a>
                                           <?php } ?>
                                         </td>
                                     </tr>

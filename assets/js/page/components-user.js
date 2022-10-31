@@ -15,6 +15,12 @@ $("#users-carousel").owlCarousel({
     },
     768: {
       items: 4
+    },
+    1080: {
+      items: 5
+    },
+    1680: {
+      items: 6
     }
   }
 });

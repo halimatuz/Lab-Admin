@@ -3,17 +3,6 @@
   <section class="section">
     <div class="section-header">
       <h1><?php if($this->uri->segment(2) == 'list_quotation'){echo'List Quotation';}elseif($this->uri->segment(2) == 'data_stp_index'){echo'Add STP';}elseif($this->uri->segment(2) == 'data_stps_index'){echo 'Add STPS';}elseif($this->uri->segment(2) == 'data_quotation_coa'){echo 'Generate COA';}elseif($this->uri->segment(2) == "data_quotation"){echo 'Input Result COA';}else{echo "Print COA";} ?></h1>
-      <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active">
-          <a href="#">Dashboard</a>
-        </div>
-        <div class="breadcrumb-item">
-          <a href="#">Modules</a>
-        </div>
-        <div class="breadcrumb-item">
-          DataTables
-        </div>
-      </div>
     </div>
 
     <div class="section-body">
@@ -92,7 +81,9 @@
                                           <?php } elseif($this->uri->segment(2) == 'data_quotation_coa') { ?>
                                               <a href="<?php echo base_url('D_superadmin/data_analysis_coa/') . $qtn->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> Generate COA</a>
                                           <?php } else {?>
+                                            <?php if($qtn->status_approve == 1) { ?>
                                               <a href="<?php echo base_url('D_superadmin/pdf_coa/') . $qtn->id_sk ?>"class="btn btn-primary"><i class="fas fa-print"></i> PDF</a>
+                                            <?php } ?>
                                               <a href="<?php echo base_url('D_superadmin/draft_coa/') . $qtn->id_sk ?>"class="btn btn-primary"><i class="fas fa-print"></i> Draft</a>
                                           <?php } ?>
                                         </td>

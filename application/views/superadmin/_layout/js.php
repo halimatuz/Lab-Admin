@@ -62,7 +62,7 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   ?>
   <script src="<?php echo base_url(); ?>assets/modules/jquery-ui/jquery-ui.min.js"></script>
   <?php
-} elseif ($this->uri->segment(2) == "components_user") {
+} elseif ($this->uri->segment(2) == "list_users") {
   ?>
   <script src="<?php echo base_url(); ?>assets/modules/owlcarousel2/dist/owl.carousel.min.js"></script>
   <?php
@@ -90,12 +90,14 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   <script src="http://maps.google.com/maps/api/js?key=AIzaSyB55Np3_WsZwUQ9NS7DP-HnneleZLYZDNw&amp;sensor=true"></script>
   <script src="<?php echo base_url(); ?>assets/modules/gmaps.js"></script>
   <?php
-} elseif ($this->uri->segment(1) == "D_superadmin" && $this->uri->segment(2) == "") {
+} elseif ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   ?>
+  
   <?php
-} elseif ($this->uri->segment(2) == "modules_chartjs") {
+} elseif ($this->uri->segment(1) == "D_superadmin") {
   ?>
   <script src="<?php echo base_url(); ?>assets/modules/chart.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/page/modules-chartjs.js"></script>
   <?php
 } elseif ($this->uri->segment(2) == "modules_datatables" || $this->uri->segment(2) == "") {
   ?>
@@ -163,7 +165,6 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
 <?php
 if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   ?>
-  <script src="<?php echo base_url(); ?>assets/js/page/index.js"></script>
   <?php
 } elseif ($this->uri->segment(2) == "index_0") {
   ?>
@@ -189,7 +190,7 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   ?>
   <script src="<?php echo base_url(); ?>assets/js/page/components-table.js"></script>
   <?php
-} elseif ($this->uri->segment(2) == "components_user") {
+} elseif ($this->uri->segment(2) == "list_users") {
   ?>
   <script src="<?php echo base_url(); ?>assets/js/page/components-user.js"></script>
   <?php
@@ -232,9 +233,9 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
 } elseif ($this->uri->segment(1) == "D_superadmin" && $this->uri->segment(2) == "") {
   ?>
   <?php
-} elseif ($this->uri->segment(2) == "modules_chartjs") {
+} elseif ($this->uri->segment(1) == "D_superadmin") {
   ?>
-  <script src="<?php echo base_url(); ?>assets/js/page/modules-chartjs.js"></script>
+
   <?php
 } elseif ($this->uri->segment(2) == "modules_datatables" || $this->uri->segment(2) == "") {
   ?>
@@ -307,6 +308,77 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
 <script type="text/javascript" src="<?php echo base_url()?>assets/modules/zxing/zxing.min.js"></script>
 <!-- Sweet Alert -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    var ctx = document.getElementById("myChart2").getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ["<?= date('D, dS M Y', strtotime(date('Y-m-d') .' -6 day')) ?>", "<?= date('D, dS M Y', strtotime(date('Y-m-d') .' -5 day')) ?>", "<?= date('D, dS M Y', strtotime(date('Y-m-d') .' -4 day')) ?>", "<?= date('D, dS M Y', strtotime(date('Y-m-d') .' -3 day')) ?>", "<?= date('D, dS M Y', strtotime(date('Y-m-d') .' -2 day')) ?>", "Yesterday, <?= date('dS M Y', strtotime(date('Y-m-d') .' -1 day')) ?>", "Today, <?= date('dS M Y') ?>"],
+        datasets: [{
+          label: 'Statistics',
+          data: [<?= $yesterday6[0]["count(*)"] . ',' . $yesterday5[0]["count(*)"] . ',' . $yesterday4[0]["count(*)"] . ',' . $yesterday3[0]["count(*)"] . ',' . $yesterday2[0]["count(*)"] . ',' . $yesterday[0]["count(*)"] . ',' . $today[0]["count(*)"] ?>],
+          borderWidth: 2,
+          backgroundColor: '#6777ef',
+          borderColor: '#6777ef',
+          borderWidth: 2.5,
+          pointBackgroundColor: '#ffffff',
+          pointRadius: 4
+        }]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        scales: {
+          yAxes: [{
+            gridLines: {
+              drawBorder: false,
+              color: '#f2f2f2',
+            },
+            ticks: {
+              beginAtZero: true,
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              display: false
+            },
+            gridLines: {
+              display: false
+            }
+          }]
+        },
+      }
+    });
+    
+    var ctx = document.getElementById("myChart3").getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [
+            <?= $approve[0]["count(*)"] ?>,
+            <?= $nonapprove[0]["count(*)"] ?>,
+          ],
+          backgroundColor: [
+            '#63ed7a',
+            '#fc544b',
+          ],
+          label: 'Dataset 1'
+        }],
+        labels: [
+          'Approved',
+          'Not Yet Approved',
+        ],
+      },
+      options: {
+        responsive: true,
+        legend: {
+          position: 'bottom',
+        },
+      }
+    });
+</script>
 <script>
   const flashData = $('.flash-data').data('flashdata');
   const flashDataLogin = $('.flash-data-login').data('flashdata');

@@ -12,17 +12,6 @@ foreach($coa as $c) {
   <section class="section">
     <div class="section-header">
       <h1>Input Result COA</h1>
-      <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active">
-          <a href="#">Dashboard</a>
-        </div>
-        <div class="breadcrumb-item">
-          <a href="#">Modules</a>
-        </div>
-        <div class="breadcrumb-item">
-          DataTables
-        </div>
-      </div>
     </div>
 
     <div class="section-body">
@@ -46,7 +35,7 @@ foreach($coa as $c) {
                                 </p>
                             </div>
                         <?php } else { ?>
-                          <form action="<?= base_url('D_superadmin/save_result') ?>" method="post">
+                          <form action="<?= base_url('D_analyst/save_result') ?>" method="post">
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                 <thead>
@@ -168,7 +157,7 @@ foreach($coa as $c) {
                             <input type="hidden" name="no_certificate" value="<?= @$sk->no_certificate ?>">
                             <?php endforeach; ?>
                             <button type="submit" class="btn btn-primary float-right"><i class="fa-solid fa-floppy-disk"></i> Submit</button>
-                            <a href="<?= base_url('D_superadmin/data_analysis_coa/') . $row->id_sk ?>" class="btn btn-danger float-left mr-2"><i class="fas fa-arrow-left"></i> Back to List Analysis</a>
+                            <a href="<?= base_url('D_analyst/data_analysis_coa/') . $row->id_sk ?>" class="btn btn-danger float-left mr-2"><i class="fas fa-arrow-left"></i> Back to List Analysis</a>
                           </form>
                         <?php } ?>
                     </div>

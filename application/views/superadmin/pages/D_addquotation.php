@@ -10,17 +10,6 @@ foreach($sknumber as $s) {
   <section class="section">
     <div class="section-header">
       <h1>Data Quotation</h1>
-      <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active">
-          <a href="#">Dashboard</a>
-        </div>
-        <div class="breadcrumb-item">
-          <a href="#">Modules</a>
-        </div>
-        <div class="breadcrumb-item">
-          DataTables
-        </div>
-      </div>
     </div>
 
     <div class="section-body">
@@ -44,10 +33,9 @@ foreach($sknumber as $s) {
                                 <input type="hidden" name="id_int" value="<?= $sk->id_int ?>">
                                 <input type="hidden" name="id_sk" value="<?= $qtn->id_sk ?>">
                                 <select name="id_analysis" class="form-control select2 <?php if(form_error('id_analysis')) { echo "is-invalid"; } ?>">
-                                <option value="<?= $qtn->id_analysis ?>"><?= $qtn->name_analysis ?></option>
-                                    <?php foreach($analysis as $anl) : ?>
-                                        <option value="<?= $anl->id_analysis ?>"><?= $anl->name_analysis ?></option>
-                                    <?php endforeach; ?>
+                                <?php foreach($analysis as $anl) : ?>
+                                    <option value="<?= $anl->id_analysis ?>" <?php if($anl->name_analysis == $qtn->name_analysis) { echo "selected"; } ?>><?= $anl->name_analysis ?></option>
+                                <?php endforeach; ?>
                                 </select>
                                 <?php echo form_error('analysis', '<span class="text-small text-danger">', '</span>') ?>
                             </div>

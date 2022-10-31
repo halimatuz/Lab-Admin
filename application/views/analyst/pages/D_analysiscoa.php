@@ -10,17 +10,6 @@ foreach($analysis as $c) {
   <section class="section">
     <div class="section-header">
       <h1>Input Result COA</h1>
-      <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active">
-          <a href="#">Dashboard</a>
-        </div>
-        <div class="breadcrumb-item">
-          <a href="#">Modules</a>
-        </div>
-        <div class="breadcrumb-item">
-          DataTables
-        </div>
-      </div>
     </div>
 
     <div class="section-body">
@@ -62,14 +51,14 @@ foreach($analysis as $c) {
                                         <td><?= $no++; ?></td>
                                         <td><?= htmlspecialchars($row->name_analysis); ?></td>
                                         <td>
-                                            <a href="<?php echo base_url('D_superadmin/input_result/') . $row->id_analysis . '/' . $row->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> Input Result</a>
+                                            <a href="<?php echo base_url('D_analyst/input_result/') . $row->id_analysis . '/' . $row->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> Input Result</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
                             </table>
                         </div>
-                        <a href="<?= base_url('D_superadmin/data_quotation_coa') ?>" class="btn btn-danger float-left"><i class="fas fa-arrow-left"></i> Back to List Quotation</a>
+                        <a href="<?= base_url('D_analyst/data_quotation_coa') ?>" class="btn btn-danger float-left"><i class="fas fa-arrow-left"></i> Back to List Quotation</a>
                         <?php } ?>
                     </div>
                 </div>

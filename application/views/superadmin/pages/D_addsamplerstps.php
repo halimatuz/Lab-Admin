@@ -10,17 +10,6 @@ foreach($specialSK as $sk) {
   <section class="section">
     <div class="section-header">
       <h1>Data Sampler STPS</h1>
-      <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active">
-          <a href="#">Dashboard</a>
-        </div>
-        <div class="breadcrumb-item">
-          <a href="#">Modules</a>
-        </div>
-        <div class="breadcrumb-item">
-          DataTables
-        </div>
-      </div>
     </div>
 
     <div class="section-body">
@@ -43,10 +32,9 @@ foreach($specialSK as $sk) {
                                 <input type="hidden" name="id_assign" value="<?= $sa->id_assign ?>">
                                 <input type="hidden" name="id_sk" value="<?= $sa->id_sk ?>">
                                 <select name="id_sampler" class="form-control select2 <?php if(form_error('id_sampler')) { echo "is-invalid"; } ?>">
-                                <option value="<?= $sa->id_sampler ?>"><?= $sa->name_smp ?></option>
-                                    <?php foreach($sampler as $smpl) : ?>
-                                        <option value="<?= $smpl->id_sampler ?>"><?= $smpl->name_smp ?></option>
-                                    <?php endforeach; ?>
+                                <?php foreach($sampler as $smpl) : ?>
+                                    <option value="<?= $smpl->id_sampler ?>" <?php if($smpl->name_smp == $sa->name_smp) { echo "selected"; } ?>><?= $smpl->name_smp ?></option>
+                                <?php endforeach; ?>
                                 </select>
                                 <?php echo form_error('id_sample', '<span class="text-small text-danger">', '</span>') ?>
                             </div>

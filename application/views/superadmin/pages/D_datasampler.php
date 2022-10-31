@@ -3,17 +3,6 @@
   <section class="section">
     <div class="section-header">
       <h1>Data Sampler</h1>
-      <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active">
-          <a href="#">Dashboard</a>
-        </div>
-        <div class="breadcrumb-item">
-          <a href="#">Modules</a>
-        </div>
-        <div class="breadcrumb-item">
-          DataTables
-        </div>
-      </div>
     </div>
 
     <div class="section-body">
@@ -38,9 +27,8 @@
                             <div class="form-group">
                                 <label>Gender Sampler</label>
                                 <select name="gender_smp" id="" class="form-control">
-                                    <option value="1"><?php if($ss->gender_smp == 1) {echo 'Male';}else {echo 'Female';} ?></option>
-                                    <option value="1">Male</option>
-                                    <option value="0">Female</option>
+                                    <option value="1" <?php if($ss->gender_smp == 1) {echo 'selected';} ?>>Male</option>
+                                    <option value="0" <?php if($ss->gender_smp == 0) {echo 'selected';} ?>>Female</option>
                                 </select>
                             </div>
                             <div class="form-group">

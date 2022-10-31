@@ -66,6 +66,24 @@ class D_analyst extends CI_Controller
         $this->load->view('analyst/_layout/footer');
         }
     }
+
+    public function data_analysis_coa($id)
+    {
+        $sess = $this->session->userdata('id_analyst');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $data = array(
+            'title' => 'Data Analysis',
+        );
+        $data['analysis'] = $this->db->query("SELECT * FROM analysis INNER JOIN quotation ON analysis.id_analysis = quotation.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int WHERE quotation.id_sk = $id AND analysis.coa = 1 ORDER BY analysis.id_analysis DESC")->result();
+        $this->load->view('analyst/_layout/header', $data);
+        $this->load->view('analyst/_layout/sidebar');
+        $this->load->view('analyst/pages/D_analysiscoa', $data);
+        $this->load->view('analyst/_layout/footer');
+        }
+    }
     
     public function input_result($id, $id_sk)
     {
