@@ -8300,7 +8300,7 @@ footer {
 
 .watermark {
     position: fixed;
-    top: 300px;
+    top: <?php if($this->uri->segment(2) == 'pdf_coa' || $this->uri->segment(2) == 'pdf_coa_rev'){echo'300';}else{echo'250';} ?>px;
     left: 100px;
     opacity: 0.1;
 }
@@ -8311,14 +8311,16 @@ footer {
 
     </style>
   </head><body>
+    <?php if($this->uri->segment(2) == 'pdf_coa' || $this->uri->segment(2) == 'pdf_coa_rev') : ?>
     <header>
-        <img src="<?= base_url('assets/img/logo.png') ?>" alt="" width="150px" style="margin-right: 330px;">
+        <img src="<?= base_url('assets/img/company_profile/') . $cmp->img_logo ?>" alt="" width="150px" style="margin-right: 330px;">
         <div style="display: inline-block;">
             <img src="<?= base_url('assets/img/kan.png') ?>" alt="" width="100px" style="float: right; float: right; margin-left:110px;">
             <p style="font-size:10px; font-weight: bold; margin-top:5px;">SK-KLHK No 00161/LPJ/Labling-1/LRK/KLHK</p>
             <p style="font-size: 9px; margin-left: 75px; margin-bottom: 200px;">7.8.1/DIL/VII/2018/FORM REV . 2</p>
         </div>
     </header>
+    <?php endif; ?>
     <footer>
         <div class="" style="width: 170px;">
         <p style="font-size: 9px; font-weight: bold;"><?= $cmp->address ?> <br>Telp : <?= $cmp->phone ?></p>
@@ -8328,12 +8330,16 @@ footer {
     </footer>
 
     <div class="watermark">
+        <?php if($this->uri->segment(2) == 'pdf_coa' || $this->uri->segment(2) == 'pdf_coa_rev') { ?>
         <img src="<?= base_url('assets/img/logo-grayscale.png') ?>" alt="" style="width: 500px;">
+        <?php } else { ?>
+        <img src="<?= base_url('assets/img/draft2-grayscale.png') ?>" alt="" style="width: 500px;">
+        <?php } ?>
     </div>
 
     <div style="position: relative;">
         <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
-        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?php if($this->uri->segment(2) == 'pdf_coa_rev' || $this->uri->segment(2) == 'draft_coa_rev'){echo $coa_det->no_certificate_rev;}else{echo $coa_det->no_certificate;} ?></p>
         <div class="col-xs-11" style="margin-left: 120px;">
             <table class="mt-2" width="430px">
                 <tr>
@@ -8403,11 +8409,17 @@ footer {
         </div>
 
         <div class="">
-            <img src="<?= site_url('D_superadmin/renderQR/' . $coa_det->id_sk) ?>" alt="" style="margin-top: 50px; margin-left: 50px; margin-right: 330px;">
-            <div style="display: inline-block; margin-top: 20px;">
+            <?php if($this->uri->segment(2) == 'pdf_coa' || $this->uri->segment(2) == 'pdf_coa_rev') { ?>
+                <img src="<?= site_url('D_superadmin/renderQR/' . $coa_det->id_sk) ?>" alt="" style="margin-top: 50px; margin-left: 50px; margin-right: 330px;">
+            <?php } ?>
+            <div style="display: inline-block; margin-top: 20px; <?php if($this->uri->segment(2) == 'draft_coa' || $this->uri->segment(2) == 'draft_coa_rev') {echo 'margin-left: 480px';} ?>">
                 <p style="font-size: 12px; margin-left: -55px;">This Certificate of Analysis consist of <?= $count; ?> pages</p>
                 <p style="font-size: 12px; margin-left: 45px;">Bekasi, <?= date('dS F, Y', strtotime($coa_det->date_report)); ?></p>
+                <?php if($this->uri->segment(2) == 'pdf_coa' || $this->uri->segment(2) == 'pdf_coa_rev') { ?>
                 <img src="<?= base_url('assets/img/ttd.png') ?>" alt="" style="margin-left: -30px;" width="250px">
+                <?php } else { ?>
+                <br><br><br><br>
+                <?php } ?>
                 <p style="font-size: 12px; font-weight: bold; text-decoration: underline; margin-bottom: -20px;"><?= $cmp->director ?></p>
                 <p style="font-size: 12px; font-weight: bold; margin-left: 50px;">Direktur Utama</p>
             </div>
@@ -8420,7 +8432,7 @@ footer {
         <div class="page_break"></div>
         <div style="position: relative;">
         <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
-        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?php if($this->uri->segment(2) == 'pdf_coa_rev' || $this->uri->segment(2) == 'draft_coa_rev'){echo $coa_det->no_certificate_rev;}else{echo $coa_det->no_certificate;} ?></p>
         <table class="table table-bordered">
             <tr>
                 <th>Sample No.</th>
@@ -8442,7 +8454,7 @@ footer {
             </tr>
         </table>
         <table class="table table-bordered mt-2">
-            <tr>
+            <tr class="text-center">
                 <th>No</th>
                 <th>Parameters</th>
                 <th>Unit</th>
@@ -8516,9 +8528,9 @@ footer {
         <div class="page_break"></div>
         <div style="position: relative;">
         <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
-        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?php if($this->uri->segment(2) == 'pdf_coa_rev' || $this->uri->segment(2) == 'draft_coa_rev'){echo $coa_det->no_certificate_rev;}else{echo $coa_det->no_certificate;} ?></p>
         <table class="table table-bordered">
-            <tr>
+            <tr class="text-center">
                 <th>Sample No.</th>
                 <th>Sampling Location</th>
                 <th>Sample Description</th>
@@ -8612,7 +8624,7 @@ footer {
         <div class="page_break"></div>
         <div style="position: relative;">
         <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
-        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?php if($this->uri->segment(2) == 'pdf_coa_rev' || $this->uri->segment(2) == 'draft_coa_rev'){echo $coa_det->no_certificate_rev;}else{echo $coa_det->no_certificate;} ?></p>
         <table class="table table-bordered">
             <tr>
                 <th>Sample No.</th>
@@ -8634,7 +8646,7 @@ footer {
             </tr>
         </table>
         <table class="table table-bordered mt-2">
-            <tr>
+            <tr class="text-center">
                 <th rowspan="2">No</th>
                 <th rowspan="2">Parameters</th>
                 <th rowspan="2">Unit</th>
@@ -8642,7 +8654,7 @@ footer {
                 <th colspan="4">Regulatory Standard*)</th>
                 <th rowspan="2">Methods</th>
             </tr>
-            <tr>
+            <tr class="text-center">
                 <th>I</th>
                 <th>II</th>
                 <th>III</th>
@@ -8735,7 +8747,7 @@ footer {
         <div class="page_break"></div>
         <div style="position: relative;">
         <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
-        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?php if($this->uri->segment(2) == 'pdf_coa_rev' || $this->uri->segment(2) == 'draft_coa_rev'){echo $coa_det->no_certificate_rev;}else{echo $coa_det->no_certificate;} ?></p>
         <table class="table table-bordered">
             <tr>
                 <th>Sample No.</th>
@@ -8757,7 +8769,7 @@ footer {
             </tr>
         </table>
         <table class="table table-bordered mt-2">
-            <tr>
+            <tr class="text-center">
                 <th>No</th>
                 <th>Parameters</th>
                 <th>Testing Result</th>
@@ -8804,7 +8816,7 @@ footer {
         <div class="page_break"></div>
         <div style="position: relative;">
         <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
-        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?php if($this->uri->segment(2) == 'pdf_coa_rev' || $this->uri->segment(2) == 'draft_coa_rev'){echo $coa_det->no_certificate_rev;}else{echo $coa_det->no_certificate;} ?></p>
         <table class="table table-bordered">
             <tr>
                 <th>Sample No.</th>
@@ -8826,7 +8838,7 @@ footer {
             </tr>
         </table>
         <table class="table table-bordered mt-2">
-            <tr>
+            <tr class="text-center">
                 <th>No</th>
                 <th>Parameters</th>
                 <th>Testing Result</th>
@@ -8873,7 +8885,7 @@ footer {
         <div class="page_break"></div>
         <div style="position: relative;">
         <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
-        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?php if($this->uri->segment(2) == 'pdf_coa_rev' || $this->uri->segment(2) == 'draft_coa_rev'){echo $coa_det->no_certificate_rev;}else{echo $coa_det->no_certificate;} ?></p>
         <table class="table table-bordered">
             <tr>
                 <th>Sample No.</th>
@@ -8895,7 +8907,7 @@ footer {
             </tr>
         </table>
         <table class="table table-bordered mt-2">
-            <tr>
+            <tr class="text-center">
                 <th>No</th>
                 <th>Parameters</th>
                 <th>Testing Result</th>
@@ -8942,7 +8954,7 @@ footer {
         <div class="page_break"></div>
         <div style="position: relative;">
         <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
-        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?php if($this->uri->segment(2) == 'pdf_coa_rev' || $this->uri->segment(2) == 'draft_coa_rev'){echo $coa_det->no_certificate_rev;}else{echo $coa_det->no_certificate;} ?></p>
         <table class="table table-bordered">
             <tr>
                 <th>Sample No.</th>
@@ -8964,7 +8976,7 @@ footer {
             </tr>
         </table>
         <table class="table table-bordered mt-2">
-            <tr>
+            <tr class="text-center">
                 <th>No</th>
                 <th>Parameters</th>
                 <th>Testing Result</th>
@@ -9015,7 +9027,7 @@ footer {
         <div class="page_break"></div>
         <div style="position: relative;">
         <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
-        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?php if($this->uri->segment(2) == 'pdf_coa_rev' || $this->uri->segment(2) == 'draft_coa_rev'){echo $coa_det->no_certificate_rev;}else{echo $coa_det->no_certificate;} ?></p>
         <table class="table table-bordered">
             <tr>
                 <th>Sample No.</th>
@@ -9037,7 +9049,7 @@ footer {
             </tr>
         </table>
         <table class="table table-bordered mt-2">
-            <tr>
+            <tr class="text-center">
                 <th>No</th>
                 <th>Parameters</th>
                 <th>Testing Result</th>
@@ -9081,7 +9093,7 @@ footer {
         <div class="page_break"></div>
         <div style="position: relative;">
         <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
-        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?php if($this->uri->segment(2) == 'pdf_coa_rev' || $this->uri->segment(2) == 'draft_coa_rev'){echo $coa_det->no_certificate_rev;}else{echo $coa_det->no_certificate;} ?></p>
         <table class="table table-bordered">
             <tr>
                 <th>Sample No.</th>
@@ -9103,7 +9115,7 @@ footer {
             </tr>
         </table>
         <table class="table table-bordered mt-2">
-            <tr>
+            <tr class="text-center">
                 <th>No</th>
                 <th>Parameters</th>
                 <th>Sampling Time</th>
@@ -9156,7 +9168,7 @@ footer {
         <div class="page_break"></div>
         <div style="position: relative;">
         <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
-        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?php if($this->uri->segment(2) == 'pdf_coa_rev' || $this->uri->segment(2) == 'draft_coa_rev'){echo $coa_det->no_certificate_rev;}else{echo $coa_det->no_certificate;} ?></p>
         <table class="table table-bordered">
             <tr>
                 <th>Sample No.</th>
@@ -9178,7 +9190,7 @@ footer {
             </tr>
         </table>
         <table class="table table-bordered mt-2">
-            <tr>
+            <tr class="text-center">
                 <th>Vehicle Brand</th>
                 <th>Time</th>
                 <th>Unit</th>
@@ -9247,7 +9259,7 @@ footer {
         <div class="page_break"></div>
         <div style="position: relative;">
         <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
-        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?php if($this->uri->segment(2) == 'pdf_coa_rev' || $this->uri->segment(2) == 'draft_coa_rev'){echo $coa_det->no_certificate_rev;}else{echo $coa_det->no_certificate;} ?></p>
         <table class="table table-bordered">
             <tr>
                 <th>Sample No.</th>
@@ -9269,7 +9281,7 @@ footer {
             </tr>
         </table>
         <table class="table table-bordered mt-2">
-            <tr>
+            <tr class="text-center">
                 <th>No</th>
                 <th>Sampling Location</th>
                 <th>Testing Result</th>
@@ -9307,7 +9319,7 @@ footer {
         <div class="page_break"></div>
         <div style="position: relative;">
         <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
-        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?php if($this->uri->segment(2) == 'pdf_coa_rev' || $this->uri->segment(2) == 'draft_coa_rev'){echo $coa_det->no_certificate_rev;}else{echo $coa_det->no_certificate;} ?></p>
         <table class="table table-bordered">
             <tr>
                 <th>Sample No.</th>
@@ -9329,7 +9341,7 @@ footer {
             </tr>
         </table>
         <table class="table table-bordered mt-2">
-            <tr>
+            <tr class="text-center">
                 <th rowspan="2">No</th>
                 <th rowspan="2">Sampling Location</th>
                 <th rowspan="2">Time</th>
@@ -9338,7 +9350,7 @@ footer {
                 <th rowspan="2">WBGT INDEX</th>
                 <th rowspan="2">Methods</th>
             </tr>
-            <tr>
+            <tr class="text-center">
                 <th>Wet</th>
                 <th>Dew</th>
                 <th>Globe</th>
@@ -9418,7 +9430,7 @@ footer {
         <div class="page_break"></div>
         <div style="position: relative;">
         <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
-        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?php if($this->uri->segment(2) == 'pdf_coa_rev' || $this->uri->segment(2) == 'draft_coa_rev'){echo $coa_det->no_certificate_rev;}else{echo $coa_det->no_certificate;} ?></p>
         <table class="table table-bordered">
             <tr>
                 <th>Sample No.</th>
@@ -9440,7 +9452,7 @@ footer {
             </tr>
         </table>
         <table class="table table-bordered mt-2">
-            <tr>
+            <tr class="text-center">
                 <th>No</th>
                 <th>Sampling Location</th>
                 <th>Testing Result</th>
@@ -9455,7 +9467,7 @@ footer {
                 <td><?= $no++ ?></td>
                 <td><?= $c->sampling_location_coa ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
-                <td><?= $c->time ?></td>
+                <td><?= $c->time_coa ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->unit ?></td>
                 <td><?= $c->name_method ?></td>
@@ -9478,7 +9490,7 @@ footer {
         <div class="page_break"></div>
         <div style="position: relative;">
         <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
-        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?php if($this->uri->segment(2) == 'pdf_coa_rev' || $this->uri->segment(2) == 'draft_coa_rev'){echo $coa_det->no_certificate_rev;}else{echo $coa_det->no_certificate;} ?></p>
         <table class="table table-bordered">
             <tr>
                 <th>Sample No.</th>
@@ -9500,7 +9512,7 @@ footer {
             </tr>
         </table>
         <table class="table table-bordered mt-2">
-            <tr>
+            <tr class="text-center">
                 <th>No</th>
                 <th>Brand</th>
                 <th>Year</th>
@@ -9540,7 +9552,7 @@ footer {
         <div class="page_break"></div>
         <div style="position: relative;">
         <p class="text-center" style="font-size: 20px; font-weight: bold; margin-top: 55px;">CERTIFICATE OF ANALYSIS (COA)</p>
-        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?= $coa_det->no_certificate ?></p>
+        <p class= "text-center mt-2" style="font-size: 12px;">Certificate No. <?php if($this->uri->segment(2) == 'pdf_coa_rev' || $this->uri->segment(2) == 'draft_coa_rev'){echo $coa_det->no_certificate_rev;}else{echo $coa_det->no_certificate;} ?></p>
         <table class="table table-bordered">
             <tr>
                 <th>Sample No.</th>
@@ -9562,7 +9574,7 @@ footer {
             </tr>
         </table>
         <table class="table table-bordered mt-2">
-            <tr>
+            <tr class="text-center">
                 <th>No</th>
                 <th>Sampling Location</th>
                 <th>Noise</th>

@@ -444,6 +444,26 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
         })
   });
 
+  $('.tombol-generate-rev').on('click', function(e) {
+          e.preventDefault();
+          const href = $(this).attr('href');
+
+          Swal.fire({
+          title: 'Do you want to generate Revision?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#6777EF',
+          cancelButtonColor: '#FC544B',
+          confirmButtonText: 'Yes, Generate',
+          cancelButtonText: 'Cancel'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            document.location.href = href;
+          }
+        })
+  });
+
   window.addEventListener('load', function () {
     let selectedDeviceId;
     let audio = new Audio("assets/audio/beep.mp3");

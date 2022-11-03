@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title><?php echo $title; ?> | DIL Information</title>
+  <title><?= $title ?> | DIL Information</title>
   <link rel="shortcut icon" href="<?= base_url() ?>assets/img/logo-icon.png" type="image/x-icon">
 
   <!-- Select 2 -->
@@ -19,7 +19,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <?php
   if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
     ?>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/jqvmap/dist/jqvmap.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/summernote/summernote-bs4.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/owlcarousel2/dist/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/owlcarousel2/dist/assets/owl.theme.default.min.css">

@@ -77,9 +77,6 @@
                       <div class="user-details">
                         <div class="user-name"><?= $row->fullname ?></div>
                         <div class="text-job text-muted"><?= $row->role ?></div>
-                        <div class="user-cta">
-                          <button class="btn btn-primary follow-btn" data-follow-action="alert('user5 followed');" data-unfollow-action="alert('user5 unfollowed');">Follow</button>
-                        </div>
                       </div>  
                     </div>
                   </div>

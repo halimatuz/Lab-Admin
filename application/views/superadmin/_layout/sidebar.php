@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="main-sidebar sidebar-style-2">
   <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
-      <img src="<?= base_url() ?>assets/img/logo.png" alt="" width="50" class="mr-2">
+      <img src="<?= base_url('assets/img/company_profile/') . $company_pages->img_logo ?>" alt="" width="50" class="mr-2">
       <a href="<?php echo base_url(); ?>D_superadmin">Information</a>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
@@ -52,10 +52,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <li class="<?php echo $this->uri->segment(2) == 'data_stp' || $this->uri->segment(2) == 'add_sampler_stp' || $this->uri->segment(2) == 'update_sampler_stp' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_stp">Assign Sampler STP</a></li>
         </ul>
       </li>
-      <li class="dropdown <?php echo $this->uri->segment(2) == 'data_quotation_coa' || $this->uri->segment(2) == 'data_analysis_coa' || $this->uri->segment(2) == 'input_result' || $this->uri->segment(2) == 'data_quotation_print' ? 'active' : ''; ?>">
+      <li class="dropdown <?php echo $this->uri->segment(2) == 'data_quotation_coa' || $this->uri->segment(2) == 'data_analysis_coa' || $this->uri->segment(2) == 'data_analysis_coa_rev' || $this->uri->segment(2) == 'input_result' || $this->uri->segment(2) == 'input_result_rev' || $this->uri->segment(2) == 'data_quotation_print' || $this->uri->segment(2) == 'data_coa_revision' ? 'active' : ''; ?>">
         <a href="#" class="nav-link has-dropdown"><i class="fas fa-file-contract"></i><span>COA</span></a>
         <ul class="dropdown-menu">
-          <li class="<?php echo $this->uri->segment(2) == 'data_quotation_coa' || $this->uri->segment(2) == 'data_analysis_coa' || $this->uri->segment(2) == 'input_result' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_quotation_coa">Generate COA</a></li>
+          <li class="<?php echo $this->uri->segment(2) == 'data_quotation_coa' || $this->uri->segment(2) == 'data_analysis_coa' || $this->uri->segment(2) == 'data_analysis_coa_rev' || $this->uri->segment(2) == 'input_result' || $this->uri->segment(2) == 'input_result_rev' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_quotation_coa">Generate COA</a></li>
           <li class="<?php echo $this->uri->segment(2) == 'data_quotation_print' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_quotation_print">Print COA</a></li>
         </ul>
       </li>

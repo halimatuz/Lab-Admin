@@ -15,7 +15,7 @@
           </div>
           <div class="card-body">
                 <?php foreach($company as $cmp) : ?>
-                <form method="POST" action="<?= base_url('D_superadmin/update_company_profile_action') ?>">
+                <form method="POST" action="<?= base_url('D_superadmin/update_company_profile_action') ?>" enctype="multipart/form-data">
                   <div class="row">
                     <div class="form-group col-12 col-md-6">
                       <label for="name">Company Name</label>
@@ -60,6 +60,12 @@
                       <label for="director_email" class="d-block">Director Email</label>
                       <input id="director_email" type="text" class="form-control" name="director_email" value="<?= $cmp->director_email ?>">
                       <?php echo form_error('director_email', '<span class="text-small text-danger">', '</span>') ?>
+                    </div>
+                    <div class="form-group col-12 col-md-6">
+                      <label for="img_logo" class="d-block">Logo</label>
+                      <img src="<?= base_url('assets/img/company_profile/') . $cmp->img_logo ?>" alt="" class="img-thumbnail mb-2" width="100px" height="50px">
+                      <input id="img_logo" type="file" class="form-control" name="img_logo">
+                      <?php echo form_error('img_logo', '<span class="text-small text-danger">', '</span>') ?>
                     </div>
                   </div>
 

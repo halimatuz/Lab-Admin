@@ -22,7 +22,7 @@ foreach($coa as $c) {
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
-                    <h6 class="text-primary">Input Result in <?= @$coa_spec->name_analysis ?> For <?= @$coa_spec->name_int ?></h6>
+                    <h6 class="text-primary">Input Result in <?= @$coa_spec->name_analysis ?> For <?= @$coa_spec->name_int ?> <?php if($this->uri->segment(2) == 'input_result_rev'){ echo "(Revision $rev )"; } ?></h6>
                     <hr>
                       <?php if($coa == NULL) { ?>
                             <div class="empty-state" data-height="400">
@@ -35,8 +35,11 @@ foreach($coa as $c) {
                                 </p>
                             </div>
                         <?php } else { ?>
-                          <form action="<?= base_url('D_superadmin/save_result') ?>" method="post">
+                          <form action="<?php if($this->uri->segment(2) == 'input_result') {echo base_url('D_superadmin/save_result');}else{echo base_url('D_superadmin/save_result_rev');} ?>" method="post">
                             <div class="table-responsive">
+                                <?php if($this->uri->segment(2) == 'input_result_rev') : ?>
+                                  <input type="hidden" name="rev" value="<?= $rev ?>">
+                                <?php endif; ?>
                                 <table class="table table-striped">
                                 <thead>
                                     <tr class="<?php if($coa_spec->name_analysis == 'Non-Stationary Source Emission') { echo 'text-center'; } ?>">

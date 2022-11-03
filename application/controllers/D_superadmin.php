@@ -16,10 +16,12 @@ class D_superadmin extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
 			redirect('D_auth/errors_403');
 		} else {
+
             $data = array(
-                'title' => "Dashboard"
+                'company_pages' => $this->web->comp(),
+                'title' => "Dashboard",
             );
-            
+
             $data['total_sampler'] = $this->web->get_count('sampler');
             $data['total_institution'] = $this->web->get_count('institution');
             $data['total_coa'] = count($this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_analysis) <> '' ORDER BY sk_number.id_sk DESC")->result());
@@ -61,8 +63,10 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
             $data = array(
-            'title' => 'Data Analysis',
-        );
+                'company_pages' => $this->web->comp(),
+                'title' => 'Data Analysis',
+            );
+
             $data['analysis'] = $this->web->get_data('analysis', 'id_analysis')->result();
             $this->load->view('superadmin/_layout/header', $data);
             $this->load->view('superadmin/_layout/sidebar');
@@ -122,6 +126,7 @@ class D_superadmin extends CI_Controller
 		} else {
         $where = array('id_analysis' => $id);
         $data = array(
+                'company_pages' => $this->web->comp(),
             'title' => 'Data Analysis',
         );
         $data['analysis'] = $this->web->get_data('analysis', 'id_analysis')->result();
@@ -168,6 +173,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+                'company_pages' => $this->web->comp(),
             'title' => 'Data Institution',
         );
         $data['institution'] = $this->web->get_data('institution', 'id_int')->result();
@@ -230,6 +236,7 @@ class D_superadmin extends CI_Controller
 		} else {
         $where = array('id_int' => $id);
         $data = array(
+                'company_pages' => $this->web->comp(),
             'title' => 'Data institution',
         );
         $data['institution'] = $this->web->get_data('institution', 'id_int')->result();
@@ -291,6 +298,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+                'company_pages' => $this->web->comp(),
             'title' => 'Data Sampler',
         );
         $data['sampler'] = $this->web->get_data('sampler', 'id_sampler')->result();
@@ -355,6 +363,7 @@ class D_superadmin extends CI_Controller
 		} else {
         $where = array('id_sampler' => $id);
         $data = array(
+                'company_pages' => $this->web->comp(),
             'title' => 'Data Sampler',
         );
         $data['sampler'] = $this->web->get_data('sampler', 'id_sampler')->result();
@@ -403,6 +412,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+                'company_pages' => $this->web->comp(),
             'title' => 'Data sample',
         );
         $data['sample'] = $this->web->get_data('sample', 'id_sample')->result();
@@ -464,6 +474,7 @@ class D_superadmin extends CI_Controller
 		} else {
         $where = array('id_sample' => $id);
         $data = array(
+                'company_pages' => $this->web->comp(),
             'title' => 'Data sample',
         );
         $data['sample'] = $this->web->get_data('sample', 'id_sample')->result();
@@ -506,6 +517,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+                'company_pages' => $this->web->comp(),
             'title' => 'Data Method',
         );
         $data['method'] = $this->web->get_data('method', 'id_method')->result();
@@ -567,6 +579,7 @@ class D_superadmin extends CI_Controller
 		} else {
         $where = array('id_method' => $id);
         $data = array(
+                'company_pages' => $this->web->comp(),
             'title' => 'Data method',
         );
         $data['method'] = $this->web->get_data('method', 'id_method')->result();
@@ -609,6 +622,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+                'company_pages' => $this->web->comp(),
             'title' => 'Data Unit',
         );
         $data['unit'] = $this->web->get_data('unit', 'id_unit')->result();
@@ -670,6 +684,7 @@ class D_superadmin extends CI_Controller
 		} else {
         $where = array('id_unit' => $id);
         $data = array(
+                'company_pages' => $this->web->comp(),
             'title' => 'Data unit',
         );
         $data['unit'] = $this->web->get_data('unit', 'id_unit')->result();
@@ -712,6 +727,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+                'company_pages' => $this->web->comp(),
             'title' => 'Data Analysis',
         );
         $data['analysisCOA'] = $this->db->query("SELECT *,(SELECT count(*) FROM coa WHERE id_analysis = analysis.id_analysis) as st_account FROM analysis WHERE coa = 1 ORDER BY id_analysis DESC")->result();
@@ -730,6 +746,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+                'company_pages' => $this->web->comp(),
             'title' => 'Add COA',
         );
 
@@ -818,6 +835,7 @@ class D_superadmin extends CI_Controller
 		} else {
         $where = array('id_coa' => $id);
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Data COA',
         );
 
@@ -901,6 +919,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Data Institution',
         );
         $data['institution'] = $this->db->query("SELECT *,(SELECT count(*) FROM sk_number WHERE id_int = institution.id_int) as st_account FROM institution")->result();
@@ -918,27 +937,27 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         
-        // create SK NUMBER
-        $sql = $this->db->query("SELECT MAX(id_sk) AS maxID FROM sk_number")->result();
-        foreach($sql as $sql2) {
-            $code = $sql2->maxID;
-        }
-        $code++;
-        $sk_quotation = $code . '/' . date('Y') . '/' . date('m') . '/' . date('d') . '/' . "DIL/QTN";
-        // end SK Number
-        $today = date ("Y-m-d");
+            // create SK NUMBER
+            $sql = $this->db->query("SELECT MAX(id_sk) AS maxID FROM sk_number")->result();
+            foreach($sql as $sql2) {
+                $code = $sql2->maxID;
+            }
+            $code++;
+            $sk_quotation = $code . '/' . date('Y') . '/' . date('m') . '/' . date('d') . '/' . "DIL/QTN";
+            // end SK Number
+            $today = date ("Y-m-d");
 
-        $data_sk = array(
-            'sk_quotation' => $sk_quotation,
-            'sk_sample' => '',
-            'sk_analysis' => '',
-            'id_int' => $id_int,
-            'date_quotation' => $today,
-        );
-        $this->web->insert_data($data_sk, 'sk_number');
-        $this->session->set_flashdata('msg', 'SK Quotation success generated.');
-		redirect('D_superadmin/data_quotation');
-    }
+            $data_sk = array(
+                'sk_quotation' => $sk_quotation,
+                'sk_sample' => '',
+                'sk_analysis' => '',
+                'id_int' => $id_int,
+                'date_quotation' => $today,
+            );
+            $this->web->insert_data($data_sk, 'sk_number');
+            $this->session->set_flashdata('msg', 'SK Quotation success generated.');
+            redirect('D_superadmin/data_quotation');
+        }
     }
 
     public function list_quotation() {
@@ -948,6 +967,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
             $data = array (
+                'company_pages' => $this->web->comp(),
                 'title' =>  'List Quotation'
             );
             if(isset($_GET['date'])) {
@@ -976,7 +996,8 @@ class D_superadmin extends CI_Controller
             $this->_rules_filter();
             if($this->form_validation->run() == FALSE) {
                 $data = array(
-                    'title' => 'List Quotation',
+                'company_pages' => $this->web->comp(),
+                'title' => 'List Quotation',
                 );
 
                 $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int ORDER BY id_sk DESC")->result();
@@ -988,6 +1009,7 @@ class D_superadmin extends CI_Controller
                 $from = $_GET['from'];
                 $to = $_GET['to'];
                 $data = array(
+                    'company_pages' => $this->web->comp(),
                     'title' => 'List Quotation',
                     'from' => $from,
                     'to' => $to,
@@ -1015,6 +1037,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Add Quotation',
         );
         $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk WHERE quotation.id_sk = $id_sk ORDER BY id_quotation DESC")->result();
@@ -1106,6 +1129,7 @@ class D_superadmin extends CI_Controller
 		} else {
         $where = array('id_quotation' => $id);
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Data Quotation',
         );
         $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int WHERE quotation.id_sk = '$id_sk'")->result();
@@ -1161,6 +1185,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Print Quotation',
         );
         $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
@@ -1177,6 +1202,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+                'company_pages' => $this->web->comp(),
             'title' => 'Data Quotation',
         );
         $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE status_po = 1 ORDER BY id_sk DESC")->result();
@@ -1195,6 +1221,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Add STPS',
         );
         $data['specialSK'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE id_sk = '$id'")->result();
@@ -1289,6 +1316,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Print STPS',
         );
         $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
@@ -1306,6 +1334,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Data STPS',
         );
         $data['stps'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int ORDER BY id_sk DESC")->result();
@@ -1325,6 +1354,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Add Sampler STPS',
         );
         $data['specialSK'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE id_sk = $id")->result();
@@ -1383,6 +1413,7 @@ class D_superadmin extends CI_Controller
 		} else {
         $where = array('id_assign' => $id);
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Update Sampler STPS',
         );
         $data['specialSK'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE id_sk = $id_sk")->result();
@@ -1433,6 +1464,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Data Quotation',
         );
         $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_sample) <> '' AND status_po = 1 ORDER BY sk_number.id_sk DESC")->result();
@@ -1451,6 +1483,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Add STP',
         );
         $data['specialSK'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE id_sk = '$id'")->result();
@@ -1470,6 +1503,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Add STP',
         );
         $data['specialSK'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE id_sk = '$id_sk'")->result();
@@ -1543,6 +1577,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Print STP',
         );
         $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
@@ -1560,6 +1595,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Data STP',
         );
         $data['stp'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int")->result();
@@ -1579,6 +1615,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Add Sampler STP',
         );
         $data['specialSK'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE id_sk = $id")->result();
@@ -1637,6 +1674,7 @@ class D_superadmin extends CI_Controller
 		} else {
         $where = array('id_assign' => $id);
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Update Sampler STP',
         );
         $data['specialSK'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE id_sk = $id_sk")->result();
@@ -1687,6 +1725,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Data Quotation',
         );
         $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int")->result();
@@ -1705,9 +1744,11 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Data Quotation',
         );
         $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_analysis) <> '' AND status_po = 1 ORDER BY sk_number.id_sk DESC")->result();
+        $data['quotation_rev'] = $this->db->query("SELECT * FROM sk_number_rev INNER JOIN sk_number ON sk_number_rev.id_sk = sk_number.id_sk INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_analysis) <> '' AND status_po = 1 ORDER BY sk_number.id_sk DESC")->result();
         $this->load->view('superadmin/_layout/header', $data);
         $this->load->view('superadmin/_layout/sidebar');
         $this->load->view('superadmin/pages/D_listquotation', $data);
@@ -1723,6 +1764,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Data Analysis',
         );
         $data['analysis'] = $this->db->query("SELECT * FROM analysis INNER JOIN quotation ON analysis.id_analysis = quotation.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int WHERE quotation.id_sk = $id AND analysis.coa = 1 ORDER BY analysis.id_analysis DESC")->result();
@@ -1730,7 +1772,27 @@ class D_superadmin extends CI_Controller
         $this->load->view('superadmin/_layout/sidebar');
         $this->load->view('superadmin/pages/D_analysiscoa', $data);
         $this->load->view('superadmin/_layout/footer');
+        }
     }
+    
+    public function data_analysis_coa_rev($id, $rev)
+    {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $data = array(
+            'company_pages' => $this->web->comp(),
+            'title' => 'Data Analysis',
+            'rev' => $rev
+        );
+        $data['analysis'] = $this->db->query("SELECT * FROM analysis INNER JOIN quotation ON analysis.id_analysis = quotation.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int WHERE quotation.id_sk = $id AND analysis.coa = 1 ORDER BY analysis.id_analysis DESC")->result();
+        $this->load->view('superadmin/_layout/header', $data);
+        $this->load->view('superadmin/_layout/sidebar');
+        $this->load->view('superadmin/pages/D_analysiscoa', $data);
+        $this->load->view('superadmin/_layout/footer');
+        }
     }
     
     public function input_result($id, $id_sk)
@@ -1740,17 +1802,98 @@ class D_superadmin extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
 			redirect('D_auth');
 		} else {
-        $data = array(
-            'title' => 'Data COA',
-        );
-        $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.method = method.id_method WHERE result_coa.id_sk = $id_sk AND result_coa.id_analysis = $id")->result();
+            $data = array(
+                'company_pages' => $this->web->comp(),
+                'title' => 'Data COA',
+            );
+            $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.method = method.id_method WHERE result_coa.id_sk = $id_sk AND result_coa.id_analysis = $id AND revision = 0")->result();
 
-        $data['sk_number'] = $this->db->query("SELECT * FROM sk_number WHERE id_sk = $id_sk")->result();
-        $this->load->view('superadmin/_layout/header', $data);
-        $this->load->view('superadmin/_layout/sidebar');
-        $this->load->view('superadmin/pages/D_inputresult', $data);
-        $this->load->view('superadmin/_layout/footer');
+            $data['sk_number'] = $this->db->query("SELECT * FROM sk_number WHERE id_sk = $id_sk")->result();
+            $this->load->view('superadmin/_layout/header', $data);
+            $this->load->view('superadmin/_layout/sidebar');
+            $this->load->view('superadmin/pages/D_inputresult', $data);
+            $this->load->view('superadmin/_layout/footer');
+        }   
     }
+    
+    public function input_result_rev($id, $id_sk, $rev)
+    {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+            $data = array(
+                'company_pages' => $this->web->comp(),
+                'title' => 'Data COA',
+                'rev' => $rev,
+            );
+            $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.method = method.id_method WHERE result_coa.id_sk = $id_sk AND result_coa.id_analysis = $id AND result_coa.revision = $rev")->result();
+
+            $data['sk_number'] = $this->db->query("SELECT * FROM sk_number_rev WHERE id_sk = $id_sk")->result();
+            $this->load->view('superadmin/_layout/header', $data);
+            $this->load->view('superadmin/_layout/sidebar');
+            $this->load->view('superadmin/pages/D_inputresult', $data);
+            $this->load->view('superadmin/_layout/footer');
+        }   
+    }
+
+    public function save_result_rev() {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $rev = $this->input->post('rev');
+        $id_result = $this->input->post('id_result');
+        $result = $this->input->post('result');
+        $vehicle_brand = $this->input->post('vehicle_brand');
+        $time = $this->input->post('time');
+        $humidity = $this->input->post('humidity');
+        $wet = $this->input->post('wet');
+        $dew = $this->input->post('dew');
+        $globe = $this->input->post('globe');
+        $wbgt_index = $this->input->post('wbgt_index');
+        $sampling_location = $this->input->post('sampling_location');
+        $code = $this->input->post('code');
+        $opacity = $this->input->post('opacity');
+        $leq = $this->input->post('leq');
+        $ls = $this->input->post('ls');
+        $lm = $this->input->post('lm');
+        $lsm = $this->input->post('lsm');
+        $id_sk = $this->input->post('id_sk');
+
+        for($i=0; $i<sizeof($id_result); $i++) {
+
+            $data = array(
+                'result' => @$result[$i],
+                'vehicle_brand' => @$vehicle_brand[$i],
+                'time' => @$time[$i],
+                'humidity' => @$humidity[$i],
+                'wet' => @$wet[$i],
+                'dew' => @$dew[$i],
+                'globe' => @$globe[$i],
+                'wbgt_index' => @$wbgt_index[$i],
+                'sampling_location' => @$sampling_location[$i],
+                'code' => @$code[$i],
+                'opacity' => @$opacity[$i],
+                'leq' => @$leq[$i],
+                'ls' => @$ls[$i],
+                'lm' => @$lm[$i],
+                'lsm' => @$lsm[$i],
+            );
+
+
+            $where = array(
+                'id_result' => $id_result[$i]
+            );
+
+            $this->web->update_data('result_coa', $data, $where);
+        }
+
+        $this->session->set_flashdata('msg', 'Input result success!');
+        redirect('D_superadmin/input_result_rev/' . $this->input->post('id_analysis') . '/' . $id_sk . '/' . $rev);
+        }
     }
 
     public function save_result() {
@@ -2695,6 +2838,66 @@ class D_superadmin extends CI_Controller
         }
     }
 
+    public function generate_revision($id_sk) {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+
+            $sql = $this->db->query("SELECT MAX(revision) AS maxREV FROM result_coa WHERE id_sk = $id_sk")->result();
+            foreach($sql as $sql2) {
+                $max_rev = $sql2->maxREV;
+            }
+
+            //duplicate result coa
+            $result_coa = $this->db->query("SELECT * FROM result_coa WHERE id_sk = $id_sk AND revision = $max_rev")->result();
+
+            for($i = 0; $i<sizeof($result_coa); $i++) {
+                $data_res = $result_coa[$i];
+                $data_result = array(
+                    'id_sk' => $data_res->id_sk,
+                    'id_coa' => $data_res->id_coa,
+                    'id_analysis' => $data_res->id_analysis,
+                    'id_int' => $data_res->id_int,
+                    'revision' => $data_res->revision + 1,
+                    'result' => $data_res->result,
+                    'vehicle_brand' => $data_res->vehicle_brand,
+                    'time' => $data_res->time,
+                    'humidity' => $data_res->humidity,
+                    'wet' => $data_res->wet,
+                    'dew' => $data_res->dew,
+                    'globe' => $data_res->globe,
+                    'wbgt_index' => $data_res->wbgt_index,
+                    'sampling_location' => $data_res->sampling_location,
+                    'code' => $data_res->code,
+                    'opacity' => $data_res->opacity,
+                    'leq' => $data_res->leq,
+                    'ls' => $data_res->ls,
+                    'lm' => $data_res->lm,
+                    'lsm' => $data_res->lsm,
+                );
+
+                $this->web->insert_data($data_result, 'result_coa');
+            }
+
+            //end duplicate
+
+            // get sk_number and change
+            $sk_before = $this->db->query("SELECT * FROM sk_number WHERE id_sk = $id_sk")->row();
+            $sk_rev = array(
+                'id_sk' => $id_sk,
+                'no_certificate_rev' => $sk_before->no_certificate . '-REV' . ($max_rev + 1),
+                'revision' => $max_rev + 1,
+            );
+            $this->web->insert_data($sk_rev, 'sk_number_rev');
+            //end change
+
+            $this->session->set_flashdata('msg', 'Revision success generated.');
+            redirect('D_superadmin/data_quotation_coa');
+        }
+    }
+
     public function data_quotation_print()
     {
         $sess = $this->session->userdata('id_superadmin');
@@ -2703,9 +2906,12 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
             $data = array(
+                'company_pages' => $this->web->comp(),
                 'title' => 'Print COA',
             );
+
             $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_analysis) <> '' AND status_po = 1 ORDER BY sk_number.id_sk DESC")->result();
+            $data['quotation_rev'] = $this->db->query("SELECT * FROM sk_number_rev INNER JOIN sk_number ON sk_number.id_sk = sk_number_rev.id_sk INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE rtrim(sk_analysis) <> '' AND status_po = 1 ORDER BY sk_number.id_sk DESC")->result();
             $this->load->view('superadmin/_layout/header', $data);
             $this->load->view('superadmin/_layout/sidebar');
             $this->load->view('superadmin/pages/D_listquotation', $data);
@@ -2721,8 +2927,10 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Data Analysis',
         );
+
         $data['analysis'] = $this->db->query("SELECT * FROM analysis INNER JOIN quotation ON analysis.id_analysis = quotation.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int WHERE quotation.id_sk = $id AND analysis.coa = 1")->result();
         $this->load->view('superadmin/_layout/header', $data);
         $this->load->view('superadmin/_layout/sidebar');
@@ -2755,34 +2963,7 @@ class D_superadmin extends CI_Controller
 		} else {
         $this->load->library('dompdf_gen');
         $data = array(
-            'title' => 'Export PDF',
-        );
-        
-        $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
-        $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk WHERE result_coa.id_sk = $id_sk")->result();
-        $data['analysis'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN analysis ON sampling_det.id_analysis = analysis.id_analysis INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk WHERE sampling_det.id_sk = $id_sk AND analysis.coa = 1")->result();
-        $data['count'] = count($data['analysis']) + 1;
-
-        $paper_size = 'A4';
-        $orientation = 'potrait';
-        $html = $this->load->view('superadmin/pages/D_draftcoa', $data, TRUE);;
-        $this->dompdf->set_paper($paper_size, $orientation);
-
-        $this->dompdf->load_html($html);
-        $this->dompdf->render();
-        $this->dompdf->stream("COA " . $data['coa']->name_int .".pdf", array('Attachment' => 0));
-        }
-
-    }
-
-    public function pdf_coa($id_sk) {
-        $sess = $this->session->userdata('id_superadmin');
-		if ($sess == NULL) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
-			redirect('D_auth');
-		} else {
-        $this->load->library('dompdf_gen');
-        $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Export PDF',
         );
         
@@ -2799,9 +2980,93 @@ class D_superadmin extends CI_Controller
         $this->dompdf->load_html($html);
         $this->dompdf->render();
         $this->dompdf->stream("COA " . $data['coa']->name_int .".pdf", array('Attachment' => 0));
+        }
+    }
+    
+    public function draft_coa_rev($id_sk, $rev) {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $this->load->library('dompdf_gen');
+        $data = array(
+            'company_pages' => $this->web->comp(),
+            'title' => 'Export PDF',
+        );
+        
+        $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
+        $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk INNER JOIN sk_number_rev ON sk_number_rev.id_sk = $id_sk WHERE result_coa.id_sk = $id_sk AND sk_number_rev.revision = $rev")->result();
+        $data['analysis'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN analysis ON sampling_det.id_analysis = analysis.id_analysis INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk WHERE sampling_det.id_sk = $id_sk AND analysis.coa = 1")->result();
+        $data['count'] = count($data['analysis']) + 1;
+
+        $paper_size = 'A4';
+        $orientation = 'potrait';
+        $html = $this->load->view('superadmin/pages/D_pdfcoa', $data, TRUE);;
+        $this->dompdf->set_paper($paper_size, $orientation);
+
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("COA " . $data['coa']->name_int .".pdf", array('Attachment' => 0));
+        }
+    }
+
+    public function pdf_coa($id_sk) {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $this->load->library('dompdf_gen');
+        $data = array(
+            'company_pages' => $this->web->comp(),
+            'title' => 'Export PDF',
+        );
+        
+        $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
+        $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk WHERE result_coa.id_sk = $id_sk AND result_coa.revision = 0")->result();
+        $data['analysis'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN analysis ON sampling_det.id_analysis = analysis.id_analysis INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk WHERE sampling_det.id_sk = $id_sk AND analysis.coa = 1")->result();
+        $data['count'] = count($data['analysis']) + 1;
+
+        $paper_size = 'A4';
+        $orientation = 'potrait';
+        $html = $this->load->view('superadmin/pages/D_pdfcoa', $data, TRUE);;
+        $this->dompdf->set_paper($paper_size, $orientation);
+
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("COA " . $data['coa']->name_int .".pdf", array('Attachment' => 0));
 
         }
 
+    }
+
+    public function pdf_coa_rev($id_sk, $rev) {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $this->load->library('dompdf_gen');
+        $data = array(
+            'company_pages' => $this->web->comp(),
+            'title' => 'Export PDF',
+        );
+        
+        $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
+        $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk INNER JOIN sk_number_rev ON sk_number_rev.id_sk = $id_sk WHERE result_coa.id_sk = $id_sk AND result_coa.revision = $rev")->result();
+        $data['analysis'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN analysis ON sampling_det.id_analysis = analysis.id_analysis INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk WHERE sampling_det.id_sk = $id_sk AND analysis.coa = 1")->result();
+        $data['count'] = count($data['analysis']) + 1;
+
+        $paper_size = 'A4';
+        $orientation = 'potrait';
+        $html = $this->load->view('superadmin/pages/D_pdfcoa', $data, TRUE);;
+        $this->dompdf->set_paper($paper_size, $orientation);
+
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("COA " . $data['coa']->name_int .".pdf", array('Attachment' => 0));
+        }
     }
 
     public function scan_coa()
@@ -2812,6 +3077,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'Scan COA',
         );
         $this->load->view('superadmin/_layout/header', $data);
@@ -2840,6 +3106,7 @@ class D_superadmin extends CI_Controller
             redirect('D_superadmin/scan_coa');
         } else {
             $data = array(
+                'company_pages' => $this->web->comp(),
                 'title' => 'Result Scan',
             );
     
@@ -2858,6 +3125,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => 'List Users',
         );
         $data['user'] = $this->db->query("SELECT * FROM user")->result();
@@ -2875,6 +3143,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => "Add User"
         );
 
@@ -2930,6 +3199,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => "Settings"
         );
 
@@ -2947,6 +3217,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+            'company_pages' => $this->web->comp(),
             'title' => "Settings Company Profile"
         );
         $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
@@ -2974,10 +3245,28 @@ class D_superadmin extends CI_Controller
         $this->form_validation->set_rules('bank', 'Bank', 'required');
         $this->form_validation->set_rules('director', 'Director', 'required');
         $this->form_validation->set_rules('director_email', 'Director Email', 'required');
+        $this->form_validation->set_rules('img_logo', 'Logo');
 
         if($this->form_validation->run() == false) {
             $this->update_company_profile();
         } else {
+            $img_logo = $_FILES['img_logo']['name'];
+            
+            if ($img_logo = '') {
+                
+            } else {
+				$config['upload_path'] = FCPATH . "assets/img/company_profile/";
+				$config['allowed_types'] = 'jpg|jpeg|png|tiff';
+				$this->load->library('upload', $config);
+				$this->upload->initialize($config);
+
+                if (!$this->upload->do_upload('img_logo')) {
+                    echo "Upload image failed";
+                } else {
+                    $img_logo = $this->upload->data('file_name');
+                }
+            }
+
             $data = array (
                 'name' => $this->input->post('name'),
                 'address' => $this->input->post('address'),
@@ -2989,6 +3278,7 @@ class D_superadmin extends CI_Controller
                 'bank' => $this->input->post('bank'),
                 'director' => $this->input->post('director'),
                 'director_email' => $this->input->post('director_email'),
+                'img_logo' => $img_logo,
             );
 
             $where = array(
@@ -3009,6 +3299,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
+                'company_pages' => $this->web->comp(),
             'title' => "Profile"
         );
         $data['user'] = $this->db->query("SELECT * FROM user WHERE email = '$sess'")->result();

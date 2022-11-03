@@ -51,7 +51,11 @@ foreach($analysis as $c) {
                                         <td><?= $no++; ?></td>
                                         <td><?= htmlspecialchars($row->name_analysis); ?></td>
                                         <td>
-                                            <a href="<?php echo base_url('D_superadmin/input_result/') . $row->id_analysis . '/' . $row->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> Input Result</a>
+                                            <?php if($this->uri->segment(2) == 'data_analysis_coa') { ?>
+                                              <a href="<?php echo base_url('D_superadmin/input_result/') . $row->id_analysis . '/' . $row->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> Input Result</a>
+                                            <?php } else { ?>
+                                              <a href="<?php echo base_url('D_superadmin/input_result_rev/') . $row->id_analysis . '/' . $row->id_sk . '/' . $rev ?>"class="btn btn-success"><i class="fas fa-plus"></i> Input Result</a>
+                                            <?php } ?>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

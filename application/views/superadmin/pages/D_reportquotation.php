@@ -67,7 +67,13 @@
                                             <label class="badge badge-danger">Not yet</label>
                                           <?php } ?>
                                         </td>
-                                        <td><a href="<?= base_url('D_superadmin/print_quotation/') . $qtn->id_sk ?>" class="btn btn-primary"><i class="fas fa-print"></i> Print</a></td>
+                                        <td>
+                                          <?php if($qtn->status_po == 1) { ?>
+                                            <a href="<?= base_url('D_superadmin/print_quotation/') . $qtn->id_sk ?>" class="btn btn-primary"><i class="fas fa-print"></i> Print</a>
+                                          <?php } else { ?>
+                                            <a href="<?= base_url('D_superadmin/print_quotation/') . $qtn->id_sk ?>" class="btn btn-primary disabled" aria-disabled="true"><i class="fas fa-print"></i> Print</a>
+                                          <?php } ?>
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

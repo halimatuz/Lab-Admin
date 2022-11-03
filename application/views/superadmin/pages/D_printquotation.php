@@ -53,7 +53,7 @@ foreach($company as $c) {
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <img src="<?= base_url('assets/img/logo.png') ?>" alt="">
+          <img src="<?= base_url('assets/img/company_profile/') . $cmp->img_logo ?>" alt="" width="220">
         </div>
         <div class="col-md-3">
         </div>

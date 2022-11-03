@@ -45,6 +45,7 @@ foreach($total_quotation as $tq) {
               <?= $total_data_sampler ?>
             </div>
           </div>
+          <a href="<?= base_url('D_superadmin/data_sampler') ?>">View All</a>
         </div>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
@@ -60,6 +61,7 @@ foreach($total_quotation as $tq) {
                 <?= $total_data_institution ?>
             </div>
           </div>
+          <a href="<?= base_url('D_superadmin/data_institution') ?>">View All</a>
         </div>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
@@ -75,6 +77,7 @@ foreach($total_quotation as $tq) {
               <?= $total_coa ?>
             </div>
           </div>
+          <a href="<?= base_url('D_superadmin/data_coa') ?>">View All</a>
         </div>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
@@ -90,6 +93,7 @@ foreach($total_quotation as $tq) {
               <?= $total_data_quotation ?>
             </div>
           </div>
+          <a href="<?= base_url('D_superadmin/list_quotation') ?>">View All</a>
         </div>
       </div>
     </div>

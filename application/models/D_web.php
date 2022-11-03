@@ -16,6 +16,11 @@ class D_web extends CI_Model
 		);
 	}
 
+    function comp()
+	{
+        return $this->db->get('company_profile')->row();
+	}
+
     function insert_data($data, $table)
     {
         $this->db->insert($table, $data);

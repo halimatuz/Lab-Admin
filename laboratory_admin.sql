@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2022 at 03:26 PM
+-- Generation Time: Nov 03, 2022 at 04:25 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -69,6 +69,13 @@ CREATE TABLE `assign_sampler` (
   `id_sk` int(11) NOT NULL,
   `is_sampler` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `assign_sampler`
+--
+
+INSERT INTO `assign_sampler` (`id_assign`, `id_sampler`, `id_sk`, `is_sampler`) VALUES
+(25, 1, 20, 1);
 
 -- --------------------------------------------------------
 
@@ -270,15 +277,16 @@ CREATE TABLE `company_profile` (
   `bank` varchar(255) NOT NULL,
   `director` varchar(255) NOT NULL,
   `director_email` varchar(255) NOT NULL,
-  `director_signature` varchar(255) NOT NULL
+  `director_signature` varchar(255) NOT NULL,
+  `img_logo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `company_profile`
 --
 
-INSERT INTO `company_profile` (`id`, `name`, `address`, `phone`, `website`, `email`, `norek`, `behalf_account`, `bank`, `director`, `director_email`, `director_signature`) VALUES
-(1, 'PT. Delta Indonesia Laboratory', 'Ruko Prima Orchard No.C 2 Prima Harapan Regency Bekasi Utara, Kota Bekasi 17123, Provinsi Jawa Barat', ' 021 - 88382018', 'www.deltaindonesialab.com', 'marketing@deltaindonesialab.com', '156-00-1713846-4', 'PT. DELTA INDONESIA LABORATORY', 'MANDIRI KC HARAPAN BARU BEKASI UTARA', 'Drs. H. Soekardin Rachman, M.Si', 'azkazikna.aal@gmail.com', '');
+INSERT INTO `company_profile` (`id`, `name`, `address`, `phone`, `website`, `email`, `norek`, `behalf_account`, `bank`, `director`, `director_email`, `director_signature`, `img_logo`) VALUES
+(1, 'PT. Delta Indonesia Laboratory', 'Ruko Prima Orchard No.C 2 Prima Harapan Regency Bekasi Utara, Kota Bekasi 17123, Provinsi Jawa Barat', ' 021 - 88382018', 'www.deltaindonesialab.com', 'marketing@deltaindonesialab.com', '156-00-1713846-4', 'PT. DELTA INDONESIA LABORATORY', 'MANDIRI KC HARAPAN BARU BEKASI UTARA', 'Drs. H. Soekardin Rachman, M.Si', 'azkazikna.aal@gmail.com', '', 'logo2.png');
 
 -- --------------------------------------------------------
 
@@ -372,6 +380,18 @@ CREATE TABLE `quotation` (
   `add_price` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `quotation`
+--
+
+INSERT INTO `quotation` (`id_quotation`, `id_analysis`, `id_int`, `remarks`, `spec`, `qty`, `id_sk`, `add_price`) VALUES
+(71, 2, 3, '<p>asd</p>', '<p>asdas</p>', 1, 18, 0),
+(72, 14, 3, '<p>asdas</p>', '<p>dsa</p>', 1, 18, 0),
+(73, 2, 4, '<p>asd</p>', '<p>dsa</p>', 1, 19, 0),
+(74, 2, 3, '<p>sa</p>', '<p>dasdas</p>', 1, 20, 0),
+(75, 12, 3, '<p>dfg</p>', '<p>fdg</p>', 1, 20, 0),
+(76, 2, 3, '<p>fsd</p>', '<p>f</p>', 1, 21, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -384,6 +404,7 @@ CREATE TABLE `result_coa` (
   `id_coa` int(11) NOT NULL,
   `id_analysis` int(11) NOT NULL,
   `id_int` int(11) NOT NULL,
+  `revision` int(11) NOT NULL,
   `result` varchar(255) DEFAULT NULL,
   `vehicle_brand` varchar(255) DEFAULT NULL,
   `time` varchar(255) DEFAULT NULL,
@@ -400,6 +421,76 @@ CREATE TABLE `result_coa` (
   `lm` varchar(25) NOT NULL,
   `lsm` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `result_coa`
+--
+
+INSERT INTO `result_coa` (`id_result`, `id_sk`, `id_coa`, `id_analysis`, `id_int`, `revision`, `result`, `vehicle_brand`, `time`, `humidity`, `wet`, `dew`, `globe`, `wbgt_index`, `sampling_location`, `code`, `opacity`, `leq`, `ls`, `lm`, `lsm`) VALUES
+(367, 20, 152, 2, 3, 0, 'gfd', NULL, 'fdg', NULL, NULL, NULL, NULL, NULL, 'dfg', '', NULL, '', '', '', ''),
+(368, 20, 153, 2, 3, 0, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
+(369, 20, 154, 2, 3, 0, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
+(370, 20, 155, 2, 3, 0, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
+(371, 20, 156, 2, 3, 0, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
+(372, 20, 42, 12, 3, 0, 'sdf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(373, 20, 44, 12, 3, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(374, 20, 45, 12, 3, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(375, 20, 46, 12, 3, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(376, 20, 47, 12, 3, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(377, 20, 48, 12, 3, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(378, 20, 49, 12, 3, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(379, 20, 50, 12, 3, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(380, 20, 51, 12, 3, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(381, 20, 52, 12, 3, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(382, 20, 53, 12, 3, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(383, 20, 54, 12, 3, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(384, 20, 55, 12, 3, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(385, 20, 56, 12, 3, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(386, 20, 57, 12, 3, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(387, 20, 58, 12, 3, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(388, 20, 59, 12, 3, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(389, 20, 60, 12, 3, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(390, 20, 61, 12, 3, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(391, 20, 62, 12, 3, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(392, 20, 63, 12, 3, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(393, 20, 64, 12, 3, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(394, 21, 152, 2, 3, 0, 'dsa', NULL, 'sadsa', NULL, NULL, NULL, NULL, NULL, 'asd', '', NULL, '', '', '', ''),
+(395, 21, 153, 2, 3, 0, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
+(396, 21, 154, 2, 3, 0, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
+(397, 21, 155, 2, 3, 0, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
+(398, 21, 156, 2, 3, 0, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
+(439, 21, 152, 2, 3, 1, 'bvn', NULL, 'bvnbv', NULL, NULL, NULL, NULL, NULL, 'gvgv', '', NULL, '', '', '', ''),
+(440, 21, 153, 2, 3, 1, 'asdas', NULL, 'as', NULL, NULL, NULL, NULL, NULL, 'asdsa', '', NULL, '', '', '', ''),
+(441, 21, 154, 2, 3, 1, 'gf', NULL, 'fdg', NULL, NULL, NULL, NULL, NULL, 'fdg', '', NULL, '', '', '', ''),
+(442, 21, 155, 2, 3, 1, 'fdgfdgfd', NULL, 'gg', NULL, NULL, NULL, NULL, NULL, 'fd', '', NULL, '', '', '', ''),
+(443, 21, 156, 2, 3, 1, 'fsd', NULL, 'revgg', NULL, NULL, NULL, NULL, NULL, 'gdfg', '', NULL, '', '', '', ''),
+(444, 20, 152, 2, 3, 1, 'gfd', NULL, 'fdg', NULL, NULL, NULL, NULL, NULL, 'dfg', '', NULL, '', '', '', ''),
+(445, 20, 153, 2, 3, 1, 'fds', NULL, 'fsdfsd', NULL, NULL, NULL, NULL, NULL, 'sd', '', NULL, '', '', '', ''),
+(446, 20, 154, 2, 3, 1, 'fsdf', NULL, 'sdf', NULL, NULL, NULL, NULL, NULL, 'sdf', '', NULL, '', '', '', ''),
+(447, 20, 155, 2, 3, 1, 'fsd', NULL, 'fsddsf', NULL, NULL, NULL, NULL, NULL, 'sdfds', '', NULL, '', '', '', ''),
+(448, 20, 156, 2, 3, 1, 'dfs', NULL, 'fsd', NULL, NULL, NULL, NULL, NULL, 'dsfdsf', '', NULL, '', '', '', ''),
+(449, 20, 42, 12, 3, 1, 'sdf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(450, 20, 44, 12, 3, 1, 'sa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(451, 20, 45, 12, 3, 1, 'dsa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(452, 20, 46, 12, 3, 1, 'das', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(453, 20, 47, 12, 3, 1, 'dasd', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(454, 20, 48, 12, 3, 1, 'sad', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(455, 20, 49, 12, 3, 1, 'asdas', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(456, 20, 50, 12, 3, 1, 'dsa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(457, 20, 51, 12, 3, 1, 'asdasd', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(458, 20, 52, 12, 3, 1, 'sad', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(459, 20, 53, 12, 3, 1, 'dsad', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(460, 20, 54, 12, 3, 1, 'asdas', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(461, 20, 55, 12, 3, 1, 'sadsa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(462, 20, 56, 12, 3, 1, 'sdsa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(463, 20, 57, 12, 3, 1, 'das', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(464, 20, 58, 12, 3, 1, 'das', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(465, 20, 59, 12, 3, 1, 'das', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(466, 20, 60, 12, 3, 1, 'asdas', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(467, 20, 61, 12, 3, 1, 'dasd', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(468, 20, 62, 12, 3, 1, 'asdas', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(469, 20, 63, 12, 3, 1, 'das', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(470, 20, 64, 12, 3, 1, 'revisigg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -485,6 +576,15 @@ CREATE TABLE `sampling_det` (
   `description` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `sampling_det`
+--
+
+INSERT INTO `sampling_det` (`id_sampling`, `id_sk`, `id_quotation`, `id_analysis`, `sample_id`, `sample_desc`, `location`, `sample_type`, `deadline`, `description`) VALUES
+(51, 20, 74, 2, '20.01', 'Debu, SO2, NO2', '<p>j</p>', 'Cair', '2022-10-26', 'sedang dikerjakan'),
+(52, 21, 76, 2, '21.01', 'Debu, SO2, NO2, CO', '<p>asdas</p>', 'Cair', '2022-10-31', 'sedang dikerjakan'),
+(53, 20, 75, 12, '', 'Debu, SO2, NO2, NH3', '<p>gg</p>', NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -502,8 +602,39 @@ CREATE TABLE `sk_number` (
   `date_analysis` date DEFAULT NULL,
   `date_report` date DEFAULT NULL,
   `id_int` int(11) NOT NULL,
-  `status_po` tinyint(1) NOT NULL
+  `status_po` tinyint(1) NOT NULL,
+  `status_approve` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sk_number`
+--
+
+INSERT INTO `sk_number` (`id_sk`, `sk_quotation`, `sk_sample`, `sk_analysis`, `no_certificate`, `date_quotation`, `date_sample`, `date_analysis`, `date_report`, `id_int`, `status_po`, `status_approve`) VALUES
+(20, '1/2022/10/25/DIL/QTN', '20/2022/10/25/DIL/STPS', '20/2022/10/25/DIL/STP', 'DIL-20221025COA', '2022-10-25', '2022-10-25', '2022-10-25', '2022-10-25', 3, 1, 1),
+(21, '21/2022/10/25/DIL/QTN', '21/2022/10/30/DIL/STPS', '21/2022/10/30/DIL/STP', 'DIL-20221030COA', '2022-10-25', '2022-10-30', '2022-10-30', '2022-10-30', 3, 1, 0),
+(22, '22/2022/10/29/DIL/QTN', '', '', '', '2022-10-29', NULL, NULL, NULL, 3, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sk_number_rev`
+--
+
+CREATE TABLE `sk_number_rev` (
+  `id_rev` int(11) NOT NULL,
+  `id_sk` int(11) NOT NULL,
+  `no_certificate_rev` varchar(255) NOT NULL,
+  `revision` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sk_number_rev`
+--
+
+INSERT INTO `sk_number_rev` (`id_rev`, `id_sk`, `no_certificate_rev`, `revision`) VALUES
+(4, 21, 'DIL-20221030COA-REV1', 1),
+(5, 20, 'DIL-20221025COA-REV1', 1);
 
 -- --------------------------------------------------------
 
@@ -559,7 +690,8 @@ INSERT INTO `user` (`id_user`, `fullname`, `email`, `image`, `password`, `role`,
 (1, 'Azkazikna Ageung Laksana', 'azkazikna.aal@gmail.com', 'default.jpg', '$2y$10$q7dD4pXKRtUcIhOh6sCpdeMW10DpAsarhbTUihtS9ozYDOvbtC3Q2', 'superadmin', 1665406432),
 (5, 'Genius Marketer', 'marketing@gmail.com', 'default.jpg', '$2y$10$dXt/1/q1dCNOvsQsfqoZou506aoO26zr3eYcPqKqRRhi.e0MUO0b2', 'marketing', 1665792355),
 (6, 'Admin DIL', 'admin@gmail.com', 'default.jpg', '$2y$10$7IfR3vyaW1KKb1kihQefKuP.EmGs/sgXNt0RBY3HuNl7nIr6R/E46', 'admin', 1665792722),
-(7, 'Super Admin', 'superadmin@gmail.com', 'default.jpg', '$2y$10$hvf8g7spSoUlrNEhiV0WkelepntxOBgndSN5IVWhKEERnWpo1yrMy', 'superadmin', 1666408797);
+(7, 'Super Admin', 'superadmin@gmail.com', 'default.jpg', '$2y$10$hvf8g7spSoUlrNEhiV0WkelepntxOBgndSN5IVWhKEERnWpo1yrMy', 'superadmin', 1666408797),
+(8, 'Genius Analyst', 'analyst@gmail.com', 'default.jpg', '$2y$10$WQo5067OAeG7mkbhrKWZp.2pg4nrdUeqRrO75KyZxKCGbQQVUCtES', 'analyst', 1666698439);
 
 --
 -- Indexes for dumped tables
@@ -649,6 +781,12 @@ ALTER TABLE `sk_number`
   ADD KEY `id_int` (`id_int`);
 
 --
+-- Indexes for table `sk_number_rev`
+--
+ALTER TABLE `sk_number_rev`
+  ADD PRIMARY KEY (`id_rev`);
+
+--
 -- Indexes for table `unit`
 --
 ALTER TABLE `unit`
@@ -674,7 +812,7 @@ ALTER TABLE `analysis`
 -- AUTO_INCREMENT for table `assign_sampler`
 --
 ALTER TABLE `assign_sampler`
-  MODIFY `id_assign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_assign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `coa`
@@ -704,13 +842,13 @@ ALTER TABLE `method`
 -- AUTO_INCREMENT for table `quotation`
 --
 ALTER TABLE `quotation`
-  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `result_coa`
 --
 ALTER TABLE `result_coa`
-  MODIFY `id_result` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=357;
+  MODIFY `id_result` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=471;
 
 --
 -- AUTO_INCREMENT for table `sample`
@@ -728,13 +866,19 @@ ALTER TABLE `sampler`
 -- AUTO_INCREMENT for table `sampling_det`
 --
 ALTER TABLE `sampling_det`
-  MODIFY `id_sampling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id_sampling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `sk_number`
 --
 ALTER TABLE `sk_number`
-  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT for table `sk_number_rev`
+--
+ALTER TABLE `sk_number_rev`
+  MODIFY `id_rev` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `unit`
@@ -746,7 +890,7 @@ ALTER TABLE `unit`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
@@ -777,12 +921,6 @@ ALTER TABLE `quotation`
 --
 ALTER TABLE `sampling_det`
   ADD CONSTRAINT `sampling_det_ibfk_2` FOREIGN KEY (`id_sk`) REFERENCES `sk_number` (`id_sk`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `sk_number`
---
-ALTER TABLE `sk_number`
-  ADD CONSTRAINT `sk_number_ibfk_1` FOREIGN KEY (`id_int`) REFERENCES `institution` (`id_int`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
