@@ -17,6 +17,27 @@ foreach($specialSK as $sk) {
       <div class="row">
         <div class="col-12">
           <div class="card">
+            <div class="card-header">
+              <h4>Insert STPS Date</h4>
+            </div>
+            <div class="card-body">
+              <form action="<?= base_url('D_superadmin/add_stp_date') ?>" method="POST">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-9">
+                      <input type="hidden" name="id_sk" value="<?= $sk_number->id_sk ?>">
+                      <input type="date" name="date_analysis" class="form-control <?php if(form_error('date_analysis')) { echo "is-invalid"; } ?>" value="<?= $sk_number->date_analysis ?>">
+                      <?php echo form_error('date_analysis', '<span class="text-small text-danger">', '</span>') ?>
+                    </div>
+                    <div class="col-3">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="card">
             <div class="card-body">
                 <div class="row">
                     
@@ -61,7 +82,7 @@ foreach($specialSK as $sk) {
                                           <td><?= htmlspecialchars($row->sample_desc); ?></td>
                                           <input type="hidden" name="id_sampling[]" value="<?= $row->id_sampling ?>">
                                           <input type="hidden" name="id_sk" value="<?= $row->id_sk ?>">
-                                          <td><input type="text" name="sample_type[]" value="<?= $row->sample_type ?>" class="form-control"></td>
+                                          <td><?= $row->name_analysis ?></td>
                                           <td><input type="date" class="form-control" name="deadline[]" value="<?= $row->deadline ?>"></td>
                                           <td><input type="text" class="form-control" name="description[]" value="<?= $row->description ?>"></td>
                                       </tr>

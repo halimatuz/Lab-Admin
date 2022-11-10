@@ -61,7 +61,7 @@ foreach($total_quotation as $tq) {
                 <?= $total_data_institution ?>
             </div>
           </div>
-          <a href="<?= base_url('D_superadmin/data_institution') ?>">View All</a>
+          <a href="<?= base_url('D_superadmin/data_int') ?>">View All</a>
         </div>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">

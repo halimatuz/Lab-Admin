@@ -66,7 +66,7 @@ foreach($company as $c) {
             <tr>
               <td>Hari/tanggal</td>
               <td>:</td>
-              <td><?= date('dS F, Y', strtotime($smpl_det->date_sample)); ?></td>
+              <td><?= date('l, dS F, Y', strtotime($smpl_det->date_sample)); ?></td>
             </tr>
             <tr>
               <td>Nama Pelanggan&emsp;&emsp;</td>

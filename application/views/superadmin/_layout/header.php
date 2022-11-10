@@ -12,6 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <!-- Select 2 -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/select2/dist/css/select2.min.css">
   <!-- General CSS Files -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/custom.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/fontawesome/css/all.min.css">
 
@@ -57,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/owlcarousel2/dist/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/owlcarousel2/dist/assets/owl.theme.default.min.css">
     <?php
-  } elseif ($this->uri->segment(2) == "forms_advanced_form" || $this->uri->segment(2) == "add_stps" || $this->uri->segment(1) == "add_stp") {
+  } elseif ($this->uri->segment(2) == "forms_advanced_form" || $this->uri->segment(2) == "add_stps" || $this->uri->segment(2) == "add_test_request" || $this->uri->segment(2) == "add_stps_date" || $this->uri->segment(2) == "add_stp_date" ) {
     ?>
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">

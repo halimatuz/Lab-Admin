@@ -25,6 +25,12 @@
                                 <input type="text" class="form-control" name="name_analysis" value="<?= $sa->name_analysis ?>" autocomplete="off" placeholder="Insert name analysis...">
                                 <?php echo form_error('name_analysis', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
+                            
+                            <div class="form-group">
+                                <label>Alias Analysis</label>
+                                <input type="text" class="form-control" name="alias_analysis" value="<?= $sa->alias_analysis ?>" autocomplete="off" placeholder="Insert alias analysis...">
+                                <?php echo form_error('alias_analysis', '<div class="text-small text-danger">', '</div>') ?>
+                            </div>
 
                             <div class="form-group">
                                 <label>Standart Price</label>
@@ -56,6 +62,12 @@
                                 <label>Name Analysis</label>
                                 <input type="text" class="form-control <?php if(form_error('name_analysis')) { echo "is-invalid"; } ?>" name="name_analysis" value="<?= set_value('name_analysis')?>" autocomplete="off" placeholder="Insert name analysis...">
                                 <?php echo form_error('name_analysis', '<div class="text-small text-danger">', '</div>') ?>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Alias Analysis</label>
+                                <input type="text" class="form-control" name="alias_analysis" autocomplete="off" placeholder="Insert alias analysis...">
+                                <?php echo form_error('alias_analysis', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
 
                             <div class="form-group">
@@ -103,6 +115,7 @@
                                 <tr>
                                 <th>No</th>
                                 <th>Name Analysis</th>
+                                <th>Alias Analysis</th>
                                 <th>COA</th>
                                 <th>Action</th>
                                 </tr>
@@ -114,6 +127,7 @@
                                     <tr>
                                         <td><?= $no++; ?></td>
                                         <td><?= htmlspecialchars($anl->name_analysis); ?></td>
+                                        <td><?= htmlspecialchars($anl->alias_analysis); ?></td>
                                         <td>
                                         <?php if($anl->coa == 1) {
                                                 echo 'Yes';

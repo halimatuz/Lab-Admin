@@ -8327,6 +8327,7 @@ footer {
         <a href="<?= $cmp->website ?>" style="font-size: 10px; color: blue; text-decoration: underline;"><?= $cmp->website ?></a>
         </div>
         <span style="font-size: 10px; margin-left: 450px; display: inline-block;" class="page">&nbsp;<?= $count; ?></span>
+        <p class="text-center" style="font-size: 9px;">This result (s) relate only to the sample (s) tested and the test report/certificate shall not be reproduced except in full, without written approval of PT Delta Indonesia Laboratory</p>
     </footer>
 
     <div class="watermark">
@@ -8446,7 +8447,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -8542,7 +8543,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -8638,7 +8639,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -8761,7 +8762,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -8830,7 +8831,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -8899,7 +8900,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -8968,7 +8969,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -9041,7 +9042,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -9107,7 +9108,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -9182,7 +9183,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td><i>(See Table)</i></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -9273,7 +9274,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td><i>(See Table)</i></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -9333,7 +9334,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td><i>(See Table)</i></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -9444,7 +9445,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td><i>(See Table)</i></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -9504,7 +9505,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td><i>(See Table)</i></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -9566,7 +9567,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td><i>(See Table)</i></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td>(See Table)</td>
                 <td><?= $anl->date_sample ?></td>

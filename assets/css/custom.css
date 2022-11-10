@@ -6,3 +6,17 @@
  */
 
 /*# sourceMappingURL=custom.css.map */
+
+table.table-bordered-dark th,
+table.table-bordered-dark td {
+	border-color: black !important;
+	border-top: 0.5px solid black !important;
+}
+
+table.table-no-padding tr,
+table.table-no-padding td,
+table.table-no-padding th {
+	padding-top: 7px !important;
+	padding-bottom: 7px !important;
+	height: 20px !important;
+}

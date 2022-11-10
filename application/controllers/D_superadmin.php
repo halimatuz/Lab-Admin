@@ -87,11 +87,13 @@ class D_superadmin extends CI_Controller
                 $this->data_analysis();
             } else {
                 $name_analysis = $this->input->post('name_analysis');
+                $alias_analysis = $this->input->post('alias');
                 $standart_price = $this->input->post('standart_price');
                 $coa = $this->input->post('coa');
 
                 $data = array(
                     'name_analysis' => $name_analysis,
+                    'alias_analysis' => $alias_analysis,
                     'standart_price' => $standart_price,
                     'coa' => $coa,
                 );
@@ -106,6 +108,7 @@ class D_superadmin extends CI_Controller
     public function _rules_analysis()
     {
         $this->form_validation->set_rules('name_analysis', 'Name Analysis', 'required');
+        $this->form_validation->set_rules('alias_analysis', 'Alias Analysis', 'required');
         $this->form_validation->set_rules('standart_price', 'Standart Price', 'required');
         $this->form_validation->set_rules('coa', 'COA', 'required');
     }
@@ -147,11 +150,13 @@ class D_superadmin extends CI_Controller
         } else {
             $id = $this->input->post('id_analysis');
             $name_analysis = $this->input->post('name_analysis');
+            $alias_analysis = $this->input->post('alias_analysis');
             $standart_price = $this->input->post('standart_price');
             $coa = $this->input->post('coa');
 
         $data = array(
             'name_analysis' => $name_analysis,
+            'alias_analysis' => $alias_analysis,
             'standart_price' => $standart_price,
             'coa' => $coa,
         );
@@ -181,7 +186,7 @@ class D_superadmin extends CI_Controller
         $this->load->view('superadmin/_layout/sidebar');
         $this->load->view('superadmin/pages/D_datainstitution');
         $this->load->view('superadmin/_layout/footer');
-    }
+        }
     }
 
     public function add_int()
@@ -283,8 +288,6 @@ class D_superadmin extends CI_Controller
     public function _rules_int()
     {
         $this->form_validation->set_rules('name_int', 'Name Institution', 'required');
-        $this->form_validation->set_rules('int_phone', 'Phone Institution', 'required');
-        $this->form_validation->set_rules('int_email', 'Email instituion', 'required');
         $this->form_validation->set_rules('int_address', 'Address institution', 'required');
         $this->form_validation->set_rules('name_cp', 'Name Contact Person', 'required');
         $this->form_validation->set_rules('title_cp', 'Position Contact Person', 'required');
@@ -430,21 +433,21 @@ class D_superadmin extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
 			redirect('D_auth');
 		} else {
-        $this->_rules_sample();
-        if($this->form_validation->run() == FALSE) {
-            $this->data_sample();
-        } else {
-            $name_sample = $this->input->post('name_sample');
+            $this->_rules_sample();
+            if($this->form_validation->run() == FALSE) {
+                $this->data_sample();
+            } else {
+                $name_sample = $this->input->post('name_sample');
 
-            $data = array(
-                'name_sample' => $name_sample,
-            );
+                $data = array(
+                    'name_sample' => $name_sample,
+                );
 
-            $this->web->insert_data($data, 'sample');
-            $this->session->set_flashdata('msg', 'Data Sample success added.');
-            redirect('D_superadmin/data_sample');
+                $this->web->insert_data($data, 'sample');
+                $this->session->set_flashdata('msg', 'Data Sample success added.');
+                redirect('D_superadmin/data_sample');
+            }
         }
-    }
     }
 
     public function _rules_sample()
@@ -509,6 +512,111 @@ class D_superadmin extends CI_Controller
 		}
     }
 
+    public function data_regulation()
+    {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+            $data = array(
+                'company_pages' => $this->web->comp(),
+                'title' => 'Data Method',
+            );
+            $data['regulation'] = $this->web->get_data('regulation', 'id_regulation')->result();
+            $this->load->view('superadmin/_layout/header', $data);
+            $this->load->view('superadmin/_layout/sidebar');
+            $this->load->view('superadmin/pages/D_dataregulation');
+            $this->load->view('superadmin/_layout/footer');
+        }
+    }
+
+    public function add_regulation()
+    {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+            $this->_rules_regulation();
+            if($this->form_validation->run() == FALSE) {
+                $this->data_regulation();
+            } else {
+                $name_regulation = $this->input->post('name_regulation');
+
+                $data = array(
+                    'name_regulation' => $name_regulation,
+                );
+
+                $this->web->insert_data($data, 'regulation');
+                $this->session->set_flashdata('msg', 'Data regulation success added.');
+                redirect('D_superadmin/data_regulation');
+            }
+        }
+    }
+
+    public function _rules_regulation()
+    {
+        $this->form_validation->set_rules('name_regulation', 'Name Regulation', 'required');
+    }
+
+    public function update_regulation($id) {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+            $where = array('id_regulation' => $id);
+            $data = array(
+                'company_pages' => $this->web->comp(),
+                'title' => 'Data Regulation',
+            );
+            $data['regulation'] = $this->web->get_data('regulation', 'id_regulation')->result();
+            $data['specialregulation'] = $this->db->query("SELECT * FROM regulation WHERE id_regulation = '$id'")->result();
+            $this->load->view('superadmin/_layout/header', $data);
+            $this->load->view('superadmin/_layout/sidebar');
+            $this->load->view('superadmin/pages/D_dataregulation', $data);
+            $this->load->view('superadmin/_layout/footer');
+        }
+    }
+
+    public function update_regulation_action()
+    {
+		$id = $this->input->post('id_regulation');
+        $this->_rules_regulation();
+        if ($this->form_validation->run() == FALSE) {
+            $this->update_regulation($id);
+        } else {
+            $id = $this->input->post('id_regulation');
+            $name_regulation = $this->input->post('name_regulation');
+
+        $data = array(
+            'name_regulation' => $name_regulation
+        );
+
+        $where = array(
+            'id_regulation' => $id
+        );
+        $this->web->update_data('regulation', $data, $where);
+        $this->session->set_flashdata('msg', 'Data regulation success changed!');
+        redirect('D_superadmin/data_regulation');
+		}
+    }
+
+    public function delete_regulation($id)
+	{
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $where = array('id_regulation' => $id);
+		$this->web->delete_data($where, 'regulation');
+        $this->session->set_flashdata('msg', 'Data regulation success deleted.');
+		redirect('D_superadmin/data_regulation');
+        }
+	}
+
     public function data_method()
     {
         $sess = $this->session->userdata('id_superadmin');
@@ -516,16 +624,16 @@ class D_superadmin extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
 			redirect('D_auth');
 		} else {
-        $data = array(
+            $data = array(
                 'company_pages' => $this->web->comp(),
-            'title' => 'Data Method',
-        );
-        $data['method'] = $this->web->get_data('method', 'id_method')->result();
-        $this->load->view('superadmin/_layout/header', $data);
-        $this->load->view('superadmin/_layout/sidebar');
-        $this->load->view('superadmin/pages/D_datamethod');
-        $this->load->view('superadmin/_layout/footer');
-    }
+                'title' => 'Data Method',
+            );
+            $data['method'] = $this->web->get_data('method', 'id_method')->result();
+            $this->load->view('superadmin/_layout/header', $data);
+            $this->load->view('superadmin/_layout/sidebar');
+            $this->load->view('superadmin/pages/D_datamethod');
+            $this->load->view('superadmin/_layout/footer');
+        }
     }
 
     public function add_method()
@@ -535,21 +643,21 @@ class D_superadmin extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
 			redirect('D_auth');
 		} else {
-        $this->_rules_method();
-        if($this->form_validation->run() == FALSE) {
-            $this->data_method();
-        } else {
-            $name_method = $this->input->post('name_method');
+            $this->_rules_method();
+            if($this->form_validation->run() == FALSE) {
+                $this->data_method();
+            } else {
+                $name_method = $this->input->post('name_method');
 
-            $data = array(
-                'name_method' => $name_method,
-            );
+                $data = array(
+                    'name_method' => $name_method,
+                );
 
-            $this->web->insert_data($data, 'method');
-            $this->session->set_flashdata('msg', 'Data method success added.');
-            redirect('D_superadmin/data_method');
+                $this->web->insert_data($data, 'method');
+                $this->session->set_flashdata('msg', 'Data method success added.');
+                redirect('D_superadmin/data_method');
+            }
         }
-    }
     }
 
     public function _rules_method()
@@ -577,18 +685,18 @@ class D_superadmin extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
 			redirect('D_auth');
 		} else {
-        $where = array('id_method' => $id);
-        $data = array(
-                'company_pages' => $this->web->comp(),
-            'title' => 'Data method',
-        );
-        $data['method'] = $this->web->get_data('method', 'id_method')->result();
-        $data['specialmethod'] = $this->db->query("SELECT * FROM method WHERE id_method = '$id'")->result();
-        $this->load->view('superadmin/_layout/header', $data);
-        $this->load->view('superadmin/_layout/sidebar');
-        $this->load->view('superadmin/pages/D_datamethod', $data);
-        $this->load->view('superadmin/_layout/footer');
-    }
+            $where = array('id_method' => $id);
+            $data = array(
+                    'company_pages' => $this->web->comp(),
+                'title' => 'Data method',
+            );
+            $data['method'] = $this->web->get_data('method', 'id_method')->result();
+            $data['specialmethod'] = $this->db->query("SELECT * FROM method WHERE id_method = '$id'")->result();
+            $this->load->view('superadmin/_layout/header', $data);
+            $this->load->view('superadmin/_layout/sidebar');
+            $this->load->view('superadmin/pages/D_datamethod', $data);
+            $this->load->view('superadmin/_layout/footer');
+        }
     }
 
     public function update_method_action()
@@ -621,16 +729,16 @@ class D_superadmin extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
 			redirect('D_auth');
 		} else {
-        $data = array(
-                'company_pages' => $this->web->comp(),
-            'title' => 'Data Unit',
-        );
-        $data['unit'] = $this->web->get_data('unit', 'id_unit')->result();
-        $this->load->view('superadmin/_layout/header', $data);
-        $this->load->view('superadmin/_layout/sidebar');
-        $this->load->view('superadmin/pages/D_dataunit');
-        $this->load->view('superadmin/_layout/footer');
-    }
+            $data = array(
+                    'company_pages' => $this->web->comp(),
+                'title' => 'Data Unit',
+            );
+            $data['unit'] = $this->web->get_data('unit', 'id_unit')->result();
+            $this->load->view('superadmin/_layout/header', $data);
+            $this->load->view('superadmin/_layout/sidebar');
+            $this->load->view('superadmin/pages/D_dataunit');
+            $this->load->view('superadmin/_layout/footer');
+        }
     }
 
     public function add_unit()
@@ -954,6 +1062,7 @@ class D_superadmin extends CI_Controller
                 'id_int' => $id_int,
                 'date_quotation' => $today,
             );
+
             $this->web->insert_data($data_sk, 'sk_number');
             $this->session->set_flashdata('msg', 'SK Quotation success generated.');
             redirect('D_superadmin/data_quotation');
@@ -1184,14 +1293,14 @@ class D_superadmin extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
 			redirect('D_auth');
 		} else {
-        $data = array(
-            'company_pages' => $this->web->comp(),
-            'title' => 'Print Quotation',
-        );
-        $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
-        $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk INNER JOIN institution ON quotation.id_int = institution.id_int INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis WHERE quotation.id_sk = $id")->result();
-        $this->load->view('superadmin/pages/D_printquotation', $data);
-    }
+            $data = array(
+                'company_pages' => $this->web->comp(),
+                'title' => 'Print Quotation',
+            );
+            $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
+            $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk INNER JOIN institution ON quotation.id_int = institution.id_int INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis WHERE quotation.id_sk = $id")->result();
+            $this->load->view('superadmin/pages/D_printquotation', $data);
+        }
     }
     
     public function data_stps_index()
@@ -1201,16 +1310,35 @@ class D_superadmin extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
 			redirect('D_auth');
 		} else {
-        $data = array(
+            $data = array(
                 'company_pages' => $this->web->comp(),
-            'title' => 'Data Quotation',
-        );
-        $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE status_po = 1 ORDER BY id_sk DESC")->result();
-        $this->load->view('superadmin/_layout/header', $data);
-        $this->load->view('superadmin/_layout/sidebar');
-        $this->load->view('superadmin/pages/D_listquotation', $data);
-        $this->load->view('superadmin/_layout/footer');
+                'title' => 'Data Quotation',
+            );
+            $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE status_po = 1 ORDER BY id_sk DESC")->result();
+            $this->load->view('superadmin/_layout/header', $data);
+            $this->load->view('superadmin/_layout/sidebar');
+            $this->load->view('superadmin/pages/D_listquotation', $data);
+            $this->load->view('superadmin/_layout/footer');
+        }
     }
+    
+    public function data_test_request()
+    {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+            $data = array(
+                'company_pages' => $this->web->comp(),
+                'title' => 'Data Quotation',
+            );
+            $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE status_po = 1 ORDER BY id_sk DESC")->result();
+            $this->load->view('superadmin/_layout/header', $data);
+            $this->load->view('superadmin/_layout/sidebar');
+            $this->load->view('superadmin/pages/D_listquotation', $data);
+            $this->load->view('superadmin/_layout/footer');
+        }
     }
 
     public function add_stps($id)
@@ -1232,7 +1360,35 @@ class D_superadmin extends CI_Controller
         $this->load->view('superadmin/_layout/sidebar');
         $this->load->view('superadmin/pages/D_addstps', $data);
         $this->load->view('superadmin/_layout/footer');
+        }
     }
+
+    public function _rules_stps_date()
+    {
+        $this->form_validation->set_rules('date_sample', 'STPS Date', 'required');
+    }
+
+    public function add_stps_date()
+    {
+        $id = $this->input->post('id_sk');
+        $this->_rules_stps_date();
+        if($this->form_validation->run() == FALSE) {
+            $this->add_stps($id);
+        } else {
+            $date_sample = $this->input->post('date_sample');
+
+            $data_stps = array(
+                'date_sample' => $date_sample
+            );
+
+            $where = array(
+                'id_sk' => $id
+            );
+            
+            $this->web->update_data('sk_number', $data_stps, $where);
+            $this->session->set_flashdata('msg', 'STPS Date updated.');
+            redirect('D_superadmin/add_stps/' . $id);
+        }
     }
 
     public function add_stps_action()
@@ -1271,7 +1427,7 @@ class D_superadmin extends CI_Controller
 
             $data['sk_number'] = $this->db->query("SELECT * FROM sk_number WHERE id_sk = $id")->row();
             
-            if($data['sk_number']->date_sample == NULL) {
+            if($data['sk_number']->sk_sample == NULL && $data['sk_number']->date_sample == NULL) {
                 $data_stps = array(
                     'sk_sample' => $sk_sample,
                     'date_sample' => $today
@@ -1282,6 +1438,18 @@ class D_superadmin extends CI_Controller
                 );
                 $this->web->update_data('sk_number', $data_stps, $where);
             }
+            
+            if($data['sk_number']->sk_sample == NULL) {
+                $data_stps = array(
+                    'sk_sample' => $sk_sample,
+                );
+
+                $where = array(
+                    'id_sk' => $id
+                );
+                $this->web->update_data('sk_number', $data_stps, $where);
+            }
+
             $this->web->insert_data($data_sampling, 'sampling_det');
             $this->session->set_flashdata('msg', 'Data Sampling success added.');
             redirect('D_superadmin/add_stps/' . $id);
@@ -1475,6 +1643,34 @@ class D_superadmin extends CI_Controller
     }
     }
 
+    public function _rules_stp_date()
+    {
+        $this->form_validation->set_rules('date_analysis', 'STP Date', 'required');
+    }
+
+    public function add_stp_date()
+    {
+        $id = $this->input->post('id_sk');
+        $this->_rules_stp_date();
+        if($this->form_validation->run() == FALSE) {
+            $this->add_stp($id);
+        } else {
+            $date_analysis = $this->input->post('date_analysis');
+
+            $data_stp = array(
+                'date_analysis' => $date_analysis
+            );
+
+            $where = array(
+                'id_sk' => $id
+            );
+            
+            $this->web->update_data('sk_number', $data_stp, $where);
+            $this->session->set_flashdata('msg', 'STP Date updated.');
+            redirect('D_superadmin/add_stp/' . $id);
+        }
+    }
+
     public function add_stp($id)
     {
         $sess = $this->session->userdata('id_superadmin');
@@ -1487,7 +1683,7 @@ class D_superadmin extends CI_Controller
             'title' => 'Add STP',
         );
         $data['specialSK'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE id_sk = '$id'")->result();
-        $data['sampling_det'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE sk_number.id_sk = $id")->result();
+        $data['sampling_det'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN analysis ON sampling_det.id_analysis = analysis.id_analysis INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE sk_number.id_sk = $id")->result();
         $this->load->view('superadmin/_layout/header', $data);
         $this->load->view('superadmin/_layout/sidebar');
         $this->load->view('superadmin/pages/D_addstp', $data);
@@ -1507,7 +1703,7 @@ class D_superadmin extends CI_Controller
             'title' => 'Add STP',
         );
         $data['specialSK'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE id_sk = '$id_sk'")->result();
-        $data['sampling_det'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE sk_number.id_sk = $id_sk")->result();
+        $data['sampling_det'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN analysis ON sampling_det.id_analysis = analysis.id_analysis INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE sk_number.id_sk = $id_sk")->result();
         $data['special_assign'] = $this->db->query("SELECT * FROM sampling_det WHERE id_sampling = $id")->result();
         $this->load->view('superadmin/_layout/header', $data);
         $this->load->view('superadmin/_layout/sidebar');
@@ -1537,10 +1733,22 @@ class D_superadmin extends CI_Controller
 
         $data['sk_number'] = $this->db->query("SELECT * FROM sk_number WHERE id_sk = $id_sk")->row();
 
-        if($data['sk_number']->date_analysis == NULL) {
+        if($data['sk_number']->sk_analysis == NULL && $data['sk_number']->date_analysis == NULL) {
             $data_stp = array(
                 'sk_analysis' => $sk_analysis,
                 'date_analysis' => $today
+            );
+            
+            $where_sk = array(
+                'id_sk' => $id_sk
+            );
+
+            $this->web->update_data('sk_number', $data_stp, $where_sk);
+        }
+
+        if($data['sk_number']->sk_analysis == NULL) {
+            $data_stp = array(
+                'sk_analysis' => $sk_analysis,
             );
             
             $where_sk = array(
@@ -1581,7 +1789,7 @@ class D_superadmin extends CI_Controller
             'title' => 'Print STP',
         );
         $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
-        $data['sampling_det'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE sk_number.id_sk = $id")->result();
+        $data['sampling_det'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN analysis ON sampling_det.id_analysis = analysis.id_analysis INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE sk_number.id_sk = $id")->result();
         $data['sampler'] = $this->db->query("SELECT * FROM assign_sampler INNER JOIN sampler ON assign_sampler.id_sampler = sampler.id_sampler INNER JOIN sk_number ON assign_sampler.id_sk = sk_number.id_sk WHERE sk_number.id_sk = $id AND assign_sampler.is_sampler = 0")->result();
         $this->load->view('superadmin/pages/D_printstp', $data);
     }
@@ -3216,17 +3424,17 @@ class D_superadmin extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
 			redirect('D_auth');
 		} else {
-        $data = array(
-            'company_pages' => $this->web->comp(),
-            'title' => "Settings Company Profile"
-        );
-        $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
+            $data = array(
+                'company_pages' => $this->web->comp(),
+                'title' => "Settings Company Profile"
+            );
+            $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
 
-        $this->load->view('superadmin/_layout/header', $data);
-        $this->load->view('superadmin/_layout/sidebar');
-        $this->load->view('superadmin/pages/D_settingscompany');
-        $this->load->view('superadmin/_layout/footer');
-    }
+            $this->load->view('superadmin/_layout/header', $data);
+            $this->load->view('superadmin/_layout/sidebar');
+            $this->load->view('superadmin/pages/D_settingscompany');
+            $this->load->view('superadmin/_layout/footer');
+        }
     }
 
     public function update_company_profile_action() {
@@ -3251,12 +3459,16 @@ class D_superadmin extends CI_Controller
             $this->update_company_profile();
         } else {
             $img_logo = $_FILES['img_logo']['name'];
+
+            $images_old = $this->db->query("SELECT * FROM company_profile")->result();
             
-            if ($img_logo = '') {
-                
+            if ($img_logo == NULL) {
+                foreach($images_old as $old) {
+                    $img_logo = $old->img_logo;
+                }
             } else {
 				$config['upload_path'] = FCPATH . "assets/img/company_profile/";
-				$config['allowed_types'] = 'jpg|jpeg|png|tiff';
+				$config['allowed_types'] = 'jpg|jpeg|png|tiff|webp';
 				$this->load->library('upload', $config);
 				$this->upload->initialize($config);
 
@@ -3298,16 +3510,16 @@ class D_superadmin extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
 			redirect('D_auth');
 		} else {
-        $data = array(
+            $data = array(
                 'company_pages' => $this->web->comp(),
-            'title' => "Profile"
-        );
-        $data['user'] = $this->db->query("SELECT * FROM user WHERE email = '$sess'")->result();
-        $this->load->view('superadmin/_layout/header', $data);
-        $this->load->view('superadmin/_layout/sidebar');
-        $this->load->view('superadmin/pages/D_profile');
-        $this->load->view('superadmin/_layout/footer');
-    }
+                'title' => "Profile"
+            );
+            $data['user'] = $this->db->query("SELECT * FROM user WHERE email = '$sess'")->result();
+            $this->load->view('superadmin/_layout/header', $data);
+            $this->load->view('superadmin/_layout/sidebar');
+            $this->load->view('superadmin/pages/D_profile');
+            $this->load->view('superadmin/_layout/footer');
+        }
     }
 
     public function verifikasi($aksi = '', $id_sk = '')
@@ -3339,5 +3551,330 @@ class D_superadmin extends CI_Controller
 		}
     }
 
+    public function add_test_request($id_sk)
+    {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+            $data = array(
+                'company_pages' => $this->web->comp(),
+                'title' => 'Add Test Request',
+            );
+            $data['institution'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE sk_number.id_sk = $id_sk")->result();
+            $data['regulation'] = $this->db->query("SELECT * FROM regulation")->result();
+            $data['sample'] = $this->db->query("SELECT * FROM sample")->result();
+            $data['test_req_details'] = $this->db->query("SELECT * FROM test_request_det INNER JOIN regulation ON test_request_det.regulation = regulation.id_regulation  WHERE id_sk = $id_sk")->result();
+            $data['test_req'] = $this->db->query("SELECT * FROM test_request WHERE id_sk = $id_sk")->result();
+            $this->load->view('superadmin/_layout/header', $data);
+            $this->load->view('superadmin/_layout/sidebar');
+            $this->load->view('superadmin/pages/D_addtestrequest');
+            $this->load->view('superadmin/_layout/footer');
+        }
+    }
+
+    public function add_test_request_detail_action() {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+            $id_sk = $this->input->post('id_sk');
+            $params_arr = $this->input->post('params');
+            $regulation = $this->input->post('regulation');
+            $total_example = $this->input->post('total_example');
+
+            $params_desc = implode(", ", $params_arr);
+
+            $data = array(
+                'id_sk' => $id_sk,
+                'params' => $params_desc,
+                'regulation' => $regulation,
+                'total_example' => $total_example,
+            );
+
+            $this->web->insert_data($data, 'test_request_det');
+            $this->session->set_flashdata('msg', 'Test Request Details success added.');
+            redirect('D_superadmin/add_test_request/' . $id_sk);
+        }
+    }
+
+    public function delete_test_request_detail($id, $id_sk)
+	{
+        $where = array('id_request_det' => $id);
+		$this->web->delete_data($where, 'test_request_det');
+        $this->session->set_flashdata('msg', 'Data Test Request Detail success deleted.');
+		redirect('D_superadmin/add_test_request/' . $id_sk);
+	}
+
+    public function save_test_request() {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $id_sk = $this->input->post('id_sk');
+        $sample_arr = $this->input->post('sample_type');
+        $entry_date = $this->input->post('entry_date');
+        $work_package = $this->input->post('work_package');
+        $amount = $this->input->post('amount');
+        $amount_desc = $this->input->post('amount_desc');
+        $condition = $this->input->post('condition');
+        $condition_desc = $this->input->post('condition_desc');
+        $receptacle = $this->input->post('receptacle');
+        $receptacle_desc = $this->input->post('receptacle_desc');
+        $note_sample = $this->input->post('note_sample');
+        $sample_receiver = $this->input->post('sample_receiver');
+        $hr_capabilities = $this->input->post('hr_capabilities');
+        $method_suitability = $this->input->post('method_suitability');
+        $equipment_capability = $this->input->post('equipment_capability');
+        $conclusion = $this->input->post('conclusion');
+        $max_time = $this->input->post('max_time');
+        $note_request = $this->input->post('note_request');
+        $technical_respon = $this->input->post('technical_respon');
+
+        $cek_sample_type = $this->db->query("SELECT * FROM test_request WHERE id_sk = $id_sk")->row();
+
+        if ($cek_sample_type->sample_type == NULL) {
+            $sample_type = implode(", ",$sample_arr);
+        } else {
+            $sample_type = $sample_arr;
+        }
+
+        $query_check = $this->db->query("SELECT * FROM test_request WHERE id_sk = $id_sk")->result();
+
+        if($query_check == NULL) {
+            $data = array(
+                'id_sk' => @$id_sk,
+                'sample_type' => @$sample_type,
+                'entry_date' => @$entry_date,
+                'work_package' => @$work_package,
+                'amount' => @$amount,
+                'amount_desc' => @$amount_desc,
+                'condition' => @$condition,
+                'condition_desc' => @$condition_desc,
+                'receptacle' => @$receptacle,
+                'receptacle_desc' => @$receptacle_desc,
+                'note_sample' => @$note_sample,
+                'sample_receiver' => @$sample_receiver,
+                'hr_capabilities' => @$hr_capabilities,
+                'method_suitability' => @$method_suitability,
+                'equipment_capability' => @$equipment_capability,
+                'conclusion' => @$conclusion,
+                'max_time' => @$max_time,
+                'note_request' => @$note_request,
+                'technical_respon' => @$technical_respon,
+            );
     
+            $this->web->insert_data($data, 'test_request');
+    
+            $this->session->set_flashdata('msg', 'Update Test Request success!');
+            redirect('D_superadmin/add_test_request/' . $id_sk);
+        } else {
+            $data = array(
+                'sample_type' => @$sample_type,
+                'entry_date' => @$entry_date,
+                'work_package' => @$work_package,
+                'amount' => @$amount,
+                'amount_desc' => @$amount_desc,
+                'condition' => @$condition,
+                'condition_desc' => @$condition_desc,
+                'receptacle' => @$receptacle,
+                'receptacle_desc' => @$receptacle_desc,
+                'note_sample' => @$note_sample,
+                'sample_receiver' => @$sample_receiver,
+                'hr_capabilities' => @$hr_capabilities,
+                'method_suitability' => @$method_suitability,
+                'equipment_capability' => @$equipment_capability,
+                'conclusion' => @$conclusion,
+                'max_time' => @$max_time,
+                'note_request' => @$note_request,
+                'technical_respon' => @$technical_respon,
+            );
+
+
+            $where = array(
+                'id_sk' => $id_sk
+            );
+
+            $this->web->update_data('test_request', $data, $where);
+
+            $this->session->set_flashdata('msg', 'Update Test Request success!');
+            redirect('D_superadmin/add_test_request/' . $id_sk);
+            }
+        }
+    }
+
+    public function delete_sample_type_request($id_sk) {
+        $data = array(
+            'sample_type' => NULL,
+        );
+
+        $where = array(
+            'id_sk' => $id_sk
+        );
+
+        $this->web->update_data('test_request', $data, $where);
+        $this->session->set_flashdata('msg', 'Delete sample type success.');
+		redirect('D_superadmin/add_test_request/' . $id_sk);
+    }
+
+    public function print_test_request($id_sk) {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+            $data = array(
+                'company_pages' => $this->web->comp(),
+                'title' => 'Print Test Request',
+            );
+            $data['institution'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE sk_number.id_sk = $id_sk")->result();
+            $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
+            $data['test_req_details'] = $this->db->query("SELECT * FROM test_request_det INNER JOIN regulation ON test_request_det.regulation = regulation.id_regulation  WHERE id_sk = $id_sk")->result();
+            $data['test_req'] = $this->db->query("SELECT * FROM test_request WHERE id_sk = $id_sk")->result();
+            $this->load->view('superadmin/pages/D_printtestrequest', $data);
+        }
+    }
+
+    public function data_baps()
+    {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+            $data = array(
+                'company_pages' => $this->web->comp(),
+                'title' => 'Data Quotation',
+            );
+            $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE status_po = 1 ORDER BY id_sk DESC")->result();
+            $this->load->view('superadmin/_layout/header', $data);
+            $this->load->view('superadmin/_layout/sidebar');
+            $this->load->view('superadmin/pages/D_listquotation', $data);
+            $this->load->view('superadmin/_layout/footer');
+        }
+    }
+
+    public function add_baps($id_sk)
+    {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+            $data = array(
+                'company_pages' => $this->web->comp(),
+                'title' => 'Add BAPS',
+            );
+
+            $data['institution'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE sk_number.id_sk = $id_sk")->result();
+            $data['regulation'] = $this->db->query("SELECT * FROM regulation")->result();
+            $data['sampling_det'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk INNER JOIN institution ON sk_number.id_int = institution.id_int INNER JOIN analysis ON analysis.id_analysis = sampling_det.id_analysis WHERE sk_number.id_sk = $id_sk ORDER BY id_sampling DESC")->result();
+            $data['bpas'] = $this->db->query("SELECT * FROM baps WHERE id_sk = $id_sk")->result();
+            $this->load->view('superadmin/_layout/header', $data);
+            $this->load->view('superadmin/_layout/sidebar');
+            $this->load->view('superadmin/pages/D_addbaps');
+            $this->load->view('superadmin/_layout/footer');
+        }
+    }
+
+    public function save_baps() {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        //BAPS
+        $id_sk = $this->input->post('id_sk');
+        $air_ambient = $this->input->post('air_ambient');
+        $chimney_emission = $this->input->post('chimney_emission');
+        $lightning = $this->input->post('lightning');
+        $heat_stress = $this->input->post('heat_stress');
+        $workspace_air = $this->input->post('workspace_air');
+        $smell = $this->input->post('smell');
+        $noise = $this->input->post('noise');
+        $wastewater = $this->input->post('wastewater');
+        
+        //sampling_det
+        $id_sampling = $this->input->post('id_sampling');
+        $id_regulation = $this->input->post('id_regulation');
+        $measurement_time = $this->input->post('measurement_time');
+
+        $query_check = $this->db->query("SELECT * FROM baps WHERE id_sk = $id_sk")->result();
+
+        if($query_check == NULL) {
+
+            $data_baps = array(
+                'id_sk' => $id_sk,
+                'air_ambient' => $air_ambient,
+                'chimney_emission' => $chimney_emission,
+                'lightning' => $lightning,
+                'heat_stress' => $heat_stress,
+                'workspace_air' => $workspace_air,
+                'smell' => $smell,
+                'noise' => $noise,
+                'wastewater' => $wastewater,
+            );
+
+            $this->web->insert_data($data_baps, 'baps');
+        } else {
+
+            $data_baps = array(
+                'air_ambient' => $air_ambient,
+                'chimney_emission' => $chimney_emission,
+                'lightning' => $lightning,
+                'heat_stress' => $heat_stress,
+                'workspace_air' => $workspace_air,
+                'smell' => $smell,
+                'noise' => $noise,
+                'wastewater' => $wastewater,
+            );
+
+            $where = array(
+                'id_sk' => $id_sk
+            );
+
+            $this->web->update_data('baps', $data_baps, $where);
+        }
+
+
+        for($i=0; $i<sizeof($id_sampling); $i++) {
+
+            $data_sampling = array(
+                'id_regulation' => $id_regulation[$i],
+                'measurement_time' => $measurement_time[$i]
+            );
+            
+            $where = array(
+                'id_sampling' => $id_sampling[$i]
+            );
+
+            $this->web->update_data('sampling_det', $data_sampling, $where);
+        }
+
+        $this->session->set_flashdata('msg', 'Update BAPS success!');
+        redirect('D_superadmin/add_baps/' . $id_sk);
+        }
+    }
+
+    public function print_baps($id_sk) {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+            $data = array(
+                'company_pages' => $this->web->comp(),
+                'title' => 'Print BAPS',
+            );
+            $data['institution'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE sk_number.id_sk = $id_sk")->result();
+            $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
+            $data['sampling_det'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk INNER JOIN institution ON sk_number.id_int = institution.id_int INNER JOIN regulation ON regulation.id_regulation = sampling_det.id_regulation INNER JOIN analysis ON analysis.id_analysis = sampling_det.id_analysis WHERE sk_number.id_sk = $id_sk ORDER BY id_sampling DESC")->result();
+            $data['bpas'] = $this->db->query("SELECT * FROM baps WHERE id_sk = $id_sk")->result();
+            $this->load->view('superadmin/pages/D_printbaps', $data);
+        }
+    }
+
 }

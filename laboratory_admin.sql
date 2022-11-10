@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2022 at 04:25 PM
+-- Generation Time: Nov 10, 2022 at 03:52 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -30,32 +30,32 @@ SET time_zone = "+00:00";
 CREATE TABLE `analysis` (
   `id_analysis` int(11) NOT NULL,
   `name_analysis` varchar(255) NOT NULL,
+  `alias_analysis` varchar(255) NOT NULL,
   `standart_price` int(11) NOT NULL,
-  `coa` tinyint(1) NOT NULL,
-  `template` int(11) DEFAULT NULL
+  `coa` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `analysis`
 --
 
-INSERT INTO `analysis` (`id_analysis`, `name_analysis`, `standart_price`, `coa`, `template`) VALUES
-(2, 'Illumination', 1500000, 1, NULL),
-(3, 'Odor', 2000000, 1, NULL),
-(4, 'Heat Stress', 1000000, 1, NULL),
-(5, 'Vibration', 1300000, 1, NULL),
-(6, 'Wastewater', 2300000, 1, NULL),
-(7, 'Non-Stationary Source Emission', 2500000, 1, NULL),
-(8, 'Stationary Stack Source Emission', 800000, 1, NULL),
-(9, 'Noise', 500000, 1, NULL),
-(10, 'Workplace Air Quality', 4500000, 1, NULL),
-(11, 'Ambient Air', 3200000, 1, NULL),
-(12, 'Surface Water', 300000, 1, NULL),
-(13, 'Clean Water', 450000, 1, NULL),
-(14, 'Transportation', 200000, 0, NULL),
-(15, 'Air Emission (Non-Isocinetic)', 100000, 1, NULL),
-(16, 'Air Emission', 250000, 1, NULL),
-(19, '24 HOURS NOISE', 100000, 1, NULL);
+INSERT INTO `analysis` (`id_analysis`, `name_analysis`, `alias_analysis`, `standart_price`, `coa`) VALUES
+(2, 'Illumination', 'Illumination', 1500000, 1),
+(3, 'Odor', 'Odor', 2000000, 1),
+(4, 'Heat Stress', 'Heat Stress', 1000000, 1),
+(5, 'Vibration', 'Vibration', 1300000, 1),
+(6, 'Wastewater', 'Wastewater', 2300000, 1),
+(7, 'Non-Stationary Source Emission', 'Non-Stationary Source Emission', 2500000, 1),
+(8, 'Stationary Stack Source Emission', 'Stationary Stack Source Emission (Isokinetic)', 800000, 1),
+(9, 'Noise', 'Noise (Workplace)', 500000, 1),
+(10, 'Workplace Air Quality', 'Workplace Air Quality', 4500000, 1),
+(11, 'Ambient Air', 'Ambient Air (Non-24 Hours)', 3200000, 1),
+(12, 'Surface Water', 'Surface Water', 300000, 1),
+(13, 'Clean Water', 'Clean Water', 450000, 1),
+(14, 'Transportation', 'Transportation', 200000, 0),
+(15, 'Air Emission (Non-Isocinetic)', 'Air Emission (Non-Isocinetic)', 100000, 1),
+(16, 'Air Emission', 'Air Emission', 250000, 1),
+(19, '24 HOURS NOISE', 'Noise 24 Hours (Ambient)', 100000, 1);
 
 -- --------------------------------------------------------
 
@@ -76,6 +76,33 @@ CREATE TABLE `assign_sampler` (
 
 INSERT INTO `assign_sampler` (`id_assign`, `id_sampler`, `id_sk`, `is_sampler`) VALUES
 (25, 1, 20, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `baps`
+--
+
+CREATE TABLE `baps` (
+  `id_baps` int(11) NOT NULL,
+  `id_sk` int(11) NOT NULL,
+  `air_ambient` int(11) DEFAULT NULL,
+  `chimney_emission` int(11) DEFAULT NULL,
+  `lightning` int(11) DEFAULT NULL,
+  `heat_stress` int(11) DEFAULT NULL,
+  `workspace_air` int(11) DEFAULT NULL,
+  `smell` int(11) DEFAULT NULL,
+  `noise` int(11) DEFAULT NULL,
+  `wastewater` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `baps`
+--
+
+INSERT INTO `baps` (`id_baps`, `id_sk`, `air_ambient`, `chimney_emission`, `lightning`, `heat_stress`, `workspace_air`, `smell`, `noise`, `wastewater`) VALUES
+(2, 26, 1, 2, 3, 4, 5, 6, 7, 8),
+(3, 20, 1, 2, 3, 4, 5, 6, 7, 7);
 
 -- --------------------------------------------------------
 
@@ -286,7 +313,7 @@ CREATE TABLE `company_profile` (
 --
 
 INSERT INTO `company_profile` (`id`, `name`, `address`, `phone`, `website`, `email`, `norek`, `behalf_account`, `bank`, `director`, `director_email`, `director_signature`, `img_logo`) VALUES
-(1, 'PT. Delta Indonesia Laboratory', 'Ruko Prima Orchard No.C 2 Prima Harapan Regency Bekasi Utara, Kota Bekasi 17123, Provinsi Jawa Barat', ' 021 - 88382018', 'www.deltaindonesialab.com', 'marketing@deltaindonesialab.com', '156-00-1713846-4', 'PT. DELTA INDONESIA LABORATORY', 'MANDIRI KC HARAPAN BARU BEKASI UTARA', 'Drs. H. Soekardin Rachman, M.Si', 'azkazikna.aal@gmail.com', '', 'logo2.png');
+(1, 'PT. Delta Indonesia Laboratory', 'Ruko Prima Orchard No.C 2 Prima Harapan Regency Bekasi Utara, Kota Bekasi 17123, Provinsi Jawa Barat', ' 021 - 88382018', 'www.deltaindonesialab.com', 'marketing@deltaindonesialab.com', '156-00-1713846-4', 'PT. DELTA INDONESIA LABORATORY', 'MANDIRI KC HARAPAN BARU BEKASI UTARA', 'Drs. H. Soekardin Rachman, M.Si', 'azkazikna.aal@gmail.com', '', 'logo4.png');
 
 -- --------------------------------------------------------
 
@@ -390,7 +417,32 @@ INSERT INTO `quotation` (`id_quotation`, `id_analysis`, `id_int`, `remarks`, `sp
 (73, 2, 4, '<p>asd</p>', '<p>dsa</p>', 1, 19, 0),
 (74, 2, 3, '<p>sa</p>', '<p>dasdas</p>', 1, 20, 0),
 (75, 12, 3, '<p>dfg</p>', '<p>fdg</p>', 1, 20, 0),
-(76, 2, 3, '<p>fsd</p>', '<p>f</p>', 1, 21, 0);
+(76, 2, 3, '<p>fsd</p>', '<p>f</p>', 1, 21, 0),
+(77, 14, 6, '<p>sdf</p>', '<p>sdfsd</p>', 1, 26, 0),
+(78, 2, 6, '<p>asda</p>', '<p>sad</p>', 1, 26, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `regulation`
+--
+
+CREATE TABLE `regulation` (
+  `id_regulation` int(11) NOT NULL,
+  `name_regulation` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `regulation`
+--
+
+INSERT INTO `regulation` (`id_regulation`, `name_regulation`) VALUES
+(2, 'PPRI No. 22 2021 & Kepmen LH 48 1996'),
+(3, 'Permenaker No. 5 2018'),
+(4, 'Kepmen LH No. 50 1996'),
+(5, 'Kepmen LH No. 13 1995'),
+(6, 'Permen LH No. 07 2007'),
+(7, 'MM2100');
 
 -- --------------------------------------------------------
 
@@ -490,7 +542,12 @@ INSERT INTO `result_coa` (`id_result`, `id_sk`, `id_coa`, `id_analysis`, `id_int
 (467, 20, 61, 12, 3, 1, 'dasd', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
 (468, 20, 62, 12, 3, 1, 'asdas', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
 (469, 20, 63, 12, 3, 1, 'das', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
-(470, 20, 64, 12, 3, 1, 'revisigg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', '');
+(470, 20, 64, 12, 3, 1, 'revisigg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', '', ''),
+(471, 26, 152, 2, 6, 0, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
+(472, 26, 153, 2, 6, 0, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
+(473, 26, 154, 2, 6, 0, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
+(474, 26, 155, 2, 6, 0, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', ''),
+(475, 26, 156, 2, 6, 0, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -568,22 +625,25 @@ CREATE TABLE `sampling_det` (
   `id_sk` int(11) NOT NULL,
   `id_quotation` int(11) NOT NULL,
   `id_analysis` int(11) NOT NULL,
+  `id_regulation` int(11) DEFAULT NULL,
   `sample_id` varchar(10) NOT NULL,
   `sample_desc` varchar(255) NOT NULL,
   `location` text NOT NULL,
   `sample_type` varchar(255) DEFAULT NULL,
   `deadline` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL
+  `description` varchar(255) DEFAULT NULL,
+  `measurement_time` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `sampling_det`
 --
 
-INSERT INTO `sampling_det` (`id_sampling`, `id_sk`, `id_quotation`, `id_analysis`, `sample_id`, `sample_desc`, `location`, `sample_type`, `deadline`, `description`) VALUES
-(51, 20, 74, 2, '20.01', 'Debu, SO2, NO2', '<p>j</p>', 'Cair', '2022-10-26', 'sedang dikerjakan'),
-(52, 21, 76, 2, '21.01', 'Debu, SO2, NO2, CO', '<p>asdas</p>', 'Cair', '2022-10-31', 'sedang dikerjakan'),
-(53, 20, 75, 12, '', 'Debu, SO2, NO2, NH3', '<p>gg</p>', NULL, NULL, NULL);
+INSERT INTO `sampling_det` (`id_sampling`, `id_sk`, `id_quotation`, `id_analysis`, `id_regulation`, `sample_id`, `sample_desc`, `location`, `sample_type`, `deadline`, `description`, `measurement_time`) VALUES
+(51, 20, 74, 2, 7, '20.01', 'Debu, SO2, NO2', '<p>j</p>', 'Cair', '2022-10-26', 'sedang dikerjakan', '3'),
+(52, 21, 76, 2, NULL, '21.01', 'Debu, SO2, NO2, CO', '<p>asdas</p>', 'Cair', '2022-10-31', 'sedang dikerjakan', ''),
+(53, 20, 75, 12, 7, '', 'Debu, SO2, NO2, NH3', '<p>gg</p>', NULL, NULL, NULL, ''),
+(54, 26, 78, 2, 2, '26.01', 'Debu, SO2, NO2', '<p>sadas</p>', 'Cair', '2022-11-07', 'dsad', 'Sesaat');
 
 -- --------------------------------------------------------
 
@@ -596,6 +656,7 @@ CREATE TABLE `sk_number` (
   `sk_quotation` varchar(255) NOT NULL,
   `sk_sample` varchar(255) NOT NULL,
   `sk_analysis` varchar(255) NOT NULL,
+  `sk_baps` varchar(255) NOT NULL,
   `no_certificate` varchar(255) NOT NULL,
   `date_quotation` date NOT NULL,
   `date_sample` date DEFAULT NULL,
@@ -610,10 +671,11 @@ CREATE TABLE `sk_number` (
 -- Dumping data for table `sk_number`
 --
 
-INSERT INTO `sk_number` (`id_sk`, `sk_quotation`, `sk_sample`, `sk_analysis`, `no_certificate`, `date_quotation`, `date_sample`, `date_analysis`, `date_report`, `id_int`, `status_po`, `status_approve`) VALUES
-(20, '1/2022/10/25/DIL/QTN', '20/2022/10/25/DIL/STPS', '20/2022/10/25/DIL/STP', 'DIL-20221025COA', '2022-10-25', '2022-10-25', '2022-10-25', '2022-10-25', 3, 1, 1),
-(21, '21/2022/10/25/DIL/QTN', '21/2022/10/30/DIL/STPS', '21/2022/10/30/DIL/STP', 'DIL-20221030COA', '2022-10-25', '2022-10-30', '2022-10-30', '2022-10-30', 3, 1, 0),
-(22, '22/2022/10/29/DIL/QTN', '', '', '', '2022-10-29', NULL, NULL, NULL, 3, 0, 0);
+INSERT INTO `sk_number` (`id_sk`, `sk_quotation`, `sk_sample`, `sk_analysis`, `sk_baps`, `no_certificate`, `date_quotation`, `date_sample`, `date_analysis`, `date_report`, `id_int`, `status_po`, `status_approve`) VALUES
+(20, '1/2022/10/25/DIL/QTN', '20/2022/10/25/DIL/STPS', '20/2022/10/25/DIL/STP', '', 'DIL-20221025COA', '2022-10-25', '2022-10-25', '2022-10-25', '2022-10-25', 3, 1, 1),
+(21, '21/2022/10/25/DIL/QTN', '21/2022/10/30/DIL/STPS', '21/2022/10/30/DIL/STP', '', 'DIL-20221030COA', '2022-10-25', '2022-10-30', '2022-10-30', '2022-10-30', 3, 1, 0),
+(22, '22/2022/10/29/DIL/QTN', '', '', '', '', '2022-10-29', NULL, NULL, NULL, 3, 0, 0),
+(26, '23/2022/11/07/DIL/QTN', '26/2022/11/07/DIL/STPS', '26/2022/11/07/DIL/STP', '', 'DIL-20221107COA', '2022-11-07', '2022-11-04', '2022-11-04', '2022-11-07', 6, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -635,6 +697,68 @@ CREATE TABLE `sk_number_rev` (
 INSERT INTO `sk_number_rev` (`id_rev`, `id_sk`, `no_certificate_rev`, `revision`) VALUES
 (4, 21, 'DIL-20221030COA-REV1', 1),
 (5, 20, 'DIL-20221025COA-REV1', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `test_request`
+--
+
+CREATE TABLE `test_request` (
+  `id_test_request` int(11) NOT NULL,
+  `id_sk` int(11) NOT NULL,
+  `sample_type` varchar(255) DEFAULT NULL,
+  `entry_date` date DEFAULT NULL,
+  `work_package` varchar(255) NOT NULL,
+  `amount` int(1) DEFAULT NULL,
+  `amount_desc` varchar(255) NOT NULL,
+  `condition` int(1) DEFAULT NULL,
+  `condition_desc` varchar(255) NOT NULL,
+  `receptacle` int(1) DEFAULT NULL,
+  `receptacle_desc` varchar(255) NOT NULL,
+  `note_sample` varchar(255) NOT NULL,
+  `sample_receiver` varchar(255) NOT NULL,
+  `hr_capabilities` int(1) DEFAULT NULL,
+  `method_suitability` int(1) DEFAULT NULL,
+  `equipment_capability` int(1) DEFAULT NULL,
+  `conclusion` varchar(255) DEFAULT NULL,
+  `max_time` int(11) DEFAULT NULL,
+  `note_request` varchar(255) NOT NULL,
+  `technical_respon` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `test_request`
+--
+
+INSERT INTO `test_request` (`id_test_request`, `id_sk`, `sample_type`, `entry_date`, `work_package`, `amount`, `amount_desc`, `condition`, `condition_desc`, `receptacle`, `receptacle_desc`, `note_sample`, `sample_receiver`, `hr_capabilities`, `method_suitability`, `equipment_capability`, `conclusion`, `max_time`, `note_request`, `technical_respon`) VALUES
+(1, 26, 'NO2, CO, NH3', '2022-11-10', 'Sampling & Analisis Laboratorium dan Penyusunan & Pelaporan Dokumen', 1, 'desc', 1, 'desc2', 1, 'desc3', 'note', 'azkazikna', 1, 1, 1, '1', 2, 'note2', 'ageung laksana'),
+(2, 21, 'Debu, SO2, NO2, CO', '2022-11-17', 'Sampling & Analisis Laboratorium dan Penyusunan & Pelaporan Dokumen', 1, 'asdas', 1, 'dsad', 1, 'asdsa', 'asdasd', 'asdas', 1, 1, 1, '1', 3, 'adsdasd', 'ageung laksana'),
+(3, 20, NULL, '0000-00-00', '', NULL, '', NULL, '', NULL, '', '', '', NULL, NULL, NULL, NULL, 0, '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `test_request_det`
+--
+
+CREATE TABLE `test_request_det` (
+  `id_request_det` int(11) NOT NULL,
+  `id_sk` int(11) NOT NULL,
+  `params` varchar(255) NOT NULL,
+  `regulation` varchar(255) NOT NULL,
+  `total_example` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `test_request_det`
+--
+
+INSERT INTO `test_request_det` (`id_request_det`, `id_sk`, `params`, `regulation`, `total_example`) VALUES
+(4, 26, 'Debu, SO2, NO2', '2', 3),
+(5, 26, 'CO, NH3, H2S', '7', 2),
+(6, 26, 'Laju Alir, Pencahayaan, Air Limbah Produksi, Air Limbah Domestik', '6', 3),
+(7, 21, 'Debu, SO2, NO2, CO', '2', 2);
 
 -- --------------------------------------------------------
 
@@ -712,6 +836,12 @@ ALTER TABLE `assign_sampler`
   ADD KEY `id_sk` (`id_sk`);
 
 --
+-- Indexes for table `baps`
+--
+ALTER TABLE `baps`
+  ADD PRIMARY KEY (`id_baps`);
+
+--
 -- Indexes for table `coa`
 --
 ALTER TABLE `coa`
@@ -743,6 +873,12 @@ ALTER TABLE `quotation`
   ADD PRIMARY KEY (`id_quotation`),
   ADD KEY `id_int` (`id_int`),
   ADD KEY `id_analysis` (`id_analysis`);
+
+--
+-- Indexes for table `regulation`
+--
+ALTER TABLE `regulation`
+  ADD PRIMARY KEY (`id_regulation`);
 
 --
 -- Indexes for table `result_coa`
@@ -787,6 +923,18 @@ ALTER TABLE `sk_number_rev`
   ADD PRIMARY KEY (`id_rev`);
 
 --
+-- Indexes for table `test_request`
+--
+ALTER TABLE `test_request`
+  ADD PRIMARY KEY (`id_test_request`);
+
+--
+-- Indexes for table `test_request_det`
+--
+ALTER TABLE `test_request_det`
+  ADD PRIMARY KEY (`id_request_det`);
+
+--
 -- Indexes for table `unit`
 --
 ALTER TABLE `unit`
@@ -815,6 +963,12 @@ ALTER TABLE `assign_sampler`
   MODIFY `id_assign` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
+-- AUTO_INCREMENT for table `baps`
+--
+ALTER TABLE `baps`
+  MODIFY `id_baps` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `coa`
 --
 ALTER TABLE `coa`
@@ -830,7 +984,7 @@ ALTER TABLE `company_profile`
 -- AUTO_INCREMENT for table `institution`
 --
 ALTER TABLE `institution`
-  MODIFY `id_int` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_int` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `method`
@@ -842,13 +996,19 @@ ALTER TABLE `method`
 -- AUTO_INCREMENT for table `quotation`
 --
 ALTER TABLE `quotation`
-  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+
+--
+-- AUTO_INCREMENT for table `regulation`
+--
+ALTER TABLE `regulation`
+  MODIFY `id_regulation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `result_coa`
 --
 ALTER TABLE `result_coa`
-  MODIFY `id_result` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=471;
+  MODIFY `id_result` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=476;
 
 --
 -- AUTO_INCREMENT for table `sample`
@@ -866,19 +1026,31 @@ ALTER TABLE `sampler`
 -- AUTO_INCREMENT for table `sampling_det`
 --
 ALTER TABLE `sampling_det`
-  MODIFY `id_sampling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id_sampling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `sk_number`
 --
 ALTER TABLE `sk_number`
-  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `sk_number_rev`
 --
 ALTER TABLE `sk_number_rev`
   MODIFY `id_rev` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `test_request`
+--
+ALTER TABLE `test_request`
+  MODIFY `id_test_request` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `test_request_det`
+--
+ALTER TABLE `test_request_det`
+  MODIFY `id_request_det` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `unit`

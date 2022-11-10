@@ -27,22 +27,20 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Phone Institution</label>
+                                <label>Phone Institution <span class="text-small text-primary">*Optional</span></label>
                                 <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
                                     +62
                                     </div>
                                 </div>
-                                <input type="number" class="form-control <?php if(form_error('int_phone')) { echo "is-invalid"; } ?>" name="int_phone" value="<?= $si->int_phone ?>" autocomplete="off" placeholder="81345637463">
+                                <input type="number" class="form-control" name="int_phone" value="<?= $si->int_phone ?>" autocomplete="off" placeholder="81345637463">
                                 </div>
-                                <?php echo form_error('int_phone', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
 
                             <div class="form-group">
-                                <label>Email Institution</label>
+                                <label>Email Institution <span class="text-small text-primary">*Optional</span></label>
                                 <input type="email" class="form-control" name="int_email" value="<?= $si->int_email ?>" autocomplete="off" placeholder="Insert email institution...">
-                                <?php echo form_error('int_email', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
 
                             <div class="form-group">
@@ -78,22 +76,20 @@
                             </div>
                            
                             <div class="form-group">
-                                <label>Phone Institution</label>
+                                <label>Phone Institution <span class="text-small text-primary">*Optional</span></label>
                                 <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         +62
                                     </div>
                                 </div>
-                                <input type="number" class="form-control <?php if(form_error('int_phone')) { echo "is-invalid"; } ?>" name="int_phone" value="<?= set_value('int_phone')?>" autocomplete="off" placeholder="81345637463">
+                                <input type="number" class="form-control" name="int_phone" value="<?= set_value('int_phone')?>" autocomplete="off" placeholder="81345637463">
                                 </div>
-                                <?php echo form_error('int_phone', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
 
                             <div class="form-group">
-                                <label>Email Institution</label>
-                                <input type="email" class="form-control <?php if(form_error('int_email')) { echo "is-invalid"; } ?>" name="int_email" value="<?= set_value('int_email')?>" autocomplete="off" placeholder="Insert email institution...">
-                                <?php echo form_error('int_email', '<div class="text-small text-danger">', '</div>') ?>
+                                <label>Email Institution <span class="text-small text-primary">*Optional</span></label>
+                                <input type="email" class="form-control" name="int_email" value="<?= set_value('int_email')?>" autocomplete="off" placeholder="Insert email institution...">
                             </div>
 
                             <div class="form-group">

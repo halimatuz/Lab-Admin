@@ -17,6 +17,27 @@ foreach($specialSK as $sk) {
       <div class="row">
         <div class="col-12">
           <div class="card">
+            <div class="card-header">
+              <h4>Insert STPS Date</h4>
+            </div>
+            <div class="card-body">
+              <form action="<?= base_url('D_superadmin/add_stps_date') ?>" method="POST">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-9">
+                      <input type="hidden" name="id_sk" value="<?= $sk_number->id_sk ?>">
+                      <input type="date" name="date_sample" class="form-control <?php if(form_error('date_sample')) { echo "is-invalid"; } ?>" value="<?= $sk_number->date_sample ?>">
+                      <?php echo form_error('date_sample', '<span class="text-small text-danger">', '</span>') ?>
+                    </div>
+                    <div class="col-3">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="card">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-4">
