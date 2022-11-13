@@ -23,6 +23,11 @@ foreach($company as $c) {
 
     <title><?= $title ?></title>
     <style>
+      * {
+          -webkit-print-color-adjust: exact !important;   /* Chrome, Safari 6 – 15.3, Edge */
+          color-adjust: exact !important;                 /* Firefox 48 – 96 */
+      }
+      
       table.table-bordered {
           border:1px solid black!important;
       }
@@ -292,10 +297,19 @@ foreach($company as $c) {
         </table>
 
         <div class="row">
+          <div class="col-9"></div>
           <div class="col-3">
-            <p class="text-center">PJ Teknis</p>
+            <p class="text-center">..................................................................</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3 text-center position-relative">
+            <p>PJ Teknis</p>
             <br><br><br>
-            <p class="text-center">(.................................................................)</p>
+            <img src="<?= base_url('assets/img/company_profile/') . $cmp->tp_signature ?>" alt="" width="200" class="position-absolute" style="left: 50%; transform:translate(-50%, -50%); top:50%;">
+            <p style="margin-bottom: -10px;"><?= $cmp->technical_person ?></p>
+            <p>(.................................................................)</p>
           </div>
           <div class="col-6"></div>
           <div class="col-3">
@@ -304,13 +318,12 @@ foreach($company as $c) {
             <p class="text-center">(.................................................................)</p>
           </div>
         </div>
-        <br><br>
-        <p style="font-size: 14px;">Catatan:</p>
-        <div style="font-size: 14px;" class="ml-3">
-          - Apabila terdapat perubahan yang mengakibatkan pengujian tidak dapat dilakukan atau disubkontrakkan, maka akan ada pemberitahuan dari Laboratorium DIL Kota Bekasi paling lambar 3 (tiga) hari kerja sejak Permintaan Pengujian dterima.
-          <br>
-          *) Penerbitan Certificate Of Analysis (COA) maksimal 7 (tujuh) hari kerja setelah selesai pelaksanaan uji
-        </div>
+          <p style="font-size: 14px;" class="mt-2">Catatan:</p>
+          <div style="font-size: 14px;" class="ml-3">
+            - Apabila terdapat perubahan yang mengakibatkan pengujian tidak dapat dilakukan atau disubkontrakkan, maka akan ada pemberitahuan dari Laboratorium DIL Kota Bekasi paling lambar 3 (tiga) hari kerja sejak Permintaan Pengujian dterima.
+            <br>
+            *) Penerbitan Certificate Of Analysis (COA) maksimal 7 (tujuh) hari kerja setelah selesai pelaksanaan uji
+          </div>
         </div>
 
 
@@ -321,7 +334,7 @@ foreach($company as $c) {
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
-      // window.print();
+      window.print();
     </script>
   </body>
 </html>

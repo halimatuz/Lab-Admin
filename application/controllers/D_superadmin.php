@@ -1,5 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+
+include 'email.php';
+
 // Import PHPMailer classes into the global namespace
 // These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
@@ -86,16 +89,12 @@ class D_superadmin extends CI_Controller
             if($this->form_validation->run() == FALSE) {
                 $this->data_analysis();
             } else {
-                $name_analysis = $this->input->post('name_analysis');
-                $alias_analysis = $this->input->post('alias');
-                $standart_price = $this->input->post('standart_price');
-                $coa = $this->input->post('coa');
 
                 $data = array(
-                    'name_analysis' => $name_analysis,
-                    'alias_analysis' => $alias_analysis,
-                    'standart_price' => $standart_price,
-                    'coa' => $coa,
+                    'name_analysis' => $this->input->post('name_analysis'),
+                    'alias_analysis' => $this->input->post('alias_analysis'),
+                    'standart_price' => $this->input->post('standart_price'),
+                    'coa' => $this->input->post('coa'),
                 );
 
                 $this->web->insert_data($data, 'analysis');
@@ -143,26 +142,20 @@ class D_superadmin extends CI_Controller
 
     public function update_analysis_action()
     {
-		$id = $this->input->post('id_analysis');
         $this->_rules_analysis();
         if ($this->form_validation->run() == FALSE) {
-            $this->update_analysis($id);
+            $this->update_analysis($this->input->post('id_analysis'));
         } else {
-            $id = $this->input->post('id_analysis');
-            $name_analysis = $this->input->post('name_analysis');
-            $alias_analysis = $this->input->post('alias_analysis');
-            $standart_price = $this->input->post('standart_price');
-            $coa = $this->input->post('coa');
 
         $data = array(
-            'name_analysis' => $name_analysis,
-            'alias_analysis' => $alias_analysis,
-            'standart_price' => $standart_price,
-            'coa' => $coa,
+            'name_analysis' => $this->input->post('name_analysis'),
+            'alias_analysis' => $this->input->post('alias_analysis'),
+            'standart_price' => $this->input->post('standart_price'),
+            'coa' => $this->input->post('coa'),
         );
 
         $where = array(
-            'id_analysis' => $id
+            'id_analysis' => $this->input->post('id_analysis')
         );
         $this->web->update_data('analysis', $data, $where);
         $this->session->set_flashdata('msg', 'Data analysis success changed!');
@@ -178,7 +171,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
-                'company_pages' => $this->web->comp(),
+            'company_pages' => $this->web->comp(),
             'title' => 'Data Institution',
         );
         $data['institution'] = $this->web->get_data('institution', 'id_int')->result();
@@ -200,20 +193,14 @@ class D_superadmin extends CI_Controller
             if($this->form_validation->run() == FALSE) {
                 $this->data_int();
             } else {
-                $name_int = $this->input->post('name_int');
-                $int_phone = $this->input->post('int_phone');
-                $int_email = $this->input->post('int_email');
-                $int_address = $this->input->post('int_address');
-                $name_cp = $this->input->post('name_cp');
-                $title_cp = $this->input->post('title_cp');
 
                 $data = array(
-                    'name_int' => $name_int,
-                    'int_phone' => $int_phone,
-                    'int_email' => $int_email,
-                    'int_address' => $int_address,
-                    'name_cp' => $name_cp,
-                    'title_cp' => $title_cp,
+                    'name_int' => $this->input->post('name_int'),
+                    'int_phone' => $this->input->post('int_phone'),
+                    'int_email' => $this->input->post('int_email'),
+                    'int_address' => $this->input->post('int_address'),
+                    'name_cp' => $this->input->post('name_cp'),
+                    'title_cp' => $this->input->post('title_cp'),
                 );
 
                 $this->web->insert_data($data, 'institution');
@@ -255,29 +242,22 @@ class D_superadmin extends CI_Controller
 
     public function update_int_action()
     {
-		$id = $this->input->post('id_int');
         $this->_rules_int();
         if ($this->form_validation->run() == FALSE) {
-            $this->update_int($id);
+            $this->update_int($this->input->post('id_int'));
         } else {
-            $id = $this->input->post('id_int');
-            $name_int = $this->input->post('name_int');
-            $int_phone = $this->input->post('int_phone');
-            $int_email = $this->input->post('int_email');
-            $int_address = $this->input->post('int_address');
-            $name_cp = $this->input->post('name_cp');
-            $title_cp = $this->input->post('title_cp');
+
         $data = array(
-            'name_int' => $name_int,
-            'int_phone' => $int_phone,
-            'int_email' => $int_email,
-            'int_address' => $int_address,
-            'name_cp' => $name_cp,
-            'title_cp' => $title_cp,
+            'name_int' => $this->input->post('name_int'),
+            'int_phone' => $this->input->post('int_phone'),
+            'int_email' => $this->input->post('int_email'),
+            'int_address' => $this->input->post('int_address'),
+            'name_cp' => $this->input->post('name_cp'),
+            'title_cp' => $this->input->post('title_cp'),
         );
 
         $where = array(
-            'id_int' => $id
+            'id_int' => $this->input->post('id_int')
         );
         $this->web->update_data('institution', $data, $where);
         $this->session->set_flashdata('int', 'Data Institution success changed!');
@@ -301,7 +281,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
-                'company_pages' => $this->web->comp(),
+            'company_pages' => $this->web->comp(),
             'title' => 'Data Sampler',
         );
         $data['sampler'] = $this->web->get_data('sampler', 'id_sampler')->result();
@@ -323,16 +303,12 @@ class D_superadmin extends CI_Controller
         if($this->form_validation->run() == FALSE) {
             $this->data_sampler();
         } else {
-            $name_smp = $this->input->post('name_smp');
-            $gender_smp = $this->input->post('gender_smp');
-            $phone_smp = $this->input->post('phone_smp');
-            $email_smp = $this->input->post('email_smp');
 
             $data = array(
-                'name_smp' => $name_smp,
-                'gender_smp' => $gender_smp,
-                'phone_smp' => $phone_smp,
-                'email_smp' => $email_smp,
+                'name_smp' => $this->input->post('name_smp'),
+                'gender_smp' => $this->input->post('gender_smp'),
+                'phone_smp' => $this->input->post('phone_smp'),
+                'email_smp' => $this->input->post('email_smp'),
             );
 
             $this->web->insert_data($data, 'sampler');
@@ -366,7 +342,7 @@ class D_superadmin extends CI_Controller
 		} else {
         $where = array('id_sampler' => $id);
         $data = array(
-                'company_pages' => $this->web->comp(),
+            'company_pages' => $this->web->comp(),
             'title' => 'Data Sampler',
         );
         $data['sampler'] = $this->web->get_data('sampler', 'id_sampler')->result();
@@ -380,26 +356,20 @@ class D_superadmin extends CI_Controller
 
     public function update_sampler_action()
     {
-		$id = $this->input->post('id_sampler');
         $this->_rules_sampler();
         if ($this->form_validation->run() == FALSE) {
-            $this->update_sampler($id);
+            $this->update_sampler($this->input->post('id_sampler'));
         } else {
-            $id = $this->input->post('id_sampler');
-            $name_smp = $this->input->post('name_smp');
-            $gender_smp = $this->input->post('gender_smp');
-            $phone_smp = $this->input->post('phone_smp');
-            $email_smp = $this->input->post('email_smp');
 
         $data = array(
-            'name_smp' => $name_smp,
-            'gender_smp' => $gender_smp,
-            'phone_smp' => $phone_smp,
-            'email_smp' => $email_smp
+            'name_smp' => $this->input->post('name_smp'),
+            'gender_smp' => $this->input->post('gender_smp'),
+            'phone_smp' => $this->input->post('phone_smp'),
+            'email_smp' => $this->input->post('email_smp')
         );
 
         $where = array(
-            'id_sampler' => $id
+            'id_sampler' => $this->input->post('id_sampler')
         );
         $this->web->update_data('sampler', $data, $where);
         $this->session->set_flashdata('msg', 'Data sampler success changed!');
@@ -437,10 +407,9 @@ class D_superadmin extends CI_Controller
             if($this->form_validation->run() == FALSE) {
                 $this->data_sample();
             } else {
-                $name_sample = $this->input->post('name_sample');
 
                 $data = array(
-                    'name_sample' => $name_sample,
+                    'name_sample' => $this->input->post('name_sample'),
                 );
 
                 $this->web->insert_data($data, 'sample');
@@ -475,36 +444,34 @@ class D_superadmin extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
 			redirect('D_auth');
 		} else {
-        $where = array('id_sample' => $id);
+
         $data = array(
-                'company_pages' => $this->web->comp(),
+            'company_pages' => $this->web->comp(),
             'title' => 'Data sample',
         );
+
         $data['sample'] = $this->web->get_data('sample', 'id_sample')->result();
         $data['specialSample'] = $this->db->query("SELECT * FROM sample WHERE id_sample = '$id'")->result();
         $this->load->view('superadmin/_layout/header', $data);
         $this->load->view('superadmin/_layout/sidebar');
-        $this->load->view('superadmin/pages/D_datasample', $data);
+        $this->load->view('superadmin/pages/D_datasample');
         $this->load->view('superadmin/_layout/footer');
     }
     }
 
     public function update_sample_action()
     {
-		$id = $this->input->post('id_sample');
         $this->_rules_sample();
         if ($this->form_validation->run() == FALSE) {
-            $this->update_sample($id);
+            $this->update_sample($this->input->post('id_sample'));
         } else {
-            $id = $this->input->post('id_sample');
-            $name_sample = $this->input->post('name_sample');
 
         $data = array(
-            'name_sample' => $name_sample
+            'name_sample' => $this->input->post('name_sample')
         );
 
         $where = array(
-            'id_sample' => $id
+            'id_sample' => $this->input->post('id_sample')
         );
         $this->web->update_data('sample', $data, $where);
         $this->session->set_flashdata('msg', 'Data sample success changed!');
@@ -542,10 +509,9 @@ class D_superadmin extends CI_Controller
             if($this->form_validation->run() == FALSE) {
                 $this->data_regulation();
             } else {
-                $name_regulation = $this->input->post('name_regulation');
 
                 $data = array(
-                    'name_regulation' => $name_regulation,
+                    'name_regulation' => $this->input->post('name_regulation'),
                 );
 
                 $this->web->insert_data($data, 'regulation');
@@ -582,20 +548,17 @@ class D_superadmin extends CI_Controller
 
     public function update_regulation_action()
     {
-		$id = $this->input->post('id_regulation');
         $this->_rules_regulation();
         if ($this->form_validation->run() == FALSE) {
-            $this->update_regulation($id);
+            $this->update_regulation($this->input->post('id_regulation'));
         } else {
-            $id = $this->input->post('id_regulation');
-            $name_regulation = $this->input->post('name_regulation');
 
         $data = array(
-            'name_regulation' => $name_regulation
+            'name_regulation' => $this->input->post('name_regulation')
         );
 
         $where = array(
-            'id_regulation' => $id
+            'id_regulation' => $this->input->post('id_regulation')
         );
         $this->web->update_data('regulation', $data, $where);
         $this->session->set_flashdata('msg', 'Data regulation success changed!');
@@ -647,10 +610,9 @@ class D_superadmin extends CI_Controller
             if($this->form_validation->run() == FALSE) {
                 $this->data_method();
             } else {
-                $name_method = $this->input->post('name_method');
 
                 $data = array(
-                    'name_method' => $name_method,
+                    'name_method' => $this->input->post('name_method'),
                 );
 
                 $this->web->insert_data($data, 'method');
@@ -685,9 +647,9 @@ class D_superadmin extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
 			redirect('D_auth');
 		} else {
-            $where = array('id_method' => $id);
+
             $data = array(
-                    'company_pages' => $this->web->comp(),
+                'company_pages' => $this->web->comp(),
                 'title' => 'Data method',
             );
             $data['method'] = $this->web->get_data('method', 'id_method')->result();
@@ -701,20 +663,17 @@ class D_superadmin extends CI_Controller
 
     public function update_method_action()
     {
-		$id = $this->input->post('id_method');
         $this->_rules_method();
         if ($this->form_validation->run() == FALSE) {
-            $this->update_method($id);
+            $this->update_method($this->input->post('id_method'));
         } else {
-            $id = $this->input->post('id_method');
-            $name_method = $this->input->post('name_method');
 
         $data = array(
-            'name_method' => $name_method
+            'name_method' => $this->input->post('name_method')
         );
 
         $where = array(
-            'id_method' => $id
+            'id_method' => $this->input->post('id_method')
         );
         $this->web->update_data('method', $data, $where);
         $this->session->set_flashdata('msg', 'Data method success changed!');
@@ -752,10 +711,9 @@ class D_superadmin extends CI_Controller
         if($this->form_validation->run() == FALSE) {
             $this->data_unit();
         } else {
-            $name_unit = $this->input->post('name_unit');
 
             $data = array(
-                'name_unit' => $name_unit,
+                'name_unit' => $this->input->post('name_unit'),
             );
 
             $this->web->insert_data($data, 'unit');
@@ -790,9 +748,9 @@ class D_superadmin extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
 			redirect('D_auth');
 		} else {
-        $where = array('id_unit' => $id);
+
         $data = array(
-                'company_pages' => $this->web->comp(),
+            'company_pages' => $this->web->comp(),
             'title' => 'Data unit',
         );
         $data['unit'] = $this->web->get_data('unit', 'id_unit')->result();
@@ -806,20 +764,17 @@ class D_superadmin extends CI_Controller
 
     public function update_unit_action()
     {
-		$id = $this->input->post('id_unit');
         $this->_rules_unit();
         if ($this->form_validation->run() == FALSE) {
-            $this->update_unit($id);
+            $this->update_unit($this->input->post('id_unit'));
         } else {
-            $id = $this->input->post('id_unit');
-            $name_unit = $this->input->post('name_unit');
 
         $data = array(
-            'name_unit' => $name_unit
+            'name_unit' => $this->input->post('name_unit')
         );
 
         $where = array(
-            'id_unit' => $id
+            'id_unit' => $this->input->post('id_unit')
         );
         $this->web->update_data('unit', $data, $where);
         $this->session->set_flashdata('msg', 'Data unit success changed!');
@@ -834,10 +789,12 @@ class D_superadmin extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
 			redirect('D_auth');
 		} else {
+
         $data = array(
-                'company_pages' => $this->web->comp(),
+            'company_pages' => $this->web->comp(),
             'title' => 'Data Analysis',
         );
+
         $data['analysisCOA'] = $this->db->query("SELECT *,(SELECT count(*) FROM coa WHERE id_analysis = analysis.id_analysis) as st_account FROM analysis WHERE coa = 1 ORDER BY id_analysis DESC")->result();
         $this->load->view('superadmin/_layout/header', $data);
         $this->load->view('superadmin/_layout/sidebar');
@@ -854,7 +811,7 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $data = array(
-                'company_pages' => $this->web->comp(),
+            'company_pages' => $this->web->comp(),
             'title' => 'Add COA',
         );
 
@@ -871,48 +828,32 @@ class D_superadmin extends CI_Controller
 
     public function add_coa_action()
     {
-        $id = $this->input->post('id_analysis');
         $this->_rules_coa();
         if($this->form_validation->run() == FALSE) {
-            $this->add_coa($id);
+            $this->add_coa($this->input->post('id_analysis'));
         } else {
-            $id_analysis = $this->input->post('id_analysis');
-            $params = $this->input->post('params');
-            $category_params = $this->input->post('category_params');
-            $sampling_time = $this->input->post('sampling_time');
-            $unit = $this->input->post('unit');
-            $reg_standart_1 = $this->input->post('reg_standart_1');
-            $reg_standart_2 = $this->input->post('reg_standart_2');
-            $reg_standart_3 = $this->input->post('reg_standart_3');
-            $reg_standart_4 = $this->input->post('reg_standart_4');
-            $method = $this->input->post('method');
-            $year = $this->input->post('year');
-            $capacity = $this->input->post('capacity');
-            $sampling_location = $this->input->post('sampling_location');
-            $noise = $this->input->post('noise');
-            $time = $this->input->post('time');
 
             $data = array(
-                'id_analysis' => $id_analysis,
-                'params' => $params,
-                'category_params' => $category_params,
-                'sampling_time' => $sampling_time,
-                'unit' => $unit,
-                'reg_standart_1' => $reg_standart_1,
-                'reg_standart_2' => $reg_standart_2,
-                'reg_standart_3' => $reg_standart_3,
-                'reg_standart_4' => $reg_standart_4,
-                'method' => $method,
-                'year' => $year,
-                'capacity' => $capacity,
-                'sampling_location' => $sampling_location,
-                'noise' => $noise,
-                'time' => $time,
+                'id_analysis' => $this->input->post('id_analysis'),
+                'params' => $this->input->post('params'),
+                'category_params' => $this->input->post('category_params'),
+                'sampling_time' => $this->input->post('sampling_time'),
+                'unit' => $this->input->post('unit'),
+                'reg_standart_1' => $this->input->post('reg_standart_1'),
+                'reg_standart_2' => $this->input->post('reg_standart_2'),
+                'reg_standart_3' => $this->input->post('reg_standart_3'),
+                'reg_standart_4' => $this->input->post('reg_standart_4'),
+                'method' => $this->input->post('method'),
+                'year' => $this->input->post('year'),
+                'capacity' => $this->input->post('capacity'),
+                'sampling_location' => $this->input->post('sampling_location'),
+                'noise' => $this->input->post('noise'),
+                'time' => $this->input->post('time'),
             );
 
             $this->web->insert_data($data, 'coa');
             $this->session->set_flashdata('msg', 'Data COA success added.');
-            redirect('D_superadmin/add_coa/' . $id);
+            redirect('D_superadmin/add_coa/' . $this->input->post('id_analysis'));
         }
     }
 
@@ -966,46 +907,30 @@ class D_superadmin extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
 			redirect('D_auth');
 		} else {
-		$id = $this->input->post('id_coa');
-        $id_anl = $this->input->post('id_analysis');
+        $id = $this->input->post('id_coa');
+        $id_analysis = $this->input->post('id_analysis');
         $this->_rules_coa();
         if ($this->form_validation->run() == FALSE) {
-            $this->update_coa($id, $id_anl);
+            $this->update_coa($id, $id_analysis);
         } else {
-            $id_coa = $this->input->post('id_coa');
-            $id_analysis = $this->input->post('id_analysis');
-            $params = $this->input->post('params');
-            $category_params = $this->input->post('category_params');
-            $sampling_time = $this->input->post('sampling_time');
-            $unit = $this->input->post('unit');
-            $reg_standart_1 = $this->input->post('reg_standart_1');
-            $reg_standart_2 = $this->input->post('reg_standart_2');
-            $reg_standart_3 = $this->input->post('reg_standart_3');
-            $reg_standart_4 = $this->input->post('reg_standart_4');
-            $method = $this->input->post('method');
-            $year = $this->input->post('year');
-            $capacity = $this->input->post('capacity');
-            $sampling_location = $this->input->post('sampling_location');
-            $noise = $this->input->post('noise');
-            $time = $this->input->post('time');
 
         $data = array(
-            'id_coa' => $id_coa,
+            'id_coa' => $id,
             'id_analysis' => $id_analysis,
-            'params' => $params,
-            'category_params' => $category_params,
-            'sampling_time' => $sampling_time,
-            'unit' => $unit,
-            'reg_standart_1' => $reg_standart_1,
-            'reg_standart_2' => $reg_standart_2,
-            'reg_standart_3' => $reg_standart_3,
-            'reg_standart_4' => $reg_standart_4,
-            'method' => $method,
-            'year' => $year,
-            'capacity' => $capacity,
-            'sampling_location' => $sampling_location,
-            'noise' => $noise,
-            'time' => $time,
+            'params' => $this->input->post('params'),
+            'category_params' => $this->input->post('category_params'),
+            'sampling_time' => $this->input->post('sampling_time'),
+            'unit' => $this->input->post('unit'),
+            'reg_standart_1' => $this->input->post('reg_standart_1'),
+            'reg_standart_2' => $this->input->post('reg_standart_2'),
+            'reg_standart_3' => $this->input->post('reg_standart_3'),
+            'reg_standart_4' => $this->input->post('reg_standart_4'),
+            'method' => $this->input->post('method'),
+            'year' => $this->input->post('year'),
+            'capacity' => $this->input->post('capacity'),
+            'sampling_location' => $this->input->post('sampling_location'),
+            'noise' => $this->input->post('noise'),
+            'time' => $this->input->post('time'),
         );
 
         $where = array(
@@ -1170,21 +1095,17 @@ class D_superadmin extends CI_Controller
             $id = $this->input->post('id_sk');
             $id_int = $this->input->post('id_int');
             $id_analysis = $this->input->post('id_analysis');
-            $remarks = $this->input->post('remarks');
-            $spec = $this->input->post('spec');
-            $qty = $this->input->post('qty');
-            $add_price = $this->input->post('add_price');
             $coa = $this->db->query("SELECT id_coa FROM coa WHERE id_analysis = $id_analysis")->result();
 
             
             $data_qtn = array(
                 'id_analysis' => $id_analysis,
                 'id_int' => $id_int,
-                'remarks' => $remarks,
-                'spec' => $spec,
-                'qty' => $qty,
+                'remarks' => $this->input->post('remarks'),
+                'spec' => $this->input->post('spec'),
+                'qty' => $this->input->post('qty'),
                 'id_sk' => $id,
-                'add_price' => $add_price,
+                'add_price' => $this->input->post('add_price'),
             );
 
             foreach($coa as $c) {
@@ -1262,20 +1183,16 @@ class D_superadmin extends CI_Controller
             $this->update_quotation($id_sk, $id_int, $id);
         } else {
             $id_analysis = $this->input->post('id_analysis');
-            $remarks = $this->input->post('remarks');
-            $spec = $this->input->post('spec');
-            $qty = $this->input->post('qty');
-            $add_price = $this->input->post('add_price');
             $id_sk = $this->input->post('id_sk');
 
         $data = array(
             'id_analysis' => $id_analysis,
             'id_int' => $id_int,
-            'remarks' => $remarks,
-            'spec' => $spec,
-            'qty' => $qty,
+            'remarks' => $this->input->post('remarks'),
+            'spec' => $this->input->post('spec'),
+            'qty' => $this->input->post('qty'),
             'id_sk' => $id_sk,
-            'add_price' => $add_price,
+            'add_price' => $this->input->post('add_price'),
         );
 
         $where = array(
@@ -2111,21 +2028,6 @@ class D_superadmin extends CI_Controller
 			redirect('D_auth');
 		} else {
         $id_result = $this->input->post('id_result');
-        $result = $this->input->post('result');
-        $vehicle_brand = $this->input->post('vehicle_brand');
-        $time = $this->input->post('time');
-        $humidity = $this->input->post('humidity');
-        $wet = $this->input->post('wet');
-        $dew = $this->input->post('dew');
-        $globe = $this->input->post('globe');
-        $wbgt_index = $this->input->post('wbgt_index');
-        $sampling_location = $this->input->post('sampling_location');
-        $code = $this->input->post('code');
-        $opacity = $this->input->post('opacity');
-        $leq = $this->input->post('leq');
-        $ls = $this->input->post('ls');
-        $lm = $this->input->post('lm');
-        $lsm = $this->input->post('lsm');
         $id_sk = $this->input->post('id_sk');
         $today = date ( "Y-m-d" );
         $no_certificate = 'DIL-' . date('Y') . date('m') . date('d') . 'COA';
@@ -2148,21 +2050,21 @@ class D_superadmin extends CI_Controller
         for($i=0; $i<sizeof($id_result); $i++) {
 
             $data = array(
-                'result' => @$result[$i],
-                'vehicle_brand' => @$vehicle_brand[$i],
-                'time' => @$time[$i],
-                'humidity' => @$humidity[$i],
-                'wet' => @$wet[$i],
-                'dew' => @$dew[$i],
-                'globe' => @$globe[$i],
-                'wbgt_index' => @$wbgt_index[$i],
-                'sampling_location' => @$sampling_location[$i],
-                'code' => @$code[$i],
-                'opacity' => @$opacity[$i],
-                'leq' => @$leq[$i],
-                'ls' => @$ls[$i],
-                'lm' => @$lm[$i],
-                'lsm' => @$lsm[$i],
+                'result' => @$this->input->post('result')[$i],
+                'vehicle_brand' => @$this->input->post('vehicle_brand')[$i],
+                'time' => @$this->input->post('time')[$i],
+                'humidity' => @$this->input->post('humidity')[$i],
+                'wet' => @$this->input->post('wet')[$i],
+                'dew' => @$this->input->post('dew')[$i],
+                'globe' => @$this->input->post('globe')[$i],
+                'wbgt_index' => @$this->input->post('wbgt_index')[$i],
+                'sampling_location' => @$this->input->post('sampling_location')[$i],
+                'code' => @$this->input->post('code')[$i],
+                'opacity' => @$this->input->post('opacity')[$i],
+                'leq' => @$this->input->post('opacity')[$i],
+                'ls' => @$this->input->post('ls')[$i],
+                'lm' => @$this->input->post('lm')[$i],
+                'lsm' => @$this->input->post('lsm')[$i],
             );
 
 
@@ -2217,821 +2119,7 @@ class D_superadmin extends CI_Controller
 			// Content
 			$mail->isHTML(true);                                  // Set email format to HTML
 			$mail->Subject = 'Pesan Dari PT. DELTA INDONESIA LABORATORY';
-			$mail->Body    = '<!DOCTYPE HTML
-            PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-        <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"
-            xmlns:o="urn:schemas-microsoft-com:office:office">
-        
-        <head>
-            <!--[if gte mso 9]>
-                        <xml>
-                          <o:OfficeDocumentSettings>
-                            <o:AllowPNG/>
-                            <o:PixelsPerInch>96</o:PixelsPerInch>
-                          </o:OfficeDocumentSettings>
-                        </xml>
-                        <![endif]-->
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta name="x-apple-disable-message-reformatting">
-            <!--[if !mso]><!-->
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <!--<![endif]-->
-            <title></title>
-        
-            <style type="text/css">
-                table,
-                td {
-                    color: #000000;
-                }
-        
-                a {
-                    color: #e67e23;
-                    text-decoration: underline;
-                }
-        
-                @media (max-width: 480px) {
-                    #u_content_image_1 .v-src-width {
-                        width: auto !important;
-                    }
-        
-                    #u_content_image_1 .v-src-max-width {
-                        max-width: 36% !important;
-                    }
-        
-                    #u_content_button_1 .v-size-width {
-                        width: 93% !important;
-                    }
-                }
-        
-                @media only screen and (min-width: 620px) {
-                    .u-row {
-                        width: 600px !important;
-                    }
-        
-                    .u-row .u-col {
-                        vertical-align: top;
-                    }
-        
-                    .u-row .u-col-100 {
-                        width: 600px !important;
-                    }
-        
-                }
-        
-                @media (max-width: 620px) {
-                    .u-row-container {
-                        max-width: 100% !important;
-                        padding-left: 0px !important;
-                        padding-right: 0px !important;
-                    }
-        
-                    .u-row .u-col {
-                        min-width: 320px !important;
-                        max-width: 100% !important;
-                        display: block !important;
-                    }
-        
-                    .u-row {
-                        width: calc(100% - 40px) !important;
-                    }
-        
-                    .u-col {
-                        width: 100% !important;
-                    }
-        
-                    .u-col>div {
-                        margin: 0 auto;
-                    }
-                }
-        
-                body {
-                    margin: 0;
-                    padding: 0;
-                    font-family: "Lato";
-                }
-        
-                table,
-                tr,
-                td {
-                    vertical-align: top;
-                    border-collapse: collapse;
-                }
-        
-                p {
-                    margin: 0;
-                }
-        
-                .ie-container table,
-                .mso-container table {
-                    table-layout: fixed;
-                }
-        
-                * {
-                    line-height: inherit;
-                }
-        
-                a[x-apple-data-detectors="true"] {
-                    color: inherit !important;
-                    text-decoration: none !important;
-                }
-            </style>
-        
-        
-        
-            <!--[if !mso]><!-->
-            <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" type="text/css">
-            <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet"
-                type="text/css">
-            <!--<![endif]-->
-        
-        </head>
-        
-        <body class="clean-body u_body"
-            style="margin: 0;padding: 0;-webkit-text-size-adjust: 100%;background-color: #081933;color: #000000">
-            <!--[if IE]><div class="ie-container"><![endif]-->
-            <!--[if mso]><div class="mso-container"><![endif]-->
-            <table
-                style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;min-width: 320px;Margin: 0 auto;background-color: #081933;width:100%"
-                cellpadding="0" cellspacing="0">
-                <tbody>
-                    <tr style="vertical-align: top">
-                        <td style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-                            <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" style="background-color: #081933;"><![endif]-->
-        
-        
-                            <div class="u-row-container" style="padding: 0px;background-color: transparent">
-                                <div class="u-row"
-                                    style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;">
-                                    <div
-                                        style="border-collapse: collapse;display: table;width: 100%;background-color: transparent;">
-                                        <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr style="background-color: transparent;"><![endif]-->
-        
-                                        <!--[if (mso)|(IE)]><td align="center" width="600" style="width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;" valign="top"><![endif]-->
-                                        <div class="u-col u-col-100"
-                                            style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
-                                            <div
-                                                style="width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-                                                <!--[if (!mso)&(!IE)]><!-->
-                                                <div
-                                                    style="padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-                                                    <!--<![endif]-->
-        
-                                                    <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
-                                                        border="0">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;"
-                                                                    align="left">
-        
-                                                                    <table height="0px" align="center" border="0"
-                                                                        cellpadding="0" cellspacing="0" width="100%"
-                                                                        style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;border-top: 0px solid #BBBBBB;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
-                                                                        <tbody>
-                                                                            <tr style="vertical-align: top">
-                                                                                <td
-                                                                                    style="word-break: break-word;border-collapse: collapse !important;vertical-align: top;font-size: 0px;line-height: 0px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
-                                                                                    <span>&#160;</span>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-        
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-        
-                                                    <!--[if (!mso)&(!IE)]><!-->
-                                                </div>
-                                                <!--<![endif]-->
-                                            </div>
-                                        </div>
-                                        <!--[if (mso)|(IE)]></td><![endif]-->
-                                        <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
-                                    </div>
-                                </div>
-                            </div>
-        
-        
-        
-                            <div class="u-row-container" style="padding: 0px;background-color: transparent">
-                                <div class="u-row"
-                                    style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;">
-                                    <div
-                                        style="border-collapse: collapse;display: table;width: 100%;background-color: transparent;">
-                                        <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr style="background-color: transparent;"><![endif]-->
-        
-                                        <!--[if (mso)|(IE)]><td align="center" width="600" style="width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;" valign="top"><![endif]-->
-                                        <div class="u-col u-col-100"
-                                            style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
-                                            <div
-                                                style="width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-                                                <!--[if (!mso)&(!IE)]><!-->
-                                                <div
-                                                    style="padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-                                                    <!--<![endif]-->
-        
-                                                    <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
-                                                        border="0">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="overflow-wrap:break-word;word-break:break-word;padding:0px;"
-                                                                    align="left">
-        
-                                                                    <table width="100%" cellpadding="0" cellspacing="0"
-                                                                        border="0">
-                                                                        <tr>
-                                                                            <td style="padding-right: 0px;padding-left: 0px;"
-                                                                                align="center">
-        
-                                                                                <img align="center" border="0"
-                                                                                    src="https://cdn.templates.unlayer.com/assets/1636434047367-bb.png"
-                                                                                    alt="border" title="border"
-                                                                                    style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 600px;"
-                                                                                    width="600"
-                                                                                    class="v-src-width v-src-max-width" />
-        
-                                                                            </td>
-                                                                        </tr>
-                                                                    </table>
-        
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-        
-                                                    <!--[if (!mso)&(!IE)]><!-->
-                                                </div>
-                                                <!--<![endif]-->
-                                            </div>
-                                        </div>
-                                        <!--[if (mso)|(IE)]></td><![endif]-->
-                                        <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
-                                    </div>
-                                </div>
-                            </div>
-        
-        
-        
-                            <div class="u-row-container" style="padding: 0px;background-color: transparent">
-                                <div class="u-row"
-                                    style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;">
-                                    <div
-                                        style="border-collapse: collapse;display: table;width: 100%;background-color: transparent;">
-                                        <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr style="background-color: #ffffff;"><![endif]-->
-        
-                                        <!--[if (mso)|(IE)]><td align="center" width="600" style="width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;" valign="top"><![endif]-->
-                                        <div class="u-col u-col-100"
-                                            style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
-                                            <div style="width: 100% !important;">
-                                                <!--[if (!mso)&(!IE)]><!-->
-                                                <div
-                                                    style="padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;">
-                                                    <!--<![endif]-->
-        
-                                                    <table id="u_content_image_1" role="presentation" cellpadding="0"
-                                                        cellspacing="0" width="100%" border="0">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="overflow-wrap:break-word;word-break:break-word;padding:5px 10px 30px;"
-                                                                    align="left">
-        
-                                                                    <table width="100%" cellpadding="0" cellspacing="0"
-                                                                        border="0">
-                                                                        <tr>
-                                                                            <td style="padding-right: 0px;padding-left: 0px;"
-                                                                                align="center">
-                                                                                <a href="https://unlayer.com" target="_blank">
-                                                                                    <img align="center" border="0"
-                                                                                        src="https://i.pinimg.com/564x/ac/16/cc/ac16cc581acefe12a5cad7039b133b14.jpg"
-                                                                                        alt="Logo" title="Logo"
-                                                                                        style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 20%;max-width: 116px;"
-                                                                                        width="116"
-                                                                                        class="v-src-width v-src-max-width" />
-                                                                                </a>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </table>
-        
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-        
-                                                    <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
-                                                        border="0">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="overflow-wrap:break-word;word-break:break-word;padding:0px;"
-                                                                    align="left">
-        
-                                                                    <table width="100%" cellpadding="0" cellspacing="0"
-                                                                        border="0">
-                                                                        <tr>
-                                                                            <td style="padding-right: 0px;padding-left: 0px;"
-                                                                                align="center">
-        
-                                                                                <img align="center" border="0"
-                                                                                    src="https://img.freepik.com/premium-vector/check-mark-document-mail-envelope-approved-email-message-computer-screen-vector-flat-illustration_662353-784.jpg"
-                                                                                    alt="Hero Image" title="Hero Image"
-                                                                                    style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 70%;max-width: 600px;"
-                                                                                    width="600"
-                                                                                    class="v-src-width v-src-max-width" />
-        
-                                                                            </td>
-                                                                        </tr>
-                                                                    </table>
-        
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-        
-                                                    <!--[if (!mso)&(!IE)]><!-->
-                                                </div>
-                                                <!--<![endif]-->
-                                            </div>
-                                        </div>
-                                        <!--[if (mso)|(IE)]></td><![endif]-->
-                                        <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
-                                    </div>
-                                </div>
-                            </div>
-        
-        
-        
-                            <div class="u-row-container" style="padding: 0px;background-color: transparent">
-                                <div class="u-row"
-                                    style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;">
-                                    <div
-                                        style="border-collapse: collapse;display: table;width: 100%;background-color: transparent;">
-                                        <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr style="background-color: #ffffff;"><![endif]-->
-        
-                                        <!--[if (mso)|(IE)]><td align="center" width="600" style="background-color: #f7f7f7;width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;" valign="top"><![endif]-->
-                                        <div class="u-col u-col-100"
-                                            style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
-                                            <div
-                                                style="background-color: #fff;width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-                                                <!--[if (!mso)&(!IE)]><!-->
-                                                <div
-                                                    style="padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-                                                    <!--<![endif]-->
-        
-                                                    <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
-                                                        border="0">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="overflow-wrap:break-word;word-break:break-word;padding:10px 44px 30px;"
-                                                                    align="left">
-        
-                                                                    <h1
-                                                                        style="margin: 0px; line-height: 140%; text-align: center; word-wrap: break-word; font-weight: normal; font-size: 24px;">
-                                                                        <strong>Draft COA '. $no_certificate_coa .'
-                                                                            Telah Dibuat!</strong>
-                                                                    </h1>
-        
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-        
-                                                    <!--[if (!mso)&(!IE)]><!-->
-                                                </div>
-                                                <!--<![endif]-->
-                                            </div>
-                                        </div>
-                                        <!--[if (mso)|(IE)]></td><![endif]-->
-                                        <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
-                                    </div>
-                                </div>
-                            </div>
-        
-        
-        
-                            <div class="u-row-container" style="padding: 0px;background-color: transparent">
-                                <div class="u-row"
-                                    style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #fff;">
-                                    <div
-                                        style="border-collapse: collapse;display: table;width: 100%;background-color: transparent;">
-                                        <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr style="background-color: #f7f7f7;"><![endif]-->
-        
-                                        <!--[if (mso)|(IE)]><td align="center" width="600" style="width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;" valign="top"><![endif]-->
-                                        <div class="u-col u-col-100"
-                                            style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
-                                            <div
-                                                style="width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-                                                <!--[if (!mso)&(!IE)]><!-->
-                                                <div
-                                                    style="padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-                                                    <!--<![endif]-->
-        
-                                                    <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
-                                                        border="0">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="overflow-wrap:break-word;word-break:break-word;padding:10px 44px 30px;"
-                                                                    align="left">
-        
-                                                                    <div
-                                                                        style="color: #333333; line-height: 200%; text-align: left; word-wrap: break-word;">
-                                                                        <p style="line-height: 200%; font-size: 12px;"><span
-                                                                                style="font-size: 16px; line-height: 32px;">Draft
-                                                                                COA untuk
-                                                                                '. $name_int .',</span></p>
-                                                                        <p style="line-height: 200%; font-size: 12px;"><span
-                                                                                style="font-size: 16px; line-height: 32px;">Draft
-                                                                                COA berhasil dibuat, apabila ada
-                                                                                kesalahan dalam draft mohon untuk menghubungi
-                                                                                admin Delta Indonesia Laboratory lebih lanjut.
-                                                                                Jika draft sudah sesuai silahkan klik tombol
-                                                                                approve dibawah ini.</span></p>
-                                                                        <p style="line-height: 200%; font-size: 12px; margin-top:10px;"><span
-                                                                                style="font-size: 16px; line-height: 32px;">'. base_url("D_draft/draft_coa/") . encryptId($id_sk) .'</span></p>
-                                                                    </div>
-        
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-        
-                                                    <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
-                                                        border="0">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="overflow-wrap:break-word;word-break:break-word;padding:0px 44px 8px;"
-                                                                    align="left">
-        
-        
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-        
-                                                    <table id="u_content_button_1" role="presentation" cellpadding="0"
-                                                        cellspacing="0" width="100%" border="0">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;"
-                                                                    align="left">
-        
-                                                                    <div align="center">
-                                                                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://unlayer.com" style="height:60px; v-text-anchor:middle; width:372px;" arcsize="5%" stroke="f" fillcolor="#2a74f1"><w:anchorlock/><center style="color:#FFFFFF;"><![endif]-->
-                                                                        <a href="'. base_url("D_auth/approve/") . encryptId($id_sk) .'" target="_blank"
-                                                                            class="v-size-width"
-                                                                            style="box-sizing: border-box;display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #2DD99A; border-radius: 3px;-webkit-border-radius: 3px; -moz-border-radius: 3px; width:64%; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;">
-                                                                            <span
-                                                                                style="display:block;padding:19px 30px;line-height:120%;"><span
-                                                                                    style="font-size: 18px; line-height: 21.6px;"><strong><span
-                                                                                            style="line-height: 21.6px; font-size: 18px;">APPROVE</span></strong></span></span>
-                                                                        </a>
-                                                                        <!--[if mso]></center></v:roundrect></td></tr></table><![endif]-->
-                                                                    </div>
-        
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-        
-                                                    <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
-                                                        border="0">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="overflow-wrap:break-word;word-break:break-word;padding:30px 30px 70px;"
-                                                                    align="left">
-        
-                                                                    <div
-                                                                        style="color: #333333; line-height: 190%; text-align: left; word-wrap: break-word;">
-                                                                        <p style="font-size: 14px; line-height: 190%;"><span
-                                                                                style="font-size: 16px; line-height: 30.4px;">Hormat
-                                                                                kami,</span></p>
-                                                                        <p style="font-size: 14px; line-height: 190%;"><span
-                                                                                style="font-size: 16px; line-height: 30.4px;"><strong>PT.
-                                                                                    Delta Indonesia Laboratory</strong></span>
-                                                                        </p>
-                                                                    </div>
-        
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-        
-                                                    <!--[if (!mso)&(!IE)]><!-->
-                                                </div>
-                                                <!--<![endif]-->
-                                            </div>
-                                        </div>
-                                        <!--[if (mso)|(IE)]></td><![endif]-->
-                                        <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
-                                    </div>
-                                </div>
-                            </div>
-        
-        
-        
-                            <div class="u-row-container" style="padding: 0px;background-color: transparent">
-                                <div class="u-row"
-                                    style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;">
-                                    <div
-                                        style="border-collapse: collapse;display: table;width: 100%;background-color: transparent;">
-                                        <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr style="background-color: #ffffff;"><![endif]-->
-        
-                                        <!--[if (mso)|(IE)]><td align="center" width="600" style="width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;" valign="top"><![endif]-->
-                                        <div class="u-col u-col-100"
-                                            style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
-                                            <div
-                                                style="width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-                                                <!--[if (!mso)&(!IE)]><!-->
-                                                <div
-                                                    style="padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-                                                    <!--<![endif]-->
-        
-                                                    <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
-                                                        border="0">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="overflow-wrap:break-word;word-break:break-word;padding:0px;"
-                                                                    align="left">
-        
-                                                                    <table width="100%" cellpadding="0" cellspacing="0"
-                                                                        border="0">
-                                                                        <tr>
-                                                                            <td style="padding-right: 0px;padding-left: 0px;"
-                                                                                align="center">
-        
-                                                                                <img align="center" border="0"
-                                                                                    src="https://cdn.templates.unlayer.com/assets/1636435417479-ggg.jpg"
-                                                                                    alt="border" title="border"
-                                                                                    style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 600px;"
-                                                                                    width="600"
-                                                                                    class="v-src-width v-src-max-width" />
-        
-                                                                            </td>
-                                                                        </tr>
-                                                                    </table>
-        
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-        
-                                                    <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
-                                                        border="0">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="overflow-wrap:break-word;word-break:break-word;padding:30px 10px 10px;"
-                                                                    align="left">
-        
-                                                                    <div align="center">
-                                                                        <div style="display: table; max-width:95px;">
-                                                                            <!--[if (mso)|(IE)]><table width="95" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-collapse:collapse;" align="center"><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace: 0pt;mso-table-rspace: 0pt; width:95px;"><tr><![endif]-->
-        
-        
-                                                                            <!--[if (mso)|(IE)]><td width="32" style="width:32px; padding-right: 16px;" valign="top"><![endif]-->
-                                                                            <table align="left" border="0" cellspacing="0"
-                                                                                cellpadding="0" width="32" height="32"
-                                                                                style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 16px">
-                                                                                <tbody>
-                                                                                    <tr style="vertical-align: top">
-                                                                                        <td align="left" valign="middle"
-                                                                                            style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-                                                                                            <a href="https://www.linkedin.com/in/smk-plus-pelita-nusantara-44b7b2148/"
-                                                                                                title="LinkedIn"
-                                                                                                target="_blank">
-                                                                                                <img src="https://i.pinimg.com/564x/22/7c/5c/227c5cc96b0e77302c09e4797b18089b.jpg"
-                                                                                                    alt="LinkedIn"
-                                                                                                    title="LinkedIn" width="32"
-                                                                                                    style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
-                                                                                            </a>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                            <!--[if (mso)|(IE)]></td><![endif]-->
-        
-                                                                            <!--[if (mso)|(IE)]><td width="32" style="width:32px; padding-right: 0px;" valign="top"><![endif]-->
-                                                                            <table align="left" border="0" cellspacing="0"
-                                                                                cellpadding="0" width="32" height="32"
-                                                                                style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 0px">
-                                                                                <tbody>
-                                                                                    <tr style="vertical-align: top">
-                                                                                        <td align="left" valign="middle"
-                                                                                            style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-                                                                                            <a href="https://www.instagram.com/smkpluspelitanusantara/"
-                                                                                                title="Instagram"
-                                                                                                target="_blank">
-                                                                                                <img src="https://i.pinimg.com/564x/85/84/ba/8584bab434a376e6df23c92e69da62eb.jpg"
-                                                                                                    alt="Instagram"
-                                                                                                    title="Instagram" width="32"
-                                                                                                    style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
-                                                                                            </a>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                            <!--[if (mso)|(IE)]></td><![endif]-->
-        
-        
-                                                                            <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
-                                                                        </div>
-                                                                    </div>
-        
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-        
-                                                    <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
-                                                        border="0">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="overflow-wrap:break-word;word-break:break-word;padding:15px 10px;"
-                                                                    align="left">
-        
-                                                                    <table height="0px" align="center" border="0"
-                                                                        cellpadding="0" cellspacing="0" width="55%"
-                                                                        style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;border-top: 1px solid #BBBBBB;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
-                                                                        <tbody>
-                                                                            <tr style="vertical-align: top">
-                                                                                <td
-                                                                                    style="word-break: break-word;border-collapse: collapse !important;vertical-align: top;font-size: 0px;line-height: 0px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
-                                                                                    <span>&#160;</span>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-        
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-        
-                                                    <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
-                                                        border="0">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 20px;"
-                                                                    align="left">
-        
-                                                                    <div
-                                                                        style="color: #8d8c8c; line-height: 190%; text-align: center; word-wrap: break-word;">
-                                                                        <p style="font-size: 14px; line-height: 190%;">Jika kamu
-                                                                            memiliki pertanyaan, bisa hubungi kami lewat <span
-                                                                                style="text-decoration: underline; font-size: 14px; line-height: 26.6px;"><span
-                                                                                    style="color: #f1602a; font-size: 14px; line-height: 26.6px; text-decoration: underline;"><span
-                                                                                        style="font-size: 14px; line-height: 26.6px;">support@mailus.com</span>.
-                                                                                </span></span><br />Ruko
-                                                                            Prima Orchard No.C 2 Prima Harapan <br> Regency
-                                                                            Bekasi
-                                                                            Utara, Kota Bekasi 17123, Provinsi Jawa
-                                                                            Barat<br /><span
-                                                                                style="text-decoration: underline; font-size: 14px; line-height: 26.6px;">Terms
-                                                                                of use</span> | <span
-                                                                                style="text-decoration: underline; font-size: 14px; line-height: 26.6px;">Privacy
-                                                                                Policy</span></p>
-                                                                    </div>
-        
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-        
-                                                    <!--[if (!mso)&(!IE)]><!-->
-                                                </div>
-                                                <!--<![endif]-->
-                                            </div>
-                                        </div>
-                                        <!--[if (mso)|(IE)]></td><![endif]-->
-                                        <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
-                                    </div>
-                                </div>
-                            </div>
-        
-        
-        
-                            <div class="u-row-container" style="padding: 0px;background-color: transparent">
-                                <div class="u-row"
-                                    style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;">
-                                    <div
-                                        style="border-collapse: collapse;display: table;width: 100%;background-color: transparent;">
-                                        <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr style="background-color: transparent;"><![endif]-->
-        
-                                        <!--[if (mso)|(IE)]><td align="center" width="600" style="width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;" valign="top"><![endif]-->
-                                        <div class="u-col u-col-100"
-                                            style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
-                                            <div
-                                                style="width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-                                                <!--[if (!mso)&(!IE)]><!-->
-                                                <div
-                                                    style="padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-                                                    <!--<![endif]-->
-        
-                                                    <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
-                                                        border="0">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="overflow-wrap:break-word;word-break:break-word;padding:0px;"
-                                                                    align="left">
-        
-                                                                    <table width="100%" cellpadding="0" cellspacing="0"
-                                                                        border="0">
-                                                                        <tr>
-                                                                            <td style="padding-right: 0px;padding-left: 0px;"
-                                                                                align="center">
-        
-                                                                                <img align="center" border="0"
-                                                                                    src="https://cdn.templates.unlayer.com/assets/1636435800013-footer%20curve.png"
-                                                                                    alt="border" title="border"
-                                                                                    style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 600px;"
-                                                                                    width="600"
-                                                                                    class="v-src-width v-src-max-width" />
-        
-                                                                            </td>
-                                                                        </tr>
-                                                                    </table>
-        
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-        
-                                                    <!--[if (!mso)&(!IE)]><!-->
-                                                </div>
-                                                <!--<![endif]-->
-                                            </div>
-                                        </div>
-                                        <!--[if (mso)|(IE)]></td><![endif]-->
-                                        <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
-                                    </div>
-                                </div>
-                            </div>
-        
-        
-        
-                            <div class="u-row-container" style="padding: 0px;background-color: transparent">
-                                <div class="u-row"
-                                    style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;">
-                                    <div
-                                        style="border-collapse: collapse;display: table;width: 100%;background-color: transparent;">
-                                        <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr style="background-color: transparent;"><![endif]-->
-        
-                                        <!--[if (mso)|(IE)]><td align="center" width="600" style="width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;" valign="top"><![endif]-->
-                                        <div class="u-col u-col-100"
-                                            style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
-                                            <div
-                                                style="width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-                                                <!--[if (!mso)&(!IE)]><!-->
-                                                <div
-                                                    style="padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-                                                    <!--<![endif]-->
-        
-                                                    <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
-                                                        border="0">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;"
-                                                                    align="left">
-        
-                                                                    <table height="0px" align="center" border="0"
-                                                                        cellpadding="0" cellspacing="0" width="100%"
-                                                                        style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;border-top: 0px solid #BBBBBB;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
-                                                                        <tbody>
-                                                                            <tr style="vertical-align: top">
-                                                                                <td
-                                                                                    style="word-break: break-word;border-collapse: collapse !important;vertical-align: top;font-size: 0px;line-height: 0px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
-                                                                                    <span>&#160;</span>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-        
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-        
-                                                    <!--[if (!mso)&(!IE)]><!-->
-                                                </div>
-                                                <!--<![endif]-->
-                                            </div>
-                                        </div>
-                                        <!--[if (mso)|(IE)]></td><![endif]-->
-                                        <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
-                                    </div>
-                                </div>
-                            </div>
-        
-        
-                            <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <!--[if mso]></div><![endif]-->
-            <!--[if IE]></div><![endif]-->
-        </body>
-        
-        </html>';
+			$mail->Body    = email($no_certificate_coa, $name_int, $id_sk);
         
         if($mail->send())
 		{
@@ -3236,6 +2324,11 @@ class D_superadmin extends CI_Controller
         $data['analysis'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN analysis ON sampling_det.id_analysis = analysis.id_analysis INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk WHERE sampling_det.id_sk = $id_sk AND analysis.coa = 1")->result();
         $data['count'] = count($data['analysis']) + 1;
 
+        foreach($data['coa'] as $name) {
+            $name_int = $name->name_int;
+            $no_cert = $name->no_certificate;
+        }
+
         $paper_size = 'A4';
         $orientation = 'potrait';
         $html = $this->load->view('superadmin/pages/D_pdfcoa', $data, TRUE);;
@@ -3243,7 +2336,7 @@ class D_superadmin extends CI_Controller
 
         $this->dompdf->load_html($html);
         $this->dompdf->render();
-        $this->dompdf->stream("COA " . $data['coa']->name_int .".pdf", array('Attachment' => 0));
+        $this->dompdf->stream($no_cert. "_$name_int.pdf", array('Attachment' => false));
 
         }
 
@@ -3453,12 +2546,15 @@ class D_superadmin extends CI_Controller
         $this->form_validation->set_rules('bank', 'Bank', 'required');
         $this->form_validation->set_rules('director', 'Director', 'required');
         $this->form_validation->set_rules('director_email', 'Director Email', 'required');
+        $this->form_validation->set_rules('technical_person', 'Technical Person', 'required');
         $this->form_validation->set_rules('img_logo', 'Logo');
+        $this->form_validation->set_rules('tp_signature', 'Technical Person Signature');
 
         if($this->form_validation->run() == false) {
             $this->update_company_profile();
         } else {
             $img_logo = $_FILES['img_logo']['name'];
+            $tp_signature = $_FILES['tp_signature']['name'];
 
             $images_old = $this->db->query("SELECT * FROM company_profile")->result();
             
@@ -3478,6 +2574,23 @@ class D_superadmin extends CI_Controller
                     $img_logo = $this->upload->data('file_name');
                 }
             }
+            
+            if ($tp_signature == NULL) {
+                foreach($images_old as $old) {
+                    $tp_signature = $old->tp_signature;
+                }
+            } else {
+				$config['upload_path'] = FCPATH . "assets/img/company_profile/";
+				$config['allowed_types'] = 'jpg|jpeg|png|tiff|webp';
+				$this->load->library('upload', $config);
+				$this->upload->initialize($config);
+
+                if (!$this->upload->do_upload('tp_signature')) {
+                    echo "Upload image failed";
+                } else {
+                    $tp_signature = $this->upload->data('file_name');
+                }
+            }
 
             $data = array (
                 'name' => $this->input->post('name'),
@@ -3490,7 +2603,9 @@ class D_superadmin extends CI_Controller
                 'bank' => $this->input->post('bank'),
                 'director' => $this->input->post('director'),
                 'director_email' => $this->input->post('director_email'),
+                'technical_person' => $this->input->post('technical_person'),
                 'img_logo' => $img_logo,
+                'tp_signature' => $tp_signature,
             );
 
             $where = array(
@@ -3582,16 +2697,14 @@ class D_superadmin extends CI_Controller
 		} else {
             $id_sk = $this->input->post('id_sk');
             $params_arr = $this->input->post('params');
-            $regulation = $this->input->post('regulation');
-            $total_example = $this->input->post('total_example');
 
             $params_desc = implode(", ", $params_arr);
 
             $data = array(
                 'id_sk' => $id_sk,
                 'params' => $params_desc,
-                'regulation' => $regulation,
-                'total_example' => $total_example,
+                'regulation' => $this->input->post('regulation'),
+                'total_example' => $this->input->post('total_example'),
             );
 
             $this->web->insert_data($data, 'test_request_det');
@@ -3773,6 +2886,7 @@ class D_superadmin extends CI_Controller
             $data['regulation'] = $this->db->query("SELECT * FROM regulation")->result();
             $data['sampling_det'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk INNER JOIN institution ON sk_number.id_int = institution.id_int INNER JOIN analysis ON analysis.id_analysis = sampling_det.id_analysis WHERE sk_number.id_sk = $id_sk ORDER BY id_sampling DESC")->result();
             $data['bpas'] = $this->db->query("SELECT * FROM baps WHERE id_sk = $id_sk")->result();
+            $data['sampler'] = $this->db->query("SELECT * FROM assign_sampler INNER JOIN sampler ON sampler.id_sampler = assign_sampler.id_sampler WHERE id_sk = $id_sk")->result();
             $this->load->view('superadmin/_layout/header', $data);
             $this->load->view('superadmin/_layout/sidebar');
             $this->load->view('superadmin/pages/D_addbaps');
@@ -3788,6 +2902,7 @@ class D_superadmin extends CI_Controller
 		} else {
         //BAPS
         $id_sk = $this->input->post('id_sk');
+        $id_sampler = $this->input->post('id_sampler');
         $air_ambient = $this->input->post('air_ambient');
         $chimney_emission = $this->input->post('chimney_emission');
         $lightning = $this->input->post('lightning');
@@ -3804,10 +2919,35 @@ class D_superadmin extends CI_Controller
 
         $query_check = $this->db->query("SELECT * FROM baps WHERE id_sk = $id_sk")->result();
 
+        $query_check_sk = $this->db->query("SELECT * FROM sk_number WHERE id_sk = $id_sk")->result();
+        foreach($query_check_sk as $cek) {
+            if($cek->sk_baps == NULL) {
+                // create SK NUMBER
+                $sql = $this->db->query("SELECT id_sk FROM sk_number WHERE id_sk = $id_sk")->result();
+                foreach($sql as $sql2) {
+                    $code = $sql2->id_sk;
+                }
+                $sk_baps = $code . '/' . date('Y') . '/' . date('m') . '/' . date('d') . '/' . "DIL/BA";
+                // end SK Number
+
+                $data_sk = array (
+                    'sk_baps' => $sk_baps
+                );
+
+                $where = array (
+                    'id_sk' => $id_sk
+                );
+
+                $this->web->update_data('sk_number', $data_sk, $where);
+            }
+        }
+
         if($query_check == NULL) {
+            
 
             $data_baps = array(
                 'id_sk' => $id_sk,
+                'id_sampler' => $id_sampler,
                 'air_ambient' => $air_ambient,
                 'chimney_emission' => $chimney_emission,
                 'lightning' => $lightning,
@@ -3818,11 +2958,13 @@ class D_superadmin extends CI_Controller
                 'wastewater' => $wastewater,
             );
 
+
             $this->web->insert_data($data_baps, 'baps');
         } else {
 
             $data_baps = array(
                 'air_ambient' => $air_ambient,
+                'id_sampler' => $id_sampler,
                 'chimney_emission' => $chimney_emission,
                 'lightning' => $lightning,
                 'heat_stress' => $heat_stress,
@@ -3872,8 +3014,146 @@ class D_superadmin extends CI_Controller
             $data['institution'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE sk_number.id_sk = $id_sk")->result();
             $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
             $data['sampling_det'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk INNER JOIN institution ON sk_number.id_int = institution.id_int INNER JOIN regulation ON regulation.id_regulation = sampling_det.id_regulation INNER JOIN analysis ON analysis.id_analysis = sampling_det.id_analysis WHERE sk_number.id_sk = $id_sk ORDER BY id_sampling DESC")->result();
-            $data['bpas'] = $this->db->query("SELECT * FROM baps WHERE id_sk = $id_sk")->result();
+            $data['bpas'] = $this->db->query("SELECT * FROM baps INNER JOIN sampler ON sampler.id_sampler = baps.id_sampler WHERE id_sk = $id_sk")->result();
             $this->load->view('superadmin/pages/D_printbaps', $data);
+        }
+    }
+
+    public function data_invoice()
+    {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+            $data = array(
+                'company_pages' => $this->web->comp(),
+                'title' => 'Data Quotation',
+            );
+            $data['quotation'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE status_po = 1 ORDER BY id_sk DESC")->result();
+            $this->load->view('superadmin/_layout/header', $data);
+            $this->load->view('superadmin/_layout/sidebar');
+            $this->load->view('superadmin/pages/D_listquotation', $data);
+            $this->load->view('superadmin/_layout/footer');
+        }
+    }
+
+    public function add_invoice($id_sk)
+    {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+            $data = array(
+                'company_pages' => $this->web->comp(),
+                'title' => 'Add Invoice',
+            );
+
+            $data['institution'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE sk_number.id_sk = $id_sk")->result();
+            $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk WHERE quotation.id_sk = $id_sk ORDER BY id_quotation DESC")->result();
+            $data['sk_number'] = $this->db->query("SELECT * FROM sk_number WHERE id_sk = $id_sk")->result();
+            $data['invoice'] = $this->db->query("SELECT * FROM invoice WHERE id_sk = $id_sk")->result();
+            $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
+
+            $this->load->view('superadmin/_layout/header', $data);
+            $this->load->view('superadmin/_layout/sidebar');
+            $this->load->view('superadmin/pages/D_addinvoice');
+            $this->load->view('superadmin/_layout/footer');
+        }
+    }
+
+    public function save_invoice() {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        //BAPS
+        $id_sk = $this->input->post('id_sk');
+        $date_inv = $this->input->post('date_inv');
+        $po_date = $this->input->post('po_date');
+        $po_date = $this->input->post('po_date');
+        $subject = $this->input->post('subject');
+        $amount_in_words = $this->input->post('amount_in_words');
+
+        $query_check = $this->db->query("SELECT * FROM invoice WHERE id_sk = $id_sk")->result();
+
+        $query_check_sk = $this->db->query("SELECT * FROM sk_number WHERE id_sk = $id_sk")->result();
+        foreach($query_check_sk as $cek) {
+            if($cek->sk_inv == NULL) {
+                // create SK NUMBER
+                $sql = $this->db->query("SELECT id_sk FROM sk_number WHERE id_sk = $id_sk")->result();
+                foreach($sql as $sql2) {
+                    $code = $sql2->id_sk;
+                }
+                $sk_inv = $code . '/' . date('Y') . '/' . date('m') . '/' . date('d') . '/' . "DIL/INV";
+                // end SK Number
+
+                $data_sk = array (
+                    'sk_inv' => $sk_inv
+                );
+
+                $where = array (
+                    'id_sk' => $id_sk
+                );
+
+                $this->web->update_data('sk_number', $data_sk, $where);
+            }
+        }
+
+        if($query_check == NULL) {
+            
+
+            $data_inv = array(
+                'id_sk' => $id_sk,
+                'date_inv' => $date_inv,
+                'po_date' => $po_date,
+                'subject' => $subject,
+                'amount_in_words' => $amount_in_words
+            );
+
+
+            $this->web->insert_data($data_inv, 'invoice');
+        } else {
+
+            $data_inv = array(
+                'id_sk' => $id_sk,
+                'date_inv' => $date_inv,
+                'po_date' => $po_date,
+                'subject' => $subject,
+                'amount_in_words' => $amount_in_words
+            );
+
+            $where = array(
+                'id_sk' => $id_sk
+            );
+
+            $this->web->update_data('invoice', $data_inv, $where);
+        }
+
+        $this->session->set_flashdata('msg', 'Update Invoice success!');
+        redirect('D_superadmin/add_invoice/' . $id_sk);
+        }
+    }
+
+    public function print_invoice($id_sk) {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+            $data = array(
+                'company_pages' => $this->web->comp(),
+                'title' => 'Print Invoice',
+            );
+            $data['institution'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE sk_number.id_sk = $id_sk")->result();
+            $data['quotation'] = $this->db->query("SELECT * FROM quotation INNER JOIN analysis ON quotation.id_analysis = analysis.id_analysis INNER JOIN institution ON quotation.id_int = institution.id_int INNER JOIN sk_number ON quotation.id_sk = sk_number.id_sk WHERE quotation.id_sk = $id_sk ORDER BY id_quotation DESC")->result();
+            $data['sk_number'] = $this->db->query("SELECT * FROM sk_number WHERE id_sk = $id_sk")->result();
+            $data['invoice'] = $this->db->query("SELECT * FROM invoice WHERE id_sk = $id_sk")->result();
+            $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
+
+            $this->load->view('superadmin/pages/D_printinvoice', $data);
         }
     }
 

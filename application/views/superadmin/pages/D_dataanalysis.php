@@ -22,7 +22,8 @@
                             <div class="form-group">
                                 <label>Name Analysis</label>
                                 <input type="hidden" class="form-control" name="id_analysis" value="<?= $sa->id_analysis ?>">
-                                <input type="text" class="form-control" name="name_analysis" value="<?= $sa->name_analysis ?>" autocomplete="off" placeholder="Insert name analysis...">
+                                <input type="text" class="form-control" name="name_analysis" value="<?= $sa->name_analysis ?>" autocomplete="off" placeholder="Insert name analysis..." readonly>
+                                <span class="text-small text-danger">You can't change the name of the analysis because it can damage the application</span>
                                 <?php echo form_error('name_analysis', '<div class="text-small text-danger">', '</div>') ?>
                             </div>
                             

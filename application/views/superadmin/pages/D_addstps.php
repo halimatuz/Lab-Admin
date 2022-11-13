@@ -26,7 +26,7 @@ foreach($specialSK as $sk) {
                   <div class="row">
                     <div class="col-9">
                       <input type="hidden" name="id_sk" value="<?= $sk_number->id_sk ?>">
-                      <input type="date" name="date_sample" class="form-control <?php if(form_error('date_sample')) { echo "is-invalid"; } ?>" value="<?= $sk_number->date_sample ?>">
+                      <input type="datetime-local" name="date_sample" class="form-control <?php if(form_error('date_sample')) { echo "is-invalid"; } ?>" value="<?= $sk_number->date_sample ?>">
                       <?php echo form_error('date_sample', '<span class="text-small text-danger">', '</span>') ?>
                     </div>
                     <div class="col-3">
@@ -46,7 +46,7 @@ foreach($specialSK as $sk) {
                     <hr>
                         <form action="<?= base_url('D_superadmin/add_stps_action') ?>" method="POST">
                             <div class="form-group">
-                                <label>Sample</label>
+                                <label>Sample <span class="text-small text-primary">(Multiple Select)</span></label>
                                 <input type="hidden" name="id_sk" value="<?= $sk_number->id_sk ?>">
                                 <select name="sample_desc[]" class="form-control selectric <?php if(form_error('sample_desc')) { echo "is-invalid"; } ?>" multiple="">
                                   <option value="">-- Select Sample --</option>

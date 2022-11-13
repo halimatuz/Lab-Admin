@@ -45,27 +45,52 @@
 
                   <div class="row">
                     <div class="form-group col-12 col-md-6">
+                      <label for="email" class="d-block">Email</label>
+                      <input id="email" type="email" class="form-control" name="email" value="<?= $cmp->email ?>">
+                      <?php echo form_error('email', '<span class="text-small text-danger">', '</span>') ?>
+                    </div>
+                    <div class="form-group col-12 col-md-6">
+                      <label for="img_logo" class="d-block">Logo</label>
+                      <?php if($cmp->img_logo != NULL) : ?>
+                      <img src="<?= base_url('assets/img/company_profile/') . $cmp->img_logo ?>" alt="" class="img-thumbnail mb-2" width="100px" height="50px">
+                      <?php endif; ?>
+                      <input id="img_logo" type="file" class="form-control" name="img_logo">
+                      <?php echo form_error('img_logo', '<span class="text-small text-danger">', '</span>') ?>
+                    </div>
+                  </div>
+
+                  <h6 class="text-primary mt-2">Director</h6>
+                  <hr>
+
+                  <div class="row">
+                    <div class="form-group col-12 col-md-6">
                       <label for="director" class="d-block">Director</label>
                       <input id="director" type="text" class="form-control" name="director" value="<?= $cmp->director ?>">
                       <?php echo form_error('director', '<span class="text-small text-danger">', '</span>') ?>
                     </div>
                     <div class="form-group col-12 col-md-6">
-                      <label for="email" class="d-block">Email</label>
-                      <input id="email" type="email" class="form-control" name="email" value="<?= $cmp->email ?>">
-                      <?php echo form_error('email', '<span class="text-small text-danger">', '</span>') ?>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group col-12 col-md-6">
                       <label for="director_email" class="d-block">Director Email</label>
                       <input id="director_email" type="text" class="form-control" name="director_email" value="<?= $cmp->director_email ?>">
                       <?php echo form_error('director_email', '<span class="text-small text-danger">', '</span>') ?>
                     </div>
+                  </div>
+
+                  <h6 class="text-primary mt-2">Technical Person in Charge</h6>
+                  <hr>
+
+                  <div class="row">
                     <div class="form-group col-12 col-md-6">
-                      <label for="img_logo" class="d-block">Logo</label>
-                      <img src="<?= base_url('assets/img/company_profile/') . $cmp->img_logo ?>" alt="" class="img-thumbnail mb-2" width="100px" height="50px">
-                      <input id="img_logo" type="file" class="form-control" name="img_logo">
-                      <?php echo form_error('img_logo', '<span class="text-small text-danger">', '</span>') ?>
+                      <label for="technical_person">Technical Person in Charge</label>
+                      <input id="technical_person" type="text" class="form-control <?php if(form_error('technical_person')) { echo "is-invalid"; } ?>" name="technical_person" value="<?= $cmp->technical_person ?>">
+                      <?php echo form_error('technical_person', '<span class="text-small text-danger">', '</span>') ?>
+                    </div>
+                    <div class="form-group col-12 col-md-6">
+                      <label for="tp_signature" class="d-block">Technical Person Signature</label>
+                      <?php if($cmp->tp_signature != NULL) : ?>
+                      <img src="<?= base_url('assets/img/company_profile/') . $cmp->tp_signature ?>" alt="" class="img-thumbnail mb-2" width="100px" height="50px">
+                      <?php endif; ?>
+                      <input id="tp_signature" type="file" class="form-control" name="tp_signature">
+                      <?php echo form_error('tp_signature', '<span class="text-small text-danger">', '</span>') ?>
                     </div>
                   </div>
 

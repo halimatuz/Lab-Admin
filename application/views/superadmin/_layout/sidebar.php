@@ -32,11 +32,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </li>
 
     <li class="menu-header">Logbook</li>
-      <li class="dropdown <?php echo $this->uri->segment(2) == 'data_quotation' || $this->uri->segment(2) == 'list_quotation' || $this->uri->segment(2) == 'add_quotation' || $this->uri->segment(2) == 'update_quotation' ? 'active' : ''; ?>">
+      <li class="dropdown <?php echo $this->uri->segment(2) == 'data_quotation' || $this->uri->segment(2) == 'list_quotation' || $this->uri->segment(2) == 'add_quotation' || $this->uri->segment(2) == 'update_quotation' || $this->uri->segment(2) == 'data_invoice' || $this->uri->segment(2) == 'add_invoice' ? 'active' : ''; ?>">
         <a href="#" class="nav-link has-dropdown"><i class="fas fa-file-contract"></i><span>Quotation</span></a>
         <ul class="dropdown-menu">
           <li class="<?php echo $this->uri->segment(2) == 'data_quotation' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_quotation">Generate SK Number</a></li>
           <li class="<?php echo $this->uri->segment(2) == 'list_quotation' || $this->uri->segment(2) == 'add_quotation' || $this->uri->segment(2) == 'update_quotation' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/list_quotation">List Quotation</a></li>
+          <li class="<?php echo $this->uri->segment(2) == 'data_invoice' || $this->uri->segment(2) == 'add_invoice' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>D_superadmin/data_invoice">Add Invoice</a></li>
         </ul>
       </li>
       <li class="dropdown <?php echo $this->uri->segment(2) == 'data_stps_index' || $this->uri->segment(2) == 'data_stps' || $this->uri->segment(2) == 'add_stps' || $this->uri->segment(2) == 'add_sampler_stps' || $this->uri->segment(2) == 'update_sampler_stps' || $this->uri->segment(2) == 'data_test_request' || $this->uri->segment(2) == 'add_test_request' || $this->uri->segment(2) == 'data_baps' || $this->uri->segment(2) == 'add_baps' ? 'active' : ''; ?>">

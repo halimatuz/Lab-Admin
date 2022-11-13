@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Asia/Jakarta');
 foreach($institution as $i) {
     $int = $i;
 }
@@ -32,7 +33,7 @@ foreach(@$bpas as $b) {
                         Perusahaan : <span class="font-weight-bold"><?= $int->name_int ?></span><br>
                         Alamat : <span class="font-weight-bold"><?= $int->int_address ?></span><br>
                         Telp : <span class="font-weight-bold"><?= $int->int_phone ?></span><br>
-                        Pada hari : <?= date("l", strtotime($int->date_sample)) ?> tanggal <?= date("d F Y", strtotime($int->date_sample)) ?> pukul dengan masing-masing:<br>
+                        Pada hari : <?= date("l", strtotime($int->date_sample)) ?> tanggal <?= date("d F Y", strtotime($int->date_sample)) ?> pukul <?= date("H:i", strtotime($int->date_sample)) ?> dengan masing-masing:<br>
                     </p>
                     <div class="row">
                         <div class="col-md-6">
@@ -126,6 +127,16 @@ foreach(@$bpas as $b) {
                                 </tr>
                             <?php endforeach; ?>
                         </table>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_sampler">Sampler</label>
+                        <select name="id_sampler" id="id_sampler" class="form-control">
+                            <option value="">-- Select Sampler --</option>
+                            <?php foreach($sampler as $row) : ?>
+                            <option value="<?= $row->id_sampler ?>" <?php echo $row->id_sampler == @$bp->id_sampler ? 'selected' : '' ?>><?= $row->name_smp ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Save Changes</button>

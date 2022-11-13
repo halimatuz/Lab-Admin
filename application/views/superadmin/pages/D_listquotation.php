@@ -2,7 +2,7 @@
 <div class="main-content">
   <section class="section">
     <div class="section-header">
-      <h1><?php if($this->uri->segment(2) == 'list_quotation'){echo'List Quotation';}elseif($this->uri->segment(2) == 'data_stp_index'){echo'Add STP';}elseif($this->uri->segment(2) == 'data_stps_index'){echo 'Add STPS';}elseif($this->uri->segment(2) == 'data_quotation_coa'){echo 'Generate COA';}elseif($this->uri->segment(2) == "data_quotation"){echo 'Input Result COA';}elseif($this->uri->segment(2) == "data_test_request"){echo 'Add Test Request';}elseif($this->uri->segment(2) == "data_baps"){echo 'Add BAPS';}else{echo "Print COA";} ?></h1>
+      <h1><?php if($this->uri->segment(2) == 'list_quotation'){echo'List Quotation';}elseif($this->uri->segment(2) == 'data_stp_index'){echo'Add STP';}elseif($this->uri->segment(2) == 'data_stps_index'){echo 'Add STPS';}elseif($this->uri->segment(2) == 'data_quotation_coa'){echo 'Generate COA';}elseif($this->uri->segment(2) == "data_quotation"){echo 'Input Result COA';}elseif($this->uri->segment(2) == "data_test_request"){echo 'Add Test Request';}elseif($this->uri->segment(2) == "data_baps"){echo 'Add BAPS';}elseif($this->uri->segment(2) == "data_invoice"){echo 'Add Invoice';}else{echo "Print COA";} ?></h1>
     </div>
 
     <div class="section-body">
@@ -90,6 +90,8 @@
                                               <a href="<?php echo base_url('D_superadmin/add_test_request/') . $qtn->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> Add Test Request</a>
                                           <?php } elseif($this->uri->segment(2) == 'data_baps') { ?>
                                               <a href="<?php echo base_url('D_superadmin/add_baps/') . $qtn->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> Add BAPS</a>
+                                          <?php } elseif($this->uri->segment(2) == 'data_invoice') { ?>
+                                              <a href="<?php echo base_url('D_superadmin/add_invoice/') . $qtn->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> Add Invoice</a>
                                           <?php } elseif($this->uri->segment(2) == 'data_stp_index') { ?>
                                             <?php if($qtn->sk_analysis == 0) { ?>
                                               <a href="<?php echo base_url('D_superadmin/add_stp/') . $qtn->id_sk ?>"class="btn btn-success"><i class="fas fa-plus"></i> Add STP</a>

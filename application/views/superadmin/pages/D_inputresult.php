@@ -4,8 +4,6 @@ foreach($coa as $c) {
     $coa_spec = $c;
 }
 
-
-
 ?>
 <!-- Main Content -->
 <div class="main-content">

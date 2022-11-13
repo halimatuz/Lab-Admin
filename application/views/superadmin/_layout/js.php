@@ -112,7 +112,7 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   <?php
 } elseif ($this->uri->segment(2) == "modules_sweet_alert") {
   ?>
-  <script src="<?php echo base_url(); ?>assets/modules/sweetalert/sweetalert.min.js"></script>
+  
   <?php
 } elseif ($this->uri->segment(2) == "modules_toastr") {
   ?>
@@ -255,7 +255,7 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   <?php
 } elseif ($this->uri->segment(2) == "modules_sweet_alert") {
   ?>
-  <script src="<?php echo base_url(); ?>assets/js/page/modules-sweetalert.js"></script>
+  
   <?php
 } elseif ($this->uri->segment(2) == "modules_toastr") {
   ?>
@@ -286,6 +286,9 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   <script src="<?php echo base_url(); ?>assets/js/page/utilities-contact.js"></script>
   <?php
 } ?>
+<!-- Sweet Alert -->
+<script src="<?php echo base_url(); ?>assets/modules/sweetalert/sweetalert.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/page/modules-sweetalert.js"></script>
 <!-- Full Calendar -->
 <script src="<?php echo base_url(); ?>assets/modules/fullcalendar/fullcalendar.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/page/modules-calendar.js"></script>
@@ -307,7 +310,6 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
 <!-- Zxing Scanner -->
 <script type="text/javascript" src="<?php echo base_url()?>assets/modules/zxing/zxing.min.js"></script>
 <!-- Sweet Alert -->
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     var ctx = document.getElementById("myChart2").getContext('2d');
     var myChart = new Chart(ctx, {
@@ -380,11 +382,12 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
     });
 </script>
 <script>
+
   const flashData = $('.flash-data').data('flashdata');
   const flashDataLogin = $('.flash-data-login').data('flashdata');
 
   if (flashDataLogin) {
-        Swal.fire({
+        swal({
             position: 'top-end',
             title: 'You have successfully logged in',
             text: flashDataLogin,
@@ -395,12 +398,12 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   }
 
   if (flashData) {
-        Swal.fire({
+        swal({
             title: 'Success!',
             text: flashData,
             icon: 'success',
             timer: 1500,
-            timerProgressBar: true,
+            progressBar: true,
         })
   }
 
@@ -408,17 +411,17 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
           e.preventDefault();
           const href = $(this).attr('href');
 
-          Swal.fire({
+          swal({
           title: 'Are you sure?',
           text: "Data will be deleted!",
           icon: 'warning',
-          showCancelButton: true,
           confirmButtonColor: '#6777EF',
           cancelButtonColor: '#FC544B',
           confirmButtonText: 'Yes, delete data',
-          cancelButtonText: 'Cancel'
-        }).then((result) => {
-          if (result.isConfirmed) {
+          cancelButtonText: 'Cancel',
+          buttons: true,
+        }).then((willDelete) => {
+          if (willDelete) {
             document.location.href = href;
           }
         })
@@ -428,7 +431,7 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
           e.preventDefault();
           const href = $(this).attr('href');
 
-          Swal.fire({
+          swal({
           title: 'Do you want to generate SK Number?',
           text: "You won't be able to revert this!",
           icon: 'warning',
@@ -448,7 +451,7 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
           e.preventDefault();
           const href = $(this).attr('href');
 
-          Swal.fire({
+          swal({
           title: 'Do you want to generate Revision?',
           text: "You won't be able to revert this!",
           icon: 'warning',
@@ -507,7 +510,7 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
 
 const flashDataError = $('.flash-data-error').data('flashdata');
   if (flashDataError) {
-        Swal.fire({
+        swal({
             title: 'Error!',
             text: flashDataError,
             icon: 'error'

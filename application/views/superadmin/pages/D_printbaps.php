@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Asia/Jakarta');
 foreach($institution as $i) {
     $int = $i;
 }
@@ -23,6 +24,11 @@ foreach($company as $c) {
 
     <title><?= $title ?></title>
     <style>
+      * {
+          -webkit-print-color-adjust: exact !important;   /* Chrome, Safari 6 – 15.3, Edge */
+          color-adjust: exact !important;                 /* Firefox 48 – 96 */
+      }
+
       table.table-bordered {
           border:1px solid black!important;
       }
@@ -72,7 +78,7 @@ foreach($company as $c) {
     
       <div class="container">
         <h5 class="text-center"><u>Berita Acara Pengambilan Sampel</u></h5>
-        <p class="text-center">Nomor:</p>
+        <p class="text-center">Nomor: <?= $int->sk_baps ?></p>
         <br>
         <p>Telah dilakukan pengambilan sampel udara oleh pihak PT Delta Indonesia Laboratory pada</p>
         <table>
@@ -92,7 +98,7 @@ foreach($company as $c) {
             <td class="font-weight-bold"><?= $int->int_phone ?></td>
           </tr>
         </table>
-        <p>Pada hari <?= date("l", strtotime($int->date_sample)) ?> tanggal <?= date("d F Y", strtotime($int->date_sample)) ?> pukul dengan lokasi masing-masing:</p>
+        <p>Pada hari <?= date("l", strtotime($int->date_sample)) ?> tanggal <?= date("d F Y", strtotime($int->date_sample)) ?> pukul <?= date("H:i", strtotime($int->date_sample)) ?> dengan lokasi masing-masing:</p>
 
         <div class="row">
             <div class="col-md-6">
@@ -173,6 +179,23 @@ foreach($company as $c) {
                 </tr>
             <?php endforeach; ?>
         </table>
+
+        <div class="row">
+          <div class="col-3 text-center position-relative">
+            <p>Pihak Laboratorium</p>
+            <br><br><br>
+            <p style="margin-bottom: -10px;"><?= @$bp->name_smp ?></p>
+            <p>(.................................................................)</p>
+            <p style="margin-top: -15px;">Petugas Pengambil Sampel</p>
+          </div>
+          <div class="col-6"></div>
+          <div class="col-3">
+            <p class="text-center">Pihak Perusahaan</p>
+            <br><br><br>
+            <p class="text-center">(.................................................................)</p>
+          </div>
+        </div>
+      <p class="mt-2">*Note:</p>
       </div>
 
 

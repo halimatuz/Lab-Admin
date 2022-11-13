@@ -19,6 +19,11 @@ foreach($company as $c) {
 
     <title><?= $title . ' ' . $qtn->name_int ?></title>
     <style>
+      * {
+          -webkit-print-color-adjust: exact !important;   /* Chrome, Safari 6 – 15.3, Edge */
+          color-adjust: exact !important;                 /* Firefox 48 – 96 */
+      }
+      
       table.table-bordered {
           border:1px solid black!important;
       }
