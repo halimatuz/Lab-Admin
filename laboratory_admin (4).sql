@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2022 at 12:37 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Generation Time: Nov 14, 2022 at 02:42 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -160,7 +161,142 @@ INSERT INTO `coa` (`id_coa`, `id_analysis`, `id_unit`, `id_method`, `params`, `r
 (232, 16, 6, 36, 'Sulfur Dioxide (SO2)', '800', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (233, 16, 6, 39, 'Carbon Monoxide (CO)', '600', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (234, 16, 6, 52, 'Particulat', '150', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(235, 16, 3, 26, 'Opacity', '20', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(235, 16, 3, 26, 'Opacity', '20', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(236, 15, 5, 53, 'Ammonia (NH3)', '0.5', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(237, 15, 5, 45, 'Cholorine (CI2)', '10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(238, 15, 5, 54, 'Hydrogen Choloride (HCI)', '5', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(239, 15, 5, 55, 'Hydrogen Fluoride (HF)', '10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(240, 15, 5, 35, 'Nitrogen Dioxide (NO2)', '1000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(241, 15, 3, 26, 'Opacity', '30', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(242, 15, 5, 26, 'Particulate', '350', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(243, 15, 5, 36, 'Sulfur Dioxide (SO2)*', '800', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(244, 15, 5, 56, 'Hydrogen Sulfide (H2S)', '35', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(245, 15, 5, 8, 'Mercury (Hg)', '5', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(246, 15, 5, 8, 'Arsenic (As)', '8', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(247, 15, 5, 8, 'Antimony (Sb)', '8', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(248, 15, 5, 46, 'Cadnium (Cd)', '8', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(249, 15, 5, 46, 'Zinc (Zn)', '50', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(250, 15, 5, 46, 'Lead (Pb)', '12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(251, 8, 5, 46, 'Lead (Pb)', '12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(252, 8, 5, 46, 'Zinc (Zn)', '50', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(253, 8, 5, 46, 'Cadnium (Cd)	', '8', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(254, 8, 5, 8, 'Antimony (Sb)	', '8', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(255, 8, 5, 8, 'Arsenic (As)', '8', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(256, 8, 5, 8, 'Mercury (Hg)', '5', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(257, 8, 5, 56, 'Hydrogen Sulfide (H2S)	', '35', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(258, 8, 5, 36, 'Sulfur Dioxide (SO2)*', '800', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(259, 8, 5, 26, 'Particulate', '350', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(260, 8, 3, 26, 'Opacity', '30', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(261, 8, 5, 35, 'Nitrogen Dioxide (NO2)', '1000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(262, 8, 5, 55, 'Hydrogen Fluoride (HF)', '10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(263, 8, 5, 54, 'Hydrogen Choloride (HCI)', '5', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(264, 8, 5, 45, 'Cholorine (CI2)', '10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(265, 8, 5, 53, 'Ammonia (NH3)', '0.5', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(266, 6, 2, 2, 'Temperature', '40', NULL, NULL, NULL, 'Physical', NULL, NULL, NULL, NULL, NULL, NULL),
+(267, 6, 4, 3, 'Total Dissolved Solids (TDS)', '2000', NULL, NULL, NULL, 'Physical', NULL, NULL, NULL, NULL, NULL, NULL),
+(268, 6, 4, 4, 'Total Suspended Solids (TSS)', '400', NULL, NULL, NULL, 'Physical', NULL, NULL, NULL, NULL, NULL, NULL),
+(269, 6, 8, 57, 'Color', '300', NULL, NULL, NULL, 'Physical', NULL, NULL, NULL, NULL, NULL, NULL),
+(270, 6, 18, 5, 'pH', '6.0-9.0', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(271, 6, 4, 58, 'Iron (Fe) ', '5', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(272, 6, 4, 6, 'Manganese (Mn)', '2', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(273, 6, 4, 58, 'Barium (Ba)', '2', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(274, 6, 4, 58, 'Copper (Cu)', '2', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(275, 6, 4, 58, 'Zinc (Zn)', '5', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(276, 6, 4, 8, 'Chromium Hexavalent (Cr 6+)', '0.1', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(277, 6, 4, 58, 'Chromium (Cr)', '0.5', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(278, 6, 4, 58, 'Cadmium (Cd)', '0.05', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(279, 6, 4, 8, 'Mercury (Hg)', '0.002', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(280, 6, 4, 58, 'Total Lead (Pb)', '0.1', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(281, 6, 4, 58, 'Stanum (Sn)', '2', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(282, 6, 4, 8, 'Arsenic (As)', '0.1', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(283, 6, 4, 8, 'Selenium (Se)', '0.05', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(284, 6, 4, 58, 'Nickel (Ni)', '0.2', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(285, 6, 4, 58, 'Cobalt (Co)', '0.4', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(286, 6, 4, 59, 'Cyanide (CN)', '0.05', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(287, 6, 4, 45, 'Sulfide (H2S)', '0.05', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(288, 6, 4, 10, 'Fluoride (F)', '2', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(289, 6, 4, 11, 'Free Chlorine (Cl2)', '1', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(290, 6, 4, 12, 'Free Ammonia (NH3-N)', '1', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(291, 6, 4, 13, 'Nitrate (NO3-N)', '20', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(292, 6, 4, 14, 'Nitrite (NO2-N)', '1', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(293, 6, 4, 15, 'Biological Oxygen Demand (BOD)', '600', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(294, 6, 4, 16, 'Chemical Oxygen Demand COD', '900', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(295, 6, 4, 17, 'Detergent (MBAS)', '5', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(296, 6, 4, 18, 'Phenol', '0.5', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(297, 6, 4, 19, 'Mineral Oil', '5', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(298, 6, 4, 60, 'Vegetable Oil', '5', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(299, 13, 7, 61, 'Turbidity', '25', NULL, NULL, NULL, 'Physical', NULL, NULL, NULL, NULL, NULL, NULL),
+(300, 13, 8, 57, 'Color', '50', NULL, NULL, NULL, 'Physical', NULL, NULL, NULL, NULL, NULL, NULL),
+(301, 13, 4, 3, 'Total Dissolve Solids (TDS)', '-', NULL, NULL, NULL, 'Physical', NULL, NULL, NULL, NULL, NULL, NULL),
+(302, 13, 2, 2, 'Temperature', '-', NULL, NULL, NULL, 'Physical', NULL, NULL, NULL, NULL, NULL, NULL),
+(303, 13, 18, 49, 'Taste', '-', NULL, NULL, NULL, 'Physical', NULL, NULL, NULL, NULL, NULL, NULL),
+(304, 13, 18, 49, 'Odor', '-', NULL, NULL, NULL, 'Physical', NULL, NULL, NULL, NULL, NULL, NULL),
+(305, 13, 18, 5, 'pH', '6.5 – 8.5', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(306, 13, 4, 58, 'Iron (Fe) ', '1.0', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(307, 13, 4, 10, 'Fluoride (F)', '1.5', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(308, 13, 4, 62, 'Total Hardness (CaCO3)', '500', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(309, 13, 4, 58, 'Mangan (Mn)', '0.5', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(310, 13, 4, 13, 'Nitrate (NO3-N)', '10', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(311, 13, 4, 14, 'Nitrite (NO2-N)', '1.0', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(312, 13, 4, 59, 'Cyanide (CN)', '0.1', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(313, 13, 4, 17, 'MBAS', '0.05', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(314, 13, 4, 8, 'Mercury (Hg)', '0.001', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(315, 13, 4, 8, 'Arsenic (As)', '0.05', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(316, 13, 4, 58, 'Cadmium (Cd)', '0.005', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(317, 13, 4, 8, 'Chromium Hexavalent (Cr6+)', '0.05', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(318, 13, 4, 8, 'Selenium (Se)', '0.01', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(319, 13, 4, 58, 'Zinc (Zn)', '15', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(320, 13, 4, 63, 'Sulfate (SO4)', '400', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(321, 13, 4, 58, 'Total Lead (Pb)', '0.05', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(322, 13, 4, 64, 'Permanganate Number (KMnO4)', '10', NULL, NULL, NULL, 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(323, 13, 9, 20, 'Total Coliform', '50', NULL, NULL, NULL, 'Microbiology', NULL, NULL, NULL, NULL, NULL, NULL),
+(324, 13, 9, 65, 'E-Coliform', '0', NULL, NULL, NULL, 'Microbiology', NULL, NULL, NULL, NULL, NULL, NULL),
+(325, 11, 10, 30, 'Sulphur Dioxide (SO2) *', '150', NULL, NULL, NULL, NULL, '1 Hours', NULL, NULL, NULL, NULL, NULL),
+(326, 11, 15, 30, 'Sulphur Dioxide (SO2) *', '75', NULL, NULL, NULL, NULL, '24 Hours', NULL, NULL, NULL, NULL, NULL),
+(327, 11, 10, 30, 'Sulphur Dioxide (SO2) *', '45', NULL, NULL, NULL, NULL, '1 Year', NULL, NULL, NULL, NULL, NULL),
+(328, 11, 15, 29, 'Nitrogen Dioxide (NO2) *', '200', NULL, NULL, NULL, NULL, '1 Hours', NULL, NULL, NULL, NULL, NULL),
+(329, 11, 10, 29, 'Nitrogen Dioxide (NO2) *', '65', NULL, NULL, NULL, NULL, '24 Hours', NULL, NULL, NULL, NULL, NULL),
+(330, 11, 10, 29, 'Nitrogen Dioxide (NO2) *', '50', NULL, NULL, NULL, NULL, '1 Year', NULL, NULL, NULL, NULL, NULL),
+(331, 11, 10, 37, 'Carbon Monoxide (CO)', '10000', NULL, NULL, NULL, NULL, '1 Hours', NULL, NULL, NULL, NULL, NULL),
+(332, 11, 10, 37, 'Carbon Monoxide (CO)', '-', NULL, NULL, NULL, NULL, '24 Hours', NULL, NULL, NULL, NULL, NULL),
+(333, 11, 11, 28, 'Ammonia (NH3) *', '2***', NULL, NULL, NULL, NULL, '1 Hours', NULL, NULL, NULL, NULL, NULL),
+(334, 11, 10, 31, 'Oxiden (Ox)* ', '150', NULL, NULL, NULL, NULL, '1 Hours', NULL, NULL, NULL, NULL, NULL),
+(335, 11, 15, 31, 'Oxiden (Ox)* ', '-', NULL, NULL, NULL, NULL, '24 Hours', NULL, NULL, NULL, NULL, NULL),
+(336, 11, 10, 31, 'Oxiden (Ox)* ', '35', NULL, NULL, NULL, NULL, '1 Year', NULL, NULL, NULL, NULL, NULL),
+(337, 11, 10, 22, 'Hydrocarbon (HC)', '160', NULL, NULL, NULL, NULL, '3 Hours', NULL, NULL, NULL, NULL, NULL),
+(338, 11, 10, 46, 'Lead (Pb)', '-', NULL, NULL, NULL, NULL, '1 Hours', NULL, NULL, NULL, NULL, NULL),
+(339, 11, 10, 46, 'Lead (Pb)', '2', NULL, NULL, NULL, NULL, '24 Hours', NULL, NULL, NULL, NULL, NULL),
+(340, 11, 11, 31, 'Hydrogen Sulfide (H2S', '0.02***', NULL, NULL, NULL, NULL, '1 Hours', NULL, NULL, NULL, NULL, NULL),
+(341, 11, 10, 66, 'Total Suspended Particulates (TSP)', '-', NULL, NULL, NULL, NULL, '1 Hours', NULL, NULL, NULL, NULL, NULL),
+(342, 11, 10, 66, 'Total Suspended Particulates (TSP) ', '230', NULL, NULL, NULL, NULL, '24 Hours', NULL, NULL, NULL, NULL, NULL),
+(343, 11, 10, 23, 'PM10 (Particulate Matters)', '-', NULL, NULL, NULL, NULL, '1 Hours', NULL, NULL, NULL, NULL, NULL),
+(344, 11, 15, 23, 'PM10 (Particulate Matters)', '75', NULL, NULL, NULL, NULL, '24 Hours', NULL, NULL, NULL, NULL, NULL),
+(345, 11, 10, 23, 'PM2.5 (Particulate Matters)', '-', NULL, NULL, NULL, NULL, '1 Hours', NULL, NULL, NULL, NULL, NULL),
+(346, 11, 15, 23, 'PM2.5 (Particulate Matters)', '55', NULL, NULL, NULL, NULL, '24 Hours', NULL, NULL, NULL, NULL, NULL),
+(347, 12, 2, 2, 'Temperature', 'Dev 3', 'Dev 3', 'Dev 3', 'Dev 3', 'Physical', NULL, NULL, NULL, NULL, NULL, NULL),
+(348, 12, 4, 3, 'Total Dissolved Solids (TDS)', '1000', '1000', '1000', '2000', 'Physical', NULL, NULL, NULL, NULL, NULL, NULL),
+(349, 12, 4, 4, 'Total Suspended Solid (TSS)', '40', '50', '100', '400', 'Physical', NULL, NULL, NULL, NULL, NULL, NULL),
+(350, 12, 4, 15, 'Biological Oxygen Demand (BOD)', '2', '3', '6', '12', 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(351, 12, 4, 16, 'Chemical Oxygen Demand (COD)', '10', '25', '40', '80', 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(352, 12, 18, 5, 'pH ', '6-9', '6-9', '6-9', '6-9', 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(353, 12, 4, 67, 'Total Phosphate (PO4) ', '0.2', '0.2', '1.0', '-', 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(354, 12, 4, 63, 'Sulfate (SO4)', '300', '300', '300', '400', 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(355, 12, 4, 8, 'Arsenic (As)', '0.05', '0.05', '0.05', '0.05', 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(356, 12, 4, 58, 'Boron (B)', '1.0', '1.0', '1.0', '1.0', 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(357, 12, 4, 68, 'Cadmium (Cd)', '0.01', '0.01', '0.01', '0.01', 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(358, 12, 4, 6, 'Cobalt (Co)', '0.2', '0.2', '0.2', '0.2', 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(359, 12, 4, 8, 'Chromium Hexavalent (Cr6+)', '0.05', '0.05', '0.05', '1', 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(360, 12, 4, 58, 'Copper (Cu)', '0.02', '0.02', '0.02', '0.2', 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(361, 12, 4, 58, 'Lead (Pb)', '0.03', '0.03', '0.03', '0.5', 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(362, 12, 4, 8, 'Mercury (Hg)', '0.001', '0.002', '0.002', '0.005', 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(363, 12, 4, 69, 'Oil and Grease', '1', '1', '1', '10', 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(364, 12, 4, 8, 'Selenium (Se)', '0.01', '0.05', '0.05', '0.05', 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(365, 12, 4, 58, 'Zinc (Zn)', '0.05', '0.05', '0.05', '2', 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(366, 12, 4, 58, 'Nikel (Ni)', '  0.05', '  0.05', '  0.05', '  0.1', 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(367, 12, 4, 17, 'MBAS', '0.2', '0.2', '0.2', '-', 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(368, 12, 4, 58, 'Mangan (Mn)', '0.1', '-', '-', '-', 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(369, 12, 22, 20, 'Total Coliform', '1000', '5000', '10.000', '10.000', 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL),
+(370, 12, 22, 70, 'E. coli', '100', '1000', '2000', '2000', 'Chemistry', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -349,7 +485,25 @@ INSERT INTO `method` (`id_method`, `name_method`) VALUES
 (49, 'Organoleptic'),
 (50, 'Gas Analizer'),
 (51, 'SNI 7231:2009'),
-(52, 'SNI 19-7117.12-2005');
+(52, 'SNI 19-7117.12-2005'),
+(53, 'SNI 19-7117.6-2005'),
+(54, 'SNI 19-7117.8-2005'),
+(55, 'SNI 19-7117.9-2005'),
+(56, 'SNI 06-7117.7-2005'),
+(57, 'SM 23rd 2120C-2017'),
+(58, 'SM 23rd 3120B-2017'),
+(59, 'SNI 6989.77-2011'),
+(60, 'SNI 6989.10 - 2012'),
+(61, 'SNI 06-6989.25-2005'),
+(62, 'SM 23rd 2340B-2017'),
+(63, 'SNI 6989.20-2019'),
+(64, 'SNI 06-6989.22-2004'),
+(65, 'SM 23rd 9221G.2 - 2017'),
+(66, 'SNI 7119.3:2017'),
+(67, 'SNI 06-6989.31-2005'),
+(68, 'APHA 3120B Ed 23 - 2017'),
+(69, 'SNI 6989.10 - 2011'),
+(70, 'SM 23rd 9221E - 2017');
 
 -- --------------------------------------------------------
 
@@ -928,7 +1082,7 @@ ALTER TABLE `baps`
 -- AUTO_INCREMENT for table `coa`
 --
 ALTER TABLE `coa`
-  MODIFY `id_coa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=236;
+  MODIFY `id_coa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=371;
 
 --
 -- AUTO_INCREMENT for table `company_profile`
@@ -952,7 +1106,7 @@ ALTER TABLE `invoice`
 -- AUTO_INCREMENT for table `method`
 --
 ALTER TABLE `method`
-  MODIFY `id_method` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id_method` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `quotation`
