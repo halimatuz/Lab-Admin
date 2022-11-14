@@ -16,8 +16,8 @@ foreach($company as $c) {
   $cmp = $c;
 }
 
-foreach($invoice as $in) {
-  $inv = $in;
+foreach(@$invoice as $in) {
+  @$inv = $in;
 }
 ?>
 <!doctype html>
@@ -126,7 +126,7 @@ foreach($invoice as $in) {
                       <table>
                           <tr>
                               <td>Date&emsp;:&emsp;</td>
-                              <td><?= $inv->date_inv ?></td>
+                              <td><?= @$inv->date_inv ?></td>
                           </tr>
                       </table>
                   </div>
@@ -153,7 +153,7 @@ foreach($invoice as $in) {
                       <tr>
                           <td class="text-uppercase">Po Date</td>
                           <td class="">:</td>
-                          <td class=""><?= $inv->po_date ?></td>
+                          <td class=""><?= @$inv->po_date ?></td>
                       </tr>
                       <tr>
                           <td class="text-uppercase">Po No.&emsp;</td>
@@ -163,7 +163,7 @@ foreach($invoice as $in) {
                       <tr>
                           <td class="text-uppercase">Subject&emsp;</td>
                           <td class="">:&emsp;</td>
-                          <td class=""><?= $inv->subject ?></td>
+                          <td class=""><?= @$inv->subject ?></td>
                       </tr>
                   </table>
               </div>
@@ -237,7 +237,7 @@ foreach($invoice as $in) {
             <div class="w-100">
               <div class="p-2 mb-2" style="border: 1px solid black;">
                   <p class="font-weight-bold"><u>Terbilang:</u></p>
-                  <?= $inv->amount_in_words ?>
+                  <?= @$inv->amount_in_words ?>
               </div>
             </div>
             <div class="w-100 text-center">

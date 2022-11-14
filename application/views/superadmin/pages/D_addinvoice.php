@@ -16,8 +16,8 @@ foreach($company as $c) {
     $cmp = $c;
 }
 
-foreach($invoice as $in) {
-    $inv = $in;
+foreach(@$invoice as $in) {
+    @$inv = $in;
 }
 
 ?>
@@ -50,7 +50,7 @@ foreach($invoice as $in) {
                                 <table>
                                     <tr>
                                         <td>Date&emsp;:&emsp;</td>
-                                        <td><input type="date" name="date_inv" class="form-control inline-block" value="<?= $inv->date_inv ?>"></td>
+                                        <td><input type="date" name="date_inv" class="form-control inline-block" value="<?= @$inv->date_inv ?>"></td>
                                     </tr>
                                 </table>
                             </div>
@@ -77,7 +77,7 @@ foreach($invoice as $in) {
                                 <tr>
                                     <td class="text-uppercase">Po Date</td>
                                     <td class="">:</td>
-                                    <td class=""><input type="date" name="po_date" class="form-control" value="<?= $inv->po_date ?>"></td>
+                                    <td class=""><input type="date" name="po_date" class="form-control" value="<?= @$inv->po_date ?>"></td>
                                 </tr>
                                 <tr>
                                     <td class="text-uppercase">Po No.&emsp;</td>
@@ -87,7 +87,7 @@ foreach($invoice as $in) {
                                 <tr>
                                     <td class="text-uppercase">Subject&emsp;</td>
                                     <td class="">:&emsp;</td>
-                                    <td class=""><input type="text" name="subject" class="form-control" placeholder="Insert subject" value="<?= $inv->subject ?>"></td>
+                                    <td class=""><input type="text" name="subject" class="form-control" placeholder="Insert subject" value="<?= @$inv->subject ?>"></td>
                                 </tr>
                             </table>
                         </div>
@@ -159,7 +159,7 @@ foreach($invoice as $in) {
                     
                     <div class="w-50 p-2 mb-2" style="border: 1px solid black;">
                         <p class="font-weight-bold"><u>Terbilang:</u></p>
-                        <input type="text" name="amount_in_words" class="form-control" placeholder="Insert Amount in words" value="<?= $inv->amount_in_words ?>">
+                        <input type="text" name="amount_in_words" class="form-control" placeholder="Insert Amount in words" value="<?= @$inv->amount_in_words ?>">
                     </div>
 
                     <button type="submit" class="btn btn-primary">Save Changes</button>

@@ -624,7 +624,9 @@ class D_superadmin extends CI_Controller
 
     public function _rules_method()
     {
-        $this->form_validation->set_rules('name_method', 'Name method', 'required');
+        $this->form_validation->set_rules('name_method', 'Name method', 'required|is_unique[method.name_method]', [
+            'is_unique' => 'This method already exist!'
+        ]);
     }
 
     public function delete_method($id)
@@ -817,7 +819,7 @@ class D_superadmin extends CI_Controller
 
         $data['unit'] = $this->web->get_data('unit', 'id_unit')->result();
         $data['specialAnalysis'] = $this->db->query("SELECT * FROM analysis WHERE id_analysis = '$id'")->result();
-        $data['coa'] = $this->db->query("SELECT * FROM coa INNER JOIN method ON coa.method = method.id_method WHERE coa.id_analysis = '$id' ORDER BY id_coa DESC")->result();
+        $data['coa'] = $this->db->query("SELECT * FROM coa LEFT JOIN unit ON coa.id_unit = unit.id_unit INNER JOIN method ON coa.id_method = method.id_method WHERE coa.id_analysis = '$id' ORDER BY id_coa DESC")->result();
         $data['methods'] = $this->db->query("SELECT * FROM method")->result();
         $this->load->view('superadmin/_layout/header', $data);
         $this->load->view('superadmin/_layout/sidebar');
@@ -835,15 +837,15 @@ class D_superadmin extends CI_Controller
 
             $data = array(
                 'id_analysis' => $this->input->post('id_analysis'),
+                'id_unit' => $this->input->post('id_unit'),
+                'id_method' => $this->input->post('id_method'),
                 'params' => $this->input->post('params'),
                 'category_params' => $this->input->post('category_params'),
                 'sampling_time' => $this->input->post('sampling_time'),
-                'unit' => $this->input->post('unit'),
                 'reg_standart_1' => $this->input->post('reg_standart_1'),
                 'reg_standart_2' => $this->input->post('reg_standart_2'),
                 'reg_standart_3' => $this->input->post('reg_standart_3'),
                 'reg_standart_4' => $this->input->post('reg_standart_4'),
-                'method' => $this->input->post('method'),
                 'year' => $this->input->post('year'),
                 'capacity' => $this->input->post('capacity'),
                 'sampling_location' => $this->input->post('sampling_location'),
@@ -859,7 +861,7 @@ class D_superadmin extends CI_Controller
 
     public function _rules_coa()
     {
-        $this->form_validation->set_rules('method', 'Method', 'required');
+        $this->form_validation->set_rules('id_method', 'Method', 'required');
     }
 
     public function delete_coa($id, $id_anl)
@@ -890,8 +892,8 @@ class D_superadmin extends CI_Controller
 
         $data['unit'] = $this->web->get_data('unit', 'id_unit')->result();
         $data['specialAnalysis'] = $this->db->query("SELECT * FROM analysis WHERE id_analysis = '$id_anl'")->result();
-        $data['coa'] = $this->db->query("SELECT * FROM coa INNER JOIN method ON coa.method = method.id_method WHERE coa.id_analysis = '$id_anl'")->result();
-        $data['specialcoa'] = $this->db->query("SELECT * FROM coa INNER JOIN method ON coa.method = method.id_method WHERE id_coa = '$id'")->result();
+        $data['coa'] = $this->db->query("SELECT * FROM coa INNER JOIN unit ON coa.id_unit = unit.id_unit INNER JOIN method ON coa.id_method = method.id_method WHERE coa.id_analysis = '$id_anl' ORDER BY id_coa DESC")->result();
+        $data['specialcoa'] = $this->db->query("SELECT * FROM coa INNER JOIN method ON coa.id_method = method.id_method WHERE id_coa = '$id'")->result();
         $data['methods'] = $this->web->get_data('method', 'id_method')->result();
         $this->load->view('superadmin/_layout/header', $data);
         $this->load->view('superadmin/_layout/sidebar');
@@ -917,15 +919,15 @@ class D_superadmin extends CI_Controller
         $data = array(
             'id_coa' => $id,
             'id_analysis' => $id_analysis,
+            'id_unit' => $this->input->post('id_unit'),
+            'id_method' => $this->input->post('id_method'),
             'params' => $this->input->post('params'),
             'category_params' => $this->input->post('category_params'),
             'sampling_time' => $this->input->post('sampling_time'),
-            'unit' => $this->input->post('unit'),
             'reg_standart_1' => $this->input->post('reg_standart_1'),
             'reg_standart_2' => $this->input->post('reg_standart_2'),
             'reg_standart_3' => $this->input->post('reg_standart_3'),
             'reg_standart_4' => $this->input->post('reg_standart_4'),
-            'method' => $this->input->post('method'),
             'year' => $this->input->post('year'),
             'capacity' => $this->input->post('capacity'),
             'sampling_location' => $this->input->post('sampling_location'),
@@ -1931,7 +1933,7 @@ class D_superadmin extends CI_Controller
                 'company_pages' => $this->web->comp(),
                 'title' => 'Data COA',
             );
-            $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.method = method.id_method WHERE result_coa.id_sk = $id_sk AND result_coa.id_analysis = $id AND revision = 0")->result();
+            $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int LEFT JOIN unit ON coa.id_unit = unit.id_unit INNER JOIN method ON coa.id_method = method.id_method WHERE result_coa.id_sk = $id_sk AND result_coa.id_analysis = $id AND revision = 0")->result();
 
             $data['sk_number'] = $this->db->query("SELECT * FROM sk_number WHERE id_sk = $id_sk")->result();
             $this->load->view('superadmin/_layout/header', $data);
@@ -1953,7 +1955,7 @@ class D_superadmin extends CI_Controller
                 'title' => 'Data COA',
                 'rev' => $rev,
             );
-            $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.method = method.id_method WHERE result_coa.id_sk = $id_sk AND result_coa.id_analysis = $id AND result_coa.revision = $rev")->result();
+            $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int LEFT JOIN unit ON coa.id_unit = unit.id_unit INNER JOIN method ON coa.id_method = method.id_method WHERE result_coa.id_sk = $id_sk AND result_coa.id_analysis = $id AND result_coa.revision = $rev")->result();
 
             $data['sk_number'] = $this->db->query("SELECT * FROM sk_number_rev WHERE id_sk = $id_sk")->result();
             $this->load->view('superadmin/_layout/header', $data);
@@ -2264,7 +2266,7 @@ class D_superadmin extends CI_Controller
         );
         
         $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
-        $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk WHERE result_coa.id_sk = $id_sk")->result();
+        $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.id_method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk WHERE result_coa.id_sk = $id_sk")->result();
         $data['analysis'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN analysis ON sampling_det.id_analysis = analysis.id_analysis INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk WHERE sampling_det.id_sk = $id_sk AND analysis.coa = 1")->result();
         $data['count'] = count($data['analysis']) + 1;
 
@@ -2292,7 +2294,7 @@ class D_superadmin extends CI_Controller
         );
         
         $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
-        $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk INNER JOIN sk_number_rev ON sk_number_rev.id_sk = $id_sk WHERE result_coa.id_sk = $id_sk AND sk_number_rev.revision = $rev")->result();
+        $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.id_method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk INNER JOIN sk_number_rev ON sk_number_rev.id_sk = $id_sk WHERE result_coa.id_sk = $id_sk AND sk_number_rev.revision = $rev")->result();
         $data['analysis'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN analysis ON sampling_det.id_analysis = analysis.id_analysis INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk WHERE sampling_det.id_sk = $id_sk AND analysis.coa = 1")->result();
         $data['count'] = count($data['analysis']) + 1;
 
@@ -2320,7 +2322,7 @@ class D_superadmin extends CI_Controller
         );
         
         $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
-        $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk WHERE result_coa.id_sk = $id_sk AND result_coa.revision = 0")->result();
+        $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.id_method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk WHERE result_coa.id_sk = $id_sk AND result_coa.revision = 0")->result();
         $data['analysis'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN analysis ON sampling_det.id_analysis = analysis.id_analysis INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk WHERE sampling_det.id_sk = $id_sk AND analysis.coa = 1")->result();
         $data['count'] = count($data['analysis']) + 1;
 
@@ -2355,7 +2357,7 @@ class D_superadmin extends CI_Controller
         );
         
         $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
-        $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk INNER JOIN sk_number_rev ON sk_number_rev.id_sk = $id_sk WHERE result_coa.id_sk = $id_sk AND result_coa.revision = $rev")->result();
+        $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.id_method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk INNER JOIN sk_number_rev ON sk_number_rev.id_sk = $id_sk WHERE result_coa.id_sk = $id_sk AND result_coa.revision = $rev")->result();
         $data['analysis'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN analysis ON sampling_det.id_analysis = analysis.id_analysis INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk WHERE sampling_det.id_sk = $id_sk AND analysis.coa = 1")->result();
         $data['count'] = count($data['analysis']) + 1;
 

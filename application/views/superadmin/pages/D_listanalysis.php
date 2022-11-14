@@ -32,6 +32,7 @@
                                 <tr>
                                 <th>No</th>
                                 <th>Name Analysis</th>
+                                <th>Alias Analysis</th>
                                 <th>Action</th>
                                 </tr>
                             </thead>
@@ -42,6 +43,7 @@
                                     <tr>
                                         <td><?= $no++; ?></td>
                                         <td><?= htmlspecialchars($anl->name_analysis); ?></td>
+                                        <td class="font-weight-bold"><?= htmlspecialchars($anl->alias_analysis); ?></td>
                                         <td>
                                           <?php if($anl->st_account == 0) { ?>
                                             <a href="<?php echo base_url('D_superadmin/add_coa/') . $anl->id_analysis ?>"class="btn btn-success"><i class="fas fa-plus"></i> Add COA</a>

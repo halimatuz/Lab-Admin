@@ -17,7 +17,7 @@ foreach($company as $c) {
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title><?= $title . ' ' . $qtn->name_int ?></title>
+    <title><?= $title . ' ' . @$qtn->name_int ?></title>
     <style>
       * {
           -webkit-print-color-adjust: exact !important;   /* Chrome, Safari 6 – 15.3, Edge */
@@ -74,9 +74,17 @@ foreach($company as $c) {
         <h5 class="text-center font-weight-bold"><u>QUOTATION</u></h5>
         <div class="row mt-5">
           <div class="col-md-6">
-            <p class="font-weight-bold">No Quot.&emsp;&emsp;:&emsp;&emsp;<?= $qtn->sk_quotation ?></p>
+            <p class="font-weight-bold">No Quot.&emsp;&emsp;:&emsp;&emsp;<?= @$qtn->sk_quotation ?></p>
             <hr style="background-color: black;">
-            <div style="border: 1px solid black;" class="p-1">
+          </div>
+          <div class="col-md-6">
+            <p class="font-weight-bold">Date&emsp;&emsp;:&emsp;&emsp;<?= date('dS F, Y', strtotime(@$qtn->date_quotation));?></p>
+            <hr style="background-color: black;">
+          </div>
+        </div>
+        <div class="d-flex align-items-stretch">
+          <div class="w-100 mr-2" style="border: 1px solid black;">
+            <div class="p-1">
               <table class="font-weight-bold">
                 <tr>
                   <td>To</td>
@@ -91,10 +99,8 @@ foreach($company as $c) {
               </table>
             </div>
           </div>
-          <div class="col-md-6">
-            <p class="font-weight-bold">Date&emsp;&emsp;:&emsp;&emsp;<?= date('dS F, Y', strtotime($qtn->date_quotation));?></p>
-            <hr style="background-color: black;">
-            <div style="border: 1px solid black;" class="p-1">
+          <div class="w-100" style="border: 1px solid black;" >
+            <div class="p-1">
               <table class="font-weight-bold">
                 <tr>
                   <td>Up</td>
@@ -135,21 +141,21 @@ foreach($company as $c) {
               <th colspan="5">Biaya Sampling & Analisis Laboratorium Terakreditasi KAN</th>
             </tr>
             <?php $no = 1; foreach($quotation as $qtn) : 
-              $amount = ($qtn->add_price + $qtn->standart_price) * $qtn->qty;
+              $amount = (@$qtn->add_price + @$qtn->standart_price) * @$qtn->qty;
               @$jumlah += $amount;
             ?>
               <tr>
                 <td><?= $no++; ?></td>
-                <td><?= $qtn->remarks; ?></td>
-                <td><?= $qtn->spec; ?></td>
-                <td><?= $qtn->qty; ?></td>
-                <td>Rp&nbsp;<?= htmlspecialchars(number_format($qtn->standart_price + $qtn->add_price, 0, ',', '.')) ?></td>
+                <td><?= @$qtn->remarks; ?></td>
+                <td><?= @$qtn->spec; ?></td>
+                <td><?= @$qtn->qty; ?></td>
+                <td>Rp&nbsp;<?= htmlspecialchars(number_format(@$qtn->standart_price + @$qtn->add_price, 0, ',', '.')) ?></td>
                 <td>Rp&nbsp;<?= htmlspecialchars(number_format($amount, 0, ',', '.'))?></td>
               </tr>
             <?php endforeach; ?>
             <tr class="font-weight-bold">
               <td colspan="5">Total:</td>
-              <td>Rp&nbsp;<?= htmlspecialchars(number_format($jumlah, 0, ',', '.'))?></td>
+              <td>Rp&nbsp;<?= htmlspecialchars(number_format(@$jumlah, 0, ',', '.'))?></td>
             </tr>
           </tbody>
         </table>

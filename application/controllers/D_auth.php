@@ -120,7 +120,14 @@ class D_auth extends CI_Controller
         $this->session->unset_userdata('role');
         $this->session->unset_userdata('fullname');
 
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">You have been logout!</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible show fade">
+        <div class="alert-body">
+          <button class="close" data-dismiss="alert">
+            <span>&times;</span>
+          </button>
+          You have been logout!
+        </div>
+      </div>');
         redirect('D_auth');
     }
 

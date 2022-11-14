@@ -135,7 +135,7 @@ foreach($coa as $c) {
                                             <td><input type="text" name="wbgt_index[]" value="<?= $row->wbgt_index ?>" class="form-control"></td>
                                             <?php } ?>
                                             <?php if($coa_spec->name_analysis != 'Heat Stress' && $coa_spec->name_analysis != 'Non-Stationary Source Emission' && $coa_spec->name_analysis != "24 HOURS NOISE") { ?>
-                                            <td><?= htmlspecialchars($row->unit); ?></td>
+                                            <td><?= htmlspecialchars($row->name_unit); ?></td>
                                             <?php } ?>
                                             <?php if($coa_spec->name_analysis == 'Ambient Air') { ?>
                                             <td><?= htmlspecialchars($row->sampling_time); ?></td> 

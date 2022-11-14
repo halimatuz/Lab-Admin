@@ -92,7 +92,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <?php
   } elseif ($this->uri->segment(2) == "modules_toastr") {
     ?>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/izitoast/css/iziToast.min.css">
+    
     <?php
   } elseif ($this->uri->segment(2) == "modules_vector_map") {
     ?>
@@ -139,6 +139,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/chocolat/dist/css/chocolat.css">
     <?php
   } ?>
+  <!-- IziToasts -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/izitoast/css/iziToast.min.css">
   <!-- Fullcalendar -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/fullcalendar/fullcalendar.min.css">
   <!-- Template CSS -->

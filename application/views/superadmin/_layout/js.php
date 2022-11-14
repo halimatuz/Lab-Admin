@@ -116,7 +116,7 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   <?php
 } elseif ($this->uri->segment(2) == "modules_toastr") {
   ?>
-  <script src="<?php echo base_url(); ?>assets/modules/izitoast/js/iziToast.min.js"></script>
+  
   <?php
 } elseif ($this->uri->segment(2) == "modules_vector_map") {
   ?>
@@ -286,6 +286,8 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   <script src="<?php echo base_url(); ?>assets/js/page/utilities-contact.js"></script>
   <?php
 } ?>
+<!-- IziToast -->
+<script src="<?php echo base_url(); ?>assets/modules/izitoast/js/iziToast.min.js"></script>
 <!-- Sweet Alert -->
 <script src="<?php echo base_url(); ?>assets/modules/sweetalert/sweetalert.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/page/modules-sweetalert.js"></script>
@@ -309,8 +311,8 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <!-- Zxing Scanner -->
 <script type="text/javascript" src="<?php echo base_url()?>assets/modules/zxing/zxing.min.js"></script>
-<!-- Sweet Alert -->
 <script>
+  
     var ctx = document.getElementById("myChart2").getContext('2d');
     var myChart = new Chart(ctx, {
       type: 'bar',
@@ -387,24 +389,19 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   const flashDataLogin = $('.flash-data-login').data('flashdata');
 
   if (flashDataLogin) {
-        swal({
-            position: 'top-end',
-            title: 'You have successfully logged in',
-            text: flashDataLogin,
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 1500
-        })
+        iziToast.success({
+          title: 'You have successfully logged in',
+          message: flashDataLogin,
+          position: 'topCenter' 
+        });
   }
 
   if (flashData) {
-        swal({
-            title: 'Success!',
-            text: flashData,
-            icon: 'success',
-            timer: 1500,
-            progressBar: true,
-        })
+        iziToast.success({
+          title: 'Success!',
+          message: flashData,
+          position: 'topCenter' 
+        });
   }
 
   $('.tombol-hapus').on('click', function(e) {
@@ -441,7 +438,7 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
           confirmButtonText: 'Yes, Generate',
           cancelButtonText: 'Cancel'
         }).then((result) => {
-          if (result.isConfirmed) {
+          if (result) {
             document.location.href = href;
           }
         })
@@ -461,7 +458,7 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
           confirmButtonText: 'Yes, Generate',
           cancelButtonText: 'Cancel'
         }).then((result) => {
-          if (result.isConfirmed) {
+          if (result) {
             document.location.href = href;
           }
         })

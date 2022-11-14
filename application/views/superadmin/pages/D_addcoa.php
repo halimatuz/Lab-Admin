@@ -91,9 +91,9 @@ foreach($specialAnalysis as $sa) {
                             <?php if($analysis->name_analysis != 'Heat Stress' && $analysis->name_analysis != 'Non-Stationary Source Emission')  {?>
                             <div class="form-group">
                                 <label>Unit</label>
-                                <select name="unit" id="" class="form-control <?php if(form_error('unit')) { echo "is-invalid"; } ?>" value="<?= set_value('unit')?>">
+                                <select name="id_unit" id="" class="form-control <?php if(form_error('id_unit')) { echo "is-invalid"; } ?>" value="<?= set_value('id_unit')?>">
                                 <?php foreach($unit as $unt) : ?>
-                                    <option value="<?= $unt->name_unit ?>" <?php if($unt->name_unit == $sc->unit){echo"selected";} ?>><?= $unt->name_unit ?></option>
+                                    <option value="<?= $unt->id_unit ?>" <?php if($unt->id_unit == $sc->id_unit){echo"selected";} ?>><?= $unt->name_unit ?></option>
                                 <?php endforeach; ?>
                                 </select>
                                 <?php echo form_error('unit', '<span class="text-small text-danger">', '</span>') ?>
@@ -125,7 +125,7 @@ foreach($specialAnalysis as $sa) {
                             <?php } ?>
                             <div class="form-group">
                                 <label>Method</label>
-                                <select name="method" class="form-control select2 <?php if(form_error('method')) { echo "is-invalid"; } ?>">
+                                <select name="id_method" class="form-control select2 <?php if(form_error('id_method')) { echo "is-invalid"; } ?>">
                                     <?php foreach($methods as $method) : ?>
                                         <option value="<?= $method->id_method ?>" <?php if($method->name_method == $sc->name_method){echo "selected";} ?>><?= $method->name_method ?></option>
                                     <?php endforeach; ?>
@@ -205,10 +205,10 @@ foreach($specialAnalysis as $sa) {
                             <?php if($analysis->name_analysis != 'Heat Stress' && $analysis->name_analysis != 'Non-Stationary Source Emission') { ?>
                             <div class="form-group">
                                 <label>Unit</label>
-                                <select name="unit" id="" class="form-control <?php if(form_error('unit')) { echo "is-invalid"; } ?>" value="<?= set_value('unit')?>">
-                                <option value="<?php if( set_value('unit') == NULL) { echo "";}else { echo set_value('unit');}?>"><?php if( set_value('unit') == NULL) { echo "-- Select Unit --";}else { echo set_value('unit');}?></option>
+                                <select name="id_unit" id="" class="form-control <?php if(form_error('id_unit')) { echo "is-invalid"; } ?>" value="<?= set_value('id_unit')?>">
+                                <option value="">-- Select Unit --</option>
                                     <?php foreach($unit as $unt) : ?>
-                                        <option value="<?= $unt->name_unit ?>"><?= $unt->name_unit ?></option>
+                                        <option value="<?= $unt->id_unit ?>"><?= $unt->name_unit ?></option>
                                     <?php endforeach; ?>
                                 </select>
                                 <?php echo form_error('unit', '<span class="text-small text-danger">', '</span>') ?>
@@ -240,14 +240,14 @@ foreach($specialAnalysis as $sa) {
                             <?php } ?>
                             <div class="form-group">
                                 <label>Method</label>
-                                <select name="method" class="form-control select2 <?php if(form_error('method')) { echo "is-invalid"; } ?>">
-                                <option value="<?php if( set_value('method') == NULL) { echo "";}else { echo set_value('method');}?>"><?php if( set_value('method') == NULL) { echo "-- Select Method --";}else { echo set_value('method');}?></option>
+                                <select name="id_method" class="form-control select2 <?php if(form_error('id_method')) { echo "is-invalid"; } ?>">
+                                <option value="<?php if( set_value('id_method') == NULL) { echo "";}else { echo set_value('id_method');}?>"><?php if( set_value('id_method') == NULL) { echo "-- Select Method --";}else { echo set_value('id_method');}?></option>
                                     <?php foreach($methods as $method) : ?>
                                         <option value="<?= $method->id_method ?>"><?= $method->name_method ?></option>
                                     <?php endforeach; ?>
                                 </select>
                                 <input type="hidden" name="id_analysis" value="<?= $analysis->id_analysis ?>">
-                                <?php echo form_error('method', '<span class="text-small text-danger">', '</span>') ?>
+                                <?php echo form_error('id_method', '<span class="text-small text-danger">', '</span>') ?>
                             </div>
                             <button type="submit" class="btn btn-primary">Add COA</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
@@ -323,7 +323,7 @@ foreach($specialAnalysis as $sa) {
                                         <td><?= htmlspecialchars($row->capacity); ?></td>
                                         <?php } ?>
                                         <?php if($analysis->name_analysis != 'Heat Stress' && $analysis->name_analysis != 'Non-Stationary Source Emission') { ?>
-                                        <td><?= htmlspecialchars($row->unit); ?></td>
+                                        <td><?= htmlspecialchars($row->name_unit); ?></td>
                                         <?php } ?>
                                         <?php if($analysis->name_analysis != 'Vibration' && $analysis->name_analysis != 'Heat Stress') { ?>
                                         <td><?= htmlspecialchars($row->reg_standart_1); ?></td>
