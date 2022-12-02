@@ -102,7 +102,7 @@ foreach(@$invoice as $in) {
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <img src="<?= base_url('assets/img/company_profile/') . $cmp->img_logo ?>" alt="" width="220">
+          <img src="<?= base_url('assets/img/company_profile/logo/') . $cmp->img_logo ?>" alt="" width="220">
         </div>
         <div class="col-md-3">
         </div>
@@ -192,19 +192,26 @@ foreach(@$invoice as $in) {
                       <td>TOTAL</td>
                       <td>Rp&nbsp;<?= htmlspecialchars(number_format($jumlah, 0, ',', '.')) ?></td>
                   </tr>
+                  <tr style="border: 0px!important;">
+                      <td style="border: 0px!important;"></td>
+                      <td style="border: 0px!important;"></td>
+                      <td style="border: 0px!important;"></td>
+                      <td>DISKON <span class="font-weight-bold"><?= @$inv->discount ?>%</span></td>
+                      <td class="text-success">- Rp&nbsp;<?= htmlspecialchars(number_format($jumlah * (@$inv->discount / 100), 0, ',', '.')) ?></td>
+                  </tr>
                   <tr>
                       <td style="border: 0px!important;"></td>
                       <td style="border: 0px!important;"></td>
                       <td style="border: 0px!important;"></td>
-                      <td>PPN <span class="font-weight-bold">10%</span></td>
-                      <td>Rp&nbsp;<?= htmlspecialchars(number_format($jumlah * 0.1, 0, ',', '.')) ?></td>
+                      <td>PPN <span class="font-weight-bold"><?= @$inv->ppn ?>%</span></td>
+                      <td>Rp&nbsp;<?= htmlspecialchars(number_format($jumlah * (@$inv->ppn / 100), 0, ',', '.')) ?></td>
                   </tr>
                   <tr class="font-weight-bold">
                       <td style="border: 0px!important;"></td>
                       <td style="border: 0px!important;"></td>
                       <td style="border: 0px!important;"></td>
                       <td style="border: 0px!important;">AMOUNT PAID</td>
-                      <td>Rp&nbsp;<?= htmlspecialchars(number_format($jumlah + $jumlah * 0.1, 0, ',', '.')) ?></td>
+                      <td>Rp&nbsp;<?= htmlspecialchars(number_format($jumlah - ($jumlah * (@$inv->discount / 100)) + ($jumlah * (@$inv->ppn / 100)), 0, ',', '.')) ?></td>
                   </tr>
               </table>
           </div>
@@ -242,6 +249,7 @@ foreach(@$invoice as $in) {
             </div>
             <div class="w-100 text-center">
               <div class="w-50 float-right">
+                <img src="<?= base_url('assets/img/company_profile/director_signature/') . $cmp->director_signature ?>" alt="" class="ml-3" width="200px">
                 <p style="margin-bottom: -15px;"><?= $cmp->director ?></p>
                 <hr style="height: 2px; background-color: black;">
                 <p class="font-weight-bold" style="margin-top: -15px;">Direktur</p>

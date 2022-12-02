@@ -51,9 +51,11 @@
                     </div>
                     <div class="form-group col-12 col-md-6">
                       <label for="img_logo" class="d-block">Logo</label>
-                      <?php if($cmp->img_logo != NULL) : ?>
-                      <img src="<?= base_url('assets/img/company_profile/') . $cmp->img_logo ?>" alt="" class="img-thumbnail mb-2" width="100px" height="50px">
-                      <?php endif; ?>
+                      <?php if($cmp->img_logo != NULL) { ?>
+                      <img src="<?= base_url('assets/img/company_profile/logo/') . $cmp->img_logo ?>" alt="" class="img-thumbnail mb-2" width="100px" height="50px">
+                      <?php } else { ?>
+                      <img src="<?= base_url('assets/img/example-image.jpg') ?>" alt="" class="img-thumbnail mb-2" width="100px" height="50px">
+                      <?php } ?>
                       <input id="img_logo" type="file" class="form-control" name="img_logo">
                       <?php echo form_error('img_logo', '<span class="text-small text-danger">', '</span>') ?>
                     </div>
@@ -74,6 +76,18 @@
                       <?php echo form_error('director_email', '<span class="text-small text-danger">', '</span>') ?>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="form-group col-12 col-md-6">
+                      <label for="director_signature" class="d-block">Director Signature</label>
+                      <?php if($cmp->director_signature != NULL) { ?>
+                      <img src="<?= base_url('assets/img/company_profile/director_signature/') . $cmp->director_signature ?>" alt="" class="img-thumbnail mb-2" width="100px" height="50px">
+                      <?php } else { ?>
+                      <img src="<?= base_url('assets/img/example-image.jpg') ?>" alt="" class="img-thumbnail mb-2" width="100px" height="50px">
+                      <?php } ?>
+                      <input id="director_signature" type="file" class="form-control" name="director_signature">
+                      <?php echo form_error('director_signature', '<span class="text-small text-danger">', '</span>') ?>
+                    </div>
+                  </div>
 
                   <h6 class="text-primary mt-2">Technical Person in Charge</h6>
                   <hr>
@@ -86,9 +100,11 @@
                     </div>
                     <div class="form-group col-12 col-md-6">
                       <label for="tp_signature" class="d-block">Technical Person Signature</label>
-                      <?php if($cmp->tp_signature != NULL) : ?>
-                      <img src="<?= base_url('assets/img/company_profile/') . $cmp->tp_signature ?>" alt="" class="img-thumbnail mb-2" width="100px" height="50px">
-                      <?php endif; ?>
+                      <?php if($cmp->tp_signature != NULL) { ?>
+                      <img src="<?= base_url('assets/img/company_profile/tp_signature/') . $cmp->tp_signature ?>" alt="" class="img-thumbnail mb-2" width="100px" height="50px">
+                      <?php } else { ?>
+                        <img src="<?= base_url('assets/img/example-image.jpg') ?>" alt="" class="img-thumbnail mb-2" width="100px" height="50px">
+                      <?php } ?>
                       <input id="tp_signature" type="file" class="form-control" name="tp_signature">
                       <?php echo form_error('tp_signature', '<span class="text-small text-danger">', '</span>') ?>
                     </div>

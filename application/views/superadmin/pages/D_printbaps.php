@@ -11,6 +11,10 @@ foreach(@$bpas as $b) {
 foreach($company as $c) {
   $cmp = $c;
 }
+
+foreach($sk_number as $s) {
+  $sk = $s;
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -63,7 +67,7 @@ foreach($company as $c) {
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <img src="<?= base_url('assets/img/company_profile/') . $cmp->img_logo ?>" alt="" width="220">
+          <img src="<?= base_url('assets/img/company_profile/logo/') . $cmp->img_logo ?>" alt="" width="220">
         </div>
         <div class="col-md-3">
         </div>
@@ -184,14 +188,20 @@ foreach($company as $c) {
           <div class="col-3 text-center position-relative">
             <p>Pihak Laboratorium</p>
             <br><br><br>
+            <?php echo @$bp->name_smp == null ? "<br>" : '' ?>
             <p style="margin-bottom: -10px;"><?= @$bp->name_smp ?></p>
             <p>(.................................................................)</p>
             <p style="margin-top: -15px;">Petugas Pengambil Sampel</p>
           </div>
           <div class="col-6"></div>
-          <div class="col-3">
+          <div class="col-3 text-center">
             <p class="text-center">Pihak Perusahaan</p>
+            <?php if($sk->int_signature_baps == NULL) { ?>
             <br><br><br>
+            <?php } else { ?>
+            <img src="<?= base_url('') . $sk->int_signature_baps ?>" alt="" width="180px">
+            <?php } ?>
+            <p style="margin-bottom: -10px;"><?= @$sk->int_person_baps ?></p>
             <p class="text-center">(.................................................................)</p>
           </div>
         </div>

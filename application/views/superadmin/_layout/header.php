@@ -157,6 +157,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     margin: -80px auto;
   }
   </style>
+  <!-- Signature Pad -->
+<script src="<?php echo base_url(); ?>assets/js/signature-pad.js"></script>
   <!-- Start GA -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
   <script>

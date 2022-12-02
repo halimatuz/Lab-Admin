@@ -116,19 +116,46 @@ foreach(@$invoice as $in) {
                                 <td>TOTAL</td>
                                 <td>Rp&nbsp;<?= htmlspecialchars(number_format($jumlah, 0, ',', '.')) ?></td>
                             </tr>
+                            <tr style="border: 0px;">
+                                <td style="border: 0px;"></td>
+                                <td style="border: 0px;"></td>
+                                <td style="border: 0px;"></td>
+                                <td>
+                                    DISKON
+                                    <div class="input-group">
+                                        <input type="number" name="discount" class="form-control currency" style="width: 30px;" value="<?= @$inv->discount ?>">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                %
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-success">- Rp&nbsp;<?= htmlspecialchars(number_format($jumlah * (@$inv->discount / 100), 0, ',', '.')) ?></td>
+                            </tr>
                             <tr>
                                 <td style="border: 0px;"></td>
                                 <td style="border: 0px;"></td>
                                 <td style="border: 0px;"></td>
-                                <td>PPN <span class="font-weight-bold">10%</span></td>
-                                <td>Rp&nbsp;<?= htmlspecialchars(number_format($jumlah * 0.1, 0, ',', '.')) ?></td>
+                                <td>
+                                    PPN
+                                    <div class="input-group">
+                                        <input type="number" name="ppn" class="form-control currency" style="width: 30px;" value="<?= @$inv->ppn ?>">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                %
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Rp&nbsp;<?= htmlspecialchars(number_format($jumlah * (@$inv->ppn / 100), 0, ',', '.')) ?></td>
                             </tr>
                             <tr class="font-weight-bold">
                                 <td style="border: 0px;"></td>
                                 <td style="border: 0px;"></td>
                                 <td style="border: 0px;"></td>
                                 <td style="border: 0px;">AMOUNT PAID</td>
-                                <td>Rp&nbsp;<?= htmlspecialchars(number_format($jumlah + $jumlah * 0.1, 0, ',', '.')) ?></td>
+                                <td>Rp&nbsp;<?= htmlspecialchars(number_format($jumlah - ($jumlah * (@$inv->discount / 100)) + ($jumlah * (@$inv->ppn / 100)), 0, ',', '.')) ?></td>
                             </tr>
                         </table>
                     </div>

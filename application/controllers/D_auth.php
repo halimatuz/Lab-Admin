@@ -45,24 +45,28 @@ class D_auth extends CI_Controller
                         'id_superadmin' => $user['email'],
                         'role' => $user['role'],
                         'fullname' => $user['fullname'],
+                        'id_user' => $user['id_user'],
                     );
                 } elseif($user['role'] == 'admin') {
                     $data = array(
                         'id_admin' => $user['email'],
                         'role' => $user['role'],
                         'fullname' => $user['fullname'],
+                        'id_user' => $user['id_user'],
                     );
                 } elseif($user['role'] == 'marketing') {
                     $data = array(
                         'id_marketing' => $user['email'],
                         'role' => $user['role'],
                         'fullname' => $user['fullname'],
+                        'id_user' => $user['id_user'],
                     );
                 } elseif($user['role'] == 'analyst') {
                     $data = array(
                         'id_analyst' => $user['email'],
                         'role' => $user['role'],
                         'fullname' => $user['fullname'],
+                        'id_user' => $user['id_user'],
                     );
                 }
 

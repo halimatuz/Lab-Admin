@@ -286,6 +286,7 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   <script src="<?php echo base_url(); ?>assets/js/page/utilities-contact.js"></script>
   <?php
 } ?>
+
 <!-- IziToast -->
 <script src="<?php echo base_url(); ?>assets/modules/izitoast/js/iziToast.min.js"></script>
 <!-- Sweet Alert -->
@@ -515,5 +516,6 @@ const flashDataError = $('.flash-data-error').data('flashdata');
   }
         
 </script>
+
 </body>
 </html>

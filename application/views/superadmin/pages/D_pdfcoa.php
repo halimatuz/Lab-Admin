@@ -8313,7 +8313,7 @@ footer {
   </head><body>
     <?php if($this->uri->segment(2) == 'pdf_coa' || $this->uri->segment(2) == 'pdf_coa_rev') : ?>
     <header>
-        <img src="<?= base_url('assets/img/company_profile/') . $cmp->img_logo ?>" alt="" width="150px" style="margin-right: 330px;">
+        <img src="<?= base_url('assets/img/company_profile/logo/') . $cmp->img_logo ?>" alt="" width="150px" style="margin-right: 330px;">
         <div style="display: inline-block;">
             <img src="<?= base_url('assets/img/kan.png') ?>" alt="" width="100px" style="float: right; float: right; margin-left:110px;">
             <p style="font-size:10px; font-weight: bold; margin-top:5px;">SK-KLHK No 00161/LPJ/Labling-1/LRK/KLHK</p>
@@ -8472,7 +8472,7 @@ footer {
             <tr>
                 <td width="25px"><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td width="50px"><?= $c->unit ?></td>
+                <td width="50px"><?= $c->name_unit ?></td>
                 <td width="70px"><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td width="50px"><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->name_method ?></td>
@@ -8487,7 +8487,7 @@ footer {
             <tr>
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->name_method ?></td>
@@ -8502,7 +8502,7 @@ footer {
             <tr>
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->name_method ?></td>
@@ -8568,7 +8568,7 @@ footer {
             <tr>
                 <td width="25px"><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td width="50px"><?= $c->unit ?></td>
+                <td width="50px"><?= $c->name_unit ?></td>
                 <td width="70px"><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td width="50px"><?= $c->reg_standart_1 ?></td>
                 <td width="150px"><?= $c->name_method ?></td>
@@ -8583,7 +8583,7 @@ footer {
             <tr>
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->name_method ?></td>
@@ -8598,7 +8598,7 @@ footer {
             <tr>
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->name_method ?></td>
@@ -8670,7 +8670,7 @@ footer {
             <tr>
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->reg_standart_2 ?></td>
@@ -8688,7 +8688,7 @@ footer {
             <tr>
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->reg_standart_2 ?></td>
@@ -8706,7 +8706,7 @@ footer {
             <tr>
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->reg_standart_2 ?></td>
@@ -8785,7 +8785,7 @@ footer {
                 <td><?= $c->params ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>
@@ -8854,7 +8854,7 @@ footer {
                 <td><?= $c->params ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td width="50px"><?= $c->reg_standart_1 ?></td>
-                <td width="50px"><?= $c->unit ?></td>
+                <td width="50px"><?= $c->name_unit ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>
@@ -8923,7 +8923,7 @@ footer {
                 <td><?= $c->params ?></td>
                 <td width="70px"><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td width="50px"><?= $c->reg_standart_1 ?></td>
-                <td width="50px"><?= $c->unit ?></td>
+                <td width="50px"><?= $c->name_unit ?></td>
                 <td width="150px"><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>
@@ -8992,7 +8992,7 @@ footer {
                 <td><?= $c->params ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>
@@ -9065,7 +9065,7 @@ footer {
                 <td><?= $c->params ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result); ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>
@@ -9133,7 +9133,7 @@ footer {
                 <td><?= $c->sampling_time ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>
@@ -9203,7 +9203,7 @@ footer {
             <tr>
                 <td><?= $c->vehicle_brand ?></td>
                 <td><?= $c->time ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
@@ -9297,9 +9297,9 @@ footer {
                 <td><?= $no++ ?></td>
                 <td><?= $c->sampling_location_coa ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
-                <td><?= $c->time ?></td>
+                <td><?= $c->time_coa ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>
@@ -9470,7 +9470,7 @@ footer {
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->time_coa ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>
@@ -9600,7 +9600,7 @@ footer {
                 <td><?= $c->lm ?></td>
                 <td><?= $c->lsm ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>

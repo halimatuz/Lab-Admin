@@ -23,6 +23,20 @@
         <div class="col-lg-6">
           <div class="card card-large-icons">
             <div class="card-icon bg-primary text-white">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="card-body">
+              <h4>Profile</h4>
+              <p>
+                Profile settings such as, image profile, name, username, password.
+              </p>
+              <a href="<?php echo base_url('D_superadmin/update_profile'); ?>" class="card-cta">Change Setting <i class="fas fa-chevron-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card card-large-icons">
+            <div class="card-icon bg-primary text-white">
               <i class="fas fa-cog"></i>
             </div>
             <div class="card-body">
@@ -34,9 +48,8 @@
             </div>
           </div>
         </div>
-        
-        
       </div>
+
     </div>
   </section>
 </div>

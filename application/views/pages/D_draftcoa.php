@@ -8425,7 +8425,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -8450,7 +8450,7 @@ footer {
             <tr>
                 <td width="25px"><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td width="50px"><?= $c->unit ?></td>
+                <td width="50px"><?= $c->name_unit ?></td>
                 <td width="70px"><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td width="50px"><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->name_method ?></td>
@@ -8465,7 +8465,7 @@ footer {
             <tr>
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->name_method ?></td>
@@ -8480,7 +8480,7 @@ footer {
             <tr>
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->name_method ?></td>
@@ -8521,7 +8521,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -8546,7 +8546,7 @@ footer {
             <tr>
                 <td width="25px"><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td width="50px"><?= $c->unit ?></td>
+                <td width="50px"><?= $c->name_unit ?></td>
                 <td width="70px"><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td width="50px"><?= $c->reg_standart_1 ?></td>
                 <td width="150px"><?= $c->name_method ?></td>
@@ -8561,7 +8561,7 @@ footer {
             <tr>
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->name_method ?></td>
@@ -8576,7 +8576,7 @@ footer {
             <tr>
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->name_method ?></td>
@@ -8617,7 +8617,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -8648,7 +8648,7 @@ footer {
             <tr>
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->reg_standart_2 ?></td>
@@ -8666,7 +8666,7 @@ footer {
             <tr>
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->reg_standart_2 ?></td>
@@ -8684,7 +8684,7 @@ footer {
             <tr>
                 <td><?= $no++ ?></td>
                 <td><?= $c->params ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
                 <td><?= $c->reg_standart_2 ?></td>
@@ -8740,7 +8740,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -8763,7 +8763,7 @@ footer {
                 <td><?= $c->params ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>
@@ -8809,7 +8809,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -8832,7 +8832,7 @@ footer {
                 <td><?= $c->params ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td width="50px"><?= $c->reg_standart_1 ?></td>
-                <td width="50px"><?= $c->unit ?></td>
+                <td width="50px"><?= $c->name_unit ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>
@@ -8878,7 +8878,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -8901,7 +8901,7 @@ footer {
                 <td><?= $c->params ?></td>
                 <td width="70px"><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td width="50px"><?= $c->reg_standart_1 ?></td>
-                <td width="50px"><?= $c->unit ?></td>
+                <td width="50px"><?= $c->name_unit ?></td>
                 <td width="150px"><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>
@@ -8947,7 +8947,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -8970,7 +8970,7 @@ footer {
                 <td><?= $c->params ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>
@@ -9020,7 +9020,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -9043,7 +9043,7 @@ footer {
                 <td><?= $c->params ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result); ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>
@@ -9086,7 +9086,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -9111,7 +9111,7 @@ footer {
                 <td><?= $c->sampling_time ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>
@@ -9161,7 +9161,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td><i>(See Table)</i></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -9181,7 +9181,7 @@ footer {
             <tr>
                 <td><?= $c->vehicle_brand ?></td>
                 <td><?= $c->time ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
@@ -9252,7 +9252,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td><i>(See Table)</i></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -9277,7 +9277,7 @@ footer {
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->time ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>
@@ -9312,7 +9312,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td><i>(See Table)</i></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -9423,7 +9423,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td><i>(See Table)</i></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -9448,7 +9448,7 @@ footer {
                 <td><?= str_replace('<', '&lt;', $c->result) ?></td>
                 <td><?= $c->time ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>
@@ -9483,7 +9483,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td><i>(See Table)</i></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td></td>
                 <td><?= $anl->date_sample ?></td>
@@ -9545,7 +9545,7 @@ footer {
             <tr>
                 <td><?= $anl->sample_id ?></td>
                 <td><i>(See Table)</i></td>
-                <td><?= $anl->name_analysis ?></td>
+                <td><?= $anl->alias_analysis ?></td>
                 <td><?= $anl->date_analysis ?></td>
                 <td>(See Table)</td>
                 <td><?= $anl->date_sample ?></td>
@@ -9578,7 +9578,7 @@ footer {
                 <td><?= $c->lm ?></td>
                 <td><?= $c->lsm ?></td>
                 <td><?= $c->reg_standart_1 ?></td>
-                <td><?= $c->unit ?></td>
+                <td><?= $c->name_unit ?></td>
                 <td><?= $c->name_method ?></td>
             </tr>
             <?php } endforeach; ?>

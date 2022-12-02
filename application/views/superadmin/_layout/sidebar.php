@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="main-sidebar sidebar-style-2">
   <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
-      <img src="<?= base_url('assets/img/company_profile/') . $company_pages->img_logo ?>" alt="" width="50" class="mr-2">
+      <img src="<?= base_url('assets/img/company_profile/logo/') . $company_pages->img_logo ?>" alt="" width="50" class="mr-2">
       <a href="<?php echo base_url(); ?>D_superadmin">Information</a>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">

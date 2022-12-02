@@ -58,7 +58,7 @@ foreach($company as $c) {
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <img src="<?= base_url('assets/img/company_profile/') . $cmp->img_logo ?>" alt="" width="220">
+          <img src="<?= base_url('assets/img/company_profile/logo/') . $cmp->img_logo ?>" alt="" width="220">
         </div>
         <div class="col-md-3">
         </div>
@@ -199,8 +199,8 @@ foreach($company as $c) {
           <a href="<?= $cmp->website ?>" style="font-size: 10px; color: blue; text-decoration: underline;" class="block"><?= $cmp->website ?></a>
         </div>
         <div class="col-md-5"></div>
-        <div class="col-md-4">
-          <img src="<?= base_url('assets/img/ttd.png') ?>" alt="" class="ml-3">
+        <div class="col-md-4 text-center">
+          <img src="<?= base_url('assets/img/company_profile/director_signature/') . $cmp->director_signature ?>" alt="" class="ml-3" width="200px">
           <p class="text-center"><?= $cmp->director ?></p>
           <hr style="height:2px; background-color: black;">
           <p class="font-weight-bold text-center" style="margin-top: -10px;"><?= $cmp->name ?></p>

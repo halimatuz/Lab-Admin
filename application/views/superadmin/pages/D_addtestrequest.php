@@ -7,6 +7,10 @@ foreach(@$test_req as $test) {
     @$test_r = $test;
 }
 
+foreach(@$sk_number as $s) {
+    @$sk = $s;
+}
+
 ?>
 <!-- Main Content -->
 <div class="main-content">
@@ -322,9 +326,42 @@ foreach(@$test_req as $test) {
                         </table>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-
                 </div>
+                <br>
+
+                <h6 class="text-primary">Customer Section</h6>
+                <hr>
+
+                <div class="form-group">
+                    <label for="int_person_testreq">Nama Pihak Perusahaan</label>
+                    <input type="text" name="int_person_testreq" id="int_person_testreq" class="form-control" placeholder="Nama Pihak Perusahaan" value="<?= @$sk->int_person_testreq ?>">
+                </div>
+
+                <?php if($sk->int_signature_testreq == NULL) { ?>
+
+                <div class="boxarea">
+                    <h6>Tanda Tangan Disini!</h6>
+                    <div class="signature-pad" id="signature-pad">
+                        <div class="m-signature-pad">
+                            <div class="m-signature-pad-body">
+                                <canvas></canvas>
+                            </div>
+                            <div class="m-signature-pad-footer">
+                                <button type="button" data-action="clear" class="btn btn-danger"><i class="fa fa-trash-o"></i> Bersihkan</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <?php } else { ?>
+                <div class="form-group">
+                    <label for="">Company Side Signature</label><br>
+                    <img src="<?= base_url() . $sk->int_signature_testreq ?>" alt="" class="img-thumbnail">
+                    <a href="<?= base_url('D_superadmin/delete_signature_testreq/') . $sk->id_sk ?>" class="text-danger mb-2 tombol-hapus"><u>Delete Signature</u></a>
+                </div>
+                <?php } ?>
+                
+                <button data-action="save" class="btn btn-primary" id="save2">Save Changes</button>
             </div>
             </form>
           </div>
@@ -365,3 +402,60 @@ foreach(@$test_req as $test) {
         </div>
     </div>
 </form>
+
+<script>
+
+    var wrapper = document.getElementById("signature-pad"),
+    clearButton = wrapper.querySelector("[data-action=clear]"),
+    saveButton = document.querySelector("[data-action=save]"),
+    canvas = wrapper.querySelector("canvas"),
+    signaturePad;
+
+
+    function resizeCanvas() {
+
+      var ratio =  window.devicePixelRatio || 1;
+      canvas.width = canvas.offsetWidth * ratio;
+      canvas.height = canvas.offsetHeight * ratio;
+      canvas.getContext("2d").scale(ratio, ratio);
+    }
+
+    signaturePad = new SignaturePad(canvas);
+
+    clearButton.addEventListener("click", function (event) {
+      signaturePad.clear();
+    });
+
+    saveButton.addEventListener("click", function (event) {
+      
+    if (signaturePad.isEmpty()) {
+        $('#myModal').modal('show');
+    }
+
+      else {
+       
+        $.ajax({
+          type: "POST",
+          url: "<?php echo base_url();?>D_superadmin/save_signature_testreq",
+          data: {
+            'int_signature_testreq': signaturePad.toDataURL(),
+            'id_sk': <?= $int->id_sk ?>
+          }
+        });
+
+      }
+    }); 
+</script>
+<style type="text/css">
+    canvas {
+        border: 1px dashed #ccc;
+        border-radius: 5px;
+        color: #bbbabb;
+    }
+
+    .m-signature-pad-footer
+    {
+        margin-bottom: 100px;
+        margin-top: 10px;
+    }
+</style>

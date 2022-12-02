@@ -10,6 +10,10 @@ foreach(@$test_req as $test) {
 foreach($company as $c) {
   $cmp = $c;
 }
+
+foreach($sk_number as $s) {
+  $sk = $s;
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -62,7 +66,7 @@ foreach($company as $c) {
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <img src="<?= base_url('assets/img/company_profile/') . $cmp->img_logo ?>" alt="" width="220">
+          <img src="<?= base_url('assets/img/company_profile/logo/') . $cmp->img_logo ?>" alt="" width="220">
         </div>
         <div class="col-md-3">
         </div>
@@ -307,15 +311,20 @@ foreach($company as $c) {
           <div class="col-3 text-center position-relative">
             <p>PJ Teknis</p>
             <br><br><br>
-            <img src="<?= base_url('assets/img/company_profile/') . $cmp->tp_signature ?>" alt="" width="200" class="position-absolute" style="left: 50%; transform:translate(-50%, -50%); top:50%;">
+            <img src="<?= base_url('assets/img/company_profile/tp_signature/') . $cmp->tp_signature ?>" alt="" width="200" class="position-absolute" style="left: 50%; transform:translate(-50%, -50%); top:50%;">
             <p style="margin-bottom: -10px;"><?= $cmp->technical_person ?></p>
             <p>(.................................................................)</p>
           </div>
           <div class="col-6"></div>
-          <div class="col-3">
-            <p class="text-center">Pelanggan</p>
+          <div class="col-3 text-center">
+            <p>Pelanggan</p>
+            <?php if($sk->int_signature_testreq == NULL) { ?>
             <br><br><br>
-            <p class="text-center">(.................................................................)</p>
+            <?php } else { ?>
+            <img src="<?= base_url('') . $sk->int_signature_testreq ?>" alt="" width="180px">
+            <?php } ?>
+            <p style="margin-bottom: -10px;"><?= $sk->int_person_testreq ?></p>
+            <p>(.................................................................)</p>
           </div>
         </div>
           <p style="font-size: 14px;" class="mt-2">Catatan:</p>

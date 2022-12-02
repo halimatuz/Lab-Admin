@@ -16,6 +16,11 @@ class D_web extends CI_Model
 		);
 	}
 
+    function profile($id_user)
+	{
+		return $this->db->get_where('user', "id_user='$id_user'")->result();
+	}
+
     function comp()
 	{
         return $this->db->get('company_profile')->row();

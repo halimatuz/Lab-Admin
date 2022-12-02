@@ -46,7 +46,7 @@ foreach($company as $c) {
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <img src="<?= base_url('assets/img/company_profile/') . $cmp->img_logo ?>" alt="" width="220">
+          <img src="<?= base_url('assets/img/company_profile/logo/') . $cmp->img_logo ?>" alt="" width="220">
         </div>
         <div class="col-md-6">
           <img src="<?= base_url('assets/img/kan.png') ?>" alt="" width="150px" style="margin-left: 300px;">
@@ -123,8 +123,8 @@ foreach($company as $c) {
         <div class="col-md-6"></div>
         <div class="col-md-3">
           <p class="text-center">Bekasi, <?= date('dS F, Y', strtotime($smpl_det->date_sample)); ?><br><?= $cmp->name ?></p>
-          <br><br><br>
-          <p class="text-center"><u class="font-weight-bold">Fadhelun</u><br>PJ Teknis</p>
+          <img src="<?= base_url('assets/img/company_profile/tp_signature/') . $cmp->tp_signature ?>" alt="" width="200px">
+          <p class="text-center"><u class="font-weight-bold"><?= $cmp->technical_person ?></u><br>PJ Teknis</p>
         </div>
       </div>
     </div>
