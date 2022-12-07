@@ -138,6 +138,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/summernote/summernote-bs4.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/chocolat/dist/css/chocolat.css">
     <?php
+  } elseif ($this->uri->segment(2) == "update_profile") {
+    ?>
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/cropperjs/cropper.min.css">
+    <?php
   } ?>
   <!-- IziToasts -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/izitoast/css/iziToast.min.css">

@@ -33,69 +33,71 @@ foreach(@$sk_number as $s) {
                 <div class="row">
                     <p class="font-weight-bold">I. PERMINTAAN PENGUJIAN</p>
                     <input type="hidden" name="id_sk" value="<?= $int->id_sk ?>">
-                    <table class="table table-bordered table-bordered-dark table-no-padding">
-                        <tr>
-                            <th colspan="4">KODE CONTOH UJI</th>
-                        </tr>
-                        <tr>
-                            <td colspan="4">DIISI OLEH PELANGGAN (DENGAN HURUF KAPITAL)</td>
-                        </tr>
-                        <tr>
-                            <td class="font-weight-bold" width="10">1)</td>
-                            <td class="font-weight-bold">Nama Pelanggan</td>
-                            <td class="font-weight-bold" width="10">:</td>
-                            <td><?= $int->name_int ?></td>
-                        </tr>
-                        <tr>
-                            <td class="font-weight-bold" width="10">2)</td>
-                            <td class="font-weight-bold">Alamat Pelanggan</td>
-                            <td class="font-weight-bold" width="10">:</td>
-                            <td><?= $int->int_address ?></td>
-                        </tr>
-                        <tr>
-                            <td class="font-weight-bold" width="10"></td>
-                            <td class="font-weight-bold">No. Telp/HP.</td>
-                            <td class="font-weight-bold" width="10">:</td>
-                            <td><?= $int->int_phone ?></td>
-                        </tr>
-                        <tr>
-                            <td class="font-weight-bold" width="10">3)</td>
-                            <td class="font-weight-bold">Nama/Jenis Contoh</td>
-                            <td class="font-weight-bold" width="10">:</td>
-                            <td>
-                                <?php if(@$test_r->sample_type == '') {?>
-                                <select name="sample_type[]" id="" class="form-control selectric" multiple>
-                                    <option value="">-- Select Sample --</option>
-                                    <?php foreach($sample as $row) : ?>
-                                        <option value="<?= $row->name_sample ?>"><?= $row->name_sample ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                                <?php } else { ?>
-                                    <input type="hidden" name="sample_type" value="<?= @$test_r->sample_type ?>">
-                                    <?= @$test_r->sample_type ?>&emsp;
-                                    <a href="<?php echo base_url('D_superadmin/delete_sample_type_request/') . @$test_r->id_sk ?>"class="btn btn-danger tombol-hapus"><i class="fas fa-trash"></i></a>
-                                <?php } ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="font-weight-bold" width="10">4)</td>
-                            <td class="font-weight-bold">Tanggal Masuk Contoh Uji</td>
-                            <td class="font-weight-bold" width="10">:</td>
-                            <td>
-                                <input type="date" name="entry_date" class="form-control" value="<?= @$test_r->entry_date ?>">
-                                <span class="text-small text-danger">*Required</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="font-weight-bold" width="10">5)</td>
-                            <td class="font-weight-bold">Kegiatan/Paket Pekerjaan</td>
-                            <td class="font-weight-bold" width="10">:</td>
-                            <td>
-                                <input type="text" name="work_package" placeholder="Insert activity / work package" class="form-control" value="<?= @$test_r->work_package ?>">
-                                <span class="text-small text-danger">*Required</span>
-                            </td>
-                        </tr>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-bordered-dark table-no-padding">
+                            <tr>
+                                <th colspan="4">KODE CONTOH UJI</th>
+                            </tr>
+                            <tr>
+                                <td colspan="4">DIISI OLEH PELANGGAN (DENGAN HURUF KAPITAL)</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold" width="10">1)</td>
+                                <td class="font-weight-bold">Nama Pelanggan</td>
+                                <td class="font-weight-bold" width="10">:</td>
+                                <td><?= $int->name_int ?></td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold" width="10">2)</td>
+                                <td class="font-weight-bold">Alamat Pelanggan</td>
+                                <td class="font-weight-bold" width="10">:</td>
+                                <td><?= $int->int_address ?></td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold" width="10"></td>
+                                <td class="font-weight-bold">No. Telp/HP.</td>
+                                <td class="font-weight-bold" width="10">:</td>
+                                <td><?= $int->int_phone ?></td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold" width="10">3)</td>
+                                <td class="font-weight-bold">Nama/Jenis Contoh</td>
+                                <td class="font-weight-bold" width="10">:</td>
+                                <td>
+                                    <?php if(@$test_r->sample_type == '') {?>
+                                    <select name="sample_type[]" id="" class="form-control selectric" multiple>
+                                        <option value="">-- Select Sample --</option>
+                                        <?php foreach($sample as $row) : ?>
+                                            <option value="<?= $row->name_sample ?>"><?= $row->name_sample ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <?php } else { ?>
+                                        <input type="hidden" name="sample_type" value="<?= @$test_r->sample_type ?>">
+                                        <?= @$test_r->sample_type ?>&emsp;
+                                        <a href="<?php echo base_url('D_superadmin/delete_sample_type_request/') . @$test_r->id_sk ?>"class="btn btn-danger tombol-hapus"><i class="fas fa-trash"></i></a>
+                                    <?php } ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold" width="10">4)</td>
+                                <td class="font-weight-bold">Tanggal Masuk Contoh Uji</td>
+                                <td class="font-weight-bold" width="10">:</td>
+                                <td>
+                                    <input type="date" name="entry_date" class="form-control" value="<?= @$test_r->entry_date ?>">
+                                    <span class="text-small text-danger">*Required</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold" width="10">5)</td>
+                                <td class="font-weight-bold">Kegiatan/Paket Pekerjaan</td>
+                                <td class="font-weight-bold" width="10">:</td>
+                                <td>
+                                    <input type="text" name="work_package" placeholder="Insert activity / work package" class="form-control" value="<?= @$test_r->work_package ?>">
+                                    <span class="text-small text-danger">*Required</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
 
                     <div class="table-responsive">
                         <table class="table table-bordered table-bordered-dark table-no-padding">

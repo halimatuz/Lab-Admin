@@ -285,6 +285,10 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
   ?>
   <script src="<?php echo base_url(); ?>assets/js/page/utilities-contact.js"></script>
   <?php
+} elseif ($this->uri->segment(2) == "update_profile") {
+  ?>
+  
+  <?php
 } ?>
 
 <!-- IziToast -->
@@ -310,6 +314,67 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {
 <script src="<?php echo base_url(); ?>assets/js/page/modules-datatables.js"></script>
 <!-- Lottie -->
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<!-- CropperJS -->
+<script src="<?php echo base_url(); ?>assets/modules/cropperjs/cropper.min.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+		var image = document.getElementById('image');
+		var input = document.getElementById('input');
+		var $modal = $('#modal');
+		var cropper;
+		var image_cnt = 0;
+
+		input.addEventListener('change', function (e) {
+			var files = e.target.files;
+			var reader;
+			var file;
+			var url;
+
+			if (files && files.length > 0) {
+				file = files[0];
+				if (URL) {
+					image.src = URL.createObjectURL(file);
+					$modal.modal('show');
+				} 
+				else if (FileReader) 
+				{
+					reader = new FileReader();
+					reader.onload = function (e) {
+						image.src = reader.result;
+						$modal.modal('show');
+					};
+					reader.readAsDataURL(file);
+				}
+			}
+		});
+
+		$modal.on('shown.bs.modal', function () {
+			cropper = new Cropper(image, {
+				aspectRatio: 1,
+				viewMode: 1,
+			});
+		}).on('hidden.bs.modal', function () {
+			cropper.destroy();
+			cropper = null;
+		});
+
+		document.getElementById('crop').addEventListener('click', function () {
+
+			var canvas;
+			$modal.modal('hide');
+			if (cropper) {
+				canvas = cropper.getCroppedCanvas({
+					width: 160,
+					height: 160,
+				});
+				$("#image_crop_data2").append('<div class="pad_row"><textarea name="base64str[]" style="display: none;">'+canvas.toDataURL()+'</textarea></div>');
+				$("#image_crop_data").attr('src',canvas.toDataURL());
+				image_cnt++;
+			}
+		});
+
+	});
+</script>
 <!-- Zxing Scanner -->
 <script type="text/javascript" src="<?php echo base_url()?>assets/modules/zxing/zxing.min.js"></script>
 <script>

@@ -15,7 +15,7 @@
           </div>
           <div class="card-body">
                 <?php foreach($profile as $pro) : ?>
-                <form method="POST" action="<?= base_url('D_superadmin/update_profile_action') ?>" enctype="multipart/form-data">
+                <form id="imageForm1" method="POST" action="<?= base_url('D_superadmin/update_profile_action') ?>" enctype="multipart/form-data">
                   <div class="row">
                     <div class="form-group col-12 col-md-6">
                       <label for="fullname">Fullname</label>
@@ -33,10 +33,14 @@
                   <div class="row">
                     <div class="form-group col-12 col-md-6">
                       <label for="image" class="d-block">Image Profile</label>
-                      <?php if($pro->image != NULL) : ?>
-                      <img src="<?= base_url('assets/img/avatar/') . $pro->image ?>" alt="" class="img-thumbnail mb-2" width="100px" height="50px">
-                      <?php endif; ?>
-                      <input id="image" type="file" class="form-control <?php if(form_error('image')) { echo "is-invalid"; } ?>" name="image" value="<?= $pro->image ?>">
+                      <?php if($pro->image != NULL) { ?>
+                      <img src="<?= base_url('assets/img/avatar/') . $pro->image ?>" alt="" class="img-thumbnail mb-2" id="image_crop_data" width="100px" height="50px">
+                      <?php } ?>
+                      <div id="image_crop_data2"></div>
+                      <div class="custom-file">
+                        <input id="input" type="file" class="custom-file-input <?php if(form_error('image')) { echo "is-invalid"; } ?>" name="image">
+                        <label class="custom-file-label">Choose File</label>
+                      </div>
                       <?php echo form_error('image', '<span class="text-small text-danger">', '</span>') ?>
                     </div>
                   </div>
@@ -57,3 +61,27 @@
     </div>
   </section>
 </div>
+
+<!-- MODEL POPUP -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalLabel">Crop the image</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="img-container">
+          <img id="image" src="https://avatars0.githubusercontent.com/u/3456749">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="crop">Crop</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODEL POPUP -->

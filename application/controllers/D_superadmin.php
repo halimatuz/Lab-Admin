@@ -130,8 +130,8 @@ class D_superadmin extends CI_Controller
 		} else {
         $where = array('id_analysis' => $id);
         $data = array(
-                'company_pages' => $this->web->comp(),
-                'profile_user' => $this->web->profile($this->session->userdata('id_user')),
+            'company_pages' => $this->web->comp(),
+            'profile_user' => $this->web->profile($this->session->userdata('id_user')),
             'title' => 'Data Analysis',
         );
         $data['analysis'] = $this->web->get_data('analysis', 'id_analysis')->result();
@@ -2144,18 +2144,18 @@ class D_superadmin extends CI_Controller
 			//Server settings
 			// $mail->SMTPDebug = SMTP::DEBUG_SERVER;                   // Enable verbose debug output
 			$mail->isSMTP();                                            // Send using SMTP
-			$mail->Host       = 'validasi.sttj.ac.id';                    	// Set the SMTP server to send through
+			$mail->Host       = 'eghans.com';                    	// Set the SMTP server to send through
 			$mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-			$mail->Username   = 'deltaindo@validasi.sttj.ac.id';            // SMTP username
-			$mail->Password   = 'kuningan1976!';                         // SMTP password
-			// $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;      // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-			$mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+			$mail->Username   = 'deltaindo@eghans.com';            // SMTP username
+			$mail->Password   = 'Kuningan1976!';                         // SMTP password
+			$mail->SMTPSecure = 'ssl';      // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+			$mail->Port       = 465;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 		
 			//Recipients
-			$mail->setFrom('deltaindo@validasi.sttj.ac.id', 'PT. DELTA INDONESIA LABORATORY');
+			$mail->setFrom('deltaindo@eghans.com', 'PT. DELTA INDONESIA LABORATORY');
 			$mail->addAddress($institution->director_email, 'DIRECTOR LABORATORY');     // Add a recipient
 			
-			$mail->addReplyTo('deltaindo@validasi.sttj.ac.id', 'PT. DELTA INDONESIA LABORATORY');
+			$mail->addReplyTo('deltaindo@eghans.com', 'PT. DELTA INDONESIA LABORATORY');
 			// $mail->addCC('cc@example.com');
 			// $mail->addBCC('bcc@example.com');
 		
@@ -2314,7 +2314,7 @@ class D_superadmin extends CI_Controller
         );
         
         $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
-        $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int LEFT JOIN unit ON coa.id_unit = unit.id_unit INNER JOIN method ON coa.id_method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk WHERE result_coa.id_sk = $id_sk")->result();
+        $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int LEFT JOIN unit ON coa.id_unit = unit.id_unit INNER JOIN method ON coa.id_method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk WHERE result_coa.id_sk = $id_sk AND result_coa.revision = 0")->result();
         $data['analysis'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN analysis ON sampling_det.id_analysis = analysis.id_analysis INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk WHERE sampling_det.id_sk = $id_sk AND analysis.coa = 1")->result();
         $data['count'] = count($data['analysis']) + 1;
 
@@ -2343,7 +2343,7 @@ class D_superadmin extends CI_Controller
         );
         
         $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
-        $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.id_method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk INNER JOIN sk_number_rev ON sk_number_rev.id_sk = $id_sk WHERE result_coa.id_sk = $id_sk AND sk_number_rev.revision = $rev")->result();
+        $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int LEFT JOIN unit ON coa.id_unit = unit.id_unit INNER JOIN method ON coa.id_method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk INNER JOIN sk_number_rev ON sk_number_rev.id_sk = $id_sk WHERE result_coa.id_sk = $id_sk AND sk_number_rev.revision = $rev")->result();
         $data['analysis'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN analysis ON sampling_det.id_analysis = analysis.id_analysis INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk WHERE sampling_det.id_sk = $id_sk AND analysis.coa = 1")->result();
         $data['count'] = count($data['analysis']) + 1;
 
@@ -2391,7 +2391,6 @@ class D_superadmin extends CI_Controller
         $this->dompdf->stream($no_cert. "_$name_int.pdf", array('Attachment' => false));
 
         }
-
     }
 
     public function pdf_coa_rev($id_sk, $rev) {
@@ -2408,7 +2407,7 @@ class D_superadmin extends CI_Controller
         );
         
         $data['company'] = $this->db->query("SELECT * FROM company_profile")->result();
-        $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int INNER JOIN method ON coa.id_method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk INNER JOIN sk_number_rev ON sk_number_rev.id_sk = $id_sk WHERE result_coa.id_sk = $id_sk AND result_coa.revision = $rev")->result();
+        $data['coa'] = $this->db->query("SELECT *, result_coa.sampling_location AS sampling_location_coa,result_coa.time AS time_coa FROM result_coa INNER JOIN analysis ON result_coa.id_analysis = analysis.id_analysis INNER JOIN coa ON result_coa.id_coa = coa.id_coa INNER JOIN institution ON result_coa.id_int = institution.id_int LEFT JOIN unit ON coa.id_unit = unit.id_unit INNER JOIN method ON coa.id_method = method.id_method INNER JOIN sk_number ON result_coa.id_sk = sk_number.id_sk INNER JOIN sk_number_rev ON sk_number_rev.id_sk = $id_sk WHERE result_coa.id_sk = $id_sk AND result_coa.revision = $rev")->result();
         $data['analysis'] = $this->db->query("SELECT * FROM sampling_det INNER JOIN analysis ON sampling_det.id_analysis = analysis.id_analysis INNER JOIN sk_number ON sampling_det.id_sk = sk_number.id_sk WHERE sampling_det.id_sk = $id_sk AND analysis.coa = 1")->result();
         $data['count'] = count($data['analysis']) + 1;
 
@@ -2422,6 +2421,7 @@ class D_superadmin extends CI_Controller
         $this->dompdf->stream("COA " . $data['coa']->name_int .".pdf", array('Attachment' => 0));
         }
     }
+
 
     public function scan_coa()
     {
@@ -2610,6 +2610,12 @@ class D_superadmin extends CI_Controller
         $this->form_validation->set_rules('tp_signature', 'Technical Person Signature');
         $this->form_validation->set_rules('director_signature', 'Director Signature');
 
+        $var_cek = $this->db->query("SELECT * FROM company_profile")->result();
+
+        foreach($var_cek as $c) {
+            $cek = $c;
+        } 
+
         if($this->form_validation->run() == false) {
             $this->update_company_profile();
         } else {
@@ -2624,6 +2630,10 @@ class D_superadmin extends CI_Controller
                     $img_logo = $old->img_logo;
                 }
             } else {
+                if($cek->img_logo != NULL) {
+                    $img_logo_old = "assets/img/company_profile/logo/$cek->img_logo";
+                    unlink($img_logo_old);
+                }
 				$config['upload_path'] = FCPATH . "assets/img/company_profile/logo/";
 				$config['allowed_types'] = 'jpg|jpeg|png|tiff|webp';
 				$this->load->library('upload', $config);
@@ -2641,6 +2651,10 @@ class D_superadmin extends CI_Controller
                     $tp_signature = $old->tp_signature;
                 }
             } else {
+                if($cek->tp_signature != NULL) {
+                    $tp_signature_old = "assets/img/company_profile/logo/$cek->tp_signature";
+                    unlink($tp_signature_old);
+                }
 				$config['upload_path'] = FCPATH . "assets/img/company_profile/tp_signature/";
 				$config['allowed_types'] = 'jpg|jpeg|png|tiff|webp';
 				$this->load->library('upload', $config);
@@ -2658,6 +2672,10 @@ class D_superadmin extends CI_Controller
                     $director_signature = $old->director_signature;
                 }
             } else {
+                if($cek->director_signature != NULL) {
+                    $director_signature_old = "assets/img/company_profile/logo/$cek->director_signature";
+                    unlink($director_signature_old);
+                }
 				$config['upload_path'] = FCPATH . "assets/img/company_profile/director_signature/";
 				$config['allowed_types'] = 'jpg|jpeg|png|tiff|webp';
 				$this->load->library('upload', $config);
@@ -2699,6 +2717,66 @@ class D_superadmin extends CI_Controller
     }
 
     
+    public function update_smtp() {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+            $data = array(
+                'company_pages' => $this->web->comp(),
+                'profile_user' => $this->web->profile($this->session->userdata('id_user')),
+                'title' => "Settings SMTP"
+            );
+
+            $data['smtp'] = $this->db->query("SELECT * FROM smtp_config")->row();
+
+            $this->load->view('superadmin/_layout/header', $data);
+            $this->load->view('superadmin/_layout/sidebar');
+            $this->load->view('superadmin/pages/D_settingssmtp');
+            $this->load->view('superadmin/_layout/footer');
+        }
+    }
+
+    public function update_smtp_action() {
+        $sess = $this->session->userdata('id_superadmin');
+		if ($sess == NULL) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You don\'t have permission, please login first</div>');
+			redirect('D_auth');
+		} else {
+        $this->form_validation->set_rules('host', 'Host', 'required');
+        $this->form_validation->set_rules('account_name', 'Account Name', 'required');
+        $this->form_validation->set_rules('username', 'Username', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_rules('smtp_secure', 'SMTP Secure', 'required');
+        $this->form_validation->set_rules('port', 'Port', 'required');
+        $this->form_validation->set_rules('subject', 'Subject', 'required');
+
+        if($this->form_validation->run() == false) {
+            $this->update_smtp();
+        } else {
+
+            $data = array (
+                'host' => $this->input->post('host'),
+                'account_name' => $this->input->post('account_name'),
+                'username' => $this->input->post('username'),
+                'password' => $this->input->post('password'),
+                'smtp_secure' => $this->input->post('smtp_secure'),
+                'port' => $this->input->post('port'),
+                'subject' => $this->input->post('subject'),
+            );
+
+            $where = array(
+                'id_smtp' => $this->input->post('id_smtp')
+            );
+
+            $this->web->update_data('smtp_config', $data, $where);
+            $this->session->set_flashdata('msg', 'Update SMTP Config success!');
+            redirect('D_superadmin/update_smtp/');
+        }
+    }
+    }
+
     public function update_profile() {
         $sess = $this->session->userdata('id_superadmin');
 		if ($sess == NULL) {
@@ -2732,32 +2810,46 @@ class D_superadmin extends CI_Controller
         if($this->form_validation->run() == false) {
             $this->update_profile();
         } else {
-            $image = $_FILES['image']['name'];
+            $base64strcount = count($_POST["base64str"]);
 
             $id_user = $this->session->userdata('id_user');
             $image_old = $this->db->query("SELECT * FROM user WHERE id_user = $id_user")->result();
             
-            if ($image == NULL) {
+            if ($base64strcount == NULL) {
                 foreach($image_old as $old) {
-                    $image = $old->image;
+                    $img_name = $old->image;
                 }
             } else {
-				$config['upload_path'] = FCPATH . "assets/img/avatar/";
-				$config['allowed_types'] = 'jpg|jpeg|png|tiff|webp';
-				$this->load->library('upload', $config);
-				$this->upload->initialize($config);
-
-                if (!$this->upload->do_upload('image')) {
-                    echo "Upload image failed";
-                } else {
-                    $image = $this->upload->data('file_name');
+                for($i=0;$i<$base64strcount;$i++)
+                {
+                    $img_name = time() . "_" . rand(0,999999) . "." . 'png';
+                    $img_path = FCPATH . "assets/img/avatar/" . $img_name;
+                    $img = $_POST["base64str"][$i];
+                    $img = str_replace('data:image/png;base64,', '', $img);
+                    $img = str_replace('data:image/jpg;base64,', '', $img);
+                    $img = str_replace('data:image/jpeg;base64,', '', $img);
+                    $img = str_replace('data:image/gif;base64,', '', $img);
+                    $img = str_replace(' ', '+', $img);
+                    $img_data = base64_decode($img);
+    
+                    $im = imagecreatefromstring($img_data);
+                    if ($im !== false) {
+                        //header('Content-Type: image/png');
+                        imagepng($im, $img_path);
+                        imagedestroy($im);
+                    }
+                    else 
+                    {
+                        echo 'An error occurred.';
+                        exit();
+                    }
                 }
             }
 
             $data = array (
                 'fullname' => $this->input->post('fullname'),
                 'email' => $this->input->post('email'),
-                'image' => $image,
+                'image' => $img_name,
             );
 
             $where = array(

@@ -1,6 +1,16 @@
 <?php
 defined('BASEPATH') or exit ('No direct script access allowed');
 
+include 'email.php';
+
+// Import PHPMailer classes into the global namespace
+// These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+// Load Composer's autoloader
+require 'assets/vendor/autoload.php';
 class D_auth extends CI_Controller 
 {
     public function index() {
@@ -22,7 +32,8 @@ class D_auth extends CI_Controller
 
             if($this->form_validation->run() == false) {
                 $data = array(
-                    'title' => "Login"
+                    'title' => "Login",
+                    'company' => $this->db->query("SELECT * FROM company_profile")->result()
                 );
                 $this->load->view('_layout/header_auth', $data);
                 $this->load->view('pages/D_login');
@@ -169,5 +180,134 @@ class D_auth extends CI_Controller
         $data['result'] = $this->db->query("SELECT * FROM sk_number INNER JOIN institution ON sk_number.id_int = institution.id_int WHERE id_sk = $id_sk")->result();
         $this->load->view('pages/D_approve', $data);
         $this->load->view('_layout/footer');
+    }
+
+    public function forgot_password() {
+        $data = array(
+            'title' => "Forgot Password",
+            'company' => $this->db->query("SELECT * FROM company_profile")->result()
+        );
+
+        $this->load->view('_layout/header_auth', $data);
+        $this->load->view('pages/D_forgotpassword');
+    }
+
+    public function forgot_password_action() {
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+
+        if($this->form_validation->run() == false) {
+            $this->forgot_password();
+        } else {
+
+            // Instantiation and passing `true` enables exceptions
+			$mail = new PHPMailer(true);
+			//Server settings
+			// $mail->SMTPDebug = SMTP::DEBUG_SERVER;                   // Enable verbose debug output
+			$mail->isSMTP();                                            // Send using SMTP
+			$mail->Host       = 'eghans.com';                    	// Set the SMTP server to send through
+			$mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+			$mail->Username   = 'deltaindo@eghans.com';            // SMTP username
+			$mail->Password   = 'Kuningan1976!';                         // SMTP password
+			$mail->SMTPSecure = 'ssl';      // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+			$mail->Port       = 465;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+		
+            $email = $this->input->post('email');
+            $user = $this->db->query("SELECT * FROM user WHERE email = '$email'")->row();
+
+            // Encrypt for email params 
+            function encryptId($id_user) {
+                $encrypt_method = "AES-256-CBC";
+                $secret_key = "XDT-YUGHH-GYGF-YUTY-GHRGFR";
+                $iv = "DASFDSYHFSDUYFFSD";
+                $key = hash('sha256', $secret_key);
+                $iv = substr(hash('sha256', $iv), 0, 16);
+                $encrypt = openssl_encrypt($id_user, $encrypt_method, $key, 0, $iv);
+                $encrypt = base64_encode($encrypt);
+                return $encrypt;
+            }
+
+			//Recipients
+			$mail->setFrom('deltaindo@eghans.com', 'PT. DELTA INDONESIA LABORATORY');
+			$mail->addAddress($email, $user->fullname);     // Add a recipient
+			
+			$mail->addReplyTo('deltaindo@eghans.com', 'PT. DELTA INDONESIA LABORATORY');
+			// $mail->addCC('cc@example.com');
+			// $mail->addBCC('bcc@example.com');
+		
+			// Attachments
+			// $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+			// $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+		
+			// Content
+			$mail->isHTML(true);                                  // Set email format to HTML
+			$mail->Subject = 'Pesan Dari PT. DELTA INDONESIA LABORATORY';
+			$mail->Body    = email_forgot_password($user->id_user);
+        
+        if($mail->send())
+		{
+			$this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible show fade">
+            <div class="alert-body">
+              <button class="close" data-dismiss="alert">
+                <span>&times;</span>
+              </button>
+              Email sent successfully!
+            </div>
+          </div>');
+            redirect('D_auth/forgot_password');
+		}
+		else{
+			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+		}
+            
+        }
+    }
+
+    public function reset_password($id_user) {
+        // Decrypt params
+        $encrypt_method = "AES-256-CBC";
+        $secret_key = "XDT-YUGHH-GYGF-YUTY-GHRGFR";
+        $iv = "DASFDSYHFSDUYFFSD";
+        $id_user_data = base64_decode($id_user);
+        $key = hash('sha256', $secret_key);
+        $iv = substr(hash('sha256', $iv), 0, 16);
+        $id_user_decrypt = openssl_decrypt($id_user_data, $encrypt_method, $key, 0, $iv);
+        $data = array(
+            'title' => "Reset Password",
+            'company' => $this->db->query("SELECT * FROM company_profile")->result(),
+            'data_user' => $this->db->query("SELECT * FROM user WHERE id_user = $id_user_decrypt")->row()
+        );
+
+        $this->load->view('_layout/header_auth', $data);
+        $this->load->view('pages/D_resetpassword');
+    }
+
+    public function reset_password_action() {
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]|matches[confirm_password]');
+        $this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'required|trim|matches[password]');
+
+        $id_user_encrypt = $this->input->post('id_user_encrypt');
+
+        if($this->form_validation->run() == false) {
+            redirect('D_auth/reset_password/' . $id_user_encrypt);
+        } else {
+            $data = array(
+                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT)
+            );
+
+            $where = array(
+                'id_user' => $this->input->post('id_user')
+            );
+
+            $this->web->update_data('user', $data, $where);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible show fade">
+            <div class="alert-body">
+              <button class="close" data-dismiss="alert">
+                <span>&times;</span>
+              </button>
+              Change password success! Please login below
+            </div>
+          </div>');
+            redirect('D_auth');
+        }
     }
 }

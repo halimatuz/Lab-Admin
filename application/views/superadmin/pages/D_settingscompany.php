@@ -56,7 +56,10 @@
                       <?php } else { ?>
                       <img src="<?= base_url('assets/img/example-image.jpg') ?>" alt="" class="img-thumbnail mb-2" width="100px" height="50px">
                       <?php } ?>
-                      <input id="img_logo" type="file" class="form-control" name="img_logo">
+                      <div class="custom-file">
+                        <input id="img_logo" type="file" class="form-control" name="img_logo">
+                        <label class="custom-file-label">Choose File</label>
+                      </div>
                       <?php echo form_error('img_logo', '<span class="text-small text-danger">', '</span>') ?>
                     </div>
                   </div>
@@ -84,7 +87,10 @@
                       <?php } else { ?>
                       <img src="<?= base_url('assets/img/example-image.jpg') ?>" alt="" class="img-thumbnail mb-2" width="100px" height="50px">
                       <?php } ?>
-                      <input id="director_signature" type="file" class="form-control" name="director_signature">
+                      <div class="custom-file">
+                        <input id="director_signature" type="file" class="custom-file-input" name="director_signature">
+                        <label class="custom-file-label">Choose File</label>
+                      </div>
                       <?php echo form_error('director_signature', '<span class="text-small text-danger">', '</span>') ?>
                     </div>
                   </div>
@@ -105,7 +111,10 @@
                       <?php } else { ?>
                         <img src="<?= base_url('assets/img/example-image.jpg') ?>" alt="" class="img-thumbnail mb-2" width="100px" height="50px">
                       <?php } ?>
-                      <input id="tp_signature" type="file" class="form-control" name="tp_signature">
+                      <div class="custom-file">
+                        <input id="tp_signature" type="file" class="custom-file-input" name="tp_signature">
+                        <label class="custom-file-label">Choose File</label>
+                      </div>
                       <?php echo form_error('tp_signature', '<span class="text-small text-danger">', '</span>') ?>
                     </div>
                   </div>
